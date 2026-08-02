@@ -34,13 +34,41 @@
   .nav-cta{background:var(--white);color:var(--bg);font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:2px;transition:opacity .15s;}
   .nav-cta:hover{opacity:0.88;}
 
-  /* HERO */
-  .hero{padding:90px 0 72px;border-bottom:1px solid var(--line);}
-  .hero-inner{max-width:680px;}
+  /* HERO SPLIT */
+  .hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
+  .hero-left{
+    padding:80px 56px;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-right{
+    padding:48px 40px;background:var(--bg2);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hcat-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--line);border:1px solid var(--line);
+    width:100%;
+  }
+  .hcat-card{
+    background:var(--bg);padding:28px 24px;
+    display:flex;flex-direction:column;gap:12px;
+    transition:background .15s;
+    cursor:pointer;
+  }
+  .hcat-card:hover{background:var(--bg3);}
+  .hcat-icon{
+    width:38px;height:38px;border:1px solid var(--line);border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hcat-icon svg{width:18px;height:18px;stroke:var(--muted);}
+  .hcat-card:hover .hcat-icon svg{stroke:var(--white);}
+  .hcat-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:0.03em;color:var(--white);line-height:1.1;}
+  .hcat-count{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.04em;}
+  .hcat-count::before{content:'';margin-right:4px;}
   .hero-label{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
   .hero-label::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.35;}
-  .hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3.6rem,7vw,6rem);line-height:0.92;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:20px;}
-  .hero h1 em{font-style:normal;color:#666;}
+  .hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(5rem,11vw,10rem);line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:28px;}
+  .hero h1 em{font-style:normal;color:#555;}
   .hero-sub{font-size:1rem;color:var(--muted);max-width:460px;line-height:1.65;margin-bottom:30px;}
   .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
   .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:7px;transition:opacity .15s,transform .15s;white-space:nowrap;}
@@ -181,12 +209,13 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-inner">
+  <section class="hero" style="padding:0;border-bottom:1px solid var(--line);">
+    <div class="hero-split">
+      <!-- LEFT -->
+      <div class="hero-left">
         <span class="hero-label">Buenos Aires · Importación directa · Envíos a todo el país</span>
         <h1>REPUESTOS<br>PARA TU<br><em>IMPRESORA</em><br>3D.</h1>
-        <p class="hero-sub">Todo lo que necesitás para mantener tu impresora funcionando — con stock real, precio justo y entrega rápida a todo el país.</p>
+        <p class="hero-sub">Todo lo que necesitás para mantener tu impresora funcionando — stock real, precio justo, entrega rápida.</p>
         <div class="hero-actions">
           <a class="btn-main" href="#catalogo">
             Ver repuestos
@@ -195,10 +224,57 @@
           <a class="btn-sec" href="#mayoristas">Soy mayorista</a>
         </div>
         <div class="hero-stats">
-          <div class="hstat"><span class="n">64</span><span class="l">Productos activos</span></div>
-          <div class="hstat"><span class="n">+6</span><span class="l">Años en el mercado</span></div>
-          <div class="hstat"><span class="n">100%</span><span class="l">Importación directa</span></div>
-          <div class="hstat"><span class="n">24h</span><span class="l">Respuesta WhatsApp</span></div>
+          <div class="hstat"><span class="n">64</span><span class="l">Productos</span></div>
+          <div class="hstat"><span class="n">+6</span><span class="l">Años</span></div>
+          <div class="hstat"><span class="n">100%</span><span class="l">Directo</span></div>
+          <div class="hstat"><span class="n">24h</span><span class="l">WhatsApp</span></div>
+        </div>
+      </div>
+      <!-- RIGHT — categorias -->
+      <div class="hero-right">
+        <div class="hcat-grid">
+          <a class="hcat-card" href="/guias/camas.html">
+            <div class="hcat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            </div>
+            <span class="hcat-name">Camas magnéticas</span>
+            <span class="hcat-count" data-cat-count="Camas magnéticas">10</span>
+          </a>
+          <a class="hcat-card" href="/guias/hotends.html">
+            <div class="hcat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M8 4l4 4 4-4"/><rect x="7" y="8" width="10" height="8" rx="1"/><path d="M10 16v4M14 16v4"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <span class="hcat-name">Hotends &amp; Extrusores</span>
+            <span class="hcat-count">24</span>
+          </a>
+          <a class="hcat-card" href="/guias/nozzles.html">
+            <div class="hcat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6H9l3-6z"/><rect x="9" y="8" width="6" height="8"/><path d="M10 16l2 6 2-6"/></svg>
+            </div>
+            <span class="hcat-name">Nozzles / Boquillas</span>
+            <span class="hcat-count">11</span>
+          </a>
+          <a class="hcat-card" href="/guias/acoples.html">
+            <div class="hcat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h16"/><circle cx="8" cy="6" r="2" fill="var(--bg2)"/><circle cx="16" cy="12" r="2" fill="var(--bg2)"/><circle cx="8" cy="18" r="2" fill="var(--bg2)"/></svg>
+            </div>
+            <span class="hcat-name">Acoples &amp; Accesorios</span>
+            <span class="hcat-count">9</span>
+          </a>
+          <a class="hcat-card" href="/guias/termistores.html">
+            <div class="hcat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <span class="hcat-name">Termistores &amp; Resistencias</span>
+            <span class="hcat-count">6</span>
+          </a>
+          <a class="hcat-card" href="/guias/coolers.html">
+            <div class="hcat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <span class="hcat-name">Coolers &amp; Ventiladores</span>
+            <span class="hcat-count">1</span>
+          </a>
         </div>
       </div>
     </div>
