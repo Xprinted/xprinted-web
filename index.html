@@ -249,7 +249,7 @@
             <span class="hcat-name">Hotends &amp; Extrusores</span>
             <span class="hcat-count" data-cat-count="Hotends & Extrusores"></span>
           </a>
-          <a class="hcat-card" href="#catalogo" data-cat="Nozzles / Boquillas">
+          <a class="hcat-card" href="/guias/nozzles.html" data-guide="nozzles">
             <div class="hcat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6H9l3-6z"/><rect x="9" y="8" width="6" height="8"/><path d="M10 16l2 6 2-6"/></svg>
             </div>
@@ -410,7 +410,7 @@
         <h5>Categorías</h5>
         <a data-cat="Camas magnéticas">Camas magnéticas</a>
         <a data-cat="Hotends & Extrusores">Hotends &amp; Extrusores</a>
-        <a data-cat="Nozzles / Boquillas">Nozzles / Boquillas</a>
+        <a href="/guias/nozzles.html">Nozzles / Boquillas</a>
         <a data-cat="Acoples & Accesorios">Acoples &amp; Accesorios</a>
         <a data-cat="Termistores & Resistencias">Termistores</a>
       </div>
@@ -535,7 +535,9 @@ function fillHeroCounts() {
   });
 }
 
-// Conecta las tarjetas de categoría del hero
+// Conecta las tarjetas de categoría del hero.
+// - Las que tienen data-guide navegan a su página informativa (dejamos pasar el click normal).
+// - Las que tienen data-cat filtran el catálogo en la misma página.
 function wireHeroCards() {
   document.querySelectorAll('.hcat-card[data-cat]').forEach(card => {
     card.addEventListener('click', (e) => {
@@ -543,6 +545,8 @@ function wireHeroCards() {
       filterAndScroll(card.dataset.cat);
     });
   });
+  // Las tarjetas con data-guide (ej. Nozzles) usan su href normal hacia /guias/...:
+  // no les agregamos listener, el navegador sigue el enlace.
 }
 
 // Conecta los links de categoría del footer
