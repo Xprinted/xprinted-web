@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -225,21 +224,21 @@
             <defs>
               <linearGradient id="sink" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0" stop-color="#2E2E31"/>
-                <stop offset="0.5" stop-color="#54545A"/>
+                <stop offset="0.5" stop-color="#5A5A60"/>
                 <stop offset="1" stop-color="#242427"/>
               </linearGradient>
               <linearGradient id="break" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#3A3A3E"/>
-                <stop offset="0.5" stop-color="#66666C"/>
-                <stop offset="1" stop-color="#2E2E32"/>
+                <stop offset="0" stop-color="#454549"/>
+                <stop offset="0.5" stop-color="#7C7C82"/>
+                <stop offset="1" stop-color="#3A3A3E"/>
               </linearGradient>
               <linearGradient id="block" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#5A3A1E"/>
-                <stop offset="1" stop-color="#7A4A22"/>
+                <stop offset="0" stop-color="#6A4622"/>
+                <stop offset="1" stop-color="#8A5426"/>
               </linearGradient>
               <linearGradient id="noz" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0" stop-color="#242426"/>
-                <stop offset="0.5" stop-color="#565659"/>
+                <stop offset="0.5" stop-color="#5A5A5D"/>
                 <stop offset="1" stop-color="#1E1E20"/>
               </linearGradient>
               <linearGradient id="molten" x1="0" y1="0" x2="0" y2="1">
@@ -247,85 +246,87 @@
                 <stop offset="1" stop-color="#D8892E"/>
               </linearGradient>
               <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-                <stop offset="0" stop-color="#E0B36A" stop-opacity="0.35"/>
+                <stop offset="0" stop-color="#E0B36A" stop-opacity="0.4"/>
                 <stop offset="1" stop-color="#E0B36A" stop-opacity="0"/>
               </radialGradient>
             </defs>
 
             <!-- filamento entrando -->
-            <rect x="152" y="6" width="16" height="34" rx="2" fill="#2A2A2C" stroke="#3A3A3C" stroke-width="1"/>
-            <line x1="160" y1="10" x2="160" y2="36" stroke="#4A4A4C" stroke-width="1.4" stroke-dasharray="2 4"/>
+            <rect x="151" y="4" width="18" height="30" rx="2" fill="#2A2A2C" stroke="#3A3A3C" stroke-width="1"/>
+            <line x1="160" y1="8" x2="160" y2="30" stroke="#4A4A4C" stroke-width="1.4" stroke-dasharray="2 4"/>
 
             <!-- DISIPADOR (heatsink) con aletas -->
             <g>
-              <rect x="120" y="40" width="80" height="58" rx="3" fill="url(#sink)" stroke="#6A6A70" stroke-width="1.4"/>
-              <g stroke="#1E1E20" stroke-width="3">
-                <line x1="122" y1="50" x2="198" y2="50"/>
-                <line x1="122" y1="60" x2="198" y2="60"/>
-                <line x1="122" y1="70" x2="198" y2="70"/>
-                <line x1="122" y1="80" x2="198" y2="80"/>
-                <line x1="122" y1="90" x2="198" y2="90"/>
+              <rect x="112" y="34" width="96" height="60" rx="3" fill="url(#sink)" stroke="#70707A" stroke-width="1.5"/>
+              <g stroke="#1C1C1E" stroke-width="3.2">
+                <line x1="114" y1="44" x2="206" y2="44"/>
+                <line x1="114" y1="54" x2="206" y2="54"/>
+                <line x1="114" y1="64" x2="206" y2="64"/>
+                <line x1="114" y1="74" x2="206" y2="74"/>
+                <line x1="114" y1="84" x2="206" y2="84"/>
               </g>
             </g>
 
-            <!-- HEAT BREAK (garganta) -->
+            <!-- HEAT BREAK (garganta) — más visible, con cintura -->
             <g>
-              <rect x="150" y="98" width="20" height="34" fill="url(#break)" stroke="#7A7A80" stroke-width="1.4"/>
-              <!-- estrechamiento -->
-              <path d="M154 104 L166 104 L163 126 L157 126 Z" fill="#141416" opacity="0.8"/>
+              <path d="M148 94 H172 L168 108 Q160 112 152 108 Z" fill="url(#break)" stroke="#8A8A90" stroke-width="1.4" stroke-linejoin="round"/>
+              <rect x="153" y="108" width="14" height="18" fill="url(#break)" stroke="#8A8A90" stroke-width="1.4"/>
+              <path d="M152 126 Q160 130 168 126 L172 140 H148 Z" fill="url(#break)" stroke="#8A8A90" stroke-width="1.4" stroke-linejoin="round"/>
+              <!-- canal interno -->
+              <line x1="160" y1="96" x2="160" y2="138" stroke="#141416" stroke-width="3"/>
             </g>
 
             <!-- BLOQUE CALEFACTOR (heater block) -->
             <g>
-              <rect x="122" y="132" width="76" height="42" rx="3" fill="url(#block)" stroke="#8A5A2E" stroke-width="1.4"/>
+              <rect x="120" y="140" width="80" height="44" rx="3" fill="url(#block)" stroke="#A06A38" stroke-width="1.5"/>
               <!-- cartucho calefactor -->
-              <rect x="128" y="146" width="26" height="14" rx="2" fill="#0A0A0A" stroke="#9A6A38" stroke-width="1.2"/>
+              <rect x="126" y="155" width="28" height="15" rx="2" fill="#0A0A0A" stroke="#B07A44" stroke-width="1.2"/>
               <!-- termistor -->
-              <circle cx="180" cy="153" r="6" fill="#0A0A0A" stroke="#9A6A38" stroke-width="1.2"/>
+              <circle cx="182" cy="162" r="6.5" fill="#0A0A0A" stroke="#B07A44" stroke-width="1.2"/>
             </g>
 
             <!-- NOZZLE -->
             <g>
-              <path d="M138 174 H182 L168 216 Q160 232 152 216 Z" fill="url(#noz)" stroke="#6A6A6D" stroke-width="1.4" stroke-linejoin="round"/>
-              <g stroke="#26262A" stroke-width="1.1">
-                <line x1="142" y1="182" x2="178" y2="182"/>
-                <line x1="145" y1="189" x2="175" y2="189"/>
+              <path d="M136 184 H184 L169 228 Q160 244 151 228 Z" fill="url(#noz)" stroke="#70707A" stroke-width="1.5" stroke-linejoin="round"/>
+              <g stroke="#26262A" stroke-width="1.2">
+                <line x1="141" y1="192" x2="179" y2="192"/>
+                <line x1="144" y1="200" x2="176" y2="200"/>
               </g>
             </g>
 
-            <!-- resplandor + gota -->
-            <circle cx="160" cy="222" r="30" fill="url(#glow)"/>
-            <ellipse cx="160" cy="218" rx="5.5" ry="3.2" fill="#0A0A0A" stroke="#9A9A9C" stroke-width="1.4"/>
-            <path d="M155 220 Q153 234 160 246 Q167 234 165 220 Q160 224 155 220 Z" fill="url(#molten)"/>
-            <ellipse cx="160" cy="262" rx="5.5" ry="6.5" fill="url(#molten)" opacity="0.85"/>
+            <!-- resplandor + orificio + gota -->
+            <circle cx="160" cy="234" r="30" fill="url(#glow)"/>
+            <ellipse cx="160" cy="230" rx="5.5" ry="3.2" fill="#0A0A0A" stroke="#9A9A9C" stroke-width="1.4"/>
+            <path d="M155 232 Q153 246 160 258 Q167 246 165 232 Q160 236 155 232 Z" fill="url(#molten)"/>
+            <ellipse cx="160" cy="274" rx="5.5" ry="6.5" fill="url(#molten)" opacity="0.85"/>
 
-            <!-- LÍNEAS GUÍA -->
-            <g stroke="#3A3A3C" stroke-width="1">
-              <!-- disipador -->
-              <line x1="120" y1="60" x2="60" y2="54"/>
-              <circle cx="120" cy="60" r="2" fill="#66666C"/>
-              <!-- heat break -->
-              <line x1="150" y1="115" x2="60" y2="120"/>
-              <circle cx="150" cy="115" r="2" fill="#7A7A80"/>
-              <!-- bloque calefactor -->
-              <line x1="198" y1="153" x2="252" y2="150"/>
-              <circle cx="198" cy="153" r="2" fill="#C79A56"/>
-              <!-- nozzle -->
-              <line x1="168" y1="200" x2="248" y2="216"/>
-              <circle cx="168" cy="200" r="2" fill="#8A8A8C"/>
+            <!-- LÍNEAS GUÍA (conectan cada pieza con el borde donde va la etiqueta) -->
+            <g stroke="#4A4A4C" stroke-width="1">
+              <!-- disipador -> izquierda -->
+              <line x1="112" y1="64" x2="40" y2="64"/>
+              <circle cx="112" cy="64" r="2.2" fill="#7A7A80"/>
+              <!-- heat break -> izquierda -->
+              <line x1="153" y1="117" x2="40" y2="130"/>
+              <circle cx="153" cy="117" r="2.2" fill="#9A9AA0"/>
+              <!-- bloque calefactor -> derecha -->
+              <line x1="200" y1="162" x2="280" y2="162"/>
+              <circle cx="200" cy="162" r="2.2" fill="#C79A56"/>
+              <!-- nozzle -> derecha -->
+              <line x1="171" y1="214" x2="280" y2="238"/>
+              <circle cx="171" cy="214" r="2.2" fill="#9A9A9C"/>
             </g>
           </svg>
 
-          <div class="nz-tag" style="top:48px;left:22px;">Disipador</div>
-          <div class="nz-tag" style="top:110px;left:22px;">Heat break</div>
-          <div class="nz-tag" style="top:146px;right:22px;color:#C79A56;border-color:rgba(224,179,106,0.28);">Bloque calefactor</div>
-          <div class="nz-tag" style="bottom:52px;right:22px;">Nozzle</div>
+          <div class="nz-tag" style="top:56px;left:20px;">Disipador</div>
+          <div class="nz-tag" style="top:118px;left:20px;">Heat break</div>
+          <div class="nz-tag" style="top:150px;right:20px;color:#C79A56;border-color:rgba(224,179,106,0.28);">Bloque calefactor</div>
+          <div class="nz-tag" style="bottom:38px;right:20px;">Nozzle</div>
         </div>
 
         <div class="nz-specs">
           <div class="nz-spec"><span class="v">4</span><span class="l">partes clave</span></div>
           <div class="nz-spec"><span class="v">2</span><span class="l">tipos (PTFE / metal)</span></div>
-          <div class="nz-spec"><span class="v">300°</span><span class="l">C all-metal</span></div>
+          <div class="nz-spec"><span class="v">300°C</span><span class="l">all-metal</span></div>
         </div>
       </div>
     </div>
