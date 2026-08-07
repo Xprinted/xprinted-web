@@ -1,1 +1,581 @@
 
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qué es un hotend — Guía de hotends para impresoras 3D | XPRINTED</title>
+<meta name="description" content="Guía completa sobre hotends para impresoras 3D: qué son, sus partes (nozzle, heat break, bloque, disipador), hotend con PTFE vs all-metal, cómo elegir y mantenimiento. Por XPRINTED.">
+<link rel="icon" type="image/png" href="/assets/logo_icon.png">
+<link rel="canonical" href="https://xprinted-web.vercel.app/guias/hotends.html">
+<!-- Open Graph (para compartir en WhatsApp / redes) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qué es un hotend — Guía de hotends para impresoras 3D">
+<meta property="og:description" content="Partes del hotend, PTFE vs all-metal, cómo elegir según tu filamento y mantenimiento. Por XPRINTED.">
+<meta property="og:site_name" content="XPRINTED">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://xprinted-web.vercel.app/guias/hotends.html">
+<meta property="og:image" content="https://xprinted-web.vercel.app/assets/logo_icon.png">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --bg2:#111113; --bg3:#191919;
+    --line:#222224; --white:#F0F0EE; --muted:#666668; --dim:#3A3A3C;
+    --fd:'Barlow Condensed',sans-serif;
+    --fb:'Inter',sans-serif;
+    --fm:'JetBrains Mono',monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:var(--fb);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  ::selection{background:var(--white);color:var(--bg);}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 56px;}
+  .wrap-wide{max-width:1280px;margin:0 auto;padding:0 56px;}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  nav{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .logo{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-weight:900;font-size:1.15rem;letter-spacing:0.06em;}
+  .logo img{height:16px;width:auto;}
+  .nav-links{display:flex;gap:28px;font-size:0.86rem;color:var(--muted);}
+  .nav-links a{transition:color .15s;} .nav-links a:hover{color:var(--white);}
+  .nav-cta{background:var(--white);color:var(--bg);font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:2px;transition:opacity .15s;}
+  .nav-cta:hover{opacity:0.88;}
+
+  /* BREADCRUMB */
+  .breadcrumb{border-bottom:1px solid var(--line);background:var(--bg2);}
+  .breadcrumb .wrap-wide{display:flex;align-items:center;gap:8px;height:44px;font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;}
+  .breadcrumb a{transition:color .15s;} .breadcrumb a:hover{color:var(--white);}
+  .breadcrumb span.sep{opacity:0.5;}
+  .breadcrumb span.here{color:var(--white);}
+
+  /* HERO GUIA */
+  .guide-hero{border-bottom:1px solid var(--line);padding:64px 0 68px;background:linear-gradient(160deg,var(--bg2),var(--bg) 70%);}
+  .gh-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .gh-text{min-width:0;}
+  .guide-kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .guide-kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
+  .guide-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,6vw,5.2rem);line-height:0.9;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:24px;}
+  .guide-hero .lead{font-size:1.1rem;color:#B8B8B6;max-width:560px;line-height:1.72;margin-bottom:32px;}
+  .gh-actions{display:flex;gap:12px;flex-wrap:wrap;}
+
+  /* HERO VISUAL */
+  .gh-visual{display:flex;flex-direction:column;gap:18px;}
+  .nz-diagram{position:relative;border:1px solid var(--line);border-radius:4px;background:
+      radial-gradient(circle at 50% 40%, rgba(255,255,255,0.03), transparent 60%),
+      repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255,255,255,0.015) 23px, rgba(255,255,255,0.015) 24px),
+      var(--bg2);
+    padding:28px 20px;display:flex;align-items:center;justify-content:center;min-height:300px;}
+  .nz-diagram svg{width:100%;height:auto;max-height:300px;}
+  .nz-tag{position:absolute;font-family:var(--fm);font-size:0.6rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:2px;}
+  .nz-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  .nz-spec{background:var(--bg2);padding:16px 14px;text-align:center;}
+  .nz-spec .v{display:block;font-family:var(--fd);font-weight:900;font-size:1.7rem;line-height:1;color:var(--white);margin-bottom:5px;}
+  .nz-spec .l{font-family:var(--fm);font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+
+  /* SECTIONS */
+  .guide-body{padding:72px 0 32px;}
+  .guide-body section{margin-bottom:74px;}
+  .sec-label{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
+  .sec-label::before{content:'';width:16px;height:1px;background:var(--dim);}
+  .guide-body h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.9rem,3.6vw,2.7rem);text-transform:uppercase;line-height:1;margin-bottom:24px;}
+  .guide-body h3{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:0.02em;margin:30px 0 12px;color:var(--white);}
+  .guide-body p{font-size:1.05rem;color:#C4C4C2;margin-bottom:18px;max-width:900px;line-height:1.75;}
+  .guide-body p strong{color:var(--white);font-weight:600;}
+  .guide-body ul{list-style:none;margin:0 0 20px;max-width:900px;}
+  .guide-body ul li{position:relative;padding-left:24px;margin-bottom:13px;color:#C4C4C2;font-size:1.05rem;line-height:1.7;}
+  .guide-body ul li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--muted);border-radius:1px;}
+  .guide-body ul li strong{color:var(--white);font-weight:600;}
+
+  /* CALLOUT */
+  .callout{border:1px solid var(--line);border-left:2px solid var(--muted);background:var(--bg2);padding:24px 28px;border-radius:2px;margin:28px 0;max-width:900px;}
+  .callout .ct{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+  .callout p{margin:0;color:#C8C8C6;font-size:0.96rem;}
+
+  /* DIAMETER / SPEC TABLE */
+  .dia-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0;border-radius:2px;overflow:hidden;}
+  .dia-cell{background:var(--bg);padding:22px 20px;}
+  .dia-cell .d{font-family:var(--fd);font-weight:900;font-size:1.7rem;line-height:1;margin-bottom:8px;color:var(--white);}
+  .dia-cell .u{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
+  .dia-cell p{font-size:0.85rem;color:var(--muted);margin:0;line-height:1.5;}
+
+  /* TYPE CARDS */
+  .type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0;border-radius:2px;overflow:hidden;}
+  .type-card{background:var(--bg);padding:26px 24px;}
+  .type-card .tt{font-family:var(--fd);font-weight:900;font-size:1.3rem;text-transform:uppercase;margin-bottom:6px;}
+  .type-card .tsub{font-family:var(--fm);font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;}
+  .type-card p{font-size:0.9rem;color:#B8B8B6;margin:0 0 12px;line-height:1.6;}
+  .type-card .tmeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  .type-tag{font-family:var(--fm);font-size:0.6rem;color:#A0A0A0;border:1px solid var(--dim);padding:4px 9px;border-radius:2px;text-transform:uppercase;letter-spacing:0.04em;}
+  .type-tag.good{color:#7CD992;border-color:rgba(124,217,146,0.3);}
+  .type-tag.warn{color:#E0B36A;border-color:rgba(224,179,106,0.3);}
+
+  /* CATALOG BLOCK */
+  .cat-block{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);padding:56px 0;}
+  .cat-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:16px;}
+  .cat-head .section-label{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+  .cat-head .section-label::before{content:'';width:5px;height:5px;background:var(--muted);}
+  .cat-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem);text-transform:uppercase;line-height:0.95;}
+  .link-all{font-family:var(--fm);font-size:0.72rem;color:var(--muted);border-bottom:1px solid var(--dim);padding-bottom:2px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;transition:color .15s,border-color .15s;}
+  .link-all:hover{color:var(--white);border-color:var(--white);}
+  .link-all svg{width:10px;height:10px;}
+
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .prod-card{background:var(--bg);display:flex;flex-direction:column;transition:background .15s;cursor:pointer;}
+  .prod-card:hover{background:var(--bg3);}
+  .prod-card .pc-img{aspect-ratio:1/1;overflow:hidden;background:var(--bg2);position:relative;}
+  .prod-card .pc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:transform .3s,filter .3s;}
+  .prod-card:hover .pc-img img{transform:scale(1.05);filter:grayscale(0%);}
+  .pc-stock{position:absolute;top:8px;right:8px;font-family:var(--fm);font-size:0.58rem;font-weight:600;padding:3px 7px;border-radius:1px;}
+  .pc-stock.in{background:rgba(255,255,255,0.08);color:#A0A0A0;border:1px solid rgba(255,255,255,0.1);}
+  .pc-stock.out{background:rgba(200,0,0,0.15);color:#FF6B6B;border:1px solid rgba(200,0,0,0.2);}
+  .prod-card .pc-body{padding:18px;flex:1;display:flex;flex-direction:column;}
+  .pc-cat{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;}
+  .prod-card h4{font-family:var(--fd);font-weight:900;font-size:1.05rem;text-transform:uppercase;line-height:1.05;margin-bottom:10px;flex:1;}
+  .pc-price{font-family:var(--fd);font-weight:700;font-size:1.15rem;color:var(--white);margin-bottom:10px;}
+  .pc-go{font-family:var(--fm);font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:5px;border-top:1px solid var(--line);padding-top:10px;transition:color .15s;}
+  .pc-go svg{width:10px;height:10px;transition:transform .2s;}
+  .prod-card:hover .pc-go{color:var(--white);}
+  .prod-card:hover .pc-go svg{transform:translate(3px,0);}
+
+  /* CTA FINAL */
+  .guide-cta{padding:56px 0;text-align:center;border-bottom:1px solid var(--line);}
+  .guide-cta h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.5vw,2.6rem);text-transform:uppercase;margin-bottom:12px;}
+  .guide-cta p{color:var(--muted);margin-bottom:26px;max-width:520px;margin-left:auto;margin-right:auto;}
+  .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:7px;transition:opacity .15s,transform .15s;}
+  .btn-main:hover{opacity:0.9;transform:translateY(-1px);}
+  .btn-sec{border:1px solid var(--dim);color:var(--white);font-weight:600;font-size:0.88rem;padding:11px 22px;border-radius:2px;transition:border-color .15s;}
+  .btn-sec:hover{border-color:#555;}
+  .btn-main svg{width:12px;height:12px;}
+
+  /* FOOTER */
+  footer{padding:44px 0 24px;background:#080808;border-top:1px solid var(--line);}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;margin-bottom:24px;}
+  .footer-inner .logo{font-family:var(--fd);font-weight:900;}
+  .footer-links{display:flex;gap:22px;font-size:0.84rem;color:#555;flex-wrap:wrap;}
+  .footer-links a{transition:color .15s;} .footer-links a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid #151515;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:var(--fm);font-size:0.66rem;color:#333;}
+
+  @media(max-width:1024px){
+    .prod-grid{grid-template-columns:repeat(3,1fr);}
+    .gh-grid{grid-template-columns:1fr;gap:40px;}
+    .gh-visual{max-width:440px;}
+  }
+  @media(max-width:760px){
+    .nav-links{display:none;}
+    nav,.wrap,.wrap-wide{padding-left:20px;padding-right:20px;}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .guide-hero{padding:44px 0 52px;}
+  }
+  @media(max-width:500px){.prod-grid{grid-template-columns:1fr 1fr;}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
+    <div class="nav-links">
+      <a href="/#catalogo">Catálogo</a>
+      <a href="/#mayoristas">Mayoristas</a>
+      <a href="/#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="wrap-wide">
+    <a href="/">Inicio</a>
+    <span class="sep">/</span>
+    <a href="/#catalogo">Guías</a>
+    <span class="sep">/</span>
+    <span class="here">Hotends</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="guide-hero">
+  <div class="wrap-wide">
+    <div class="gh-grid">
+      <div class="gh-text">
+        <span class="guide-kicker">Guía técnica · Repuestos 3D</span>
+        <h1>Hotends.</h1>
+        <p class="lead">El hotend es el corazón caliente de la impresora: recibe el filamento, lo funde y lo deja listo para salir por el nozzle. Esta guía te explica qué es, cuáles son sus partes, la diferencia clave entre hotend con PTFE y all-metal, y cómo elegir el correcto para tu impresora.</p>
+        <div class="gh-actions">
+          <a class="btn-main" href="#productos">
+            Ver hotends disponibles
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn-sec" href="#tipos">Ver tipos</a>
+        </div>
+      </div>
+
+      <div class="gh-visual">
+        <div class="nz-diagram">
+          <svg viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de un hotend de impresora 3D">
+            <defs>
+              <linearGradient id="sink" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#2E2E31"/>
+                <stop offset="0.5" stop-color="#54545A"/>
+                <stop offset="1" stop-color="#242427"/>
+              </linearGradient>
+              <linearGradient id="break" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#3A3A3E"/>
+                <stop offset="0.5" stop-color="#66666C"/>
+                <stop offset="1" stop-color="#2E2E32"/>
+              </linearGradient>
+              <linearGradient id="block" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#5A3A1E"/>
+                <stop offset="1" stop-color="#7A4A22"/>
+              </linearGradient>
+              <linearGradient id="noz" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#242426"/>
+                <stop offset="0.5" stop-color="#565659"/>
+                <stop offset="1" stop-color="#1E1E20"/>
+              </linearGradient>
+              <linearGradient id="molten" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F0C878"/>
+                <stop offset="1" stop-color="#D8892E"/>
+              </linearGradient>
+              <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0" stop-color="#E0B36A" stop-opacity="0.35"/>
+                <stop offset="1" stop-color="#E0B36A" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- filamento entrando -->
+            <rect x="152" y="6" width="16" height="34" rx="2" fill="#2A2A2C" stroke="#3A3A3C" stroke-width="1"/>
+            <line x1="160" y1="10" x2="160" y2="36" stroke="#4A4A4C" stroke-width="1.4" stroke-dasharray="2 4"/>
+
+            <!-- DISIPADOR (heatsink) con aletas -->
+            <g>
+              <rect x="120" y="40" width="80" height="58" rx="3" fill="url(#sink)" stroke="#6A6A70" stroke-width="1.4"/>
+              <g stroke="#1E1E20" stroke-width="3">
+                <line x1="122" y1="50" x2="198" y2="50"/>
+                <line x1="122" y1="60" x2="198" y2="60"/>
+                <line x1="122" y1="70" x2="198" y2="70"/>
+                <line x1="122" y1="80" x2="198" y2="80"/>
+                <line x1="122" y1="90" x2="198" y2="90"/>
+              </g>
+            </g>
+
+            <!-- HEAT BREAK (garganta) -->
+            <g>
+              <rect x="150" y="98" width="20" height="34" fill="url(#break)" stroke="#7A7A80" stroke-width="1.4"/>
+              <!-- estrechamiento -->
+              <path d="M154 104 L166 104 L163 126 L157 126 Z" fill="#141416" opacity="0.8"/>
+            </g>
+
+            <!-- BLOQUE CALEFACTOR (heater block) -->
+            <g>
+              <rect x="122" y="132" width="76" height="42" rx="3" fill="url(#block)" stroke="#8A5A2E" stroke-width="1.4"/>
+              <!-- cartucho calefactor -->
+              <rect x="128" y="146" width="26" height="14" rx="2" fill="#0A0A0A" stroke="#9A6A38" stroke-width="1.2"/>
+              <!-- termistor -->
+              <circle cx="180" cy="153" r="6" fill="#0A0A0A" stroke="#9A6A38" stroke-width="1.2"/>
+            </g>
+
+            <!-- NOZZLE -->
+            <g>
+              <path d="M138 174 H182 L168 216 Q160 232 152 216 Z" fill="url(#noz)" stroke="#6A6A6D" stroke-width="1.4" stroke-linejoin="round"/>
+              <g stroke="#26262A" stroke-width="1.1">
+                <line x1="142" y1="182" x2="178" y2="182"/>
+                <line x1="145" y1="189" x2="175" y2="189"/>
+              </g>
+            </g>
+
+            <!-- resplandor + gota -->
+            <circle cx="160" cy="222" r="30" fill="url(#glow)"/>
+            <ellipse cx="160" cy="218" rx="5.5" ry="3.2" fill="#0A0A0A" stroke="#9A9A9C" stroke-width="1.4"/>
+            <path d="M155 220 Q153 234 160 246 Q167 234 165 220 Q160 224 155 220 Z" fill="url(#molten)"/>
+            <ellipse cx="160" cy="262" rx="5.5" ry="6.5" fill="url(#molten)" opacity="0.85"/>
+
+            <!-- LÍNEAS GUÍA -->
+            <g stroke="#3A3A3C" stroke-width="1">
+              <!-- disipador -->
+              <line x1="120" y1="60" x2="60" y2="54"/>
+              <circle cx="120" cy="60" r="2" fill="#66666C"/>
+              <!-- heat break -->
+              <line x1="150" y1="115" x2="60" y2="120"/>
+              <circle cx="150" cy="115" r="2" fill="#7A7A80"/>
+              <!-- bloque calefactor -->
+              <line x1="198" y1="153" x2="252" y2="150"/>
+              <circle cx="198" cy="153" r="2" fill="#C79A56"/>
+              <!-- nozzle -->
+              <line x1="168" y1="200" x2="248" y2="216"/>
+              <circle cx="168" cy="200" r="2" fill="#8A8A8C"/>
+            </g>
+          </svg>
+
+          <div class="nz-tag" style="top:48px;left:22px;">Disipador</div>
+          <div class="nz-tag" style="top:110px;left:22px;">Heat break</div>
+          <div class="nz-tag" style="top:146px;right:22px;color:#C79A56;border-color:rgba(224,179,106,0.28);">Bloque calefactor</div>
+          <div class="nz-tag" style="bottom:52px;right:22px;">Nozzle</div>
+        </div>
+
+        <div class="nz-specs">
+          <div class="nz-spec"><span class="v">4</span><span class="l">partes clave</span></div>
+          <div class="nz-spec"><span class="v">2</span><span class="l">tipos (PTFE / metal)</span></div>
+          <div class="nz-spec"><span class="v">300°</span><span class="l">C all-metal</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="guide-body">
+  <div class="wrap">
+
+    <!-- QUÉ ES -->
+    <section>
+      <div class="sec-label">Lo básico</div>
+      <h2>¿Qué es un hotend?</h2>
+      <p>El <strong>hotend</strong> es la parte caliente de la impresora: el conjunto que recibe el filamento sólido, lo funde y lo entrega al nozzle para que salga convertido en el hilo con el que se construye la pieza. Es el corazón del sistema de impresión, donde el plástico pasa de sólido a fundido en el punto justo antes de depositarse.</p>
+      <p>Su trabajo es fundir el filamento de forma precisa y constante, y al mismo tiempo <strong>confinar el calor</strong> a la zona de fusión: el plástico tiene que llegar líquido al nozzle, pero no ablandarse antes de tiempo más arriba. De ese equilibrio entre "calentar donde corresponde" y "mantener frío el resto" depende que la impresión salga limpia y sin atascos.</p>
+      <div class="callout">
+        <div class="ct">Dato clave</div>
+        <p>El hotend dura muchísimo porque no tiene partes móviles. En la práctica, lo que se cambia seguido es el nozzle; el hotend completo se reemplaza solo si se daña, se tapa sin arreglo o si querés mejorarlo (por ejemplo, pasar a uno all-metal).</p>
+      </div>
+    </section>
+
+    <!-- PARTES -->
+    <section>
+      <div class="sec-label">Anatomía</div>
+      <h2>Las partes de un hotend</h2>
+      <p>Todos los hotends, del más básico al más avanzado, comparten las mismas cuatro piezas. Entender qué hace cada una ayuda a saber qué comprar cuando algo falla:</p>
+      <ul>
+        <li><strong>Disipador (heatsink).</strong> La estructura de aluminio con aletas en la parte de arriba, enfriada por un ventilador. Mantiene fría la zona por donde entra el filamento, para que no se ablande antes de tiempo.</li>
+        <li><strong>Heat break (garganta).</strong> El tubo delgado que conecta la parte fría (disipador) con la caliente (bloque). Su función es crear un corte térmico neto: frío arriba, caliente abajo. Es la pieza que más define la temperatura máxima y con qué materiales podés imprimir.</li>
+        <li><strong>Bloque calefactor (heater block).</strong> El bloque de aluminio o cobre donde el filamento realmente se funde. Aloja el cartucho calefactor (que da el calor) y el termistor (que mide la temperatura).</li>
+        <li><strong>Nozzle (boquilla).</strong> El orificio de precisión en el extremo por donde sale el material fundido. Tenemos una <a href="/guias/nozzles.html" style="color:#93AEBE;border-bottom:1px solid rgba(147,174,190,0.4);">guía dedicada a nozzles</a> si querés profundizar.</li>
+      </ul>
+      <div class="callout">
+        <div class="ct">Por qué importa que ajusten bien</div>
+        <p>El nozzle y el heat break tienen que quedar firmes y en contacto entre sí dentro del bloque. Si queda una luz entre ellos, el plástico fundido se filtra, se acumula sobre el bloque y termina en una obstrucción difícil de sacar. Por eso los kits se arman en caliente.</p>
+      </div>
+    </section>
+
+    <!-- TIPOS -->
+    <section id="tipos">
+      <div class="sec-label">Tipos</div>
+      <h2>Con PTFE vs all-metal: la diferencia que más importa</h2>
+      <p>Más allá de la marca o el modelo, la distinción técnica clave entre hotends es cómo está hecho el heat break: si tiene un tubo de <strong>PTFE (teflón)</strong> por dentro o si es todo de metal. Esto define, más que ninguna otra cosa, con qué filamentos vas a poder imprimir.</p>
+
+      <div class="type-grid">
+        <div class="type-card">
+          <div class="tt">Con PTFE / teflón</div>
+          <div class="tsub">PTFE-lined · El de fábrica</div>
+          <p>Un tubo de teflón baja hasta el nozzle y el filamento no toca metal hasta el final. Es el que traen de fábrica la mayoría de las Ender y similares. Muy bueno y sin complicaciones con PLA. Su límite: el teflón empieza a degradarse alrededor de los 240 °C, así que no sirve para materiales de alta temperatura.</p>
+          <div class="tmeta">
+            <span class="type-tag good">PLA / PETG</span>
+            <span class="type-tag warn">Hasta ~240 °C</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">All-metal</div>
+          <div class="tsub">Todo metal · Alta temperatura</div>
+          <p>El heat break es de metal (acero o titanio) sin teflón en la zona caliente. Esto elimina el límite de temperatura y te habilita ABS, nylon, policarbonato y demás. A cambio, exige buen enfriamiento y una retracción bien calibrada para evitar el "heat creep" (que el calor suba y tape la garganta).</p>
+          <div class="tmeta">
+            <span class="type-tag good">ABS / nylon / PC</span>
+            <span class="type-tag good">300 °C+</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">Bi-metal</div>
+          <div class="tsub">Heat break mixto · Premium</div>
+          <p>Una variante del all-metal: el heat break combina titanio (que frena la subida de calor) con cobre (que lo conduce rápido donde hace falta). Reduce mucho el heat creep y mejora la fiabilidad a alta temperatura. Es la opción de mayor rendimiento.</p>
+          <div class="tmeta">
+            <span class="type-tag good">Uso intensivo</span>
+            <span class="type-tag good">Menos atascos</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">Volcano / alto flujo</div>
+          <div class="tsub">High-flow · Velocidad</div>
+          <p>Hotends con una zona de fundido más larga (como el Volcano) o de diseño de alto flujo, que funden más plástico por segundo. Sirven para imprimir rápido o con nozzles grandes (0.6, 0.8 mm y más) en piezas grandes y funcionales.</p>
+          <div class="tmeta">
+            <span class="type-tag good">Velocidad</span>
+            <span class="type-tag good">Nozzles grandes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO ELEGIR -->
+    <section>
+      <div class="sec-label">Decisión</div>
+      <h2>Cómo elegir el correcto</h2>
+      <p>Elegir bien es simple si vas en este orden. El primer paso es el que no podés equivocar: si el hotend no es para tu impresora, no importa lo demás.</p>
+
+      <h3>Paso 1 — Que sea compatible con tu impresora</h3>
+      <p>Cada impresora usa un hotend con un formato específico: el tipo de montaje, el largo, las conexiones y a veces un diseño propietario. No es intercambiable entre modelos distintos. Las líneas más comunes tienen su propio hotend: Ender 3 y variantes (V2, Pro, S1/Sprite, V3, Neo), Creality K1/K2, CR-10, Bambu Lab (A1, X1, P1), Anycubic Kobra, Artillery, etc.</p>
+      <div class="callout">
+        <div class="ct">Antes de comprar</div>
+        <p>Guiate por el <strong>modelo exacto de tu impresora</strong>. Si no estás seguro de cuál hotend le corresponde, decinos qué impresora tenés y te lo confirmamos antes de que compres.</p>
+      </div>
+
+      <h3>Paso 2 — Con PTFE o all-metal, según tu filamento</h3>
+      <ul>
+        <li><strong>Con PTFE</strong> si imprimís sobre todo PLA (y algo de PETG). Es más económico, simple y confiable para esos materiales.</li>
+        <li><strong>All-metal o bi-metal</strong> si vas a imprimir a alta temperatura: ABS, nylon, policarbonato. Es la mejora más importante si tu impresora todavía trae uno con teflón y querés ampliar materiales.</li>
+      </ul>
+
+      <h3>Paso 3 — Pieza suelta o kit completo</h3>
+      <ul>
+        <li><strong>Pieza suelta</strong> (disipador, bloque, heat break, cartucho) si sabés exactamente qué se te rompió y querés reemplazar solo eso.</li>
+        <li><strong>Kit completo</strong> si querés cambiar todo el conjunto de una, o si no estás seguro de cuál pieza falla: sale más a cuenta y evitás incompatibilidades entre partes.</li>
+      </ul>
+      <p>Un detalle útil si vas a un all-metal: muchos reemplazan el bloque, el heat break y el disipador, pero <strong>reutilizan el termistor y el cartucho calefactor</strong> de tu impresora. Verificá qué incluye el kit para saber si tenés que reusar esas piezas o si vienen aparte.</p>
+
+      <div class="callout">
+        <div class="ct">Error común</div>
+        <p>Intentar imprimir ABS o nylon con un hotend que tiene teflón. Por encima de ~240 °C el PTFE se degrada: se ablanda y deforma (dejando una luz donde el filamento se acumula y se carboniza, causando atascos) y libera humos que conviene evitar. Para alta temperatura, all-metal siempre.</p>
+      </div>
+    </section>
+
+    <!-- MANTENIMIENTO -->
+    <section>
+      <div class="sec-label">Mantenimiento</div>
+      <h2>Cuidado y cuándo cambiarlo</h2>
+      <p>El hotend es de las piezas más duraderas de la impresora, pero necesita algunos cuidados y a veces reemplazo. Cuidados básicos:</p>
+      <ul>
+        <li><strong>Armá y ajustá en caliente.</strong> Al montar un hotend o cambiar el nozzle, calentá primero y ajustá con la temperatura de impresión: así el nozzle y el heat break sellan bien y no gotean.</li>
+        <li><strong>Mantené el ventilador del disipador limpio y funcionando.</strong> Si ese ventilador falla, el calor sube por la garganta y provoca atascos (heat creep). Es una causa muy común de obstrucciones "misteriosas".</li>
+        <li><strong>Si tiene tubo de PTFE, revisalo.</strong> Con el uso (y sobre todo con temperaturas altas) el teflón se desgasta y se pone marrón; cuando pasa, conviene cambiarlo.</li>
+      </ul>
+      <p>Señales de que conviene cambiar el hotend o alguna de sus partes:</p>
+      <ul>
+        <li><strong>Atascos repetidos</strong> que vuelven aunque destapes y limpies: puede haber daño interno o un heat break gastado.</li>
+        <li><strong>Fugas de plástico</strong> sobre el bloque calefactor que se acumulan capa sobre capa.</li>
+        <li><strong>Lecturas de temperatura erráticas:</strong> suele ser el termistor o el cartucho calefactor, que se cambian por separado.</li>
+      </ul>
+      <div class="callout">
+        <div class="ct">Recomendación</div>
+        <p>Tener un kit de hotend de repuesto (o al menos heat break y nozzle) es lo más práctico: un atasco serio o una fuga te dejan la impresora parada, y con el repuesto a mano volvés a producir en minutos.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- CATÁLOGO DE HOTENDS REALES -->
+<section class="cat-block" id="productos">
+  <div class="wrap-wide">
+    <div class="cat-head">
+      <div>
+        <div class="section-label">Disponibles</div>
+        <h2>Hotends en stock</h2>
+      </div>
+      <a class="link-all" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">
+        Ver todos en ML <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="guide-cta">
+  <div class="wrap">
+    <h2>¿No sabés cuál va en tu impresora?</h2>
+    <p>Decinos el modelo y te confirmamos el hotend correcto —compatibilidad, tipo y si te conviene pieza suelta o kit— antes de que compres. Respondemos rápido por WhatsApp.</p>
+    <div class="cta-actions">
+      <a class="btn-main" href="https://wa.me/541171585143?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20hotend." target="_blank" rel="noopener">
+        Consultar por WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn-sec" href="/#catalogo">Volver al catálogo</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap-wide">
+    <div class="footer-inner">
+      <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="" style="height:16px;">XPRINTED</a>
+      <div class="footer-links">
+        <a href="/#catalogo">Catálogo</a>
+        <a href="/#mayoristas">Mayoristas</a>
+        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Mercado Libre</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© XPRINTED 2026. Todos los derechos reservados.</span>
+      <span>Buenos Aires, Argentina</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Hotends & Extrusores — subconjunto del catálogo (mismos datos que la home).
+const PRODUCTS = [{"id": "MLA1971174266", "title": "Hotend Para Bambu Lab A1 / A1 Mini 0.4mm + Nozzle", "stock": 44, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1971174266-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971174266-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1454494281", "title": "Kit Hotend Completo Tipo Ender 3 V3 Ke", "stock": 31, "price": 33099.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454494281-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454494281-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2028408246", "title": "Hotend Ender 3 / V2 / Pro + Nozzles De Regalo", "stock": 44, "price": 11999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2028408246-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2028408246-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1970289480", "title": "Kit Hotend Completo Ender-3 V3 / V3 Plus", "stock": 20, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1970289480-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970289480-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1454526205", "title": "Hotend Volcano Artillery X1 / X2 / Genius / Pro", "stock": 29, "price": 21499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454526205-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454526205-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1454538677", "title": "Hotend Sprite Ender 3-s1 / Pro / Cr10 Smart Pro", "stock": 11, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454538677-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454538677-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1932106406", "title": "Kit Completo Hotend Mk8 Cr10 Ender 3 / V2 / Pro", "stock": 30, "price": 33000.01, "url": "https://articulo.mercadolibre.com.ar/-MLA1932106406-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932106406-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1477085517", "title": "Kit Hotend Completo Ender K1c / K1 / K1 Max", "stock": 4, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1477085517-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1477085517-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2188795370", "title": "Kit Completo De Mejora De Hotend Ender Series", "stock": 10, "price": 24999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2188795370-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2188795370-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2205958350", "title": "Hotend Completo Original Creality Ender-3 V2", "stock": 5, "price": 84999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2205958350-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2205958350-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1454500137", "title": "Kit Completo Extrusor Directo Ender-3 / V2 / Pro", "stock": 15, "price": 92999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454500137-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454500137-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1973825724", "title": "Hotend Extrusor Cr6-se / Cr6-max / Cr-5 Pro", "stock": 2, "price": 21999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1973825724-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1973825724-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1932144774", "title": "Kit Hotend Cr-10s Pro / Cr-10s Pro V2 / Cr-10 Max", "stock": 2, "price": 35999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932144774-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932144774-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2092697074", "title": "Kit Hotend Completo Creality Ender 5 S1", "stock": 10, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2092697074-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2092697074-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA3505913630", "title": "Bambu Lab A1 Series Hotend Bambu A1 Nozzle Acero Endurecido 0.4 Mm", "stock": 6, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA3505913630-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_3505913630-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1971350658", "title": "Kit Hotend Tipo Bambu Lab X1 Y P1 Series", "stock": 2, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971350658-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971350658-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1670540475", "title": "Kit Hotend Para Anycubic Kobra S1 / S1 Combo", "stock": 16, "price": 27999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1670540475-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1670540475-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1672630491", "title": "Kit Hotend Ender 3 V3 Se Creality Original", "stock": 9, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1672630491-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1672630491-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2861972712", "title": "Hotend Creality Ender-3 Neo / V2 Neo Original", "stock": 3, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2861972712-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2861972712-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1668020005", "title": "Hotend Bambu Lab A1 Original 0.4 ( 0.2 A 0.8mm )", "stock": 6, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1668020005-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1668020005-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1667877369", "title": "Hotend Bambu Lab A1 Original ( 0.2 A 0.8mm )", "stock": 2, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1667877369-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1667877369-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1971218012", "title": "Hotend Disipador De Aluminio Ender Series", "stock": 9, "price": 5199.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971218012-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971218012-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2831552594", "title": "Hotend Bambu Lab A1 Original ( 0.2 A 0.8mm )", "stock": 5, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2831552594-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2831552594-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA3505913636", "title": "Boquilla Bamboo Lab Hotend De Acero Endurecido De 0,4 Mm A 0,8 Mm, Voltaje De Funcionamiento A1 De 0,8 Mm", "stock": 2, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA3505913636-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_3505913636-F.jpg", "cat": "Hotends & Extrusores"}];
+
+const gridEl = document.getElementById('prod-grid');
+const imgCache = {};
+const urlCache = {};
+
+function formatPrice(p){ return '$' + Math.round(p).toLocaleString('es-AR'); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function productCard(p){
+  const inStock = p.stock > 0;
+  const img = imgCache[p.id] || p.img;
+  const href = urlCache[p.id] || p.url;
+  return `
+    <a class="prod-card" data-id="${p.id}" href="${href}" target="_blank" rel="noopener">
+      <div class="pc-img">
+        <img class="ml-img" data-item="${p.id}" src="${img}" alt="${escapeHtml(p.title)}" loading="lazy"
+             onerror="this.style.opacity=0.15;this.onerror=null;">
+        <span class="pc-stock ${inStock ? 'in' : 'out'}">${inStock ? 'STOCK' : 'AGOTADO'}</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-cat">${escapeHtml(p.cat)}</div>
+        <h4>${escapeHtml(p.title)}</h4>
+        <div class="pc-price">${formatPrice(p.price)}</div>
+        <div class="pc-go">Ver en Mercado Libre
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>`;
+}
+
+function renderGrid(){
+  gridEl.innerHTML = PRODUCTS.map(productCard).join('');
+}
+
+async function preloadMLData(){
+  try{
+    const res = await fetch('/api/ml-images');
+    if(!res.ok) return;
+    const data = await res.json();
+    Object.entries(data).forEach(([id,item]) => {
+      if(item.thumbnail) imgCache[id] = item.thumbnail;
+      if(item.permalink) urlCache[id] = item.permalink;
+    });
+  }catch(e){ return; }
+  document.querySelectorAll('.ml-img').forEach(img => {
+    const id = img.dataset.item;
+    if(imgCache[id]){ img.src = imgCache[id]; img.style.opacity = 1; }
+  });
+  document.querySelectorAll('.prod-card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    if(urlCache[id]) card.href = urlCache[id];
+  });
+}
+
+renderGrid();
+preloadMLData();
+</script>
+
+</body>
+</html>
