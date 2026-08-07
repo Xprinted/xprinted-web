@@ -220,93 +220,108 @@
 
       <div class="gh-visual">
         <div class="nz-diagram">
-          <svg viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de una cama magnética de impresora 3D">
+          <svg viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama en despiece de una cama magnética de impresora 3D">
             <defs>
-              <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0.3">
-                <stop offset="0" stop-color="#3A3A3D"/>
-                <stop offset="0.5" stop-color="#5C5C60"/>
-                <stop offset="1" stop-color="#2E2E31"/>
+              <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0.4">
+                <stop offset="0" stop-color="#4A4A4E"/>
+                <stop offset="0.5" stop-color="#6A6A70"/>
+                <stop offset="1" stop-color="#33333A"/>
               </linearGradient>
-              <linearGradient id="magbase" x1="0" y1="0" x2="1" y2="0.3">
+              <linearGradient id="magbase" x1="0" y1="0" x2="1" y2="0.4">
                 <stop offset="0" stop-color="#242426"/>
                 <stop offset="0.5" stop-color="#37373A"/>
-                <stop offset="1" stop-color="#1C1C1E"/>
+                <stop offset="1" stop-color="#1A1A1C"/>
               </linearGradient>
-              <linearGradient id="coat" x1="0" y1="0" x2="1" y2="0.3">
-                <stop offset="0" stop-color="#4A5A66"/>
-                <stop offset="0.5" stop-color="#6E8494"/>
-                <stop offset="1" stop-color="#3C4A54"/>
+              <linearGradient id="coat" x1="0" y1="0" x2="1" y2="0.4">
+                <stop offset="0" stop-color="#5A6E7C"/>
+                <stop offset="0.5" stop-color="#86A0B0"/>
+                <stop offset="1" stop-color="#485862"/>
               </linearGradient>
               <linearGradient id="warm" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#E0B36A" stop-opacity="0.5"/>
+                <stop offset="0" stop-color="#E0B36A" stop-opacity="0.45"/>
                 <stop offset="1" stop-color="#E0B36A" stop-opacity="0"/>
               </linearGradient>
             </defs>
 
-            <!-- resplandor calor bajo la cama -->
-            <ellipse cx="160" cy="250" rx="120" ry="26" fill="url(#warm)"/>
-
-            <!-- base magnética (abajo) -->
-            <g transform="translate(0,4)">
-              <path d="M60 214 L230 214 L262 236 L92 236 Z" fill="url(#magbase)" stroke="#4A4A4D" stroke-width="1.4" stroke-linejoin="round"/>
-              <path d="M60 214 L60 224 L92 246 L92 236 Z" fill="#161618" stroke="#4A4A4D" stroke-width="1.4" stroke-linejoin="round"/>
-              <path d="M92 236 L262 236 L262 246 L92 246 Z" fill="#1A1A1C" stroke="#4A4A4D" stroke-width="1.4" stroke-linejoin="round"/>
-              <!-- patrón imantado -->
-              <g stroke="#3A3A3C" stroke-width="0.8" opacity="0.7">
-                <line x1="110" y1="222" x2="240" y2="222"/>
-                <line x1="120" y1="228" x2="250" y2="228"/>
+            <!-- ====== CAPA 3: PIEZA IMPRESA (arriba) ====== -->
+            <g>
+              <!-- cubo isométrico -->
+              <path d="M138 66 L160 58 L182 66 L160 74 Z" fill="#3A3A3D" stroke="#666" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M138 66 L138 84 L160 92 L160 74 Z" fill="#242426" stroke="#666" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M160 74 L160 92 L182 84 L182 66 Z" fill="#2E2E31" stroke="#666" stroke-width="1.2" stroke-linejoin="round"/>
+              <!-- líneas de capa en la cara -->
+              <g stroke="#4E4E52" stroke-width="0.6" opacity="0.8">
+                <line x1="139" y1="72" x2="159" y2="80"/>
+                <line x1="139" y1="77" x2="159" y2="85"/>
+                <line x1="161" y1="80" x2="181" y2="72"/>
+                <line x1="161" y1="85" x2="181" y2="77"/>
               </g>
             </g>
 
-            <!-- lámina flexible de acero (levantada, despegándose) -->
-            <g transform="translate(0,-6)">
-              <!-- canto de acero -->
-              <path d="M64 150 L232 132 L266 150 L98 168 Z" fill="url(#steel)" stroke="#7A7A7E" stroke-width="1.4" stroke-linejoin="round"/>
-              <!-- espesor -->
-              <path d="M98 168 L266 150 L266 156 L98 174 Z" fill="#202022" stroke="#7A7A7E" stroke-width="1.2" stroke-linejoin="round"/>
-              <path d="M64 150 L64 156 L98 174 L98 168 Z" fill="#161618" stroke="#7A7A7E" stroke-width="1.2" stroke-linejoin="round"/>
-              <!-- recubrimiento superior (PEI/PEO) -->
-              <path d="M64 150 L232 132 L266 150 L98 168 Z" fill="url(#coat)" opacity="0.55"/>
+            <!-- ====== CAPA 2: LÁMINA FLEXIBLE + RECUBRIMIENTO (medio) ====== -->
+            <g>
+              <!-- cara superior (recubrimiento) -->
+              <path d="M70 150 L160 116 L250 150 L160 184 Z" fill="url(#coat)" stroke="#93AEBE" stroke-width="1.3" stroke-linejoin="round"/>
               <!-- textura del recubrimiento -->
-              <g fill="#8FA6B4" opacity="0.4">
-                <circle cx="120" cy="152" r="1.1"/><circle cx="140" cy="149" r="1.1"/><circle cx="160" cy="147" r="1.1"/>
-                <circle cx="180" cy="145" r="1.1"/><circle cx="200" cy="143" r="1.1"/><circle cx="150" cy="156" r="1.1"/>
-                <circle cx="170" cy="153" r="1.1"/><circle cx="190" cy="150" r="1.1"/><circle cx="210" cy="148" r="1.1"/>
-                <circle cx="130" cy="158" r="1.1"/>
+              <g fill="#B8CEDA" opacity="0.5">
+                <circle cx="130" cy="147" r="1.1"/><circle cx="150" cy="140" r="1.1"/><circle cx="170" cy="145" r="1.1"/>
+                <circle cx="190" cy="152" r="1.1"/><circle cx="150" cy="155" r="1.1"/><circle cx="172" cy="160" r="1.1"/>
+                <circle cx="128" cy="158" r="1.1"/><circle cx="192" cy="140" r="1.1"/><circle cx="160" cy="148" r="1.1"/>
               </g>
-              <!-- flecha de flexión -->
-              <path d="M232 132 Q250 116 244 100" stroke="#E0B36A" stroke-width="1.6" fill="none" stroke-dasharray="3 4"/>
-              <path d="M244 100 l-5 6 m5 -6 l3 7" stroke="#E0B36A" stroke-width="1.6" fill="none"/>
+              <!-- espesor de la lámina de acero (canto) -->
+              <path d="M70 150 L160 184 L160 192 L70 158 Z" fill="#3A3A3E" stroke="#7A7A7E" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M160 184 L250 150 L250 158 L160 192 Z" fill="#2A2A2D" stroke="#7A7A7E" stroke-width="1.2" stroke-linejoin="round"/>
             </g>
 
-            <!-- pieza impresa sobre la lámina -->
-            <g transform="translate(0,-6)">
-              <path d="M138 138 L182 133 L182 121 L138 126 Z" fill="#2A2A2C" stroke="#5A5A5C" stroke-width="1.2" stroke-linejoin="round"/>
-              <path d="M138 138 L138 126 L118 132 L118 144 Z" fill="#202022" stroke="#5A5A5C" stroke-width="1.2" stroke-linejoin="round"/>
-              <path d="M118 132 L138 126 L182 121 L162 116 L118 132 Z" fill="#333335" stroke="#5A5A5C" stroke-width="1.2" stroke-linejoin="round"/>
-              <!-- líneas de capa -->
-              <g stroke="#4A4A4C" stroke-width="0.6" opacity="0.7">
-                <line x1="140" y1="132" x2="180" y2="127"/>
-                <line x1="140" y1="135" x2="180" y2="130"/>
-              </g>
+            <!-- flecha de ensamble entre pieza y lámina -->
+            <g stroke="#5A5A5C" stroke-width="1.4" opacity="0.8">
+              <line x1="160" y1="98" x2="160" y2="112" stroke-dasharray="2 3"/>
             </g>
 
-            <!-- líneas guía a etiquetas -->
+            <!-- ====== CAPA 1: BASE MAGNÉTICA (abajo) ====== -->
+            <!-- resplandor de calor -->
+            <ellipse cx="160" cy="256" rx="115" ry="24" fill="url(#warm)"/>
+            <g>
+              <!-- cara superior de la base -->
+              <path d="M70 224 L160 190 L250 224 L160 258 Z" fill="url(#magbase)" stroke="#55555A" stroke-width="1.3" stroke-linejoin="round"/>
+              <!-- patrón imantado en zig-zag -->
+              <g stroke="#4A4A4E" stroke-width="0.8" opacity="0.75">
+                <line x1="112" y1="222" x2="160" y2="204"/>
+                <line x1="160" y1="204" x2="208" y2="222"/>
+                <line x1="120" y1="230" x2="160" y2="215"/>
+                <line x1="160" y1="215" x2="200" y2="230"/>
+              </g>
+              <!-- espesor de la base -->
+              <path d="M70 224 L160 258 L160 270 L70 236 Z" fill="#1C1C1E" stroke="#55555A" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M160 258 L250 224 L250 236 L160 270 Z" fill="#141416" stroke="#55555A" stroke-width="1.2" stroke-linejoin="round"/>
+            </g>
+
+            <!-- flecha de ensamble entre lámina y base -->
+            <g stroke="#5A5A5C" stroke-width="1.4" opacity="0.8">
+              <line x1="160" y1="196" x2="160" y2="186"/>
+              <path d="M156 190 l4 6 l4 -6" fill="none"/>
+            </g>
+
+            <!-- ====== LÍNEAS GUÍA (todas a la izquierda, ordenadas) ====== -->
             <g stroke="#3A3A3C" stroke-width="1">
-              <line x1="176" y1="118" x2="250" y2="96"/>
-              <circle cx="176" cy="118" r="2" fill="#6A6A6C"/>
-              <line x1="205" y1="142" x2="256" y2="150"/>
-              <circle cx="205" cy="142" r="2" fill="#8FA6B4"/>
-              <line x1="150" y1="228" x2="64" y2="240"/>
-              <circle cx="150" cy="228" r="2" fill="#5A5A5C"/>
-              <line x1="120" y1="163" x2="58" y2="168"/>
-              <circle cx="120" cy="163" r="2" fill="#7A7A7E"/>
+              <!-- pieza -->
+              <line x1="138" y1="76" x2="70" y2="70"/>
+              <circle cx="138" cy="76" r="2" fill="#6A6A6C"/>
+              <!-- recubrimiento -->
+              <line x1="110" y1="141" x2="70" y2="128"/>
+              <circle cx="110" cy="141" r="2" fill="#93AEBE"/>
+              <!-- lámina de acero (al canto) -->
+              <line x1="105" y1="167" x2="60" y2="182"/>
+              <circle cx="105" cy="167" r="2" fill="#7A7A7E"/>
+              <!-- base magnética -->
+              <line x1="110" y1="235" x2="60" y2="244"/>
+              <circle cx="110" cy="235" r="2" fill="#55555A"/>
             </g>
           </svg>
 
-          <div class="nz-tag" style="top:18px;right:22px;">Pieza impresa</div>
-          <div class="nz-tag" style="top:78px;right:22px;color:#93AEBE;border-color:rgba(147,174,190,0.3);">Recubrimiento</div>
-          <div class="nz-tag" style="top:150px;left:22px;">Lámina de acero</div>
+          <div class="nz-tag" style="top:52px;left:22px;">Pieza impresa</div>
+          <div class="nz-tag" style="top:112px;left:22px;color:#93AEBE;border-color:rgba(147,174,190,0.3);">Recubrimiento</div>
+          <div class="nz-tag" style="top:166px;left:22px;">Lámina flexible</div>
           <div class="nz-tag" style="bottom:44px;left:22px;">Base magnética</div>
         </div>
 
@@ -327,11 +342,12 @@
     <section>
       <div class="sec-label">Lo básico</div>
       <h2>¿Qué es una cama magnética?</h2>
-      <p>La <strong>cama</strong> (o base, o plataforma) es la superficie sobre la que la impresora deposita la primera capa y construye la pieza. Una <strong>cama magnética</strong> es el sistema más usado hoy y está formada por dos partes: una <strong>base imantada</strong> que se pega o se fija sobre la cama caliente de la impresora, y una <strong>lámina flexible de acero</strong> con un recubrimiento especial arriba, que se apoya sobre esa base por atracción magnética.</p>
+      <p>La <strong>cama</strong> (o base, o plataforma) es la superficie sobre la que la impresora deposita la primera capa y construye la pieza. Una <strong>cama magnética</strong> es el sistema más usado hoy y está formada por dos partes: una <strong>base imantada</strong> que se pega o se fija sobre la cama caliente de la impresora, y una <strong>lámina flexible</strong> con un recubrimiento especial arriba, que se apoya sobre esa base por atracción magnética.</p>
+      <p>Un punto importante: el material que toca la pieza <strong>no es el metal pelado</strong>, sino el <strong>recubrimiento</strong> que va encima (PEI, PEO, PEY, PET). La lámina —normalmente de acero para resortes— es solo el soporte flexible que da el "flex" para despegar; el recubrimiento es la superficie que realmente agarra y suelta la pieza. Por eso en el diagrama aparecen separados: "lámina flexible" y "recubrimiento".</p>
       <p>La gran ventaja es el <strong>despegue</strong>: cuando la impresión termina y la cama se enfría, retirás la lámina, la doblás apenas con las manos y la pieza salta sola. Se terminó el hacer palanca con espátulas arriesgándote a romper la pieza o rayar la superficie.</p>
       <div class="callout">
         <div class="ct">Dato clave</div>
-        <p>Lo que hace el trabajo de adherencia no es el imán, sino el <strong>recubrimiento</strong> de la lámina. El imán solo la sujeta en su lugar; la superficie de arriba (PEI, PEO, vidrio, etc.) es la que agarra y suelta la pieza.</p>
+        <p>Lo que hace el trabajo de adherencia no es el imán, sino el <strong>recubrimiento</strong>. El imán solo sujeta la lámina en su lugar; la superficie de arriba (PEI, PEO, vidrio, etc.) es la que agarra y suelta la pieza.</p>
       </div>
     </section>
 
