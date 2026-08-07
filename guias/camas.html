@@ -1,1 +1,569 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qué es una cama magnética — Guía de superficies de impresión 3D | XPRINTED</title>
+<meta name="description" content="Guía completa sobre camas magnéticas y superficies de impresión 3D: qué son, tipos de recubrimiento (PEI, PEO, PEY, vidrio), cómo elegir según tu filamento y mantenimiento. Por XPRINTED.">
+<link rel="icon" type="image/png" href="/assets/logo_icon.png">
+<link rel="canonical" href="https://xprinted-web.vercel.app/guias/camas.html">
+<!-- Open Graph (para compartir en WhatsApp / redes) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qué es una cama magnética — Guía de superficies de impresión 3D">
+<meta property="og:description" content="Tipos de superficie (PEI, PEO, PEY, vidrio), cómo elegir según tu filamento y mantenimiento. Por XPRINTED.">
+<meta property="og:site_name" content="XPRINTED">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://xprinted-web.vercel.app/guias/camas.html">
+<meta property="og:image" content="https://xprinted-web.vercel.app/assets/logo_icon.png">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --bg2:#111113; --bg3:#191919;
+    --line:#222224; --white:#F0F0EE; --muted:#666668; --dim:#3A3A3C;
+    --fd:'Barlow Condensed',sans-serif;
+    --fb:'Inter',sans-serif;
+    --fm:'JetBrains Mono',monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:var(--fb);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  ::selection{background:var(--white);color:var(--bg);}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 56px;}
+  .wrap-wide{max-width:1280px;margin:0 auto;padding:0 56px;}
 
+  /* NAV */
+  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  nav{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .logo{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-weight:900;font-size:1.15rem;letter-spacing:0.06em;}
+  .logo img{height:16px;width:auto;}
+  .nav-links{display:flex;gap:28px;font-size:0.86rem;color:var(--muted);}
+  .nav-links a{transition:color .15s;} .nav-links a:hover{color:var(--white);}
+  .nav-cta{background:var(--white);color:var(--bg);font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:2px;transition:opacity .15s;}
+  .nav-cta:hover{opacity:0.88;}
+
+  /* BREADCRUMB */
+  .breadcrumb{border-bottom:1px solid var(--line);background:var(--bg2);}
+  .breadcrumb .wrap-wide{display:flex;align-items:center;gap:8px;height:44px;font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;}
+  .breadcrumb a{transition:color .15s;} .breadcrumb a:hover{color:var(--white);}
+  .breadcrumb span.sep{opacity:0.5;}
+  .breadcrumb span.here{color:var(--white);}
+
+  /* HERO GUIA */
+  .guide-hero{border-bottom:1px solid var(--line);padding:64px 0 68px;background:linear-gradient(160deg,var(--bg2),var(--bg) 70%);}
+  .gh-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .gh-text{min-width:0;}
+  .guide-kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .guide-kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
+  .guide-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,6vw,5.2rem);line-height:0.9;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:24px;}
+  .guide-hero .lead{font-size:1.1rem;color:#B8B8B6;max-width:560px;line-height:1.72;margin-bottom:32px;}
+  .gh-actions{display:flex;gap:12px;flex-wrap:wrap;}
+
+  /* HERO VISUAL */
+  .gh-visual{display:flex;flex-direction:column;gap:18px;}
+  .nz-diagram{position:relative;border:1px solid var(--line);border-radius:4px;background:
+      radial-gradient(circle at 50% 40%, rgba(255,255,255,0.03), transparent 60%),
+      repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255,255,255,0.015) 23px, rgba(255,255,255,0.015) 24px),
+      var(--bg2);
+    padding:28px 20px;display:flex;align-items:center;justify-content:center;min-height:300px;}
+  .nz-diagram svg{width:100%;height:auto;max-height:300px;}
+  .nz-tag{position:absolute;font-family:var(--fm);font-size:0.6rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:2px;}
+  .nz-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  .nz-spec{background:var(--bg2);padding:16px 14px;text-align:center;}
+  .nz-spec .v{display:block;font-family:var(--fd);font-weight:900;font-size:1.7rem;line-height:1;color:var(--white);margin-bottom:5px;}
+  .nz-spec .l{font-family:var(--fm);font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+
+  /* SECTIONS */
+  .guide-body{padding:72px 0 32px;}
+  .guide-body section{margin-bottom:74px;}
+  .sec-label{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
+  .sec-label::before{content:'';width:16px;height:1px;background:var(--dim);}
+  .guide-body h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.9rem,3.6vw,2.7rem);text-transform:uppercase;line-height:1;margin-bottom:24px;}
+  .guide-body h3{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:0.02em;margin:30px 0 12px;color:var(--white);}
+  .guide-body p{font-size:1.05rem;color:#C4C4C2;margin-bottom:18px;max-width:900px;line-height:1.75;}
+  .guide-body p strong{color:var(--white);font-weight:600;}
+  .guide-body ul{list-style:none;margin:0 0 20px;max-width:900px;}
+  .guide-body ul li{position:relative;padding-left:24px;margin-bottom:13px;color:#C4C4C2;font-size:1.05rem;line-height:1.7;}
+  .guide-body ul li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--muted);border-radius:1px;}
+  .guide-body ul li strong{color:var(--white);font-weight:600;}
+
+  /* CALLOUT */
+  .callout{border:1px solid var(--line);border-left:2px solid var(--muted);background:var(--bg2);padding:24px 28px;border-radius:2px;margin:28px 0;max-width:900px;}
+  .callout .ct{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+  .callout p{margin:0;color:#C8C8C6;font-size:0.96rem;}
+
+  /* DIAMETER / SPEC TABLE */
+  .dia-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0;border-radius:2px;overflow:hidden;}
+  .dia-cell{background:var(--bg);padding:22px 20px;}
+  .dia-cell .d{font-family:var(--fd);font-weight:900;font-size:1.7rem;line-height:1;margin-bottom:8px;color:var(--white);}
+  .dia-cell .u{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
+  .dia-cell p{font-size:0.85rem;color:var(--muted);margin:0;line-height:1.5;}
+
+  /* TYPE CARDS */
+  .type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0;border-radius:2px;overflow:hidden;}
+  .type-card{background:var(--bg);padding:26px 24px;}
+  .type-card .tt{font-family:var(--fd);font-weight:900;font-size:1.3rem;text-transform:uppercase;margin-bottom:6px;}
+  .type-card .tsub{font-family:var(--fm);font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;}
+  .type-card p{font-size:0.9rem;color:#B8B8B6;margin:0 0 12px;line-height:1.6;}
+  .type-card .tmeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  .type-tag{font-family:var(--fm);font-size:0.6rem;color:#A0A0A0;border:1px solid var(--dim);padding:4px 9px;border-radius:2px;text-transform:uppercase;letter-spacing:0.04em;}
+  .type-tag.good{color:#7CD992;border-color:rgba(124,217,146,0.3);}
+  .type-tag.warn{color:#E0B36A;border-color:rgba(224,179,106,0.3);}
+
+  /* CATALOG BLOCK */
+  .cat-block{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);padding:56px 0;}
+  .cat-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:16px;}
+  .cat-head .section-label{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+  .cat-head .section-label::before{content:'';width:5px;height:5px;background:var(--muted);}
+  .cat-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem);text-transform:uppercase;line-height:0.95;}
+  .link-all{font-family:var(--fm);font-size:0.72rem;color:var(--muted);border-bottom:1px solid var(--dim);padding-bottom:2px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;transition:color .15s,border-color .15s;}
+  .link-all:hover{color:var(--white);border-color:var(--white);}
+  .link-all svg{width:10px;height:10px;}
+
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .prod-card{background:var(--bg);display:flex;flex-direction:column;transition:background .15s;cursor:pointer;}
+  .prod-card:hover{background:var(--bg3);}
+  .prod-card .pc-img{aspect-ratio:1/1;overflow:hidden;background:var(--bg2);position:relative;}
+  .prod-card .pc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:transform .3s,filter .3s;}
+  .prod-card:hover .pc-img img{transform:scale(1.05);filter:grayscale(0%);}
+  .pc-stock{position:absolute;top:8px;right:8px;font-family:var(--fm);font-size:0.58rem;font-weight:600;padding:3px 7px;border-radius:1px;}
+  .pc-stock.in{background:rgba(255,255,255,0.08);color:#A0A0A0;border:1px solid rgba(255,255,255,0.1);}
+  .pc-stock.out{background:rgba(200,0,0,0.15);color:#FF6B6B;border:1px solid rgba(200,0,0,0.2);}
+  .prod-card .pc-body{padding:18px;flex:1;display:flex;flex-direction:column;}
+  .pc-cat{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;}
+  .prod-card h4{font-family:var(--fd);font-weight:900;font-size:1.05rem;text-transform:uppercase;line-height:1.05;margin-bottom:10px;flex:1;}
+  .pc-price{font-family:var(--fd);font-weight:700;font-size:1.15rem;color:var(--white);margin-bottom:10px;}
+  .pc-go{font-family:var(--fm);font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:5px;border-top:1px solid var(--line);padding-top:10px;transition:color .15s;}
+  .pc-go svg{width:10px;height:10px;transition:transform .2s;}
+  .prod-card:hover .pc-go{color:var(--white);}
+  .prod-card:hover .pc-go svg{transform:translate(3px,0);}
+
+  /* CTA FINAL */
+  .guide-cta{padding:56px 0;text-align:center;border-bottom:1px solid var(--line);}
+  .guide-cta h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.5vw,2.6rem);text-transform:uppercase;margin-bottom:12px;}
+  .guide-cta p{color:var(--muted);margin-bottom:26px;max-width:520px;margin-left:auto;margin-right:auto;}
+  .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:7px;transition:opacity .15s,transform .15s;}
+  .btn-main:hover{opacity:0.9;transform:translateY(-1px);}
+  .btn-sec{border:1px solid var(--dim);color:var(--white);font-weight:600;font-size:0.88rem;padding:11px 22px;border-radius:2px;transition:border-color .15s;}
+  .btn-sec:hover{border-color:#555;}
+  .btn-main svg{width:12px;height:12px;}
+
+  /* FOOTER */
+  footer{padding:44px 0 24px;background:#080808;border-top:1px solid var(--line);}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;margin-bottom:24px;}
+  .footer-inner .logo{font-family:var(--fd);font-weight:900;}
+  .footer-links{display:flex;gap:22px;font-size:0.84rem;color:#555;flex-wrap:wrap;}
+  .footer-links a{transition:color .15s;} .footer-links a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid #151515;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:var(--fm);font-size:0.66rem;color:#333;}
+
+  @media(max-width:1024px){
+    .prod-grid{grid-template-columns:repeat(3,1fr);}
+    .gh-grid{grid-template-columns:1fr;gap:40px;}
+    .gh-visual{max-width:440px;}
+  }
+  @media(max-width:760px){
+    .nav-links{display:none;}
+    nav,.wrap,.wrap-wide{padding-left:20px;padding-right:20px;}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .guide-hero{padding:44px 0 52px;}
+  }
+  @media(max-width:500px){.prod-grid{grid-template-columns:1fr 1fr;}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
+    <div class="nav-links">
+      <a href="/#catalogo">Catálogo</a>
+      <a href="/#mayoristas">Mayoristas</a>
+      <a href="/#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="wrap-wide">
+    <a href="/">Inicio</a>
+    <span class="sep">/</span>
+    <a href="/#catalogo">Guías</a>
+    <span class="sep">/</span>
+    <span class="here">Camas magnéticas</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="guide-hero">
+  <div class="wrap-wide">
+    <div class="gh-grid">
+      <div class="gh-text">
+        <span class="guide-kicker">Guía técnica · Repuestos 3D</span>
+        <h1>Camas<br>magnéticas.</h1>
+        <p class="lead">La cama es la superficie donde se imprime la primera capa, y de ella depende que la pieza se pegue mientras imprime y se despegue fácil cuando termina. Esta guía te explica qué es una cama magnética, qué tipos de superficie existen, cómo elegir según tu filamento y cómo cuidarla.</p>
+        <div class="gh-actions">
+          <a class="btn-main" href="#productos">
+            Ver camas disponibles
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn-sec" href="#tipos">Ver tipos</a>
+        </div>
+      </div>
+
+      <div class="gh-visual">
+        <div class="nz-diagram">
+          <svg viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de una cama magnética de impresora 3D">
+            <defs>
+              <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0.3">
+                <stop offset="0" stop-color="#3A3A3D"/>
+                <stop offset="0.5" stop-color="#5C5C60"/>
+                <stop offset="1" stop-color="#2E2E31"/>
+              </linearGradient>
+              <linearGradient id="magbase" x1="0" y1="0" x2="1" y2="0.3">
+                <stop offset="0" stop-color="#242426"/>
+                <stop offset="0.5" stop-color="#37373A"/>
+                <stop offset="1" stop-color="#1C1C1E"/>
+              </linearGradient>
+              <linearGradient id="coat" x1="0" y1="0" x2="1" y2="0.3">
+                <stop offset="0" stop-color="#4A5A66"/>
+                <stop offset="0.5" stop-color="#6E8494"/>
+                <stop offset="1" stop-color="#3C4A54"/>
+              </linearGradient>
+              <linearGradient id="warm" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#E0B36A" stop-opacity="0.5"/>
+                <stop offset="1" stop-color="#E0B36A" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <!-- resplandor calor bajo la cama -->
+            <ellipse cx="160" cy="250" rx="120" ry="26" fill="url(#warm)"/>
+
+            <!-- base magnética (abajo) -->
+            <g transform="translate(0,4)">
+              <path d="M60 214 L230 214 L262 236 L92 236 Z" fill="url(#magbase)" stroke="#4A4A4D" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M60 214 L60 224 L92 246 L92 236 Z" fill="#161618" stroke="#4A4A4D" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M92 236 L262 236 L262 246 L92 246 Z" fill="#1A1A1C" stroke="#4A4A4D" stroke-width="1.4" stroke-linejoin="round"/>
+              <!-- patrón imantado -->
+              <g stroke="#3A3A3C" stroke-width="0.8" opacity="0.7">
+                <line x1="110" y1="222" x2="240" y2="222"/>
+                <line x1="120" y1="228" x2="250" y2="228"/>
+              </g>
+            </g>
+
+            <!-- lámina flexible de acero (levantada, despegándose) -->
+            <g transform="translate(0,-6)">
+              <!-- canto de acero -->
+              <path d="M64 150 L232 132 L266 150 L98 168 Z" fill="url(#steel)" stroke="#7A7A7E" stroke-width="1.4" stroke-linejoin="round"/>
+              <!-- espesor -->
+              <path d="M98 168 L266 150 L266 156 L98 174 Z" fill="#202022" stroke="#7A7A7E" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M64 150 L64 156 L98 174 L98 168 Z" fill="#161618" stroke="#7A7A7E" stroke-width="1.2" stroke-linejoin="round"/>
+              <!-- recubrimiento superior (PEI/PEO) -->
+              <path d="M64 150 L232 132 L266 150 L98 168 Z" fill="url(#coat)" opacity="0.55"/>
+              <!-- textura del recubrimiento -->
+              <g fill="#8FA6B4" opacity="0.4">
+                <circle cx="120" cy="152" r="1.1"/><circle cx="140" cy="149" r="1.1"/><circle cx="160" cy="147" r="1.1"/>
+                <circle cx="180" cy="145" r="1.1"/><circle cx="200" cy="143" r="1.1"/><circle cx="150" cy="156" r="1.1"/>
+                <circle cx="170" cy="153" r="1.1"/><circle cx="190" cy="150" r="1.1"/><circle cx="210" cy="148" r="1.1"/>
+                <circle cx="130" cy="158" r="1.1"/>
+              </g>
+              <!-- flecha de flexión -->
+              <path d="M232 132 Q250 116 244 100" stroke="#E0B36A" stroke-width="1.6" fill="none" stroke-dasharray="3 4"/>
+              <path d="M244 100 l-5 6 m5 -6 l3 7" stroke="#E0B36A" stroke-width="1.6" fill="none"/>
+            </g>
+
+            <!-- pieza impresa sobre la lámina -->
+            <g transform="translate(0,-6)">
+              <path d="M138 138 L182 133 L182 121 L138 126 Z" fill="#2A2A2C" stroke="#5A5A5C" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M138 138 L138 126 L118 132 L118 144 Z" fill="#202022" stroke="#5A5A5C" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M118 132 L138 126 L182 121 L162 116 L118 132 Z" fill="#333335" stroke="#5A5A5C" stroke-width="1.2" stroke-linejoin="round"/>
+              <!-- líneas de capa -->
+              <g stroke="#4A4A4C" stroke-width="0.6" opacity="0.7">
+                <line x1="140" y1="132" x2="180" y2="127"/>
+                <line x1="140" y1="135" x2="180" y2="130"/>
+              </g>
+            </g>
+
+            <!-- líneas guía a etiquetas -->
+            <g stroke="#3A3A3C" stroke-width="1">
+              <line x1="176" y1="118" x2="250" y2="96"/>
+              <circle cx="176" cy="118" r="2" fill="#6A6A6C"/>
+              <line x1="205" y1="142" x2="256" y2="150"/>
+              <circle cx="205" cy="142" r="2" fill="#8FA6B4"/>
+              <line x1="150" y1="228" x2="64" y2="240"/>
+              <circle cx="150" cy="228" r="2" fill="#5A5A5C"/>
+              <line x1="120" y1="163" x2="58" y2="168"/>
+              <circle cx="120" cy="163" r="2" fill="#7A7A7E"/>
+            </g>
+          </svg>
+
+          <div class="nz-tag" style="top:18px;right:22px;">Pieza impresa</div>
+          <div class="nz-tag" style="top:78px;right:22px;color:#93AEBE;border-color:rgba(147,174,190,0.3);">Recubrimiento</div>
+          <div class="nz-tag" style="top:150px;left:22px;">Lámina de acero</div>
+          <div class="nz-tag" style="bottom:44px;left:22px;">Base magnética</div>
+        </div>
+
+        <div class="nz-specs">
+          <div class="nz-spec"><span class="v">PEI</span><span class="l">recubrimiento común</span></div>
+          <div class="nz-spec"><span class="v">2</span><span class="l">caras (usos)</span></div>
+          <div class="nz-spec"><span class="v">235</span><span class="l">mm típico</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="guide-body">
+  <div class="wrap">
+
+    <!-- QUÉ ES -->
+    <section>
+      <div class="sec-label">Lo básico</div>
+      <h2>¿Qué es una cama magnética?</h2>
+      <p>La <strong>cama</strong> (o base, o plataforma) es la superficie sobre la que la impresora deposita la primera capa y construye la pieza. Una <strong>cama magnética</strong> es el sistema más usado hoy: consiste en dos partes: una <strong>base imantada</strong> que se pega o se fija sobre la cama caliente de la impresora, y una <strong>lámina flexible de acero</strong> con un recubrimiento especial arriba, que se apoya sobre esa base por atracción magnética.</p>
+      <p>La gran ventaja es el <strong>despegue</strong>: cuando la impresión termina y la cama se enfría, retirás la lámina, la doblás apenas con las manos y la pieza salta sola. Se acabó el hacer palanca con espátulas arriesgándote a romper la pieza o rayar la superficie.</p>
+      <div class="callout">
+        <div class="ct">Dato clave</div>
+        <p>Lo que hace el trabajo de adherencia no es el imán, sino el <strong>recubrimiento</strong> de la lámina. El imán solo la sujeta en su lugar; la superficie de arriba (PEI, PEO, vidrio, etc.) es la que agarra y suelta la pieza.</p>
+      </div>
+    </section>
+
+    <!-- PARA QUÉ SIRVE -->
+    <section>
+      <div class="sec-label">Función</div>
+      <h2>¿Por qué importa tanto?</h2>
+      <p>Una buena cama resuelve los dos problemas más frecuentes de la impresión 3D, que además son opuestos entre sí:</p>
+      <ul>
+        <li><strong>Que la pieza no se despegue mientras imprime.</strong> Si la primera capa no agarra bien, la pieza se suelta a mitad de camino y se arruina el trabajo (el clásico "plato de fideos").</li>
+        <li><strong>Que la pieza salga fácil al terminar.</strong> Tan malo como que no pegue es que pegue demasiado: quedan piezas imposibles de sacar, o que se rompen o dañan la superficie al retirarlas.</li>
+        <li><strong>Que la base quede prolija.</strong> El recubrimiento define la textura de la cara de abajo de tu pieza: puede quedar brillante como un espejo o con un mate parejo, según la superficie.</li>
+      </ul>
+    </section>
+
+    <!-- TIPOS DE SUPERFICIE -->
+    <section id="tipos">
+      <div class="sec-label">Superficies</div>
+      <h2>Tipos de recubrimiento y para qué sirve cada uno</h2>
+      <p>Todas las camas magnéticas comparten el mismo sistema base + lámina; lo que cambia entre una y otra es el <strong>recubrimiento</strong> de la superficie. Cada uno se comporta distinto según el filamento y el acabado que busques.</p>
+
+      <div class="type-grid">
+        <div class="type-card">
+          <div class="tt">PEI texturizado</div>
+          <div class="tsub">Textured · El todoterreno</div>
+          <p>La opción más versátil y recomendada para la mayoría. Buena adherencia con casi todos los filamentos, despegue fácil y una terminación mate pareja en la base. Es el "de todos los días".</p>
+          <div class="tmeta">
+            <span class="type-tag good">PLA / PETG / ABS</span>
+            <span class="type-tag good">Fácil despegue</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">PEI liso / PEO</div>
+          <div class="tsub">Smooth · Terminación espejo</div>
+          <p>Máxima adherencia y una base brillante, ideal para piezas decorativas donde se ve la cara de abajo. El PEO da un acabado tipo espejo. Cuidado con PETG: puede pegarse de más sin un separador.</p>
+          <div class="tmeta">
+            <span class="type-tag good">PLA · decorativo</span>
+            <span class="type-tag warn">PETG con cuidado</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">PEY</div>
+          <div class="tsub">Frosted · Intermedio</div>
+          <p>Superficie tipo escarchada, a mitad de camino entre lisa y texturizada. Buen agarre con acabado semi-mate, y suele ser más tolerante que el PEI liso con filamentos pegajosos.</p>
+          <div class="tmeta">
+            <span class="type-tag good">Uso general</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">Vidrio / Carborundum</div>
+          <div class="tsub">Rígida · Base plana</div>
+          <p>No es flexible: es una placa rígida con recubrimiento. Da una base muy plana y lisa, buena para PLA. Aguanta bien el calor, pero para despegar hay que esperar a que enfríe.</p>
+          <div class="tmeta">
+            <span class="type-tag good">PLA · planitud</span>
+            <span class="type-tag warn">No flexible</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="ct">Doble cara</div>
+        <p>Muchas camas traen un recubrimiento distinto en cada lado (por ejemplo PEO liso de un lado y PEI texturizado del otro). Es lo más práctico: das vuelta la lámina según el filamento o el acabado que necesites, sin comprar dos camas.</p>
+      </div>
+    </section>
+
+    <!-- CÓMO ELEGIR -->
+    <section>
+      <div class="sec-label">Decisión</div>
+      <h2>Cómo elegir la correcta</h2>
+      <p>Elegir bien es simple si vas en este orden. El primer paso es el que no podés equivocar: si la cama no mide lo que tu impresora necesita, no importa lo demás.</p>
+
+      <h3>Paso 1 — La medida y el sistema de tu impresora</h3>
+      <p>Cada impresora tiene su tamaño de cama. Los más comunes son <strong>235 × 235 mm</strong> (línea Ender 3 y compatibles), <strong>257 × 257 mm</strong> (Bambu Lab A1) y <strong>310 × 310 mm</strong> o más (impresoras grandes tipo Artillery). Además, tenés que saber si tu impresora <strong>ya tiene la base magnética</strong> instalada (entonces comprás solo la lámina flexible) o si necesitás el kit completo con la base imantada.</p>
+      <div class="callout">
+        <div class="ct">Antes de comprar</div>
+        <p>Guiate por el <strong>modelo exacto de tu impresora</strong>. Si no estás seguro de la medida o de si ya tenés base magnética, decinos qué impresora tenés y te confirmamos cuál cama corresponde.</p>
+      </div>
+
+      <h3>Paso 2 — El recubrimiento según tu filamento</h3>
+      <ul>
+        <li><strong>PEI texturizado</strong> si imprimís de todo un poco (PLA, PETG, ABS). Es la opción más segura y sin complicaciones.</li>
+        <li><strong>PEI liso o PEO</strong> si hacés piezas decorativas en PLA y querés la base brillante. Para PETG, mejor evitar el liso o usar un separador.</li>
+        <li><strong>Vidrio</strong> si buscás una base extra plana en PLA y no te molesta esperar a que enfríe para despegar.</li>
+        <li><strong>Doble cara</strong> si querés cubrir varios casos con una sola cama: es la compra más flexible.</li>
+      </ul>
+
+      <h3>Paso 3 — Flexible o rígida</h3>
+      <ul>
+        <li><strong>Flexible (lámina de acero magnética)</strong> para el despegue más cómodo: doblás y salta la pieza. Es lo más elegido hoy.</li>
+        <li><strong>Rígida (vidrio)</strong> si priorizás la planitud absoluta de la base por sobre la comodidad del despegue.</li>
+      </ul>
+
+      <div class="callout">
+        <div class="ct">Error común</div>
+        <p>Imprimir PETG directo sobre una superficie lisa (PEI liso o vidrio) sin separador. El PETG puede fundirse con la superficie y, al despegar, arrancar un pedazo del recubrimiento. Para PETG, texturizado o un separador de por medio.</p>
+      </div>
+    </section>
+
+    <!-- MANTENIMIENTO -->
+    <section>
+      <div class="sec-label">Mantenimiento</div>
+      <h2>Cómo cuidarla y cuándo cambiarla</h2>
+      <p>Una cama bien cuidada dura muchísimo. La mayoría de los problemas de adherencia no son de la cama en sí, sino de suciedad sobre ella. Cuidados básicos:</p>
+      <ul>
+        <li><strong>Limpiala seguido con alcohol isopropílico.</strong> La grasa de los dedos es el enemigo número uno de la adherencia. Un paño con alcohol antes de imprimir hace milagros.</li>
+        <li><strong>No la toques con los dedos</strong> en la zona de impresión. Agarrá la lámina de los bordes.</li>
+        <li><strong>Evitá rayarla.</strong> No uses espátulas de metal ni herramientas filosas sobre el recubrimiento; para eso está la flexibilidad.</li>
+      </ul>
+      <p>Aun así, el recubrimiento es un consumible y se gasta. Señales de que conviene cambiar la lámina:</p>
+      <ul>
+        <li><strong>Zonas que ya no agarran.</strong> Si la pieza se despega siempre en el mismo punto, ahí el recubrimiento está desgastado.</li>
+        <li><strong>Recubrimiento levantado, rayado o con pedazos faltantes.</strong></li>
+        <li><strong>La base magnética perdió fuerza.</strong> Con los ciclos de calor, el adhesivo del imán puede aflojarse; en ese caso se cambia la base, no la lámina.</li>
+      </ul>
+      <div class="callout">
+        <div class="ct">Recomendación</div>
+        <p>Tener una lámina flexible de repuesto es lo más práctico: podés seguir imprimiendo mientras una se limpia o se enfría, y renovás la superficie al instante cuando se gasta.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- CATÁLOGO DE CAMAS REALES -->
+<section class="cat-block" id="productos">
+  <div class="wrap-wide">
+    <div class="cat-head">
+      <div>
+        <div class="section-label">Disponibles</div>
+        <h2>Camas en stock</h2>
+      </div>
+      <a class="link-all" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">
+        Ver todas en ML <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="guide-cta">
+  <div class="wrap">
+    <h2>¿No sabés cuál va en tu impresora?</h2>
+    <p>Decinos el modelo y te confirmamos la cama correcta —medida, superficie y si necesitás base o solo lámina— antes de que compres. Respondemos rápido por WhatsApp.</p>
+    <div class="cta-actions">
+      <a class="btn-main" href="https://wa.me/541171585143?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20una%20cama%20magn%C3%A9tica." target="_blank" rel="noopener">
+        Consultar por WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn-sec" href="/#catalogo">Volver al catálogo</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap-wide">
+    <div class="footer-inner">
+      <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="" style="height:16px;">XPRINTED</a>
+      <div class="footer-links">
+        <a href="/#catalogo">Catálogo</a>
+        <a href="/#mayoristas">Mayoristas</a>
+        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Mercado Libre</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© XPRINTED 2026. Todos los derechos reservados.</span>
+      <span>Buenos Aires, Argentina</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Camas magnéticas — subconjunto del catálogo (mismos datos que la home).
+const PRODUCTS = [{"id": "MLA1477174795", "title": "Cama Base Magnetica Ender-3 V3 Se / V3 Ke / K1", "stock": 13, "price": 40999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1477174795-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1477174795-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1511655363", "title": "Cama Base Magnetica Peo + Pet Ender-3 V3 Se / K1", "stock": 7, "price": 34999.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1511655363-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1511655363-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1932072966", "title": "Kit 4x Resorte Reforzado Para Cama Caliente  Xprinted", "stock": 9, "price": 4999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932072966-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932072966-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA2200570536", "title": "Cama Base Magnetica Peo + Pet 235x235mm Ender", "stock": 31, "price": 34999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2200570536-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2200570536-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1463881427", "title": "Cama Magnetica 310x310mm Artillery Doble Cara", "stock": 5, "price": 69999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1463881427-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1463881427-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1468244793", "title": "Cama Base Magnetica Bambu Lab A1 Mini Doble Cara", "stock": 2, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1468244793-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1468244793-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA2844147270", "title": "Base Magnética Flexible Ender-3 Creality Original", "stock": 14, "price": 36499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2844147270-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2844147270-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1970264684", "title": "Cama Plataforma De Vidrio Carborundum 235x235mm", "stock": 7, "price": 36999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1970264684-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970264684-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1970251156", "title": "Cama Base Magnética Bambu A1 257x257mm Doble Cara", "stock": 2, "price": 49999.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1970251156-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970251156-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA2200609462", "title": "Cama Base Magnetica 257x257mm Pey + Pey", "stock": 1, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2200609462-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2200609462-F.jpg", "cat": "Camas magnéticas"}];
+
+const gridEl = document.getElementById('prod-grid');
+const imgCache = {};
+const urlCache = {};
+
+function formatPrice(p){ return '$' + Math.round(p).toLocaleString('es-AR'); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function productCard(p){
+  const inStock = p.stock > 0;
+  const img = imgCache[p.id] || p.img;
+  const href = urlCache[p.id] || p.url;
+  return `
+    <a class="prod-card" data-id="${p.id}" href="${href}" target="_blank" rel="noopener">
+      <div class="pc-img">
+        <img class="ml-img" data-item="${p.id}" src="${img}" alt="${escapeHtml(p.title)}" loading="lazy"
+             onerror="this.style.opacity=0.15;this.onerror=null;">
+        <span class="pc-stock ${inStock ? 'in' : 'out'}">${inStock ? 'STOCK' : 'AGOTADO'}</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-cat">${escapeHtml(p.cat)}</div>
+        <h4>${escapeHtml(p.title)}</h4>
+        <div class="pc-price">${formatPrice(p.price)}</div>
+        <div class="pc-go">Ver en Mercado Libre
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>`;
+}
+
+function renderGrid(){
+  gridEl.innerHTML = PRODUCTS.map(productCard).join('');
+}
+
+async function preloadMLData(){
+  try{
+    const res = await fetch('/api/ml-images');
+    if(!res.ok) return;
+    const data = await res.json();
+    Object.entries(data).forEach(([id,item]) => {
+      if(item.thumbnail) imgCache[id] = item.thumbnail;
+      if(item.permalink) urlCache[id] = item.permalink;
+    });
+  }catch(e){ return; }
+  document.querySelectorAll('.ml-img').forEach(img => {
+    const id = img.dataset.item;
+    if(imgCache[id]){ img.src = imgCache[id]; img.style.opacity = 1; }
+  });
+  document.querySelectorAll('.prod-card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    if(urlCache[id]) card.href = urlCache[id];
+  });
+}
+
+renderGrid();
+preloadMLData();
+</script>
+
+</body>
+</html>
