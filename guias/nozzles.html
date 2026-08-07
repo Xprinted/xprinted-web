@@ -22,8 +22,8 @@
   a{color:inherit;text-decoration:none;}
   img{display:block;max-width:100%;}
   ::selection{background:var(--white);color:var(--bg);}
-  .wrap{max-width:920px;margin:0 auto;padding:0 40px;}
-  .wrap-wide{max-width:1200px;margin:0 auto;padding:0 40px;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 56px;}
+  .wrap-wide{max-width:1280px;margin:0 auto;padding:0 56px;}
 
   /* NAV */
   header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
@@ -43,28 +43,28 @@
   .breadcrumb span.here{color:var(--white);}
 
   /* HERO GUIA */
-  .guide-hero{border-bottom:1px solid var(--line);padding:72px 0 56px;background:linear-gradient(180deg,var(--bg2),var(--bg));}
+  .guide-hero{border-bottom:1px solid var(--line);padding:96px 0 78px;background:linear-gradient(180deg,var(--bg2),var(--bg));}
   .guide-kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
   .guide-kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
   .guide-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(2.8rem,7vw,5rem);line-height:0.92;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:22px;}
-  .guide-hero .lead{font-size:1.08rem;color:#B8B8B6;max-width:660px;line-height:1.7;}
+  .guide-hero .lead{font-size:1.15rem;color:#B8B8B6;max-width:820px;line-height:1.75;}
 
   /* SECTIONS */
-  .guide-body{padding:56px 0 24px;}
-  .guide-body section{margin-bottom:52px;}
-  .sec-label{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:7px;}
+  .guide-body{padding:72px 0 32px;}
+  .guide-body section{margin-bottom:74px;}
+  .sec-label{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
   .sec-label::before{content:'';width:16px;height:1px;background:var(--dim);}
-  .guide-body h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.7rem,3.4vw,2.4rem);text-transform:uppercase;line-height:1;margin-bottom:20px;}
-  .guide-body h3{font-family:var(--fd);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:0.02em;margin:26px 0 10px;color:var(--white);}
-  .guide-body p{font-size:1rem;color:#C4C4C2;margin-bottom:16px;max-width:720px;}
+  .guide-body h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.9rem,3.6vw,2.7rem);text-transform:uppercase;line-height:1;margin-bottom:24px;}
+  .guide-body h3{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:0.02em;margin:30px 0 12px;color:var(--white);}
+  .guide-body p{font-size:1.05rem;color:#C4C4C2;margin-bottom:18px;max-width:900px;line-height:1.75;}
   .guide-body p strong{color:var(--white);font-weight:600;}
-  .guide-body ul{list-style:none;margin:0 0 18px;max-width:720px;}
-  .guide-body ul li{position:relative;padding-left:22px;margin-bottom:11px;color:#C4C4C2;font-size:1rem;}
-  .guide-body ul li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;background:var(--muted);border-radius:1px;}
+  .guide-body ul{list-style:none;margin:0 0 20px;max-width:900px;}
+  .guide-body ul li{position:relative;padding-left:24px;margin-bottom:13px;color:#C4C4C2;font-size:1.05rem;line-height:1.7;}
+  .guide-body ul li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--muted);border-radius:1px;}
   .guide-body ul li strong{color:var(--white);font-weight:600;}
 
   /* CALLOUT */
-  .callout{border:1px solid var(--line);border-left:2px solid var(--muted);background:var(--bg2);padding:22px 26px;border-radius:2px;margin:24px 0;max-width:720px;}
+  .callout{border:1px solid var(--line);border-left:2px solid var(--muted);background:var(--bg2);padding:24px 28px;border-radius:2px;margin:28px 0;max-width:900px;}
   .callout .ct{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
   .callout p{margin:0;color:#C8C8C6;font-size:0.96rem;}
 
@@ -245,7 +245,7 @@
 
       <div class="type-grid">
         <div class="type-card">
-          <div class="tt">Latón</div>
+          <div class="tt">Latón / Bronce</div>
           <div class="tsub">Brass · El estándar</div>
           <p>Excelente conductividad térmica y precio bajo. Es el que viene de fábrica y el mejor para filamentos comunes como PLA, PETG y ABS. Su punto débil: se desgasta rápido con materiales abrasivos.</p>
           <div class="tmeta">
@@ -256,7 +256,7 @@
         <div class="type-card">
           <div class="tt">Acero endurecido</div>
           <div class="tsub">Hardened steel · Resistente</div>
-          <p>Mucho más duro que el latón, aguanta filamentos abrasivos sin desgastarse: cargados con fibra de carbono, fibra de vidrio, madera o metal, y también los brillantes/glitter. Conduce algo menos el calor, así que conviene subir un poco la temperatura.</p>
+          <p>Mucho más duro que el latón: soporta filamentos abrasivos (fibra de carbono, fibra de vidrio, madera, metal o glitter) sin desgastarse. Conduce algo menos el calor, así que conviene imprimir a mayor temperatura.</p>
           <div class="tmeta">
             <span class="type-tag good">Abrasivos</span>
             <span class="type-tag good">Carbono / vidrio</span>
@@ -281,23 +281,40 @@
         </div>
       </div>
 
-      <h3>¿Y las boquillas recubiertas?</h3>
-      <p>Existen también nozzles de latón con recubrimientos (níquel, teflón/PTFE, TwinClad) que reducen la adherencia del plástico y ayudan a que no se peguen residuos. Son útiles con filamentos "pegajosos", pero el recubrimiento no los hace resistentes a la abrasión: para eso seguís necesitando acero.</p>
     </section>
 
     <!-- CÓMO ELEGIR -->
     <section>
       <div class="sec-label">Decisión</div>
       <h2>Cómo elegir el correcto</h2>
-      <p>Para no equivocarte, revisá estos tres puntos en orden:</p>
+      <p>Elegir bien es simple si seguís estos tres pasos en orden. El primero es el más importante: si el nozzle no es compatible con tu impresora, los otros dos no importan.</p>
+
+      <h3>Paso 1 — Que sea compatible con tu impresora</h3>
+      <p>Este es el filtro que no podés saltear. La mayoría de las impresoras usa rosca <strong>M6</strong> (formatos MK8 y V6) o rosca <strong>M7</strong> (MK10), pero la rosca sola no alcanza: el <strong>largo</strong> del nozzle también tiene que coincidir. Un ejemplo típico: los nozzles MK8 y V6 comparten la rosca M6, pero el V6 es más largo. Si ponés un MK8 en un hotend V6, queda un hueco interno donde el plástico se acumula, gotea y termina tapando todo.</p>
+      <p>Además, muchas impresoras modernas usan un <strong>formato propietario</strong> que solo acepta su propio nozzle: Bambu Lab (A1, X1, P1), Creality Unicorn (K1, K2, Ender V3) o Anycubic Kobra, entre otras. Por eso la regla es una sola:</p>
+      <div class="callout">
+        <div class="ct">Antes de comprar</div>
+        <p>Guiate siempre por el <strong>modelo exacto de tu impresora</strong>, no solo por la medida de la rosca. Si tenés dudas, decinos qué impresora tenés y te confirmamos cuál nozzle le corresponde.</p>
+      </div>
+
+      <h3>Paso 2 — El material según tu filamento</h3>
+      <p>Una vez que sabés qué formato entra, el material define cuánto va a durar:</p>
       <ul>
-        <li><strong>1. Compatibilidad con tu impresora.</strong> Es lo primero. Cada modelo usa un formato de nozzle: rosca (M6, MK8), largo, o un formato propietario (Bambu Lab, Creality Unicorn, etc.). Un nozzle que no calza no sirve por más bueno que sea. Si tenés dudas, decinos tu modelo de impresora y te confirmamos cuál va.</li>
-        <li><strong>2. Qué filamento vas a usar.</strong> Si imprimís PLA/PETG/ABS común, latón. Si vas a usar abrasivos (carbono, vidrio, glow, metal), acero endurecido o bi-metal sí o sí.</li>
-        <li><strong>3. Qué diámetro necesitás.</strong> 0.4 mm para uso general; más grande si priorizás velocidad, más chico si priorizás detalle fino.</li>
+        <li><strong>Latón / bronce</strong> si imprimís filamentos comunes: PLA, PETG y ABS. Es el más económico y el que mejor transmite el calor.</li>
+        <li><strong>Acero endurecido o bi-metal</strong> si vas a imprimir abrasivos: fibra de carbono, fibra de vidrio, madera, metal o glitter. Duran entre 10 y 15 veces más que el latón con estos materiales.</li>
       </ul>
+
+      <h3>Paso 3 — El diámetro según lo que imprimís</h3>
+      <ul>
+        <li><strong>0.4 mm</strong> para uso general. Si dudás, es este.</li>
+        <li><strong>0.6 u 0.8 mm</strong> si priorizás velocidad y piezas grandes o funcionales, resignando algo de detalle.</li>
+        <li><strong>0.2 mm</strong> si necesitás detalle muy fino, sabiendo que imprime más lento.</li>
+        <li>Para filamentos con <strong>madera o fibras naturales</strong>, usá 0.5 mm o más: con orificios chicos tienden a taparse.</li>
+      </ul>
+
       <div class="callout">
         <div class="ct">Error común</div>
-        <p>Usar un nozzle de latón con filamento cargado de fibra de carbono. Funciona… por un rato: la fibra lima el orificio, el diámetro crece y la calidad se cae. Para abrasivos, siempre acero.</p>
+        <p>Usar un nozzle de latón con filamento cargado de fibra de carbono. Funciona… por un rato: la fibra lima el orificio, el diámetro crece y la calidad se viene abajo. Para abrasivos, siempre acero.</p>
       </div>
     </section>
 
