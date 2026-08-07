@@ -59,10 +59,8 @@
       repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255,255,255,0.015) 23px, rgba(255,255,255,0.015) 24px),
       var(--bg2);
     padding:28px 20px;display:flex;align-items:center;justify-content:center;min-height:300px;}
-  .nz-diagram svg{width:auto;height:250px;}
+  .nz-diagram svg{width:100%;height:auto;max-height:300px;}
   .nz-tag{position:absolute;font-family:var(--fm);font-size:0.6rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:2px;}
-  .nz-tag-top{top:22px;right:22px;}
-  .nz-tag-bot{bottom:22px;right:22px;color:#C79A56;border-color:rgba(224,179,106,0.25);}
   .nz-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
   .nz-spec{background:var(--bg2);padding:16px 14px;text-align:center;}
   .nz-spec .v{display:block;font-family:var(--fd);font-weight:900;font-size:1.7rem;line-height:1;color:var(--white);margin-bottom:5px;}
@@ -211,30 +209,105 @@
 
       <div class="gh-visual">
         <div class="nz-diagram">
-          <div class="nz-tag nz-tag-top">Filamento sólido</div>
-          <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de un nozzle">
-            <!-- filamento -->
-            <rect x="92" y="6" width="16" height="52" rx="2" fill="#2A2A2C"/>
-            <line x1="100" y1="10" x2="100" y2="54" stroke="#3A3A3C" stroke-width="1" stroke-dasharray="3 4"/>
-            <!-- cuerpo del nozzle (hexágono + cono) -->
-            <path d="M60 60 H140 V96 L128 108 H72 L60 96 Z" fill="#161618" stroke="#3A3A3C" stroke-width="1.4"/>
-            <!-- tuerca hexagonal -->
-            <path d="M56 66 L72 60 H128 L144 66 L144 90 L128 96 H72 L56 90 Z" fill="#1C1C1E" stroke="#4A4A4C" stroke-width="1.4"/>
-            <!-- cono -->
-            <path d="M72 96 L128 96 L108 190 Q100 208 92 190 Z" fill="#161618" stroke="#4A4A4C" stroke-width="1.4"/>
-            <!-- rosca (líneas) -->
-            <g stroke="#2E2E30" stroke-width="1.2">
-              <line x1="72" y1="104" x2="128" y2="104"/>
-              <line x1="74" y1="112" x2="126" y2="112"/>
-              <line x1="77" y1="120" x2="123" y2="120"/>
+          <svg viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de un nozzle de impresora 3D">
+            <defs>
+              <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#2C2C2E"/>
+                <stop offset="0.35" stop-color="#4A4A4D"/>
+                <stop offset="0.5" stop-color="#5A5A5D"/>
+                <stop offset="0.65" stop-color="#434346"/>
+                <stop offset="1" stop-color="#242426"/>
+              </linearGradient>
+              <linearGradient id="metalCone" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#242426"/>
+                <stop offset="0.5" stop-color="#565659"/>
+                <stop offset="1" stop-color="#1E1E20"/>
+              </linearGradient>
+              <linearGradient id="heat" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#3A2A1C"/>
+                <stop offset="1" stop-color="#5A3A1E"/>
+              </linearGradient>
+              <linearGradient id="molten" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F0C878"/>
+                <stop offset="1" stop-color="#D8892E"/>
+              </linearGradient>
+              <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0" stop-color="#E0B36A" stop-opacity="0.35"/>
+                <stop offset="1" stop-color="#E0B36A" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- filamento sólido entrando -->
+            <rect x="150" y="8" width="20" height="56" rx="3" fill="#2A2A2C" stroke="#3A3A3C" stroke-width="1"/>
+            <line x1="160" y1="14" x2="160" y2="58" stroke="#4A4A4C" stroke-width="1.5" stroke-dasharray="2 5"/>
+
+            <!-- bloque calefactor (zona caliente) -->
+            <rect x="120" y="64" width="80" height="46" rx="3" fill="url(#heat)" stroke="#6A4A2A" stroke-width="1.4"/>
+            <circle cx="134" cy="87" r="4" fill="#0A0A0A" stroke="#7A5432" stroke-width="1.2"/>
+            <circle cx="186" cy="87" r="4" fill="#0A0A0A" stroke="#7A5432" stroke-width="1.2"/>
+            <rect x="144" y="82" width="32" height="10" rx="2" fill="#0A0A0A" stroke="#7A5432" stroke-width="1.1"/>
+
+            <!-- tuerca hexagonal del nozzle -->
+            <path d="M116 112 L128 106 H192 L204 112 L204 132 L192 138 H128 L116 132 Z"
+                  fill="url(#metal)" stroke="#6A6A6D" stroke-width="1.5" stroke-linejoin="round"/>
+            <line x1="128" y1="106" x2="128" y2="138" stroke="#1A1A1C" stroke-width="1"/>
+            <line x1="192" y1="106" x2="192" y2="138" stroke="#1A1A1C" stroke-width="1"/>
+
+            <!-- cono del nozzle -->
+            <path d="M132 138 H188 L172 214 Q160 236 148 214 Z"
+                  fill="url(#metalCone)" stroke="#6A6A6D" stroke-width="1.5" stroke-linejoin="round"/>
+            <!-- brillo lateral del cono -->
+            <path d="M150 140 L142 210" stroke="#7C7C80" stroke-width="1.4" opacity="0.6" stroke-linecap="round"/>
+
+            <!-- canal interno (por donde atraviesa el filamento) -->
+            <path d="M153 112 H167 L163 210 Q160 216 157 210 Z" fill="#0A0A0A" stroke="#5A5A5C" stroke-width="1" opacity="0.92"/>
+            <line x1="160" y1="116" x2="160" y2="204" stroke="#C79A56" stroke-width="1.4" stroke-dasharray="2 4" opacity="0.55"/>
+
+            <!-- rosca -->
+            <g stroke="#26262A" stroke-width="1.3">
+              <line x1="134" y1="146" x2="152" y2="146"/>
+              <line x1="168" y1="146" x2="186" y2="146"/>
+              <line x1="136" y1="154" x2="153" y2="154"/>
+              <line x1="167" y1="154" x2="184" y2="154"/>
+              <line x1="139" y1="162" x2="154" y2="162"/>
+              <line x1="166" y1="162" x2="181" y2="162"/>
             </g>
+
+            <!-- resplandor en la punta -->
+            <circle cx="160" cy="222" r="34" fill="url(#glow)"/>
+
             <!-- orificio -->
-            <circle cx="100" cy="198" r="5.5" fill="#0A0A0A" stroke="#8A8A8C" stroke-width="1.4"/>
-            <!-- gota saliendo -->
-            <path d="M100 206 Q95 218 100 226 Q105 218 100 206 Z" fill="#E0B36A" opacity="0.9"/>
-            <circle cx="100" cy="240" r="4" fill="#E0B36A" opacity="0.55"/>
+            <ellipse cx="160" cy="217" rx="7" ry="4" fill="#0A0A0A" stroke="#9A9A9C" stroke-width="1.6"/>
+
+            <!-- chorro / gota de filamento fundido -->
+            <path d="M154 219 Q152 236 160 250 Q168 236 166 219 Q160 224 154 219 Z" fill="url(#molten)"/>
+            <ellipse cx="160" cy="270" rx="6.5" ry="7.5" fill="url(#molten)" opacity="0.9"/>
+            <ellipse cx="157" cy="267" rx="2" ry="2.4" fill="#F6E0A8" opacity="0.7"/>
+
+            <!-- líneas guía a etiquetas (derecha) -->
+            <g stroke="#3A3A3C" stroke-width="1">
+              <line x1="170" y1="30" x2="236" y2="30"/>
+              <circle cx="170" cy="30" r="2" fill="#5A5A5C"/>
+              <line x1="200" y1="87" x2="250" y2="87"/>
+              <circle cx="200" cy="87" r="2" fill="#7A5432"/>
+              <line x1="167" y1="240" x2="250" y2="255"/>
+              <circle cx="167" cy="240" r="2" fill="#C79A56"/>
+            </g>
+
+            <!-- líneas guía a etiquetas (izquierda) -->
+            <g stroke="#3A3A3C" stroke-width="1">
+              <line x1="160" y1="150" x2="84" y2="150"/>
+              <circle cx="160" cy="150" r="2" fill="#C79A56"/>
+              <line x1="160" y1="217" x2="70" y2="230"/>
+              <circle cx="160" cy="217" r="2" fill="#9A9A9C"/>
+            </g>
           </svg>
-          <div class="nz-tag nz-tag-bot">Filamento fundido</div>
+
+          <div class="nz-tag" style="top:20px;right:24px;">Filamento sólido</div>
+          <div class="nz-tag" style="top:76px;right:24px;color:#C79A56;border-color:rgba(224,179,106,0.28);">Zona caliente</div>
+          <div class="nz-tag" style="bottom:24px;right:24px;color:#C79A56;border-color:rgba(224,179,106,0.28);">Filamento fundido</div>
+          <div class="nz-tag" style="top:128px;left:24px;">Canal interno</div>
+          <div class="nz-tag" style="bottom:52px;left:24px;">Punta del nozzle</div>
         </div>
 
         <div class="nz-specs">
