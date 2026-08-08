@@ -1,1 +1,561 @@
 
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termistores y resistencias — Guía de electrónica del hotend 3D | XPRINTED</title>
+<meta name="description" content="Guía sobre termistores, resistencias (cartuchos calefactores) y bloques calefactores para impresoras 3D: qué hace cada uno, diferencias, cómo elegir (12V/24V, 100K NTC) y mantenimiento. Por XPRINTED.">
+<link rel="icon" type="image/png" href="/assets/logo_icon.png">
+<link rel="canonical" href="https://xprinted-web.vercel.app/guias/termistores.html">
+<!-- Open Graph (para compartir en WhatsApp / redes) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Termistores y resistencias — Guía de electrónica del hotend 3D">
+<meta property="og:description" content="Qué hace cada pieza, diferencias, cómo elegir (12V/24V, 100K NTC) y mantenimiento. Por XPRINTED.">
+<meta property="og:site_name" content="XPRINTED">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://xprinted-web.vercel.app/guias/termistores.html">
+<meta property="og:image" content="https://xprinted-web.vercel.app/assets/logo_icon.png">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --bg2:#111113; --bg3:#191919;
+    --line:#222224; --white:#F0F0EE; --muted:#666668; --dim:#3A3A3C;
+    --fd:'Barlow Condensed',sans-serif;
+    --fb:'Inter',sans-serif;
+    --fm:'JetBrains Mono',monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:var(--fb);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  ::selection{background:var(--white);color:var(--bg);}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 56px;}
+  .wrap-wide{max-width:1280px;margin:0 auto;padding:0 56px;}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  nav{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .logo{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-weight:900;font-size:1.15rem;letter-spacing:0.06em;}
+  .logo img{height:16px;width:auto;}
+  .nav-links{display:flex;gap:28px;font-size:0.86rem;color:var(--muted);}
+  .nav-links a{transition:color .15s;} .nav-links a:hover{color:var(--white);}
+  .nav-cta{background:var(--white);color:var(--bg);font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:2px;transition:opacity .15s;}
+  .nav-cta:hover{opacity:0.88;}
+
+  /* BREADCRUMB */
+  .breadcrumb{border-bottom:1px solid var(--line);background:var(--bg2);}
+  .breadcrumb .wrap-wide{display:flex;align-items:center;gap:8px;height:44px;font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;}
+  .breadcrumb a{transition:color .15s;} .breadcrumb a:hover{color:var(--white);}
+  .breadcrumb span.sep{opacity:0.5;}
+  .breadcrumb span.here{color:var(--white);}
+
+  /* HERO GUIA */
+  .guide-hero{border-bottom:1px solid var(--line);padding:64px 0 68px;background:linear-gradient(160deg,var(--bg2),var(--bg) 70%);}
+  .gh-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .gh-text{min-width:0;}
+  .guide-kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .guide-kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
+  .guide-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,6vw,5.2rem);line-height:0.9;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:24px;}
+  .guide-hero .lead{font-size:1.1rem;color:#B8B8B6;max-width:560px;line-height:1.72;margin-bottom:32px;}
+  .gh-actions{display:flex;gap:12px;flex-wrap:wrap;}
+
+  /* HERO VISUAL */
+  .gh-visual{display:flex;flex-direction:column;gap:18px;}
+  .nz-diagram{position:relative;border:1px solid var(--line);border-radius:4px;background:
+      radial-gradient(circle at 50% 40%, rgba(255,255,255,0.03), transparent 60%),
+      repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255,255,255,0.015) 23px, rgba(255,255,255,0.015) 24px),
+      var(--bg2);
+    padding:28px 20px;display:flex;align-items:center;justify-content:center;min-height:300px;}
+  .nz-diagram svg{width:100%;height:auto;max-height:300px;}
+  .nz-tag{position:absolute;font-family:var(--fm);font-size:0.6rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:2px;}
+  .nz-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  .nz-spec{background:var(--bg2);padding:16px 14px;text-align:center;}
+  .nz-spec .v{display:block;font-family:var(--fd);font-weight:900;font-size:1.7rem;line-height:1;color:var(--white);margin-bottom:5px;}
+  .nz-spec .l{font-family:var(--fm);font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+
+  /* SECTIONS */
+  .guide-body{padding:72px 0 32px;}
+  .guide-body section{margin-bottom:74px;}
+  .sec-label{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
+  .sec-label::before{content:'';width:16px;height:1px;background:var(--dim);}
+  .guide-body h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.9rem,3.6vw,2.7rem);text-transform:uppercase;line-height:1;margin-bottom:24px;}
+  .guide-body h3{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:0.02em;margin:30px 0 12px;color:var(--white);}
+  .guide-body p{font-size:1.05rem;color:#C4C4C2;margin-bottom:18px;max-width:900px;line-height:1.75;}
+  .guide-body p strong{color:var(--white);font-weight:600;}
+  .guide-body ul{list-style:none;margin:0 0 20px;max-width:900px;}
+  .guide-body ul li{position:relative;padding-left:24px;margin-bottom:13px;color:#C4C4C2;font-size:1.05rem;line-height:1.7;}
+  .guide-body ul li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--muted);border-radius:1px;}
+  .guide-body ul li strong{color:var(--white);font-weight:600;}
+
+  /* CALLOUT */
+  .callout{border:1px solid var(--line);border-left:2px solid var(--muted);background:var(--bg2);padding:24px 28px;border-radius:2px;margin:28px 0;max-width:900px;}
+  .callout .ct{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+  .callout p{margin:0;color:#C8C8C6;font-size:0.96rem;}
+
+  /* DIAMETER / SPEC TABLE */
+  .dia-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0;border-radius:2px;overflow:hidden;}
+  .dia-cell{background:var(--bg);padding:22px 20px;}
+  .dia-cell .d{font-family:var(--fd);font-weight:900;font-size:1.7rem;line-height:1;margin-bottom:8px;color:var(--white);}
+  .dia-cell .u{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
+  .dia-cell p{font-size:0.85rem;color:var(--muted);margin:0;line-height:1.5;}
+
+  /* TYPE CARDS */
+  .type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0;border-radius:2px;overflow:hidden;}
+  .type-card{background:var(--bg);padding:26px 24px;}
+  .type-card .tt{font-family:var(--fd);font-weight:900;font-size:1.3rem;text-transform:uppercase;margin-bottom:6px;}
+  .type-card .tsub{font-family:var(--fm);font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;}
+  .type-card p{font-size:0.9rem;color:#B8B8B6;margin:0 0 12px;line-height:1.6;}
+  .type-card .tmeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  .type-tag{font-family:var(--fm);font-size:0.6rem;color:#A0A0A0;border:1px solid var(--dim);padding:4px 9px;border-radius:2px;text-transform:uppercase;letter-spacing:0.04em;}
+  .type-tag.good{color:#7CD992;border-color:rgba(124,217,146,0.3);}
+  .type-tag.warn{color:#E0B36A;border-color:rgba(224,179,106,0.3);}
+
+  /* CATALOG BLOCK */
+  .cat-block{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);padding:56px 0;}
+  .cat-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:16px;}
+  .cat-head .section-label{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+  .cat-head .section-label::before{content:'';width:5px;height:5px;background:var(--muted);}
+  .cat-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.7rem,3vw,2.4rem);text-transform:uppercase;line-height:0.95;}
+  .link-all{font-family:var(--fm);font-size:0.72rem;color:var(--muted);border-bottom:1px solid var(--dim);padding-bottom:2px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;transition:color .15s,border-color .15s;}
+  .link-all:hover{color:var(--white);border-color:var(--white);}
+  .link-all svg{width:10px;height:10px;}
+
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .prod-card{background:var(--bg);display:flex;flex-direction:column;transition:background .15s;cursor:pointer;}
+  .prod-card:hover{background:var(--bg3);}
+  .prod-card .pc-img{aspect-ratio:1/1;overflow:hidden;background:var(--bg2);position:relative;}
+  .prod-card .pc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:transform .3s,filter .3s;}
+  .prod-card:hover .pc-img img{transform:scale(1.05);filter:grayscale(0%);}
+  .pc-stock{position:absolute;top:8px;right:8px;font-family:var(--fm);font-size:0.58rem;font-weight:600;padding:3px 7px;border-radius:1px;}
+  .pc-stock.in{background:rgba(255,255,255,0.08);color:#A0A0A0;border:1px solid rgba(255,255,255,0.1);}
+  .pc-stock.out{background:rgba(200,0,0,0.15);color:#FF6B6B;border:1px solid rgba(200,0,0,0.2);}
+  .prod-card .pc-body{padding:18px;flex:1;display:flex;flex-direction:column;}
+  .pc-cat{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;}
+  .prod-card h4{font-family:var(--fd);font-weight:900;font-size:1.05rem;text-transform:uppercase;line-height:1.05;margin-bottom:10px;flex:1;}
+  .pc-price{font-family:var(--fd);font-weight:700;font-size:1.15rem;color:var(--white);margin-bottom:10px;}
+  .pc-go{font-family:var(--fm);font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:5px;border-top:1px solid var(--line);padding-top:10px;transition:color .15s;}
+  .pc-go svg{width:10px;height:10px;transition:transform .2s;}
+  .prod-card:hover .pc-go{color:var(--white);}
+  .prod-card:hover .pc-go svg{transform:translate(3px,0);}
+
+  /* CTA FINAL */
+  .guide-cta{padding:56px 0;text-align:center;border-bottom:1px solid var(--line);}
+  .guide-cta h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.5vw,2.6rem);text-transform:uppercase;margin-bottom:12px;}
+  .guide-cta p{color:var(--muted);margin-bottom:26px;max-width:520px;margin-left:auto;margin-right:auto;}
+  .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:7px;transition:opacity .15s,transform .15s;}
+  .btn-main:hover{opacity:0.9;transform:translateY(-1px);}
+  .btn-sec{border:1px solid var(--dim);color:var(--white);font-weight:600;font-size:0.88rem;padding:11px 22px;border-radius:2px;transition:border-color .15s;}
+  .btn-sec:hover{border-color:#555;}
+  .btn-main svg{width:12px;height:12px;}
+
+  /* FOOTER */
+  footer{padding:44px 0 24px;background:#080808;border-top:1px solid var(--line);}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;margin-bottom:24px;}
+  .footer-inner .logo{font-family:var(--fd);font-weight:900;}
+  .footer-links{display:flex;gap:22px;font-size:0.84rem;color:#555;flex-wrap:wrap;}
+  .footer-links a{transition:color .15s;} .footer-links a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid #151515;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:var(--fm);font-size:0.66rem;color:#333;}
+
+  @media(max-width:1024px){
+    .prod-grid{grid-template-columns:repeat(3,1fr);}
+    .gh-grid{grid-template-columns:1fr;gap:40px;}
+    .gh-visual{max-width:440px;}
+  }
+  @media(max-width:760px){
+    .nav-links{display:none;}
+    nav,.wrap,.wrap-wide{padding-left:20px;padding-right:20px;}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .guide-hero{padding:44px 0 52px;}
+  }
+  @media(max-width:500px){.prod-grid{grid-template-columns:1fr 1fr;}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
+    <div class="nav-links">
+      <a href="/#catalogo">Catálogo</a>
+      <a href="/#mayoristas">Mayoristas</a>
+      <a href="/#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="wrap-wide">
+    <a href="/">Inicio</a>
+    <span class="sep">/</span>
+    <a href="/#catalogo">Guías</a>
+    <span class="sep">/</span>
+    <span class="here">Termistores &amp; Resistencias</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="guide-hero">
+  <div class="wrap-wide">
+    <div class="gh-grid">
+      <div class="gh-text">
+        <span class="guide-kicker">Guía técnica · Repuestos 3D</span>
+        <h1>Termistores<br>y resistencias.</h1>
+        <p class="lead">Son la parte eléctrica del hotend: la resistencia genera el calor y el termistor lo mide, y juntos mantienen la temperatura justa para imprimir. Esta guía te explica qué hace cada pieza, en qué se diferencian, cómo elegir la correcta (12V o 24V, tipo de sensor) y cómo detectar cuándo falla.</p>
+        <div class="gh-actions">
+          <a class="btn-main" href="#productos">
+            Ver repuestos disponibles
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn-sec" href="#tipos">Ver piezas</a>
+        </div>
+      </div>
+
+      <div class="gh-visual">
+        <div class="nz-diagram">
+          <svg viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama del hotend de Ender 3 con resistencia y termistor">
+            <defs>
+              <linearGradient id="sink" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#2E2E31"/>
+                <stop offset="0.5" stop-color="#5A5A60"/>
+                <stop offset="1" stop-color="#242427"/>
+              </linearGradient>
+              <linearGradient id="block" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#8C9096"/>
+                <stop offset="0.5" stop-color="#B4B8BE"/>
+                <stop offset="1" stop-color="#787C82"/>
+              </linearGradient>
+              <linearGradient id="heater" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#C24A3A"/>
+                <stop offset="0.5" stop-color="#E86A4A"/>
+                <stop offset="1" stop-color="#B03A2E"/>
+              </linearGradient>
+              <linearGradient id="therm" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#3A6E8C"/>
+                <stop offset="0.5" stop-color="#5A96B8"/>
+                <stop offset="1" stop-color="#2E5A72"/>
+              </linearGradient>
+              <linearGradient id="brass" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#8A6A2E"/>
+                <stop offset="0.5" stop-color="#C4A050"/>
+                <stop offset="1" stop-color="#6E5424"/>
+              </linearGradient>
+              <radialGradient id="hglow" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0" stop-color="#E86A4A" stop-opacity="0.3"/>
+                <stop offset="1" stop-color="#E86A4A" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- DISIPADOR con aletas (arriba) -->
+            <g>
+              <rect x="126" y="30" width="68" height="52" rx="3" fill="url(#sink)" stroke="#70707A" stroke-width="1.4"/>
+              <g stroke="#1C1C1E" stroke-width="3">
+                <line x1="128" y1="40" x2="192" y2="40"/>
+                <line x1="128" y1="50" x2="192" y2="50"/>
+                <line x1="128" y1="60" x2="192" y2="60"/>
+                <line x1="128" y1="70" x2="192" y2="70"/>
+              </g>
+            </g>
+
+            <!-- HEAT BREAK (garganta corta) -->
+            <rect x="152" y="82" width="16" height="20" fill="#54545A" stroke="#7A7A80" stroke-width="1.3"/>
+
+            <!-- resplandor de calor alrededor del bloque -->
+            <ellipse cx="160" cy="128" rx="105" ry="46" fill="url(#hglow)"/>
+
+            <!-- BLOQUE CALEFACTOR (aluminio, cuadrado) -->
+            <g>
+              <rect x="122" y="102" width="76" height="52" rx="2" fill="url(#block)" stroke="#C8CCD2" stroke-width="1.5"/>
+              <!-- tornillo/detalle frontal -->
+              <circle cx="160" cy="128" r="3" fill="#6A6E74" stroke="#8C9096" stroke-width="0.8"/>
+            </g>
+
+            <!-- RESISTENCIA (cartucho) insertada por la izquierda, sobresale con su cable -->
+            <g>
+              <rect x="96" y="120" width="42" height="16" rx="3" fill="url(#heater)" stroke="#E88A6A" stroke-width="1.3"/>
+              <!-- cable rojo saliendo hacia arriba-izquierda -->
+              <path d="M100 120 Q90 96 74 74 Q66 62 58 54" stroke="#C24A3A" stroke-width="2.6" fill="none" opacity="0.85"/>
+            </g>
+
+            <!-- TERMISTOR insertado por la derecha, con su cable -->
+            <g>
+              <rect x="182" y="122" width="30" height="12" rx="2" fill="url(#therm)" stroke="#7AB6D8" stroke-width="1.2"/>
+              <circle cx="190" cy="128" r="1.8" fill="#0A0A0A"/>
+              <!-- cable azul saliendo hacia arriba-derecha -->
+              <path d="M210 124 Q226 104 240 84 Q248 72 254 62" stroke="#5A96B8" stroke-width="2.6" fill="none" opacity="0.85"/>
+            </g>
+
+            <!-- NOZZLE (latón) debajo del bloque -->
+            <g>
+              <path d="M142 154 H178 L168 188 Q160 202 152 188 Z" fill="url(#brass)" stroke="#D0AC5C" stroke-width="1.4" stroke-linejoin="round"/>
+            </g>
+            <!-- gota -->
+            <ellipse cx="160" cy="212" rx="4.5" ry="5.5" fill="url(#brass)" opacity="0.6"/>
+
+            <!-- LÍNEAS GUÍA -->
+            <g stroke="#4A4A4C" stroke-width="1">
+              <!-- resistencia -->
+              <line x1="96" y1="128" x2="42" y2="150"/>
+              <circle cx="96" cy="128" r="2.2" fill="#E86A4A"/>
+              <!-- termistor -->
+              <line x1="212" y1="128" x2="280" y2="150"/>
+              <circle cx="212" cy="128" r="2.2" fill="#5A96B8"/>
+              <!-- bloque calefactor -->
+              <line x1="160" y1="154" x2="280" y2="196"/>
+              <circle cx="160" cy="148" r="2.2" fill="#C79A56"/>
+            </g>
+          </svg>
+
+          <div class="nz-tag" style="top:150px;left:20px;color:#E8907A;border-color:rgba(232,106,74,0.3);">Resistencia</div>
+          <div class="nz-tag" style="top:150px;right:20px;color:#7AB6D8;border-color:rgba(90,150,184,0.35);">Termistor</div>
+          <div class="nz-tag" style="bottom:56px;right:20px;color:#C79A56;border-color:rgba(224,179,106,0.28);">Bloque calefactor</div>
+        </div>
+
+        <div class="nz-specs">
+          <div class="nz-spec"><span class="v">100K</span><span class="l">termistor NTC</span></div>
+          <div class="nz-spec"><span class="v">40W</span><span class="l">resistencia típica</span></div>
+          <div class="nz-spec"><span class="v">12/24</span><span class="l">voltios</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="guide-body">
+  <div class="wrap">
+
+    <!-- QUÉ ES -->
+    <section>
+      <div class="sec-label">Lo básico</div>
+      <h2>¿Qué son y qué hacen?</h2>
+      <p>Para imprimir, el hotend tiene que llegar a una temperatura exacta y mantenerla constante. De eso se encargan dos piezas eléctricas que trabajan en equipo dentro del <strong>bloque calefactor</strong>:</p>
+      <ul>
+        <li><strong>La resistencia (cartucho calefactor).</strong> Es la que <em>genera el calor</em>. Un cilindro metálico que se calienta al pasarle corriente y transmite ese calor al bloque para fundir el filamento.</li>
+        <li><strong>El termistor.</strong> Es el <em>sensor</em>: mide la temperatura del bloque sin parar y le informa a la placa de control de la impresora.</li>
+      </ul>
+      <p>Los dos forman un circuito de control: el termistor mide, la placa compara con la temperatura que pediste y le da más o menos corriente a la resistencia para mantenerla justa. Sin termistor, la impresora estaría "a ciegas"; sin resistencia, no habría calor.</p>
+      <div class="callout">
+        <div class="ct">Dato de seguridad</div>
+        <p>El termistor no es solo para calidad: es clave para la seguridad. Si detecta una lectura anormal, la impresora puede cortar el calentador y evitar un sobrecalentamiento peligroso (lo que se llama <em>thermal runaway</em>). Por eso un termistor mal conectado o dañado es un problema serio, no un detalle.</p>
+      </div>
+    </section>
+
+    <!-- PIEZAS -->
+    <section id="tipos">
+      <div class="sec-label">Las piezas</div>
+      <h2>Resistencia, termistor y bloque</h2>
+      <p>Esta categoría agrupa las tres piezas del sistema térmico del hotend. Conviene saber qué hace cada una para pedir exactamente la que falla:</p>
+
+      <div class="type-grid">
+        <div class="type-card">
+          <div class="tt">Resistencia</div>
+          <div class="tsub">Cartucho calefactor · Genera calor</div>
+          <p>El cartucho cilíndrico que calienta el bloque. Viene en distintos voltajes (12 V o 24 V) y potencias (típicamente 40 W o 50 W). Es fundamental que coincida con el voltaje de tu impresora: una resistencia de 12 V en una impresora de 24 V se quema, y una de 24 V en una de 12 V casi no calienta.</p>
+          <div class="tmeta">
+            <span class="type-tag good">12 V / 24 V</span>
+            <span class="type-tag warn">Ojo con el voltaje</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">Termistor</div>
+          <div class="tsub">Sensor · Mide temperatura</div>
+          <p>El sensor que mide el calor. El más común en impresoras 3D es el <strong>100K NTC</strong> (a veces indicado como 3950): su resistencia baja a medida que sube la temperatura, y la placa traduce eso a grados. Tiene que ser del tipo que espera tu firmware para leer bien.</p>
+          <div class="tmeta">
+            <span class="type-tag good">100K NTC</span>
+            <span class="type-tag good">Universal</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">Resistencia cerámica</div>
+          <div class="tsub">Formato integrado</div>
+          <p>Algunas impresoras (como varias de la línea Creality K1) usan una resistencia de tipo cerámico con un formato propio, integrada al conjunto. Cumple la misma función que el cartucho clásico, pero no es intercambiable: se pide específica para ese modelo.</p>
+          <div class="tmeta">
+            <span class="type-tag good">K1 y similares</span>
+            <span class="type-tag warn">Formato propio</span>
+          </div>
+        </div>
+        <div class="type-card">
+          <div class="tt">Bloque calefactor</div>
+          <div class="tsub">Heater block · El alojamiento</div>
+          <p>El bloque de metal donde se insertan la resistencia y el termistor, y sobre el que se enrosca el nozzle. Es el que concentra y distribuye el calor. Se cambia si se daña la rosca, si queda deformado o muy sucio de plástico carbonizado.</p>
+          <div class="tmeta">
+            <span class="type-tag good">Aloja todo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="ct">Kit resistencia + termistor</div>
+        <p>Muchas veces conviene cambiar las dos piezas juntas: vienen en kit, salen a cuenta y te asegurás de que ambas queden nuevas y compatibles entre sí. Es lo más práctico cuando no tenés claro cuál de las dos está fallando.</p>
+      </div>
+    </section>
+
+    <!-- CÓMO ELEGIR -->
+    <section>
+      <div class="sec-label">Decisión</div>
+      <h2>Cómo elegir la correcta</h2>
+      <p>Con estas piezas hay dos cosas que no podés equivocar: el voltaje y la compatibilidad con tu impresora. Andá en este orden.</p>
+
+      <h3>Paso 1 — El voltaje de tu impresora (12 V o 24 V)</h3>
+      <p>Este es el punto crítico de la resistencia. Tu impresora funciona a <strong>12 V o 24 V</strong> y la resistencia tiene que ser de ese mismo voltaje. Poner el voltaje equivocado no es un detalle: una resistencia de 12 V conectada a 24 V se sobrecalienta y se quema; una de 24 V en una de 12 V nunca llega a la temperatura. La mayoría de las impresoras modernas son de 24 V, pero verificá la tuya.</p>
+      <div class="callout">
+        <div class="ct">Antes de comprar</div>
+        <p>Confirmá el <strong>voltaje</strong> y el <strong>modelo exacto</strong> de tu impresora. Si no estás seguro, decinos qué impresora tenés y te confirmamos la resistencia y el termistor que le corresponden.</p>
+      </div>
+
+      <h3>Paso 2 — El tipo de termistor</h3>
+      <p>El termistor tiene que ser del tipo que tu placa sabe leer. El estándar en la gran mayoría de las impresoras es el <strong>100K NTC</strong>, así que suele ser directo. Si tu impresora usa un sensor especial o de alta temperatura, hay que respetarlo para que las lecturas sean correctas.</p>
+
+      <h3>Paso 3 — Formato: universal o propietario</h3>
+      <ul>
+        <li><strong>Cartucho y termistor estándar</strong> para la mayoría de las Ender 3 y compatibles: son piezas sueltas fáciles de conseguir e instalar.</li>
+        <li><strong>Formato propietario</strong> (por ejemplo la resistencia cerámica de las K1) cuando tu impresora usa un conjunto integrado: en ese caso se pide la pieza específica del modelo.</li>
+        <li><strong>Kit completo</strong> (resistencia + termistor, o con bloque incluido) si querés renovar todo el sistema térmico de una.</li>
+      </ul>
+
+      <div class="callout">
+        <div class="ct">Error común</div>
+        <p>Comprar la resistencia sin fijarse en el voltaje. Es el error más frecuente y el más caro: una resistencia de 24 V en una impresora de 12 V simplemente no calienta lo suficiente, y al revés, se quema. Siempre confirmá 12 V o 24 V antes de comprar.</p>
+      </div>
+    </section>
+
+    <!-- MANTENIMIENTO -->
+    <section>
+      <div class="sec-label">Diagnóstico</div>
+      <h2>Cómo saber cuándo fallan</h2>
+      <p>Estas piezas no se "gastan" como un nozzle, pero se dañan: los cables se fatigan con el movimiento del cabezal, entra plástico, o simplemente fallan con el tiempo. Señales típicas y qué suele indicar cada una:</p>
+      <ul>
+        <li><strong>Error de termistor / "thermal runaway" al arrancar.</strong> La impresora corta y avisa. Casi siempre es el termistor: desconectado, con un cable cortado o dañado.</li>
+        <li><strong>La temperatura sube muy lento o no llega.</strong> Suele ser la resistencia: perdió potencia, tiene un cable flojo, o es de un voltaje que no corresponde.</li>
+        <li><strong>Lecturas que saltan o son erráticas.</strong> Termistor con contacto intermitente, cable pelado o mal fijado en el bloque.</li>
+        <li><strong>Plástico acumulado sobre el bloque</strong> que envuelve la resistencia o el termistor: conviene limpiar y revisar que ambos queden bien asentados.</li>
+      </ul>
+      <div class="callout">
+        <div class="ct">Recomendación</div>
+        <p>Son piezas baratas y son de las que más dejan una impresora parada cuando fallan. Tener un termistor y una resistencia de repuesto (o el kit de ambos) es de las mejores inversiones para no perder días esperando el reemplazo.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- CATÁLOGO DE TERMISTORES REALES -->
+<section class="cat-block" id="productos">
+  <div class="wrap-wide">
+    <div class="cat-head">
+      <div>
+        <div class="section-label">Disponibles</div>
+        <h2>Repuestos en stock</h2>
+      </div>
+      <a class="link-all" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">
+        Ver todos en ML <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="guide-cta">
+  <div class="wrap">
+    <h2>¿No sabés cuál va en tu impresora?</h2>
+    <p>Decinos el modelo y el voltaje de tu impresora y te confirmamos la resistencia y el termistor correctos antes de que compres. Respondemos rápido por WhatsApp.</p>
+    <div class="cta-actions">
+      <a class="btn-main" href="https://wa.me/541171585143?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20termistor%20o%20resistencia." target="_blank" rel="noopener">
+        Consultar por WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn-sec" href="/#catalogo">Volver al catálogo</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap-wide">
+    <div class="footer-inner">
+      <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="" style="height:16px;">XPRINTED</a>
+      <div class="footer-links">
+        <a href="/#catalogo">Catálogo</a>
+        <a href="/#mayoristas">Mayoristas</a>
+        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Mercado Libre</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© XPRINTED 2026. Todos los derechos reservados.</span>
+      <span>Buenos Aires, Argentina</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Termistores & Resistencias — subconjunto del catálogo (mismos datos que la home).
+const PRODUCTS = [{"id": "MLA2017682688", "title": "Termistor 100k 3950ntc Ender-3 / Pro / V2", "stock": 46, "price": 4499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2017682688-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2017682688-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1972838648", "title": "Resistencia Ceramica Ender K1 / K1c / K1 Max / Ke", "stock": 26, "price": 11999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1972838648-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1972838648-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1974096080", "title": "Kit Resistencia + Termistor Ender-3 S1 / S1 Pro", "stock": 6, "price": 10999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1974096080-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1974096080-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1464639997", "title": "Termistor Ender-3 V3 Ke / K1c / K1 / K1 Max", "stock": 20, "price": 8999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1464639997-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1464639997-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1974040968", "title": "Bloque Calefactor Ender-3 S1 / S1 Pro / S1 Plus", "stock": 3, "price": 5999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1974040968-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1974040968-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1670514193", "title": "Termistor Sensor Para Artillery X3 / X4 Series", "stock": 20, "price": 9799.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1670514193-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1670514193-F.jpg", "cat": "Termistores & Resistencias"}];
+
+const gridEl = document.getElementById('prod-grid');
+const imgCache = {};
+const urlCache = {};
+
+function formatPrice(p){ return '$' + Math.round(p).toLocaleString('es-AR'); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function productCard(p){
+  const inStock = p.stock > 0;
+  const img = imgCache[p.id] || p.img;
+  const href = urlCache[p.id] || p.url;
+  return `
+    <a class="prod-card" data-id="${p.id}" href="${href}" target="_blank" rel="noopener">
+      <div class="pc-img">
+        <img class="ml-img" data-item="${p.id}" src="${img}" alt="${escapeHtml(p.title)}" loading="lazy"
+             onerror="this.style.opacity=0.15;this.onerror=null;">
+        <span class="pc-stock ${inStock ? 'in' : 'out'}">${inStock ? 'STOCK' : 'AGOTADO'}</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-cat">${escapeHtml(p.cat)}</div>
+        <h4>${escapeHtml(p.title)}</h4>
+        <div class="pc-price">${formatPrice(p.price)}</div>
+        <div class="pc-go">Ver en Mercado Libre
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>`;
+}
+
+function renderGrid(){
+  gridEl.innerHTML = PRODUCTS.map(productCard).join('');
+}
+
+async function preloadMLData(){
+  try{
+    const res = await fetch('/api/ml-images');
+    if(!res.ok) return;
+    const data = await res.json();
+    Object.entries(data).forEach(([id,item]) => {
+      if(item.thumbnail) imgCache[id] = item.thumbnail;
+      if(item.permalink) urlCache[id] = item.permalink;
+    });
+  }catch(e){ return; }
+  document.querySelectorAll('.ml-img').forEach(img => {
+    const id = img.dataset.item;
+    if(imgCache[id]){ img.src = imgCache[id]; img.style.opacity = 1; }
+  });
+  document.querySelectorAll('.prod-card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    if(urlCache[id]) card.href = urlCache[id];
+  });
+}
+
+renderGrid();
+preloadMLData();
+</script>
+
+</body>
+</html>
