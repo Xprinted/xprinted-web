@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -221,147 +220,151 @@
 
       <div class="gh-visual">
         <div class="nz-diagram">
-          <svg viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de ventilador de capa y ventilador de hotend">
+          <svg viewBox="0 0 320 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama comparativo de ventilador axial y ventilador radial blower">
             <defs>
-              <linearGradient id="motor" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#3A3A3E"/>
-                <stop offset="0.5" stop-color="#66666C"/>
-                <stop offset="1" stop-color="#2E2E32"/>
+              <linearGradient id="casing" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#2E2E31"/>
+                <stop offset="0.5" stop-color="#5A5A60"/>
+                <stop offset="1" stop-color="#242427"/>
               </linearGradient>
-              <linearGradient id="blade" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="bladeA" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stop-color="#5A5A60"/>
                 <stop offset="1" stop-color="#3A3A40"/>
               </linearGradient>
-              <radialGradient id="spin" cx="0.5" cy="0.5" r="0.5">
-                <stop offset="0" stop-color="#8A8A90" stop-opacity="0.3"/>
-                <stop offset="1" stop-color="#8A8A90" stop-opacity="0"/>
+              <linearGradient id="bladeB" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#3A6E8C"/>
+                <stop offset="0.5" stop-color="#5A96B8"/>
+                <stop offset="1" stop-color="#2E5A72"/>
+              </linearGradient>
+              <radialGradient id="spinA" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0" stop-color="#9A9AA0" stop-opacity="0.35"/>
+                <stop offset="1" stop-color="#9A9AA0" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="spinB" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0" stop-color="#6AA6C8" stop-opacity="0.35"/>
+                <stop offset="1" stop-color="#6AA6C8" stop-opacity="0"/>
               </radialGradient>
             </defs>
 
-            <!-- VENTILADOR DE CAPA (IZQUIERDA) - Radial/Blower -->
-            <g>
-              <text x="50" y="30" fill="#B8B8BE" font-size="12" font-family="Inter" font-weight="600">VENTILADOR DE CAPA</text>
-              <!-- caja del motor -->
-              <rect x="26" y="50" width="48" height="48" rx="3" fill="url(#motor)" stroke="#70707A" stroke-width="1.3"/>
-              <!-- rotor radial (flujo lateral) -->
-              <g>
-                <circle cx="50" cy="74" r="20" fill="none" stroke="#5A5A60" stroke-width="1"/>
-                <path d="M50 54 Q64 74 50 94 Q36 74 50 54" fill="url(#blade)" opacity="0.7"/>
-                <circle cx="50" cy="74" r="12" fill="#2A2A2C" stroke="#8A8A90" stroke-width="1"/>
-              </g>
-              <!-- flujo de aire lateral (líneas de aire) -->
-              <g stroke="#7AB6D8" stroke-width="1.5" opacity="0.6" fill="none">
-                <path d="M 76 60 Q 100 65 110 68"/>
-                <path d="M 76 74 Q 100 74 115 74"/>
-                <path d="M 76 88 Q 100 83 110 80"/>
-              </g>
-              <!-- etiqueta airflow -->
-              <text x="80" y="95" fill="#7AB6D8" font-size="11" font-family="Inter" font-weight="500">Airflow radial</text>
+            <!-- === VENTILADOR AXIAL (hotend) - IZQUIERDA === -->
+            <rect x="62" y="76" width="76" height="76" rx="4" fill="url(#casing)" stroke="#70707A" stroke-width="1.5"/>
+            <circle cx="72" cy="86" r="5" fill="#1E1E22" stroke="#5A5A60" stroke-width="1"/>
+            <circle cx="128" cy="86" r="5" fill="#1E1E22" stroke="#5A5A60" stroke-width="1"/>
+            <circle cx="72" cy="142" r="5" fill="#1E1E22" stroke="#5A5A60" stroke-width="1"/>
+            <circle cx="128" cy="142" r="5" fill="#1E1E22" stroke="#5A5A60" stroke-width="1"/>
+            <circle cx="100" cy="114" r="32" fill="url(#spinA)"/>
+            <g fill="url(#bladeA)" opacity="0.85">
+              <path d="M100 84 L113 104 L100 114 L87 104 Z"/>
+              <path d="M100 144 L113 124 L100 114 L87 124 Z"/>
+              <path d="M70 114 L90 101 L100 114 L90 127 Z"/>
+              <path d="M130 114 L110 101 L100 114 L110 127 Z"/>
+            </g>
+            <circle cx="100" cy="114" r="12" fill="#1E1E22" stroke="#7A7A80" stroke-width="1.3"/>
+            <circle cx="100" cy="114" r="5" fill="#2A2A2E" stroke="#6A6A70" stroke-width="1"/>
+            <!-- flujo axial frontal -->
+            <g stroke="#C8A050" stroke-width="1.8" opacity="0.8">
+              <line x1="26" y1="98" x2="60" y2="98"/>
+              <line x1="26" y1="114" x2="60" y2="114"/>
+              <line x1="26" y1="130" x2="60" y2="130"/>
+            </g>
+            <g fill="#C8A050" opacity="0.8">
+              <polygon points="56,94 62,98 56,102"/>
+              <polygon points="56,110 62,114 56,118"/>
+              <polygon points="56,126 62,130 56,134"/>
             </g>
 
-            <!-- VENTILADOR DE HOTEND (DERECHA) - Axial -->
-            <g>
-              <text x="210" y="30" fill="#B8B8BE" font-size="12" font-family="Inter" font-weight="600">VENTILADOR DE HOTEND</text>
-              <!-- caja del motor -->
-              <rect x="246" y="50" width="48" height="48" rx="3" fill="url(#motor)" stroke="#70707A" stroke-width="1.3"/>
-              <!-- rotor axial (flujo frontal) -->
-              <g>
-                <circle cx="270" cy="74" r="20" fill="none" stroke="#5A5A60" stroke-width="1"/>
-                <!-- aspas axiales -->
-                <g fill="url(#blade)" opacity="0.7">
-                  <path d="M 270 54 L 280 70 L 270 74 L 260 70 Z"/>
-                  <path d="M 270 94 L 280 78 L 270 74 L 260 78 Z"/>
-                </g>
-                <circle cx="270" cy="74" r="10" fill="#2A2A2C" stroke="#8A8A90" stroke-width="1"/>
-                <!-- resplandor de rotación -->
-                <circle cx="270" cy="74" r="22" fill="url(#spin)"/>
-              </g>
-              <!-- flujo de aire frontal (flechas) -->
-              <g stroke="#C8A050" stroke-width="2" opacity="0.7" fill="none">
-                <path d="M 240 60 L 220 60" marker-end="url(#arrowhead)"/>
-                <path d="M 240 74 L 220 74" marker-end="url(#arrowhead)"/>
-                <path d="M 240 88 L 220 88" marker-end="url(#arrowhead)"/>
-              </g>
-              <defs>
-                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                  <polygon points="0 0, 10 3, 0 6" fill="#C8A050"/>
-                </marker>
-              </defs>
-              <!-- etiqueta airflow -->
-              <text x="185" y="95" fill="#C8A050" font-size="11" font-family="Inter" font-weight="500">Airflow axial</text>
+            <!-- === VENTILADOR RADIAL BLOWER (capa) - DERECHA === -->
+            <rect x="180" y="68" width="88" height="56" rx="4" fill="url(#casing)" stroke="#70707A" stroke-width="1.5"/>
+            <circle cx="218" cy="96" r="24" fill="url(#spinB)"/>
+            <g fill="url(#bladeB)" opacity="0.82">
+              <path d="M218 73 Q234 82 234 96 Q234 110 218 119 Q207 107 207 96 Q207 85 218 73 Z"/>
+              <path d="M218 119 Q202 110 202 96 Q202 82 218 73 Q229 85 229 96 Q229 107 218 119 Z" opacity="0.45"/>
+            </g>
+            <circle cx="218" cy="96" r="9" fill="#1E1E22" stroke="#7A7A80" stroke-width="1.2"/>
+            <!-- salida lateral del blower -->
+            <rect x="268" y="78" width="32" height="36" rx="2" fill="#1A1A1D" stroke="#5A5A60" stroke-width="1"/>
+            <g stroke="#7AB6D8" stroke-width="1.8" opacity="0.8">
+              <line x1="270" y1="88" x2="292" y2="88"/>
+              <line x1="270" y1="96" x2="292" y2="96"/>
+              <line x1="270" y1="104" x2="292" y2="104"/>
+            </g>
+            <g fill="#7AB6D8" opacity="0.8">
+              <polygon points="289,84 295,88 289,92"/>
+              <polygon points="289,92 295,96 289,100"/>
+              <polygon points="289,100 295,104 289,108"/>
             </g>
 
-            <!-- FUNCIONES (abajo) -->
-            <g>
-              <rect x="20" y="150" width="140" height="90" rx="3" fill="#1A1A1D" stroke="#4A4A4C" stroke-width="1"/>
-              <text x="30" y="168" fill="#7AB6D8" font-size="11" font-weight="600">Ventilador de capa</text>
-              <text x="30" y="185" fill="#B8B8BE" font-size="10">Enfría la pieza recién impresa</text>
-              <text x="30" y="198" fill="#B8B8BE" font-size="10">Ayuda con overhangs,</text>
-              <text x="30" y="211" fill="#B8B8BE" font-size="10">bridges y detalles</text>
-              <text x="30" y="224" fill="#B8B8BE" font-size="10">Se controla por slicer</text>
-            </g>
-
-            <g>
-              <rect x="160" y="150" width="140" height="90" rx="3" fill="#1A1A1D" stroke="#4A4A4C" stroke-width="1"/>
-              <text x="170" y="168" fill="#C8A050" font-size="11" font-weight="600">Ventilador de hotend</text>
-              <text x="170" y="185" fill="#B8B8BE" font-size="10">Enfría el disipador del hotend</text>
-              <text x="170" y="198" fill="#B8B8BE" font-size="10">Previene heat creep</text>
-              <text x="170" y="211" fill="#B8B8BE" font-size="10">y atascos</text>
-              <text x="170" y="224" fill="#B8B8BE" font-size="10">Siempre encendido (on/off)</text>
+            <!-- LÍNEAS GUÍA -->
+            <g stroke="#4A4A4C" stroke-width="1">
+              <line x1="100" y1="76" x2="100" y2="42"/>
+              <circle cx="100" cy="76" r="2.2" fill="#C8A050"/>
+              <line x1="224" y1="68" x2="224" y2="42"/>
+              <circle cx="224" cy="68" r="2.2" fill="#5A96B8"/>
             </g>
           </svg>
 
-          <div class="nz-tag" style="top:80px;left:20px;color:#7AB6D8;border-color:rgba(90,150,184,0.35);">Ventilador de capa</div>
-          <div class="nz-tag" style="top:80px;right:20px;color:#C8A050;border-color:rgba(200,160,80,0.3);">Ventilador hotend</div>
+          <div class="nz-tag" style="top:28px;left:20px;color:#C8A050;border-color:rgba(200,160,80,0.3);">Ventilador hotend</div>
+          <div class="nz-tag" style="top:28px;right:20px;color:#7AB6D8;border-color:rgba(90,150,184,0.35);">Ventilador de capa</div>
         </div>
 
         <div class="nz-specs">
           <div class="nz-spec"><span class="v">24V</span><span class="l">voltaje común</span></div>
+          <div class="nz-spec"><span class="v">40-50</span><span class="l">mm tamaño</span></div>
+          <div class="nz-spec"><span class="v">2</span><span class="l">tipos distintos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="guide-body">
+  <div class="wrap">
+
     <!-- QUÉ SON -->
     <section>
       <div class="sec-label">Lo básico</div>
       <h2>¿Qué son los ventiladores y coolers?</h2>
       <p>Una impresora 3D necesita <strong>dos ventiladores distintos</strong> que hacen cosas completamente diferentes:</p>
       <ul>
-        <li><strong>Ventilador de capa (part cooling fan).</strong> Enfría la pieza que acabás de imprimir para que se solidifique rápido. Mejora la calidad: ayuda con overhangs, bridges y detalles pequeños. Se controla desde el slicer (va y viene según el material).</li>
-        <li><strong>Ventilador de hotend.</strong> Enfría el disipador (heatsink) del hotend para evitar que el calor suba por el heat break y ablande el filamento antes de tiempo (eso se llama heat creep). Siempre está encendido mientras imprimís.</li>
+        <li><strong>Ventilador de capa (part cooling fan).</strong> Enfría la pieza que acabás de imprimir para que se solidifique rápido. Mejora la calidad: ayuda con overhangs, bridges y detalles pequeños. Se controla desde el slicer según el material.</li>
+        <li><strong>Ventilador de hotend.</strong> Enfría el disipador del hotend para evitar que el calor suba por el heat break y ablande el filamento antes de tiempo (eso se llama heat creep). Siempre está encendido mientras imprimís.</li>
       </ul>
-      <p>Muchos problemas que parecen del hotend o del firmware son en realidad un ventilador que falla, se tapa de polvo o está débil. La mayoría de las impresoras modernas usan ventiladores de <strong>24 V</strong>, aunque las más viejas pueden ser de 12 V.</p>
+      <p>La mayoría de las impresoras modernas usan ventiladores de <strong>24 V</strong>, aunque las más viejas pueden ser de 12 V. Son piezas que casi nadie nota hasta que fallan, y cuando fallan los síntomas se confunden fácil con problemas del hotend o del firmware.</p>
       <div class="callout">
-        <div class="ct">Confusión común</div>
-        <p>Algunos piensan que poner el ventilador al máximo siempre es mejor. No es así: el ventilador de capa puede causar problemas si está fuerte con ABS (lo deforma), y el del hotend solo se saca manualmente si está fallando. La clave es la compatibilidad y la manutenibilidad.</p>
+        <div class="ct">Dato clave</div>
+        <p>El ventilador de hotend es crítico aunque no lo veas. Si falla o se llena de polvo, el heat creep genera atascos que parecen venir de otro lado. Limpiar sus aspas cada tanto es una de las mejores prevenciones.</p>
       </div>
     </section>
 
-    <!-- LAS PIEZAS -->
+    <!-- LOS TIPOS -->
     <section id="tipos">
       <div class="sec-label">Los tipos</div>
       <h2>Ventilador de capa vs ventilador de hotend</h2>
-      <p>Estos son los dos tipos que encontrás. Reconocer cuál es cuál te ahorra mucho tiempo de diagnóstico:</p>
+      <p>Estos son los dos tipos principales. Reconocer cuál es cuál te ahorra mucho tiempo de diagnóstico:</p>
 
       <div class="type-grid">
         <div class="type-card">
           <div class="tt">Ventilador de capa</div>
           <div class="tsub">Radial / Blower · Enfría la pieza</div>
-          <p>Es la pieza más grande, de forma rectangular o cuadrada (típicamente 50 mm × 15 mm o 40 mm × 10 mm). Impulsa aire de forma lateral-radial hacia la pieza. Suele tener un ducto (el canalito plástico) que dirige el aire. Se controla desde el slicer: puede estar al 0% para ABS, al 100% para PLA, variables para PETG. Cuanto mejor el ducto, mejor el resultado.</p>
+          <p>Impulsa aire de forma radial-lateral hacia la pieza recién impresa para solidificarla rápido. Típicamente de 50 × 15 mm o 40 × 10 mm. Se controla desde el slicer: 100% para PLA, 0% para ABS (el frío lo deforma), variable para PETG. Un ducto bien diseñado puede mejorar el resultado hasta un 40% con el mismo ventilador.</p>
           <div class="tmeta">
-            <span class="type-tag good">40x10 / 50x15 mm</span>
-            <span class="type-tag good">Radial/Blower</span>
+            <span class="type-tag good">50×15 / 40×10 mm</span>
+            <span class="type-tag good">Radial / Blower</span>
           </div>
         </div>
         <div class="type-card">
           <div class="tt">Ventilador de hotend</div>
           <div class="tsub">Axial · Enfría el disipador</div>
-          <p>Es más chico (típicamente 30 mm × 30 mm × 10 mm o 40 mm × 40 mm × 10 mm). Impulsa aire frontal-axial directamente al disipador del hotend (el radiador con aletas). Siempre está encendido mientras imprimís. Es lo que evita que el calor suba por el heat break y cause atascos. Casi nadie lo toca, pero si se tapa de polvo o se pone ruidoso, es hora de limpiarlo o cambiarlo.</p>
+          <p>Impulsa aire frontal-axial directamente al disipador del hotend. Típicamente de 40 × 40 × 10 mm o 30 × 30 × 10 mm. Siempre encendido mientras imprimís: su trabajo es evitar que el calor suba por el heat break y cause atascos. Si falla, los atascos son cuestión de tiempo.</p>
           <div class="tmeta">
-            <span class="type-tag good">30x30 / 40x40 mm</span>
+            <span class="type-tag good">40×40 / 30×30 mm</span>
             <span class="type-tag good">Axial</span>
           </div>
         </div>
         <div class="type-card">
           <div class="tt">Voltaje: 12V o 24V</div>
-          <div class="tsub">Esto es crítico</div>
-          <p>La mayoría de las impresoras modernas usan <strong>24 V</strong>. Las viejas (Ender 3 pre-2020, Prusa MK2) usan <strong>12 V</strong>. Un ventilador de 12V en un circuito de 24V se quema al instante. Un ventilador de 24V en un circuito de 12V apenas gira. Verificá siempre el voltaje de tu impresora antes de comprar.</p>
+          <div class="tsub">Lo más importante</div>
+          <p>Las impresoras modernas usan <strong>24 V</strong>; las más viejas (Ender 3 pre-2020, etc.) usan <strong>12 V</strong>. Un ventilador de 12 V en un circuito de 24 V se quema al instante. Uno de 24 V en 12 V apenas gira. Verificá siempre el voltaje de tu placa antes de comprar.</p>
           <div class="tmeta">
             <span class="type-tag warn">12V / 24V</span>
             <span class="type-tag warn">No confundir</span>
@@ -369,18 +372,12 @@
         </div>
         <div class="type-card">
           <div class="tt">Cubiertas y ductos</div>
-          <div class="tsub">Accesorios · Optimizan el airflow</div>
-          <p>Una cubierta o ducto bien diseñado puede mejorar el enfriamiento en un 40% incluso con el mismo ventilador. Hay muchos ductos imprimibles (Thingiverse, Printables) para cada impresora, o comprás una cubierta específica para tu modelo. Es una mejora barata y muy efectiva para PLA y materiales sensibles.</p>
+          <div class="tsub">Accesorio · Mejora el airflow</div>
+          <p>Un ducto bien diseñado redirige el aire exactamente donde hace falta. Hay modelos imprimibles para cada impresora (Printables, Thingiverse), o cubiertas específicas para tu modelo. Es una de las mejoras más baratas y efectivas que podés hacer.</p>
           <div class="tmeta">
-            <span class="type-tag good">Accesorio</span>
-            <span class="type-tag good">Mejora +40%</span>
+            <span class="type-tag good">Mejora el cooling</span>
           </div>
         </div>
-      </div>
-
-      <div class="callout">
-        <div class="ct">Dato sobre el heat creep</div>
-        <p>El heat creep ocurre cuando el calor sube por el heat break y ablandan el filamento antes de que entre al nozzle. El ventilador de hotend es tu aliado aquí: sin él, o si está débil, el filamento se atasca. Por eso es crítico que esté siempre en buen estado, aunque no lo veas.</p>
       </div>
     </section>
 
@@ -388,63 +385,42 @@
     <section>
       <div class="sec-label">Decisión</div>
       <h2>Cómo elegir el correcto</h2>
-      <p>No hay mucho misterio, pero hay puntos clave que no se pueden pasar por alto.</p>
 
-      <h3>Voltaje: lo primero</h3>
-      <p>Verificá si tu impresora usa <strong>12 V o 24 V</strong>. Mirá la etiqueta de la placa base, la documentación, o preguntá si no estás seguro. Esto es no-negociable: el voltaje equivocado quema el ventilador o lo deja inútil.</p>
+      <h3>Paso 1 — Voltaje</h3>
+      <p>Verificá si tu impresora usa <strong>12 V o 24 V</strong>. Mirá la etiqueta de la placa base o la documentación. Esto es innegociable: el voltaje equivocado quema el ventilador o lo deja inútil.</p>
 
-      <h3>Tamaño y forma</h3>
-      <p>El ventilador tiene que entrar en el espacio donde estaba el viejo. Mide tu montura o mirá el manual de tu impresora. Los tamaños comunes son:</p>
-      <ul>
-        <li><strong>40 × 40 × 10 mm</strong> (ventilador de hotend, la mayoría de Ender)</li>
-        <li><strong>40 × 10 mm o 50 × 15 mm</strong> (ventilador de capa, depende del modelo)</li>
-        <li><strong>30 × 30 × 10 mm</strong> (ventilador de hotend, impresoras compactas)</li>
-      </ul>
+      <h3>Paso 2 — Tamaño</h3>
+      <p>El ventilador tiene que entrar en el mismo espacio que el viejo. Los más comunes son <strong>40 × 40 × 10 mm</strong> (hotend en Ender 3 y similares), <strong>50 × 15 mm</strong> (capa en Ender 3 y similares) y <strong>30 × 30 × 10 mm</strong> (hotend en impresoras compactas).</p>
 
-      <h3>Tipo de ventilador</h3>
-      <p>Asegúrate de que estés reemplazando el tipo correcto: no pongas un ventilador axial donde va un blower. Si no estás seguro, una foto del viejo ventilador te ayuda.</p>
-
-      <h3>Calidad y ruido</h3>
-      <p>Los ventiladores baratos tienden a ser ruidosos y tienen poca vida. Una marca conocida (Winsinn, Sunon, etc.) suele durar 50.000+ horas y ser más silenciosa. Especialmente si imprimís mucho, vale la pena la diferencia.</p>
+      <h3>Paso 3 — Tipo correcto</h3>
+      <p>No confundas un ventilador axial (para el hotend) con un blower radial (para la capa): tienen formas distintas y no son intercambiables. Si tenés el viejo a mano, una foto ayuda a identificarlo.</p>
 
       <div class="callout">
         <div class="ct">Antes de comprar</div>
-        <p>Con estos ventiladores, lo más importante es el <strong>voltaje (12V/24V)</strong> y el <strong>tamaño exacto (40x40, 30x30, etc.)</strong>. Si nos decís tu impresora y qué ventilador buscás cambiar, te confirmamos exactamente cuál necesitás.</p>
+        <p>Con los tres datos —<strong>voltaje</strong>, <strong>tamaño</strong> y <strong>tipo</strong>— la elección es directa. Si no estás seguro, decinos el modelo de tu impresora y te confirmamos exactamente cuál necesitás.</p>
       </div>
     </section>
 
-    <!-- MANTENIMIENTO -->
+    <!-- DIAGNÓSTICO -->
     <section>
       <div class="sec-label">Diagnóstico</div>
       <h2>Cuándo cambiarlos</h2>
       <p>Estos ventiladores no se "gastan" como un nozzle, pero fallan. Señales típicas:</p>
       <ul>
-        <li><strong>Ruido extraño (chirridos, crujidos).</strong> El ventilador está fatigado, los rodamientos se erosionaron. Cámbialo antes de que falle completamente.</li>
-        <li><strong>Ventilador de capa que no sopla o sopla muy débil.</strong> Mirá el slicer: ¿el porcentaje está al 0%? Si no, el ventilador está fallando o el conector está flojo. Limpia el polvo de las aspas primero.</li>
-        <li><strong>Ventilador de hotend que no gira o hace ruido.</strong> Es urgente: sin él, heat creep → atascos garantizados. Reemplazá de una.</li>
-        <li><strong>Atascos repetidos pese a limpiar el hotend.</strong> Si limpiaste todo y persisten, es probable que el ventilador de hotend sea la causa (debilitado o atrapado).</li>
-        <li><strong>Polvo acumulado en las aspas.</strong> Limpía con aire comprimido. A veces es solo eso.</li>
+        <li><strong>Ruido extraño (chirridos, crujidos).</strong> Los rodamientos están fatigados. Cámbialo antes de que falle completamente.</li>
+        <li><strong>Ventilador de capa débil o que no sopla.</strong> Revisá primero el slicer (¿está en 0%?). Limpiá el polvo de las aspas. Si persiste, el ventilador está fallando.</li>
+        <li><strong>Ventilador de hotend que no gira.</strong> Urgente: sin él, heat creep garantizado. Reemplazá de una.</li>
+        <li><strong>Atascos repetidos pese a limpiar el hotend.</strong> Si el hotend está limpio y sigue atascándose, revisá que el ventilador de hotend esté girando fuerte y dirigido al disipador.</li>
+        <li><strong>Polvo acumulado en las aspas.</strong> A veces es solo eso. Limpiá con aire comprimido antes de cambiarlo.</li>
       </ul>
       <div class="callout">
         <div class="ct">Recomendación</div>
-        <p>Son de las piezas más baratas y de las que más problemas "misteriosos" resuelven cuando las cambias. Tener un ventilador de repuesto a mano te ahorra días de impresora parada. Y limpiar el de hotend cada 3-6 meses (si imprimís mucho) es buena práctica.</p>
-      </div>
-    </section>
-      <p>Aun así, el recubrimiento es un consumible y se gasta. Señales de que conviene cambiar la lámina:</p>
-      <ul>
-        <li><strong>Zonas que ya no agarran.</strong> Si la pieza se despega siempre en el mismo punto, ahí el recubrimiento está desgastado.</li>
-        <li><strong>Recubrimiento levantado, rayado o con pedazos faltantes.</strong></li>
-        <li><strong>La base magnética perdió fuerza.</strong> Con los ciclos de calor, el adhesivo del imán puede aflojarse; en ese caso se cambia la base, no la lámina.</li>
-      </ul>
-      <div class="callout">
-        <div class="ct">Recomendación</div>
-        <p>Tener una lámina flexible de repuesto es lo más práctico: podés seguir imprimiendo mientras una se limpia o se enfría, y renovás la superficie al instante cuando se gasta.</p>
+        <p>Son de las piezas más baratas y de las que más problemas "misteriosos" resuelven cuando las cambiás. Tener uno de repuesto a mano te ahorra días de impresora parada. Y limpiar el ventilador de hotend cada 3–6 meses si imprimís mucho es buena práctica.</p>
       </div>
     </section>
 
   </div>
 </div>
-
 <!-- CATÁLOGO DE COOLERS REALES -->
 <section class="cat-block" id="productos">
   <div class="wrap-wide">
