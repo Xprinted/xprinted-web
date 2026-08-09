@@ -258,21 +258,19 @@
   .layer-bg::before{content:'';position:absolute;inset:-50% 0;background:repeating-linear-gradient(0deg,transparent 0,transparent 5px,rgba(255,255,255,0.014) 5px,rgba(255,255,255,0.014) 6px);animation:layerScroll 22s linear infinite;}
   @keyframes layerScroll{from{transform:translateY(0);}to{transform:translateY(6px);}}
 
-  /* ===== IMPRESORA ANIMADA ===== */
-  .printer-anim{width:100%;max-width:420px;margin:0 auto;}
-  @keyframes headX{0%{transform:translateX(-58px);}25%{transform:translateX(52px);}50%{transform:translateX(-40px);}75%{transform:translateX(58px);}100%{transform:translateX(-58px);}}
-  @keyframes bedY{0%{transform:translateY(0);}100%{transform:translateY(-30px);}}
-  @keyframes grow{0%{transform:scaleY(0.02);}90%,100%{transform:scaleY(1);}}
-  @keyframes extrude{0%,100%{opacity:0.85;}50%{opacity:0.35;}}
-  @keyframes glowPulse{0%,100%{opacity:0.5;}50%{opacity:0.85;}}
+  /* ===== IMPRESORA ANIMADA (isométrica) ===== */
+  .printer-anim{width:100%;max-width:440px;margin:0 auto;}
+  @keyframes headMove{0%{transform:translate(-42px,-24px);}25%{transform:translate(38px,-20px);}50%{transform:translate(30px,16px);}75%{transform:translate(-34px,20px);}100%{transform:translate(-42px,-24px);}}
+  @keyframes grow{0%{transform:scaleY(0.02);}88%,100%{transform:scaleY(1);}}
+  @keyframes flowPulse{0%,100%{opacity:0.9;}50%{opacity:0.4;}}
+  @keyframes glowPulse{0%,100%{opacity:0.45;}50%{opacity:0.8;}}
   @keyframes spinFan{from{transform:rotate(0);}to{transform:rotate(360deg);}}
-  .pa-head{animation:headX 5s ease-in-out infinite;}
-  .pa-bed-group{animation:bedY 6.5s ease-in-out infinite alternate;}
-  .pa-piece{animation:grow 6.5s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:bottom;}
-  .pa-flow{animation:extrude .5s ease-in-out infinite;}
-  .pa-glow{animation:glowPulse 1.6s ease-in-out infinite;}
-  .pa-fan{animation:spinFan 1.1s linear infinite;transform-origin:center;transform-box:fill-box;}
-  @media(prefers-reduced-motion:reduce){.pa-head,.pa-piece,.pa-flow,.pa-bed-group,.pa-glow,.pa-fan,.layer-bg::before{animation:none;}}
+  .iso-head{animation:headMove 7s ease-in-out infinite;}
+  .iso-piece{animation:grow 7s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom;}
+  .iso-flow{animation:flowPulse .5s ease-in-out infinite;}
+  .iso-glow{animation:glowPulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+  .iso-fan{animation:spinFan 1s linear infinite;transform-box:fill-box;transform-origin:center;}
+  @media(prefers-reduced-motion:reduce){.iso-head,.iso-piece,.iso-flow,.iso-glow,.iso-fan,.layer-bg::before{animation:none;}}
 
   /* ===== DIAGNOSTICADOR IA ===== */
   .diag{padding:72px 0;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 50% 0%,rgba(200,160,80,0.05),transparent 60%);}
@@ -364,123 +362,67 @@
       <!-- RIGHT — impresora 3D animada -->
       <div class="hero-right" style="flex-direction:column;gap:20px;padding:40px;">
         <div class="printer-anim">
-          <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Impresora 3D imprimiendo una pieza">
+          <svg viewBox="0 0 440 420" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Impresora 3D imprimiendo una pieza">
   <defs>
-    <linearGradient id="alu" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#2a2a2e"/><stop offset="0.5" stop-color="#3e3e44"/><stop offset="1" stop-color="#232327"/>
-    </linearGradient>
-    <linearGradient id="aluV" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#242428"/><stop offset="0.45" stop-color="#3a3a40"/><stop offset="0.55" stop-color="#3a3a40"/><stop offset="1" stop-color="#1e1e22"/>
-    </linearGradient>
-    <linearGradient id="headMetal" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#4a4a50"/><stop offset="1" stop-color="#2a2a2e"/>
-    </linearGradient>
-    <linearGradient id="bedGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#34343a"/><stop offset="1" stop-color="#222226"/>
-    </linearGradient>
-    <linearGradient id="pieceGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#4a4a52"/><stop offset="1" stop-color="#303036"/>
-    </linearGradient>
-    <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#E8C878"/><stop offset="1" stop-color="#C88A2E"/>
-    </linearGradient>
-    <radialGradient id="heatGlow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#E0A94A" stop-opacity="0.6"/><stop offset="1" stop-color="#E0A94A" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.1"/></filter>
+    <linearGradient id="frameTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#44444c"/><stop offset="1" stop-color="#2c2c32"/></linearGradient>
+    <linearGradient id="frameLeft" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3a42"/><stop offset="1" stop-color="#26262c"/></linearGradient>
+    <linearGradient id="frameRight" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22222a"/><stop offset="1" stop-color="#161619"/></linearGradient>
+    <linearGradient id="bedTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a4650"/><stop offset="1" stop-color="#2a343c"/></linearGradient>
+    <linearGradient id="pieceTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a6a76"/><stop offset="1" stop-color="#4a4a54"/></linearGradient>
+    <linearGradient id="pieceLeft" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c4c56"/><stop offset="1" stop-color="#33333b"/></linearGradient>
+    <linearGradient id="pieceRight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3a42"/><stop offset="1" stop-color="#26262c"/></linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0D080"/><stop offset="1" stop-color="#C88A2E"/></linearGradient>
+    <linearGradient id="headBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#52525a"/><stop offset="1" stop-color="#303036"/></linearGradient>
+    <radialGradient id="heat" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F0B858" stop-opacity="0.75"/><stop offset="1" stop-color="#F0B858" stop-opacity="0"/></radialGradient>
+    <radialGradient id="floorShadow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#000" stop-opacity="0.55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <linearGradient id="ambient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0A94A" stop-opacity="0.08"/><stop offset="1" stop-color="#E0A94A" stop-opacity="0"/></linearGradient>
   </defs>
-
-  <!-- ====== BASE ====== -->
-  <rect x="46" y="322" width="328" height="20" rx="3" fill="url(#alu)" stroke="#4a4a4e" stroke-width="1.2"/>
-  <rect x="46" y="338" width="328" height="6" rx="2" fill="#141416"/>
-  <!-- patas -->
-  <rect x="60" y="342" width="16" height="8" rx="1.5" fill="#18181a"/>
-  <rect x="344" y="342" width="16" height="8" rx="1.5" fill="#18181a"/>
-  <!-- pantalla/control en la base -->
-  <rect x="300" y="326" width="52" height="12" rx="1.5" fill="#0d0d0f" stroke="#3a3a3c" stroke-width="0.8"/>
-  <circle cx="345" cy="332" r="2.4" fill="#3a3a40"/>
-  <rect x="306" y="329" width="24" height="6" rx="1" fill="#1a2a24"/>
-  <line x1="308" y1="332" x2="326" y2="332" stroke="#2e6e52" stroke-width="1.2"/>
-
-  <!-- ====== COLUMNAS VERTICALES (perfil de aluminio) ====== -->
-  <rect x="66" y="40" width="16" height="284" rx="2" fill="url(#aluV)" stroke="#4a4a50" stroke-width="1.1"/>
-  <rect x="338" y="40" width="16" height="284" rx="2" fill="url(#aluV)" stroke="#4a4a50" stroke-width="1.1"/>
-  <!-- canaletas del perfil -->
-  <line x1="74" y1="46" x2="74" y2="318" stroke="#18181a" stroke-width="1.4"/>
-  <line x1="346" y1="46" x2="346" y2="318" stroke="#18181a" stroke-width="1.4"/>
-
-  <!-- ====== TRAVESAÑO SUPERIOR (gantry X) ====== -->
-  <rect x="58" y="44" width="304" height="16" rx="2.5" fill="url(#alu)" stroke="#4a4a50" stroke-width="1.1"/>
-  <line x1="62" y1="52" x2="358" y2="52" stroke="#18181a" stroke-width="1.6"/>
-  <!-- eje X (varilla) -->
-  <line x1="82" y1="70" x2="338" y2="70" stroke="#5a5a60" stroke-width="2.4"/>
-  <line x1="82" y1="70" x2="338" y2="70" stroke="#26262a" stroke-width="0.8"/>
-  <!-- correa dentada -->
-  <line x1="82" y1="63" x2="338" y2="63" stroke="#1a1a1c" stroke-width="2" stroke-dasharray="3 2"/>
-
-  <!-- ====== CAMA + PIEZA (grupo que baja) ====== -->
-  <g class="pa-bed-group">
-    <!-- soportes de la cama -->
-    <rect x="150" y="300" width="120" height="8" rx="1.5" fill="#26262a" stroke="#3a3a3c" stroke-width="0.8"/>
-    <!-- cama caliente -->
-    <rect x="120" y="288" width="180" height="14" rx="2" fill="url(#bedGrad)" stroke="#4a4a4e" stroke-width="1.1"/>
-    <!-- superficie PEI (tono) -->
-    <rect x="124" y="290" width="172" height="4" rx="1" fill="#3e4a52" opacity="0.6"/>
-    <!-- resplandor de calor de la cama -->
-    <ellipse cx="210" cy="292" rx="94" ry="7" fill="#E0A94A" opacity="0.10"/>
-
-    <!-- pieza que crece con líneas de capa -->
-    <g class="pa-piece">
-      <rect x="176" y="212" width="68" height="76" rx="1" fill="url(#pieceGrad)" stroke="#5a5a62" stroke-width="0.9"/>
-      <!-- líneas de capa horizontales -->
-      <g stroke="#26262a" stroke-width="0.8" opacity="0.7">
-        <line x1="178" y1="220" x2="242" y2="220"/><line x1="178" y1="228" x2="242" y2="228"/>
-        <line x1="178" y1="236" x2="242" y2="236"/><line x1="178" y1="244" x2="242" y2="244"/>
-        <line x1="178" y1="252" x2="242" y2="252"/><line x1="178" y1="260" x2="242" y2="260"/>
-        <line x1="178" y1="268" x2="242" y2="268"/><line x1="178" y1="276" x2="242" y2="276"/>
-        <line x1="178" y1="284" x2="242" y2="284"/>
-      </g>
-      <!-- brillo lateral -->
-      <rect x="176" y="212" width="4" height="76" fill="#5a5a64" opacity="0.5"/>
+  <ellipse cx="220" cy="180" rx="180" ry="150" fill="url(#ambient)"/>
+  <ellipse cx="220" cy="366" rx="150" ry="34" fill="url(#floorShadow)"/>
+  <path d="M110 330 L220 372 L330 330 L220 288 Z" fill="#2a2a30" stroke="#3e3e46" stroke-width="1"/>
+  <path d="M110 330 L110 344 L220 386 L220 372 Z" fill="#1a1a1e" stroke="#333" stroke-width="1"/>
+  <path d="M330 330 L330 344 L220 386 L220 372 Z" fill="#121215" stroke="#333" stroke-width="1"/>
+  <path d="M150 350 L184 363 L184 372 L150 359 Z" fill="#0c0c0e" stroke="#3a3a3c" stroke-width="0.6"/>
+  <path d="M156 354 L178 362 L178 366 L156 358 Z" fill="#13251c"/>
+  <line x1="159" y1="356.5" x2="175" y2="362.5" stroke="#2e7e56" stroke-width="1"/>
+  <path d="M120 322 L128 325 L128 96 L120 93 Z" fill="url(#frameLeft)" stroke="#4a4a52" stroke-width="0.8"/>
+  <path d="M128 325 L134 322 L134 93 L128 96 Z" fill="#1e1e24" stroke="#333" stroke-width="0.6"/>
+  <path d="M120 93 L128 96 L136 92 L128 89 Z" fill="url(#frameTop)"/>
+  <path d="M320 322 L312 325 L312 96 L320 93 Z" fill="url(#frameRight)" stroke="#333" stroke-width="0.8"/>
+  <path d="M312 325 L306 322 L306 93 L312 96 Z" fill="#141418" stroke="#2a2a2e" stroke-width="0.6"/>
+  <path d="M320 93 L312 96 L304 92 L312 89 Z" fill="#26262c"/>
+  <g>
+    <path d="M150 300 L220 327 L290 300 L220 273 Z" fill="url(#bedTop)" stroke="#4a5058" stroke-width="1"/>
+    <path d="M150 300 L150 308 L220 335 L220 327 Z" fill="#20262a" stroke="#3a4046" stroke-width="0.8"/>
+    <path d="M290 300 L290 308 L220 335 L220 327 Z" fill="#171b1e" stroke="#3a4046" stroke-width="0.8"/>
+    <path d="M162 300 L220 322 L278 300 L220 278 Z" fill="#48565f" opacity="0.4"/>
+    <g class="iso-piece">
+      <path d="M192 236 L220 247 L248 236 L220 225 Z" fill="url(#pieceTop)" stroke="#70707c" stroke-width="0.8"/>
+      <path d="M192 236 L192 288 L220 299 L220 247 Z" fill="url(#pieceLeft)" stroke="#5a5a64" stroke-width="0.7"/>
+      <path d="M248 236 L248 288 L220 299 L220 247 Z" fill="url(#pieceRight)" stroke="#44444c" stroke-width="0.7"/>
+      <g stroke="#2c2c32" stroke-width="0.6" opacity="0.6"><path d="M192 244 L220 255"/><path d="M192 252 L220 263"/><path d="M192 260 L220 271"/><path d="M192 268 L220 279"/><path d="M192 276 L220 287"/></g>
+      <g stroke="#1e1e24" stroke-width="0.6" opacity="0.6"><path d="M248 244 L220 255"/><path d="M248 252 L220 263"/><path d="M248 260 L220 271"/><path d="M248 268 L220 279"/><path d="M248 276 L220 287"/></g>
     </g>
   </g>
-
-  <!-- ====== CABEZAL (carro X que se mueve) ====== -->
-  <g class="pa-head">
-    <!-- carro trasero -->
-    <rect x="188" y="58" width="44" height="24" rx="2" fill="#26262a" stroke="#454549" stroke-width="1"/>
-    <circle cx="196" cy="70" r="3" fill="#3a3a40" stroke="#555" stroke-width="0.6"/>
-    <circle cx="224" cy="70" r="3" fill="#3a3a40" stroke="#555" stroke-width="0.6"/>
-    <!-- ventilador de capa (blower) con aspa girando -->
-    <g transform="translate(178,88)">
-      <rect x="-2" y="-4" width="20" height="24" rx="3" fill="url(#headMetal)" stroke="#4a4a50" stroke-width="1"/>
-      <circle cx="8" cy="8" r="7.5" fill="#1a1a1c" stroke="#3a3a40" stroke-width="0.8"/>
-      <g class="pa-fan">
-        <path d="M8 2 Q12 6 8 8 Q4 6 8 2Z" fill="#454549"/>
-        <path d="M14 8 Q10 12 8 8 Q10 4 14 8Z" fill="#454549"/>
-        <path d="M8 14 Q4 10 8 8 Q12 10 8 14Z" fill="#454549"/>
-        <path d="M2 8 Q6 4 8 8 Q6 12 2 8Z" fill="#454549"/>
-      </g>
-      <circle cx="8" cy="8" r="2" fill="#26262a"/>
+  <path d="M128 92 L136 88 L308 88 L300 92 Z" fill="url(#frameTop)" stroke="#4a4a52" stroke-width="0.8"/>
+  <path d="M128 92 L128 100 L300 100 L300 92 Z" fill="#26262c" stroke="#3a3a40" stroke-width="0.6"/>
+  <path d="M132 104 L308 104" stroke="#54545c" stroke-width="2.4"/>
+  <path d="M132 104 L308 104" stroke="#26262a" stroke-width="0.8"/>
+  <g class="iso-head">
+    <path d="M204 100 L236 100 L236 118 L204 118 Z" fill="#2a2a30" stroke="#454550" stroke-width="0.9"/>
+    <g transform="translate(206,116)">
+      <rect x="0" y="0" width="18" height="20" rx="2.5" fill="url(#headBody)" stroke="#4a4a52" stroke-width="0.8"/>
+      <circle cx="9" cy="9" r="6.5" fill="#141416" stroke="#3a3a40" stroke-width="0.7"/>
+      <g class="iso-fan"><path d="M9 3.5 Q12.5 7 9 9 Q5.5 7 9 3.5Z" fill="#4a4a52"/><path d="M14.5 9 Q11 12.5 9 9 Q11 5.5 14.5 9Z" fill="#4a4a52"/><path d="M9 14.5 Q5.5 11 9 9 Q12.5 11 9 14.5Z" fill="#4a4a52"/><path d="M3.5 9 Q7 5.5 9 9 Q7 12.5 3.5 9Z" fill="#4a4a52"/></g>
+      <circle cx="9" cy="9" r="1.8" fill="#26262c"/>
     </g>
-    <!-- cuerpo del hotend -->
-    <rect x="196" y="82" width="28" height="20" rx="2" fill="url(#headMetal)" stroke="#4a4a50" stroke-width="1"/>
-    <!-- disipador con aletas -->
-    <g stroke="#1c1c1e" stroke-width="1.4">
-      <line x1="199" y1="87" x2="221" y2="87"/><line x1="199" y1="91" x2="221" y2="91"/><line x1="199" y1="95" x2="221" y2="95"/>
-    </g>
-    <!-- bloque calefactor -->
-    <rect x="202" y="102" width="16" height="12" rx="1.5" fill="#8a6a3a" stroke="#a07a44" stroke-width="0.8"/>
-    <!-- nozzle -->
-    <path d="M205 114 h10 l-3 10 q-2 3 -4 0 z" fill="url(#brass)" stroke="#d8a850" stroke-width="0.7"/>
-    <!-- resplandor del nozzle -->
-    <circle class="pa-glow" cx="210" cy="122" r="12" fill="url(#heatGlow)"/>
-    <!-- filamento saliendo -->
-    <line class="pa-flow" x1="210" y1="124" x2="210" y2="212" stroke="url(#brass)" stroke-width="1.8" opacity="0.6"/>
+    <path d="M226 116 L242 116 L242 132 L226 132 Z" fill="url(#headBody)" stroke="#4a4a52" stroke-width="0.8"/>
+    <g stroke="#1c1c1e" stroke-width="1.1"><line x1="228" y1="120" x2="240" y2="120"/><line x1="228" y1="124" x2="240" y2="124"/><line x1="228" y1="128" x2="240" y2="128"/></g>
+    <rect x="229" y="132" width="12" height="9" rx="1.2" fill="#9a7440" stroke="#b08a4e" stroke-width="0.7"/>
+    <path d="M231 141 h8 l-2.5 8 q-1.5 2.5 -3 0 z" fill="url(#brass)" stroke="#e0b060" stroke-width="0.6"/>
+    <ellipse class="iso-glow" cx="235" cy="150" rx="14" ry="14" fill="url(#heat)"/>
+    <line class="iso-flow" x1="235" y1="149" x2="235" y2="200" stroke="url(#brass)" stroke-width="1.6" opacity="0.65"/>
   </g>
-
-  <!-- reflejo/sombra en el piso -->
-  <ellipse cx="210" cy="352" rx="150" ry="5" fill="#000" opacity="0.4" filter="url(#soft)"/>
 </svg>
         </div>
         <div style="text-align:center;font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Repuestos para que nunca pare de imprimir</div>
