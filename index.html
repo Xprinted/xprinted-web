@@ -54,17 +54,17 @@
     display:flex;flex-direction:column;justify-content:center;
   }
   .hero-right{
-    padding:48px 40px;background:var(--bg2);
-    display:flex;align-items:center;justify-content:center;
+    padding:0;background:var(--bg2);
+    display:flex;align-items:stretch;justify-content:center;
   }
   .hcat-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:1px;
-    background:var(--line);border:1px solid var(--line);
+    display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:1px;
+    background:var(--line);border-left:1px solid var(--line);
     width:100%;
   }
   .hcat-card{
-    background:var(--bg);padding:28px 24px;
-    display:flex;flex-direction:column;gap:12px;
+    background:var(--bg);padding:28px 26px;
+    display:flex;flex-direction:column;gap:12px;justify-content:center;
     transition:background .15s;
     cursor:pointer;
   }
@@ -95,12 +95,17 @@
   .hstat:not(:last-child){border-right:1px solid var(--line);margin-right:24px;padding-right:24px;}
 
   /* ORIGINALES STRIP */
-  .orig-strip{background:var(--bg2);border-bottom:1px solid var(--line);padding:18px 0;}
-  .orig-inner{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
-  .orig-label{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}
-  .orig-sep{width:1px;height:22px;background:var(--line);flex-shrink:0;}
-  .orig-brands{display:flex;gap:8px;flex-wrap:wrap;}
-  .orig-badge{font-family:var(--fd);font-weight:700;font-size:0.88rem;letter-spacing:0.04em;text-transform:uppercase;border:1px solid var(--dim);color:#B0B0B0;padding:5px 14px;border-radius:2px;}
+  .orig-strip{background:linear-gradient(90deg,var(--bg2),var(--bg) 65%);border-bottom:1px solid var(--line);padding:26px 0;}
+  .orig-inner{display:flex;align-items:center;gap:26px;flex-wrap:wrap;}
+  .orig-label{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:9px;}
+  .orig-label svg{width:15px;height:15px;stroke:#C8A050;flex-shrink:0;}
+  .orig-brands{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  .orig-badge{font-family:var(--fd);font-weight:700;font-size:0.95rem;letter-spacing:0.04em;text-transform:uppercase;background:var(--bg3);border:1px solid var(--line);color:#d8d8d6;padding:8px 18px;border-radius:3px;transition:border-color .15s,background .15s,color .15s;}
+  .orig-badge:hover{border-color:#4a4a4c;background:#1e1e20;color:var(--white);}
+  .orig-cta{margin-left:auto;font-family:var(--fm);font-size:0.72rem;color:var(--muted);border-bottom:1px solid var(--dim);padding-bottom:3px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;transition:color .15s,border-color .15s;}
+  .orig-cta:hover{color:var(--white);border-color:var(--white);}
+  .orig-cta svg{width:11px;height:11px;}
+  @media(max-width:680px){.orig-cta{margin-left:0;}.orig-inner{gap:16px;}}
 
   /* CATALOG */
   .catalog{padding:64px 0;border-bottom:1px solid var(--line);}
@@ -247,6 +252,79 @@
   .btn-wa2:hover{transform:translateY(-2px);}
   .btn-wa2 svg{width:18px;height:18px;}
 
+
+  /* ===== FONDO LÍNEAS DE CAPA ===== */
+  .layer-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.5;}
+  .layer-bg::before{content:'';position:absolute;inset:-50% 0;background:repeating-linear-gradient(0deg,transparent 0,transparent 5px,rgba(255,255,255,0.014) 5px,rgba(255,255,255,0.014) 6px);animation:layerScroll 22s linear infinite;}
+  @keyframes layerScroll{from{transform:translateY(0);}to{transform:translateY(6px);}}
+
+  /* ===== IMPRESORA ANIMADA ===== */
+  .printer-anim{width:100%;max-width:420px;margin:0 auto;}
+  @keyframes headX{0%{transform:translateX(-58px);}25%{transform:translateX(52px);}50%{transform:translateX(-40px);}75%{transform:translateX(58px);}100%{transform:translateX(-58px);}}
+  @keyframes bedY{0%{transform:translateY(0);}100%{transform:translateY(-30px);}}
+  @keyframes grow{0%{transform:scaleY(0.02);}90%,100%{transform:scaleY(1);}}
+  @keyframes extrude{0%,100%{opacity:0.85;}50%{opacity:0.35;}}
+  @keyframes glowPulse{0%,100%{opacity:0.5;}50%{opacity:0.85;}}
+  @keyframes spinFan{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+  .pa-head{animation:headX 5s ease-in-out infinite;}
+  .pa-bed-group{animation:bedY 6.5s ease-in-out infinite alternate;}
+  .pa-piece{animation:grow 6.5s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:bottom;}
+  .pa-flow{animation:extrude .5s ease-in-out infinite;}
+  .pa-glow{animation:glowPulse 1.6s ease-in-out infinite;}
+  .pa-fan{animation:spinFan 1.1s linear infinite;transform-origin:center;transform-box:fill-box;}
+  @media(prefers-reduced-motion:reduce){.pa-head,.pa-piece,.pa-flow,.pa-bed-group,.pa-glow,.pa-fan,.layer-bg::before{animation:none;}}
+
+  /* ===== DIAGNOSTICADOR IA ===== */
+  .diag{padding:72px 0;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 50% 0%,rgba(200,160,80,0.05),transparent 60%);}
+  .diag-head{text-align:center;max-width:640px;margin:0 auto 34px;}
+  .diag-head .kicker{justify-content:center;}
+  .diag-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(2rem,4vw,3.2rem);text-transform:uppercase;line-height:0.95;margin-bottom:14px;}
+  .diag-head p{color:var(--muted);line-height:1.6;}
+  .diag-box{max-width:720px;margin:0 auto;background:var(--bg2);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .diag-chips{display:flex;flex-wrap:wrap;gap:8px;padding:20px 22px 0;}
+  .diag-chip{font-size:0.8rem;color:var(--muted);background:var(--bg3);border:1px solid var(--line);border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .15s,color .15s;}
+  .diag-chip:hover{border-color:#4a4a4c;color:var(--white);}
+  .diag-input-row{display:flex;gap:10px;padding:18px 22px 22px;}
+  .diag-input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--white);font-family:var(--fb);font-size:0.95rem;padding:13px 16px;resize:none;min-height:48px;transition:border-color .15s;}
+  .diag-input:focus{outline:none;border-color:#4a4a4c;}
+  .diag-send{background:var(--white);color:var(--bg);border:none;border-radius:4px;font-family:var(--fb);font-weight:700;font-size:0.9rem;padding:0 22px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:opacity .15s;white-space:nowrap;}
+  .diag-send:hover{opacity:0.9;}
+  .diag-send:disabled{opacity:0.4;cursor:default;}
+  .diag-send svg{width:14px;height:14px;}
+  .diag-answer{border-top:1px solid var(--line);padding:0 22px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;}
+  .diag-answer.show{max-height:1200px;padding:20px 22px;}
+  .diag-answer .da-label{font-family:var(--fm);font-size:0.66rem;color:var(--accent,#C8A050);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .diag-answer .da-body{color:#d0d0ce;line-height:1.7;font-size:0.95rem;}
+  .diag-answer .da-body strong{color:var(--white);}
+  .diag-answer .da-body a{color:var(--white);border-bottom:1px solid var(--dim);}
+  .diag-answer .da-body ul{margin:10px 0;padding-left:20px;}
+  .diag-answer .da-body li{margin-bottom:6px;}
+  .diag-loading{display:inline-flex;gap:4px;}
+  .diag-loading span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:dotPulse 1.2s ease-in-out infinite;}
+  .diag-loading span:nth-child(2){animation-delay:.2s;}
+  .diag-loading span:nth-child(3){animation-delay:.4s;}
+  @keyframes dotPulse{0%,60%,100%{opacity:0.25;}30%{opacity:1;}}
+  .diag-note{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:16px;}
+
+  /* ===== SELECTOR DE IMPRESORA ===== */
+  .picker{padding:72px 0;border-bottom:1px solid var(--line);}
+  .picker-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px;}
+  .picker-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.4vw,2.8rem);text-transform:uppercase;line-height:0.95;}
+  .picker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+  .picker-btn{background:var(--bg);border:none;color:var(--white);font-family:var(--fb);padding:22px 18px;cursor:pointer;text-align:left;transition:background .15s;display:flex;flex-direction:column;gap:5px;}
+  .picker-btn:hover{background:var(--bg3);}
+  .picker-btn.active{background:var(--white);color:var(--bg);}
+  .picker-btn .pb-name{font-family:var(--fd);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:0.02em;}
+  .picker-btn .pb-sub{font-family:var(--fm);font-size:0.62rem;color:var(--muted);}
+  .picker-btn.active .pb-sub{color:rgba(10,10,10,0.6);}
+  .picker-result{margin-top:24px;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:28px 30px;min-height:80px;}
+  .picker-result .pr-empty{color:var(--muted);font-size:0.92rem;}
+  .picker-result .pr-title{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;margin-bottom:16px;}
+  .picker-result .pr-cats{display:flex;flex-wrap:wrap;gap:10px;}
+  .picker-result .pr-cat{background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:9px 16px;font-size:0.85rem;color:#d0d0ce;display:inline-flex;align-items:center;gap:8px;transition:border-color .15s,color .15s;}
+  .picker-result .pr-cat:hover{border-color:#4a4a4c;color:var(--white);}
+  .picker-result .pr-cta{margin-top:20px;}
+
 </style>
 </head>
 <body>
@@ -267,8 +345,9 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero" style="padding:0;border-bottom:1px solid var(--line);">
-    <div class="hero-split">
+  <section class="hero" style="padding:0;border-bottom:1px solid var(--line);position:relative;overflow:hidden;">
+    <div class="layer-bg"></div>
+    <div class="hero-split" style="position:relative;z-index:1;">
       <!-- LEFT -->
       <div class="hero-left">
         <span class="hero-label">+8 años en Mercado Libre · Envío Full a todo el país</span>
@@ -279,61 +358,132 @@
             Ver catálogo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a class="btn-sec" href="/#mayoristas">Soy mayorista</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hstat"><span class="n">+8</span><span class="l">Años vendiendo</span></div>
-          <div class="hstat"><span class="n">+50k</span><span class="l">Ventas</span></div>
-          <div class="hstat"><span class="n">Full</span><span class="l">Envío a todo el país</span></div>
-          <div class="hstat"><span class="n">ML</span><span class="l">Compra protegida</span></div>
+          <a class="btn-sec" href="/#diagnostico">Diagnosticar mi impresora</a>
         </div>
       </div>
-      <!-- RIGHT — accesos a categorías del catálogo -->
-      <div class="hero-right">
-        <div class="hcat-grid">
-          <a class="hcat-card" href="/catalogo.html">
-            <div class="hcat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-            </div>
-            <span class="hcat-name">Camas magnéticas</span>
-            <span class="hcat-count" data-cat-count="Camas magnéticas"></span>
-          </a>
-          <a class="hcat-card" href="/catalogo.html">
-            <div class="hcat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M8 4l4 4 4-4"/><rect x="7" y="8" width="10" height="8" rx="1"/><path d="M10 16v4M14 16v4"/><circle cx="12" cy="12" r="2"/></svg>
-            </div>
-            <span class="hcat-name">Hotends &amp; Extrusores</span>
-            <span class="hcat-count" data-cat-count="Hotends & Extrusores"></span>
-          </a>
-          <a class="hcat-card" href="/catalogo.html">
-            <div class="hcat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6H9l3-6z"/><rect x="9" y="8" width="6" height="8"/><path d="M10 16l2 6 2-6"/></svg>
-            </div>
-            <span class="hcat-name">Nozzles / Boquillas</span>
-            <span class="hcat-count" data-cat-count="Nozzles / Boquillas"></span>
-          </a>
-          <a class="hcat-card" href="/catalogo.html">
-            <div class="hcat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h16"/><circle cx="8" cy="6" r="2" fill="var(--bg2)"/><circle cx="16" cy="12" r="2" fill="var(--bg2)"/><circle cx="8" cy="18" r="2" fill="var(--bg2)"/></svg>
-            </div>
-            <span class="hcat-name">Acoples &amp; Accesorios</span>
-            <span class="hcat-count" data-cat-count="Acoples & Accesorios"></span>
-          </a>
-          <a class="hcat-card" href="/catalogo.html">
-            <div class="hcat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg>
-            </div>
-            <span class="hcat-name">Termistores &amp; Resistencias</span>
-            <span class="hcat-count" data-cat-count="Termistores & Resistencias"></span>
-          </a>
-          <a class="hcat-card" href="/catalogo.html">
-            <div class="hcat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-            </div>
-            <span class="hcat-name">Coolers &amp; Ventiladores</span>
-            <span class="hcat-count" data-cat-count="Coolers & Ventiladores"></span>
-          </a>
+      <!-- RIGHT — impresora 3D animada -->
+      <div class="hero-right" style="flex-direction:column;gap:20px;padding:40px;">
+        <div class="printer-anim">
+          <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Impresora 3D imprimiendo una pieza">
+  <defs>
+    <linearGradient id="alu" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2a2a2e"/><stop offset="0.5" stop-color="#3e3e44"/><stop offset="1" stop-color="#232327"/>
+    </linearGradient>
+    <linearGradient id="aluV" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#242428"/><stop offset="0.45" stop-color="#3a3a40"/><stop offset="0.55" stop-color="#3a3a40"/><stop offset="1" stop-color="#1e1e22"/>
+    </linearGradient>
+    <linearGradient id="headMetal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a4a50"/><stop offset="1" stop-color="#2a2a2e"/>
+    </linearGradient>
+    <linearGradient id="bedGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34343a"/><stop offset="1" stop-color="#222226"/>
+    </linearGradient>
+    <linearGradient id="pieceGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a4a52"/><stop offset="1" stop-color="#303036"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8C878"/><stop offset="1" stop-color="#C88A2E"/>
+    </linearGradient>
+    <radialGradient id="heatGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#E0A94A" stop-opacity="0.6"/><stop offset="1" stop-color="#E0A94A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.1"/></filter>
+  </defs>
+
+  <!-- ====== BASE ====== -->
+  <rect x="46" y="322" width="328" height="20" rx="3" fill="url(#alu)" stroke="#4a4a4e" stroke-width="1.2"/>
+  <rect x="46" y="338" width="328" height="6" rx="2" fill="#141416"/>
+  <!-- patas -->
+  <rect x="60" y="342" width="16" height="8" rx="1.5" fill="#18181a"/>
+  <rect x="344" y="342" width="16" height="8" rx="1.5" fill="#18181a"/>
+  <!-- pantalla/control en la base -->
+  <rect x="300" y="326" width="52" height="12" rx="1.5" fill="#0d0d0f" stroke="#3a3a3c" stroke-width="0.8"/>
+  <circle cx="345" cy="332" r="2.4" fill="#3a3a40"/>
+  <rect x="306" y="329" width="24" height="6" rx="1" fill="#1a2a24"/>
+  <line x1="308" y1="332" x2="326" y2="332" stroke="#2e6e52" stroke-width="1.2"/>
+
+  <!-- ====== COLUMNAS VERTICALES (perfil de aluminio) ====== -->
+  <rect x="66" y="40" width="16" height="284" rx="2" fill="url(#aluV)" stroke="#4a4a50" stroke-width="1.1"/>
+  <rect x="338" y="40" width="16" height="284" rx="2" fill="url(#aluV)" stroke="#4a4a50" stroke-width="1.1"/>
+  <!-- canaletas del perfil -->
+  <line x1="74" y1="46" x2="74" y2="318" stroke="#18181a" stroke-width="1.4"/>
+  <line x1="346" y1="46" x2="346" y2="318" stroke="#18181a" stroke-width="1.4"/>
+
+  <!-- ====== TRAVESAÑO SUPERIOR (gantry X) ====== -->
+  <rect x="58" y="44" width="304" height="16" rx="2.5" fill="url(#alu)" stroke="#4a4a50" stroke-width="1.1"/>
+  <line x1="62" y1="52" x2="358" y2="52" stroke="#18181a" stroke-width="1.6"/>
+  <!-- eje X (varilla) -->
+  <line x1="82" y1="70" x2="338" y2="70" stroke="#5a5a60" stroke-width="2.4"/>
+  <line x1="82" y1="70" x2="338" y2="70" stroke="#26262a" stroke-width="0.8"/>
+  <!-- correa dentada -->
+  <line x1="82" y1="63" x2="338" y2="63" stroke="#1a1a1c" stroke-width="2" stroke-dasharray="3 2"/>
+
+  <!-- ====== CAMA + PIEZA (grupo que baja) ====== -->
+  <g class="pa-bed-group">
+    <!-- soportes de la cama -->
+    <rect x="150" y="300" width="120" height="8" rx="1.5" fill="#26262a" stroke="#3a3a3c" stroke-width="0.8"/>
+    <!-- cama caliente -->
+    <rect x="120" y="288" width="180" height="14" rx="2" fill="url(#bedGrad)" stroke="#4a4a4e" stroke-width="1.1"/>
+    <!-- superficie PEI (tono) -->
+    <rect x="124" y="290" width="172" height="4" rx="1" fill="#3e4a52" opacity="0.6"/>
+    <!-- resplandor de calor de la cama -->
+    <ellipse cx="210" cy="292" rx="94" ry="7" fill="#E0A94A" opacity="0.10"/>
+
+    <!-- pieza que crece con líneas de capa -->
+    <g class="pa-piece">
+      <rect x="176" y="212" width="68" height="76" rx="1" fill="url(#pieceGrad)" stroke="#5a5a62" stroke-width="0.9"/>
+      <!-- líneas de capa horizontales -->
+      <g stroke="#26262a" stroke-width="0.8" opacity="0.7">
+        <line x1="178" y1="220" x2="242" y2="220"/><line x1="178" y1="228" x2="242" y2="228"/>
+        <line x1="178" y1="236" x2="242" y2="236"/><line x1="178" y1="244" x2="242" y2="244"/>
+        <line x1="178" y1="252" x2="242" y2="252"/><line x1="178" y1="260" x2="242" y2="260"/>
+        <line x1="178" y1="268" x2="242" y2="268"/><line x1="178" y1="276" x2="242" y2="276"/>
+        <line x1="178" y1="284" x2="242" y2="284"/>
+      </g>
+      <!-- brillo lateral -->
+      <rect x="176" y="212" width="4" height="76" fill="#5a5a64" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- ====== CABEZAL (carro X que se mueve) ====== -->
+  <g class="pa-head">
+    <!-- carro trasero -->
+    <rect x="188" y="58" width="44" height="24" rx="2" fill="#26262a" stroke="#454549" stroke-width="1"/>
+    <circle cx="196" cy="70" r="3" fill="#3a3a40" stroke="#555" stroke-width="0.6"/>
+    <circle cx="224" cy="70" r="3" fill="#3a3a40" stroke="#555" stroke-width="0.6"/>
+    <!-- ventilador de capa (blower) con aspa girando -->
+    <g transform="translate(178,88)">
+      <rect x="-2" y="-4" width="20" height="24" rx="3" fill="url(#headMetal)" stroke="#4a4a50" stroke-width="1"/>
+      <circle cx="8" cy="8" r="7.5" fill="#1a1a1c" stroke="#3a3a40" stroke-width="0.8"/>
+      <g class="pa-fan">
+        <path d="M8 2 Q12 6 8 8 Q4 6 8 2Z" fill="#454549"/>
+        <path d="M14 8 Q10 12 8 8 Q10 4 14 8Z" fill="#454549"/>
+        <path d="M8 14 Q4 10 8 8 Q12 10 8 14Z" fill="#454549"/>
+        <path d="M2 8 Q6 4 8 8 Q6 12 2 8Z" fill="#454549"/>
+      </g>
+      <circle cx="8" cy="8" r="2" fill="#26262a"/>
+    </g>
+    <!-- cuerpo del hotend -->
+    <rect x="196" y="82" width="28" height="20" rx="2" fill="url(#headMetal)" stroke="#4a4a50" stroke-width="1"/>
+    <!-- disipador con aletas -->
+    <g stroke="#1c1c1e" stroke-width="1.4">
+      <line x1="199" y1="87" x2="221" y2="87"/><line x1="199" y1="91" x2="221" y2="91"/><line x1="199" y1="95" x2="221" y2="95"/>
+    </g>
+    <!-- bloque calefactor -->
+    <rect x="202" y="102" width="16" height="12" rx="1.5" fill="#8a6a3a" stroke="#a07a44" stroke-width="0.8"/>
+    <!-- nozzle -->
+    <path d="M205 114 h10 l-3 10 q-2 3 -4 0 z" fill="url(#brass)" stroke="#d8a850" stroke-width="0.7"/>
+    <!-- resplandor del nozzle -->
+    <circle class="pa-glow" cx="210" cy="122" r="12" fill="url(#heatGlow)"/>
+    <!-- filamento saliendo -->
+    <line class="pa-flow" x1="210" y1="124" x2="210" y2="212" stroke="url(#brass)" stroke-width="1.8" opacity="0.6"/>
+  </g>
+
+  <!-- reflejo/sombra en el piso -->
+  <ellipse cx="210" cy="352" rx="150" ry="5" fill="#000" opacity="0.4" filter="url(#soft)"/>
+</svg>
         </div>
+        <div style="text-align:center;font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Repuestos para que nunca pare de imprimir</div>
       </div>
     </div>
   </section>
@@ -342,15 +492,17 @@
   <div class="orig-strip">
     <div class="wrap">
       <div class="orig-inner">
-        <span class="orig-label">También vendemos originales</span>
-        <div class="orig-sep"></div>
+        <span class="orig-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+          También vendemos originales
+        </span>
         <div class="orig-brands">
           <span class="orig-badge">Bambu Lab</span>
           <span class="orig-badge">Creality</span>
           <span class="orig-badge">Artillery</span>
         </div>
-        <a class="link-all" href="/catalogo.html" style="margin-left:auto;">
-          Ver catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        <a class="orig-cta" href="/catalogo.html">
+          Ver catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
     </div>
@@ -429,6 +581,57 @@
   </section>
 
   <!-- CÓMO COMPRAR -->
+
+  <!-- DIAGNOSTICADOR IA -->
+  <section class="diag" id="diagnostico">
+    <div class="wrap">
+      <div class="diag-head">
+        <div class="section-label kicker" style="display:inline-flex;">Asistente 3D</div>
+        <h2>¿Qué le pasa a tu<br>impresora?</h2>
+        <p>Contanos el problema y nuestro asistente te ayuda a diagnosticarlo, te dice qué revisar y qué repuesto podés necesitar. Rápido y sin vueltas.</p>
+      </div>
+      <div class="diag-box">
+        <div class="diag-chips" id="diag-chips">
+          <span class="diag-chip">No pega la primera capa</span>
+          <span class="diag-chip">Se me tapa el nozzle</span>
+          <span class="diag-chip">Capas corridas / fantasmas</span>
+          <span class="diag-chip">Error de termistor</span>
+          <span class="diag-chip">El filamento no sale</span>
+          <span class="diag-chip">Se despega la pieza</span>
+        </div>
+        <div class="diag-input-row">
+          <textarea class="diag-input" id="diag-input" placeholder="Ej: tengo una Ender 3 y la primera capa no se pega a la cama..." rows="1"></textarea>
+          <button class="diag-send" id="diag-send">
+            Preguntar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="diag-answer" id="diag-answer">
+          <div class="da-label" id="da-label">Diagnóstico</div>
+          <div class="da-body" id="da-body"></div>
+        </div>
+      </div>
+      <p class="diag-note">Es una orientación general para ayudarte. Ante la duda, escribinos por WhatsApp y te asesoramos.</p>
+    </div>
+  </section>
+
+  <!-- SELECTOR DE IMPRESORA -->
+  <section class="picker" id="mi-impresora">
+    <div class="wrap">
+      <div class="picker-head">
+        <div>
+          <div class="section-label">Compatibilidad</div>
+          <h2>¿Qué impresora<br>tenés?</h2>
+        </div>
+        <p style="color:var(--muted);max-width:340px;font-size:0.92rem;line-height:1.6;">Elegí tu modelo y te mostramos las categorías de repuestos que le sirven. Así encontrás lo compatible sin dar vueltas.</p>
+      </div>
+      <div class="picker-grid" id="picker-grid"></div>
+      <div class="picker-result" id="picker-result">
+        <div class="pr-empty">Elegí tu impresora arriba para ver los repuestos compatibles.</div>
+      </div>
+    </div>
+  </section>
+
   <section class="steps">
     <div class="wrap">
       <div class="section-label">Cómo comprar</div>
@@ -597,6 +800,110 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
   const n = countByCat(cat);
   el.textContent = n + (n === 1 ? ' producto' : ' productos');
 });
+
+/* ============ DIAGNOSTICADOR IA ============ */
+(function(){
+  const input = document.getElementById('diag-input');
+  const sendBtn = document.getElementById('diag-send');
+  const answer = document.getElementById('diag-answer');
+  const daBody = document.getElementById('da-body');
+  const daLabel = document.getElementById('da-label');
+  if(!input) return;
+
+  // Chips que rellenan el input
+  document.querySelectorAll('.diag-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{ input.value = chip.textContent.trim(); input.focus(); });
+  });
+
+  // Auto-resize del textarea
+  input.addEventListener('input',()=>{ input.style.height='48px'; input.style.height=Math.min(input.scrollHeight,160)+'px'; });
+
+  function showLoading(){
+    answer.classList.add('show');
+    daLabel.innerHTML = 'Analizando <span class="diag-loading"><span></span><span></span><span></span></span>';
+    daBody.innerHTML = '';
+  }
+
+  function renderAnswer(text){
+    daLabel.textContent = 'Diagnóstico';
+    // Formato básico: **negrita**, saltos de línea, links markdown
+    let html = text
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>')
+      .replace(/\n\n/g,'</p><p>')
+      .replace(/\n/g,'<br>');
+    daBody.innerHTML = '<p>'+html+'</p>';
+  }
+
+  async function ask(){
+    const q = input.value.trim();
+    if(!q) return;
+    sendBtn.disabled = true;
+    showLoading();
+    try{
+      const res = await fetch('/api/diagnose', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ question: q })
+      });
+      if(!res.ok) throw new Error('bad response');
+      const data = await res.json();
+      renderAnswer(data.answer || 'No pude generar una respuesta. Probá reformular tu consulta o escribinos por WhatsApp.');
+    }catch(err){
+      daLabel.textContent = 'Diagnóstico';
+      daBody.innerHTML = '<p>Ahora mismo no puedo procesar tu consulta. Escribinos por <a href="https://wa.me/5491171585143" target="_blank" rel="noopener">WhatsApp</a> y te ayudamos al toque.</p>';
+    }finally{
+      sendBtn.disabled = false;
+    }
+  }
+
+  sendBtn.addEventListener('click', ask);
+  input.addEventListener('keydown', e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); ask(); } });
+})();
+
+/* ============ SELECTOR DE IMPRESORA ============ */
+(function(){
+  const grid = document.getElementById('picker-grid');
+  const result = document.getElementById('picker-result');
+  if(!grid) return;
+
+  // Modelos y las categorías de repuestos que suelen necesitar
+  const PRINTERS = [
+    {name:'Ender 3 / V2 / Pro', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas','Termistores & Resistencias','Acoples & Accesorios','Coolers & Ventiladores']},
+    {name:'Ender 3 V3 / SE / KE', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas','Termistores & Resistencias']},
+    {name:'Ender 5 / S1', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas']},
+    {name:'Creality K1 / K1 Max', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Termistores & Resistencias','Acoples & Accesorios']},
+    {name:'CR-10 / CR-6', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas']},
+    {name:'Bambu Lab A1 / Mini', sub:'Bambu Lab', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas']},
+    {name:'Bambu Lab X1 / P1', sub:'Bambu Lab', cats:['Hotends & Extrusores','Nozzles / Boquillas']},
+    {name:'Anycubic Kobra', sub:'Anycubic', cats:['Hotends & Extrusores','Nozzles / Boquillas']},
+    {name:'Artillery X1 / X2 / Genius', sub:'Artillery', cats:['Hotends & Extrusores','Camas magnéticas','Termistores & Resistencias','Acoples & Accesorios']}
+  ];
+
+  const CAT_URL = 'https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&component_id=menu_corridors&component=menu_corridors&label=Impresi%C3%B3n&tracking_id=d4689a667703cb63c78f078804c0ff86&global_position=1';
+
+  PRINTERS.forEach((p,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'picker-btn';
+    btn.innerHTML = '<span class="pb-name">'+p.name+'</span><span class="pb-sub">'+p.sub+'</span>';
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.picker-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      showResult(p);
+    });
+    grid.appendChild(btn);
+  });
+
+  function showResult(p){
+    const chips = p.cats.map(c=>'<a class="pr-cat" href="/catalogo.html">'+c+' <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>').join('');
+    result.innerHTML =
+      '<div class="pr-title">Repuestos para '+p.name+'</div>'+
+      '<div class="pr-cats">'+chips+'</div>'+
+      '<div class="pr-cta"><a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>';
+  }
+})();
+
 </script>
 
 </body>
