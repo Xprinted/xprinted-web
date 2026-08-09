@@ -182,11 +182,12 @@
   <nav>
     <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
     <div class="nav-links">
-      <a href="/#catalogo">Catálogo</a>
-      <a href="/#mayoristas">Mayoristas</a>
-      <a href="/#contacto">Contacto</a>
+      <a href="/catalogo.html">Catálogo</a>
+      <a href="/#guias">Guías</a>
+      <a href="/comunidad.html">Comunidad</a>
+      <a href="/contacto.html">Contacto</a>
     </div>
-    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
   </nav>
 </header>
 
@@ -346,7 +347,7 @@
         <div class="type-card">
           <div class="tt">Ventilador de capa</div>
           <div class="tsub">Radial / Blower · Enfría la pieza</div>
-          <p>Impulsa aire de forma radial-lateral hacia la pieza recién impresa para solidificarla rápido. Típicamente de 50 × 15 mm o 40 × 10 mm. Se controla desde el slicer: 100% para PLA, casi nada para ABS (el enfriamiento brusco lo deforma), moderado para PETG. Un ducto bien diseñado mejora bastante el resultado con el mismo ventilador.</p>
+          <p>Impulsa aire de forma radial-lateral hacia la pieza recién impresa para solidificarla rápido. Los tamaños comunes son 40 × 10 mm (el que traen de fábrica muchas Ender) y 50 × 15 mm (un upgrade habitual, mayor caudal). Se controla desde el slicer: 100% para PLA, casi nada para ABS (el enfriamiento brusco lo deforma), moderado para PETG. Un ducto bien diseñado mejora bastante el resultado con el mismo ventilador.</p>
           <div class="tmeta">
             <span class="type-tag good">50×15 / 40×10 mm</span>
             <span class="type-tag good">Radial / Blower</span>
@@ -364,7 +365,7 @@
         <div class="type-card">
           <div class="tt">Voltaje: 12V o 24V</div>
           <div class="tsub">Lo más importante</div>
-          <p>Las impresoras modernas usan <strong>24 V</strong>; las más viejas (Ender 3 pre-2020, etc.) usan <strong>12 V</strong>. Un ventilador de 12 V en un circuito de 24 V se quema; uno de 24 V en 12 V apenas gira. Verificá siempre el voltaje de tu placa antes de comprar.</p>
+          <p>Las impresoras modernas usan <strong>24 V</strong> (la mayoría de las Ender, Anycubic, Artillery actuales). Algunas más viejas o de gama baja usan <strong>12 V</strong>. Un ventilador de 12 V en un circuito de 24 V se quema; uno de 24 V en 12 V apenas gira. Verificá siempre el voltaje de tu placa antes de comprar.</p>
           <div class="tmeta">
             <span class="type-tag warn">12V / 24V</span>
             <span class="type-tag warn">No confundir</span>
@@ -372,10 +373,10 @@
         </div>
         <div class="type-card">
           <div class="tt">Cubiertas y ductos</div>
-          <div class="tsub">Accesorio · Mejora el airflow</div>
+          <div class="tsub">Accesorio · Mejora el enfriamiento</div>
           <p>Un ducto bien diseñado redirige el aire exactamente donde hace falta. Hay modelos imprimibles para cada impresora (Printables, Thingiverse), o cubiertas específicas para tu modelo. Es una de las mejoras más baratas y efectivas que podés hacer.</p>
           <div class="tmeta">
-            <span class="type-tag good">Mejora el cooling</span>
+            <span class="type-tag good">Mejora el enfriamiento</span>
           </div>
         </div>
       </div>
@@ -390,7 +391,7 @@
       <p>Es lo primero y lo más importante. Fijate si tu impresora es de <strong>12 V o 24 V</strong>: lo dice la etiqueta de la fuente o la placa base, o el manual. El ventilador nuevo tiene que ser del mismo voltaje, sin excepción.</p>
 
       <h3>Paso 2 — Tamaño</h3>
-      <p>El ventilador tiene que entrar en el mismo espacio que el viejo. Los más comunes son <strong>40 × 40 × 10 mm</strong> (hotend en Ender 3 y similares), <strong>50 × 15 mm</strong> (capa en Ender 3 y similares) y <strong>30 × 30 × 10 mm</strong> (hotend en impresoras compactas).</p>
+      <p>El ventilador tiene que entrar en el mismo espacio que el viejo. Los más comunes son <strong>40 × 40 × 10 mm</strong> (hotend y capa en la mayoría de las Ender 3 y similares), <strong>50 × 15 mm</strong> (upgrade de capa) y <strong>30 × 30 × 10 mm</strong> (hotend en impresoras más compactas).</p>
 
       <h3>Paso 3 — Tipo correcto</h3>
       <p>No confundas un ventilador axial (para el hotend) con un blower radial (para la capa): tienen formas distintas y no son intercambiables. Si tenés el viejo a mano, una foto ayuda a identificarlo.</p>
@@ -407,7 +408,7 @@
       <h2>Cuándo cambiarlos</h2>
       <p>Estos ventiladores no se "gastan" como un nozzle, pero fallan. Señales típicas:</p>
       <ul>
-        <li><strong>Ruido extraño (chirridos, crujidos).</strong> Los rodamientos están fatigados. Cámbialo antes de que falle completamente.</li>
+        <li><strong>Ruido extraño (chirridos, crujidos).</strong> Los rodamientos están fatigados. Cambialo antes de que falle completamente.</li>
         <li><strong>Ventilador de capa débil o que no sopla.</strong> Revisá primero el slicer (¿está en 0%?). Limpiá el polvo de las aspas. Si persiste, el ventilador está fallando.</li>
         <li><strong>Ventilador de hotend que no gira.</strong> Urgente: sin él, heat creep garantizado. Reemplazá de una.</li>
         <li><strong>Atascos repetidos pese a limpiar el hotend.</strong> Si el hotend está limpio y sigue atascándose, revisá que el ventilador de hotend esté girando fuerte y dirigido al disipador.</li>
@@ -429,7 +430,7 @@
         <div class="section-label">Disponibles</div>
         <h2>Ventiladores en stock</h2>
       </div>
-      <a class="link-all" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">
+      <a class="link-all" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">
         Ver todos en ML <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
       </a>
     </div>
@@ -443,11 +444,10 @@
     <h2>¿No sabés cuál necesitás?</h2>
     <p>Decinos el modelo de tu impresora (y qué ventilador necesitás cambiar) y te confirmamos exactamente el ventilador, voltaje y tamaño correcto. Respondemos rápido por WhatsApp.</p>
     <div class="cta-actions">
-      <a class="btn-main" href="https://wa.me/541171585143?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20ventilador." target="_blank" rel="noopener">
+      <a class="btn-main" href="https://wa.me/5491171585143?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20ventilador." target="_blank" rel="noopener">
         Consultar por WhatsApp
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a class="btn-sec" href="/#catalogo">Volver al catálogo</a>
     </div>
   </div>
 </section>
@@ -457,15 +457,16 @@
     <div class="footer-inner">
       <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="" style="height:16px;">XPRINTED</a>
       <div class="footer-links">
-        <a href="/#catalogo">Catálogo</a>
-        <a href="/#mayoristas">Mayoristas</a>
-        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Mercado Libre</a>
+        <a href="/catalogo.html">Catálogo</a>
+        <a href="/comunidad.html">Comunidad</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/contacto.html">Contacto</a>
+        <a href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Mercado Libre</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© XPRINTED 2026. Todos los derechos reservados.</span>
-      <span>Buenos Aires, Argentina</span>
+      <span>Tienda online · Envíos a todo el país</span>
     </div>
   </div>
 </footer>
