@@ -3,8 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XPRINTED — Repuestos para impresoras 3D</title>
-<meta name="description" content="Repuestos para impresoras 3D. Hotends, nozzles, camas magnéticas, extrusores y más. Importación directa. Envíos a todo el país.">
+<title>XPRINTED — Repuestos para impresoras 3D en Argentina</title>
+<meta name="description" content="Repuestos y accesorios para impresoras 3D: hotends, nozzles, camas magnéticas, termistores, ventiladores y más. +8 años y +50.000 ventas. Envío Full a todo el país.">
+<link rel="canonical" href="https://xprinted-web.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="XPRINTED — Repuestos para impresoras 3D en Argentina">
+<meta property="og:description" content="Hotends, nozzles, camas, termistores, ventiladores y más. +8 años, +50.000 ventas, envío Full a todo el país.">
+<meta property="og:site_name" content="XPRINTED">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://xprinted-web.vercel.app/">
+<meta property="og:image" content="https://xprinted-web.vercel.app/assets/og-home.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="XPRINTED — Repuestos para impresoras 3D">
+<meta name="twitter:description" content="Hotends, nozzles, camas, termistores y más. Envío Full a todo el país.">
+<meta name="twitter:image" content="https://xprinted-web.vercel.app/assets/og-home.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"XPRINTED","url":"https://xprinted-web.vercel.app/","logo":"https://xprinted-web.vercel.app/assets/logo_icon.png","description":"Repuestos y accesorios para impresoras 3D en Argentina.","areaServed":"AR","sameAs":["https://instagram.com/xprinted.arg"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -189,22 +202,65 @@
     .footer-inner{grid-template-columns:1fr;}
   }
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+
+  /* ===== HOME v2 additions ===== */
+  .home-cats{padding:64px 0;border-bottom:1px solid var(--line);}
+  .hc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:36px;}
+  .hc-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.4vw,2.8rem);text-transform:uppercase;line-height:0.95;}
+  .cat-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .cat-tile{background:var(--bg);padding:26px 24px;display:flex;align-items:center;gap:16px;transition:background .15s;}
+  .cat-tile:hover{background:var(--bg3);}
+  .cat-tile .cti{width:40px;height:40px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .cat-tile .cti svg{width:20px;height:20px;stroke:var(--muted);}
+  .cat-tile:hover .cti svg{stroke:var(--white);}
+  .cat-tile .ctn{font-family:var(--fd);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:0.02em;line-height:1.05;}
+  .cat-tile .ctc{font-family:var(--fm);font-size:0.62rem;color:var(--muted);margin-top:3px;}
+  @media(max-width:820px){.cat-tiles{grid-template-columns:1fr;}}
+
+  /* guías destacadas */
+  .guides-home{padding:64px 0;border-bottom:1px solid var(--line);background:var(--bg2);}
+  .guide-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;}
+  .guide-card{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:26px 24px;transition:border-color .15s,transform .15s;}
+  .guide-card:hover{border-color:#3a3a3c;transform:translateY(-2px);}
+  .guide-card .gc-tag{font-family:var(--fm);font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;}
+  .guide-card h3{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:0.01em;margin-bottom:8px;line-height:1;}
+  .guide-card p{color:var(--muted);font-size:0.88rem;line-height:1.55;margin-bottom:16px;}
+  .guide-card .gc-go{font-family:var(--fm);font-size:0.7rem;color:var(--white);display:inline-flex;align-items:center;gap:6px;}
+  .guide-card .gc-go svg{width:11px;height:11px;}
+  @media(max-width:820px){.guide-cards{grid-template-columns:1fr;}}
+
+  /* cómo comprar */
+  .steps{padding:64px 0;border-bottom:1px solid var(--line);}
+  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px;}
+  .step{background:var(--bg);padding:30px 26px;}
+  .step .sn{font-family:var(--fd);font-weight:900;font-size:2.4rem;color:var(--dim);line-height:1;margin-bottom:14px;}
+  .step h3{font-family:var(--fd);font-weight:700;font-size:1.2rem;text-transform:uppercase;margin-bottom:8px;}
+  .step p{color:var(--muted);font-size:0.9rem;line-height:1.6;}
+  @media(max-width:820px){.step-grid{grid-template-columns:1fr;}}
+
+  /* comunidad band */
+  .comm-band{padding:60px 0;border-bottom:1px solid var(--line);}
+  .comm-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+  .comm-inner h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.4vw,2.8rem);text-transform:uppercase;line-height:0.95;margin-bottom:10px;}
+  .comm-inner p{color:var(--muted);max-width:520px;line-height:1.6;}
+  .btn-wa2{background:#25D366;color:#0A0A0A;font-weight:700;font-size:0.95rem;padding:14px 30px;border-radius:3px;display:inline-flex;align-items:center;gap:9px;transition:transform .15s;white-space:nowrap;}
+  .btn-wa2:hover{transform:translateY(-2px);}
+  .btn-wa2 svg{width:18px;height:18px;}
+
 </style>
 </head>
 <body>
 
 <header>
   <nav>
-    <a href="#top" class="logo">
-      <img src="assets/logo_icon.png" alt="">
-      XPRINTED
-    </a>
+    <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
     <div class="nav-links">
-      <a href="#catalogo">Catálogo</a>
-      <a href="#mayoristas">Mayoristas</a>
-      <a href="#contacto">Contacto</a>
+      <a href="/catalogo.html">Catálogo</a>
+      <a href="/#guias">Guías</a>
+      <a href="/comunidad.html">Comunidad</a>
+      <a href="/contacto.html">Contacto</a>
     </div>
-    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Ver catálogo completo</a>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
   </nav>
 </header>
 
@@ -215,62 +271,62 @@
     <div class="hero-split">
       <!-- LEFT -->
       <div class="hero-left">
-        <span class="hero-label">Buenos Aires · Importación directa · Envíos a todo el país</span>
+        <span class="hero-label">+8 años en Mercado Libre · Envío Full a todo el país</span>
         <h1>REPUESTOS<br>PARA TU<br><em>IMPRESORA</em><br>3D.</h1>
-        <p class="hero-sub">Todo lo que necesitás para mantener tu impresora funcionando — stock real, precio justo, entrega rápida.</p>
+        <p class="hero-sub">Todo lo que tu impresora necesita para seguir andando. Hotends, nozzles, camas, ventiladores y más — con la seguridad de comprar por Mercado Libre y envío Full a todo el país.</p>
         <div class="hero-actions">
-          <a class="btn-main" href="#catalogo">
-            Ver repuestos
+          <a class="btn-main" href="/catalogo.html">
+            Ver catálogo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a class="btn-sec" href="#mayoristas">Soy mayorista</a>
+          <a class="btn-sec" href="/#mayoristas">Soy mayorista</a>
         </div>
         <div class="hero-stats">
-          <div class="hstat"><span class="n">64</span><span class="l">Productos</span></div>
-          <div class="hstat"><span class="n">+6</span><span class="l">Años</span></div>
-          <div class="hstat"><span class="n">100%</span><span class="l">Directo</span></div>
-          <div class="hstat"><span class="n">24h</span><span class="l">WhatsApp</span></div>
+          <div class="hstat"><span class="n">+8</span><span class="l">Años vendiendo</span></div>
+          <div class="hstat"><span class="n">+50k</span><span class="l">Ventas</span></div>
+          <div class="hstat"><span class="n">Full</span><span class="l">Envío a todo el país</span></div>
+          <div class="hstat"><span class="n">ML</span><span class="l">Compra protegida</span></div>
         </div>
       </div>
-      <!-- RIGHT — categorias (ahora filtran el catálogo, no llevan a páginas /guias/*) -->
+      <!-- RIGHT — accesos a categorías del catálogo -->
       <div class="hero-right">
         <div class="hcat-grid">
-          <a class="hcat-card" href="/guias/camas.html" data-guide="camas">
+          <a class="hcat-card" href="/catalogo.html">
             <div class="hcat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
             </div>
             <span class="hcat-name">Camas magnéticas</span>
             <span class="hcat-count" data-cat-count="Camas magnéticas"></span>
           </a>
-          <a class="hcat-card" href="/guias/hotends.html" data-guide="hotends">
+          <a class="hcat-card" href="/catalogo.html">
             <div class="hcat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M8 4l4 4 4-4"/><rect x="7" y="8" width="10" height="8" rx="1"/><path d="M10 16v4M14 16v4"/><circle cx="12" cy="12" r="2"/></svg>
             </div>
             <span class="hcat-name">Hotends &amp; Extrusores</span>
             <span class="hcat-count" data-cat-count="Hotends & Extrusores"></span>
           </a>
-          <a class="hcat-card" href="/guias/nozzles.html" data-guide="nozzles">
+          <a class="hcat-card" href="/catalogo.html">
             <div class="hcat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6H9l3-6z"/><rect x="9" y="8" width="6" height="8"/><path d="M10 16l2 6 2-6"/></svg>
             </div>
             <span class="hcat-name">Nozzles / Boquillas</span>
             <span class="hcat-count" data-cat-count="Nozzles / Boquillas"></span>
           </a>
-          <a class="hcat-card" href="/guias/acoples.html" data-guide="acoples">
+          <a class="hcat-card" href="/catalogo.html">
             <div class="hcat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h16"/><circle cx="8" cy="6" r="2" fill="var(--bg2)"/><circle cx="16" cy="12" r="2" fill="var(--bg2)"/><circle cx="8" cy="18" r="2" fill="var(--bg2)"/></svg>
             </div>
             <span class="hcat-name">Acoples &amp; Accesorios</span>
             <span class="hcat-count" data-cat-count="Acoples & Accesorios"></span>
           </a>
-          <a class="hcat-card" href="/guias/termistores.html" data-guide="termistores">
+          <a class="hcat-card" href="/catalogo.html">
             <div class="hcat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg>
             </div>
             <span class="hcat-name">Termistores &amp; Resistencias</span>
             <span class="hcat-count" data-cat-count="Termistores & Resistencias"></span>
           </a>
-          <a class="hcat-card" href="/guias/coolers.html" data-guide="coolers">
+          <a class="hcat-card" href="/catalogo.html">
             <div class="hcat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
             </div>
@@ -293,32 +349,107 @@
           <span class="orig-badge">Creality</span>
           <span class="orig-badge">Artillery</span>
         </div>
-        <a class="link-all" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener" style="margin-left:auto;">
-          Ver originales <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        <a class="link-all" href="/catalogo.html" style="margin-left:auto;">
+          Ver catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- CATÁLOGO CON PRODUCTOS REALES -->
-  <section class="catalog" id="catalogo">
+  <!-- ACCESO AL CATÁLOGO POR CATEGORÍA -->
+  <section class="home-cats">
     <div class="wrap">
-      <div class="cat-head">
+      <div class="hc-head">
         <div>
           <div class="section-label">Catálogo</div>
-          <h2 class="section-title">LO QUE<br>NECESITÁS.</h2>
+          <h2>Explorá por<br>categoría.</h2>
         </div>
-        <a class="link-all" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">
-          Ver todo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        <a class="link-all" href="/catalogo.html">Ver todo el catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+      <div class="cat-tiles">
+        <a class="cat-tile" href="/catalogo.html">
+          <div class="cti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M8 4l4 4 4-4"/><rect x="7" y="8" width="10" height="8" rx="1"/><path d="M10 16v4M14 16v4"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <div><div class="ctn">Hotends &amp; Extrusores</div><div class="ctc" data-cat-count="Hotends & Extrusores"></div></div>
+        </a>
+        <a class="cat-tile" href="/catalogo.html">
+          <div class="cti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6H9l3-6z"/><rect x="9" y="8" width="6" height="8"/><path d="M10 16l2 6 2-6"/></svg></div>
+          <div><div class="ctn">Nozzles / Boquillas</div><div class="ctc" data-cat-count="Nozzles / Boquillas"></div></div>
+        </a>
+        <a class="cat-tile" href="/catalogo.html">
+          <div class="cti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+          <div><div class="ctn">Camas magnéticas</div><div class="ctc" data-cat-count="Camas magnéticas"></div></div>
+        </a>
+        <a class="cat-tile" href="/catalogo.html">
+          <div class="cti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <div><div class="ctn">Termistores &amp; Resistencias</div><div class="ctc" data-cat-count="Termistores & Resistencias"></div></div>
+        </a>
+        <a class="cat-tile" href="/catalogo.html">
+          <div class="cti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg></div>
+          <div><div class="ctn">Acoples &amp; Accesorios</div><div class="ctc" data-cat-count="Acoples & Accesorios"></div></div>
+        </a>
+        <a class="cat-tile" href="/catalogo.html">
+          <div class="cti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+          <div><div class="ctn">Coolers &amp; Ventiladores</div><div class="ctc" data-cat-count="Coolers & Ventiladores"></div></div>
         </a>
       </div>
+    </div>
+  </section>
 
-      <!-- FILTROS (se generan por JS) -->
-      <div class="filter-tabs" id="filter-tabs"></div>
+  <!-- GUÍAS TÉCNICAS -->
+  <section class="guides-home" id="guias">
+    <div class="wrap">
+      <div class="hc-head">
+        <div>
+          <div class="section-label">Guías técnicas</div>
+          <h2>Aprendé antes<br>de comprar.</h2>
+        </div>
+        <p style="color:var(--muted);max-width:340px;font-size:0.92rem;line-height:1.6;">Escribimos guías sobre cada tipo de repuesto para que sepas exactamente qué necesita tu impresora. Sin vueltas, sin tecnicismos innecesarios.</p>
+      </div>
+      <div class="guide-cards">
+        <a class="guide-card" href="/guias/hotends.html">
+          <div class="gc-tag">Guía · Hotends</div>
+          <h3>Todo sobre hotends</h3>
+          <p>Qué es, sus partes, PTFE vs all-metal y cómo elegir el correcto para tu impresora.</p>
+          <span class="gc-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="guide-card" href="/guias/camas.html">
+          <div class="gc-tag">Guía · Camas</div>
+          <h3>Camas magnéticas</h3>
+          <p>Superficies PEI, PEO y vidrio, cómo elegir según tu filamento y cómo cuidarlas.</p>
+          <span class="gc-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="guide-card" href="/guias/nozzles.html">
+          <div class="gc-tag">Guía · Nozzles</div>
+          <h3>Nozzles y boquillas</h3>
+          <p>Diámetros, materiales, compatibilidad de rosca y cuándo conviene cambiarlos.</p>
+          <span class="gc-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-      <!-- GRILLA DE PRODUCTOS -->
-      <div class="prod-grid" id="prod-grid"></div>
-
+  <!-- CÓMO COMPRAR -->
+  <section class="steps">
+    <div class="wrap">
+      <div class="section-label">Cómo comprar</div>
+      <h2 style="font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.4vw,2.8rem);text-transform:uppercase;line-height:0.95;">Simple y seguro.</h2>
+      <div class="step-grid">
+        <div class="step">
+          <div class="sn">01</div>
+          <h3>Elegí tu repuesto</h3>
+          <p>Buscá en el catálogo o leé nuestras guías. Si tenés dudas de compatibilidad, escribinos por WhatsApp antes de comprar.</p>
+        </div>
+        <div class="step">
+          <div class="sn">02</div>
+          <h3>Comprá en Mercado Libre</h3>
+          <p>Todas nuestras ventas van por Mercado Libre, con la protección al comprador y los medios de pago de la plataforma.</p>
+        </div>
+        <div class="step">
+          <div class="sn">03</div>
+          <h3>Recibilo en tu casa</h3>
+          <p>Enviamos a todo el país con Mercado Envíos Full: despacho rápido y seguimiento en tiempo real desde tu cuenta.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -330,23 +461,40 @@
           <div class="ti-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16V8a1 1 0 0 1 .55-.89l8-4a1 1 0 0 1 .9 0l8 4A1 1 0 0 1 21 8v8a1 1 0 0 1-.55.89l-8 4a1 1 0 0 1-.9 0l-8-4A1 1 0 0 1 3 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
           </div>
-          <h3>Importamos directo</h3>
-          <p>Sin intermediarios. Compramos en fábrica y te ofrecemos el mejor precio con stock real.</p>
+          <h3>Importación directa</h3>
+          <p>Importamos directo, sin cadena de distribuidores locales. Eso nos permite mejores precios y stock real.</p>
         </div>
         <div class="trust-item">
           <div class="ti-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
           </div>
-          <h3>+6 años en el mercado</h3>
-          <p>Miles de ventas en Argentina, historial verificable y atención directa con respuesta rápida.</p>
+          <h3>+8 años, +50.000 ventas</h3>
+          <p>Más de 8 años vendiendo en Mercado Libre, con más de 50.000 ventas concretadas y miles de clientes en todo el país.</p>
         </div>
         <div class="trust-item">
           <div class="ti-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
-          <h3>Envíos a todo el país</h3>
-          <p>Despachamos por correo y OCA. Si lo necesitás urgente, consultanos por WhatsApp.</p>
+          <h3>Envío Full a todo el país</h3>
+          <p>Todos nuestros productos están en Mercado Envíos Full: despacho rápido, seguro y con seguimiento en todo el país.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section class="comm-band">
+    <div class="wrap">
+      <div class="comm-inner">
+        <div>
+          <div class="section-label">Comunidad</div>
+          <h2>Sumate a la comunidad.</h2>
+          <p>Tenemos una comunidad de WhatsApp donde makers y talleres se ayudan, comparten sus prints y se enteran de novedades y stock antes que nadie. Es gratis y abierta.</p>
+        </div>
+        <a class="btn-wa2" href="/comunidad.html">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.86-2-.96-.27-.1-.47-.15-.66.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.75-.72 2-1.41.24-.7.24-1.29.17-1.41-.07-.12-.27-.2-.56-.35zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
+          Conocer la comunidad
+        </a>
       </div>
     </div>
   </section>
@@ -355,11 +503,11 @@
   <section class="wholesale" id="mayoristas">
     <div class="ws-inner">
       <div class="ws-left">
-        <div class="section-label">B2B</div>
+        <div class="section-label">Mayoristas · B2B</div>
         <h2>¿COMPRÁS<br>POR VOLUMEN?</h2>
-        <p>Precio por volumen y stock dedicado para talleres, tiendas y revendedores con pedidos recurrentes.</p>
+        <p>Precios especiales por volumen y stock dedicado para talleres, tiendas y revendedores con pedidos recurrentes. Contanos qué necesitás y armamos una propuesta a tu medida.</p>
         <div class="ws-cta">
-          <a class="btn-main" href="https://wa.me/541171585143?text=Hola%2C%20quiero%20consultar%20precios%20mayoristas." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          <a class="btn-main" href="https://wa.me/5491171585143?text=Hola%2C%20quiero%20consultar%20precios%20mayoristas." target="_blank" rel="noopener">Consultar precios mayoristas</a>
         </div>
       </div>
       <div class="ws-right">
@@ -377,11 +525,11 @@
       <div class="contact-inner">
         <div>
           <h2>¿TENÉS ALGUNA CONSULTA?</h2>
-          <p>Respondemos rápido. Si no encontrás lo que buscás, escribinos — lo conseguimos.</p>
+          <p>Respondemos rápido por WhatsApp. Si no encontrás lo que buscás, escribinos y lo conseguimos.</p>
         </div>
         <div class="contact-actions">
-          <a class="btn-main" href="https://wa.me/541171585143" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn-sec" href="mailto:contacto@xprinted.com.ar">Mail</a>
+          <a class="btn-main" href="https://wa.me/5491171585143" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn-sec" href="/contacto.html">Ver contacto</a>
         </div>
       </div>
     </div>
@@ -393,43 +541,46 @@
   <div class="wrap">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="#top" class="logo">
-          <img src="assets/logo_icon.png" alt="">XPRINTED
+        <a href="/" class="logo">
+          <img src="/assets/logo_icon.png" alt="">XPRINTED
         </a>
-        <p>Repuestos para impresoras 3D. Importación directa, +6 años en Argentina.</p>
+        <p>Repuestos para impresoras 3D. Importación directa, +8 años vendiendo en Argentina. Tienda 100% online.</p>
         <div class="footer-social">
-          <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener" aria-label="Instagram">
+          <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener" aria-label="Instagram de XPRINTED">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#555" stroke="none"/></svg>
           </a>
-          <a href="https://wa.me/541171585143" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <a href="https://wa.me/5491171585143" target="_blank" rel="noopener" aria-label="WhatsApp de XPRINTED">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="#555"/></svg>
           </a>
         </div>
       </div>
       <div class="footer-col">
-        <h5>Categorías</h5>
-        <a href="/guias/camas.html">Camas magnéticas</a>
-        <a href="/guias/hotends.html">Hotends &amp; Extrusores</a>
-        <a href="/guias/nozzles.html">Nozzles / Boquillas</a>
-        <a href="/guias/acoples.html">Acoples &amp; Accesorios</a>
-        <a href="/guias/termistores.html">Termistores</a>
+        <h5>Navegación</h5>
+        <a href="/catalogo.html">Catálogo</a>
+        <a href="/comunidad.html">Comunidad</a>
+        <a href="/faq.html">Preguntas frecuentes</a>
+        <a href="/contacto.html">Contacto</a>
       </div>
       <div class="footer-col">
-        <h5>Empresa</h5>
-        <a href="#catalogo">Nuestros repuestos</a>
-        <a href="#mayoristas">Mayoristas</a>
-        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
+        <h5>Guías técnicas</h5>
+        <a href="/guias/camas.html">Camas magnéticas</a>
+        <a href="/guias/hotends.html">Hotends</a>
+        <a href="/guias/nozzles.html">Nozzles</a>
+        <a href="/guias/acoples.html">Acoples &amp; Accesorios</a>
+        <a href="/guias/termistores.html">Termistores</a>
+        <a href="/guias/coolers.html">Coolers &amp; Ventiladores</a>
       </div>
       <div class="footer-col">
         <h5>Contacto</h5>
-        <a href="https://wa.me/541171585143" target="_blank" rel="noopener">+54 9 11 7158-5143</a>
+        <a href="https://wa.me/5491171585143" target="_blank" rel="noopener">WhatsApp</a>
         <a href="mailto:contacto@xprinted.com.ar">contacto@xprinted.com.ar</a>
-        <a href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Mercado Libre</a>
+        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Mercado Libre</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© XPRINTED 2026. Todos los derechos reservados.</span>
-      <span>Buenos Aires, Argentina</span>
+      <span>Tienda online · Envíos a todo el país</span>
     </div>
   </div>
 </footer>
@@ -437,160 +588,15 @@
 <script>
 const PRODUCTS = [{"id": "MLA1932131292", "title": "5x Nozzle Boquilla Mk8 1.75mm M6 Ender Series", "stock": 142, "price": 4399.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932131292-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932131292-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1971174266", "title": "Hotend Para Bambu Lab A1 / A1 Mini 0.4mm + Nozzle", "stock": 44, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1971174266-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971174266-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1973890300", "title": "Correa Kevlar Abierta Gt2 6mm ( 100cm )", "stock": 56, "price": 4499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1973890300-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1973890300-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1454494281", "title": "Kit Hotend Completo Tipo Ender 3 V3 Ke", "stock": 31, "price": 33099.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454494281-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454494281-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1454538751", "title": "10x 0,4 Mm Pico Destapador Aguja Destapa Nozzle", "stock": 61, "price": 5499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454538751-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454538751-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1454500765", "title": "Ventilador Cooler Fan De Capa 40x40x10 24v", "stock": 33, "price": 5999.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1454500765-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454500765-F.jpg", "cat": "Coolers & Ventiladores"}, {"id": "MLA1932118458", "title": "3x Nozzle Boquilla Ender K1 / Max / V3 Ke", "stock": 18, "price": 9999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932118458-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932118458-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1932067186", "title": "3x Nozzle Boquilla Ender V3 Se / Ender 7", "stock": 28, "price": 8999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932067186-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932067186-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1477174795", "title": "Cama Base Magnetica Ender-3 V3 Se / V3 Ke / K1", "stock": 13, "price": 40999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1477174795-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1477174795-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1970316862", "title": "Pico Nozzle Tipo Creality Unicorn 1.75mm", "stock": 22, "price": 14999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1970316862-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970316862-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA2028408246", "title": "Hotend Ender 3 / V2 / Pro + Nozzles De Regalo", "stock": 44, "price": 11999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2028408246-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2028408246-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2092522312", "title": "Pico Nozzle K2 Plus Unicorn 1.75mm", "stock": 19, "price": 14999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2092522312-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2092522312-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1970289480", "title": "Kit Hotend Completo Ender-3 V3 / V3 Plus", "stock": 20, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1970289480-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970289480-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2017682688", "title": "Termistor 100k 3950ntc Ender-3 / Pro / V2", "stock": 46, "price": 4499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2017682688-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2017682688-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1476077519", "title": "Kit Teflon (100 Cm) + Acoples Pc4-m6 / Pc4-m10", "stock": 59, "price": 8499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1476077519-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1476077519-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1971174052", "title": "Tubo Teflon Capricorn Creality Original ( 100cm )", "stock": 12, "price": 23999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971174052-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971174052-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1454526205", "title": "Hotend Volcano Artillery X1 / X2 / Genius / Pro", "stock": 29, "price": 21499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454526205-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454526205-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2201492174", "title": "Acople Racor Pasante Pc4-m10 ( 4mm )", "stock": 72, "price": 2899.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2201492174-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2201492174-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1454538677", "title": "Hotend Sprite Ender 3-s1 / Pro / Cr10 Smart Pro", "stock": 11, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454538677-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454538677-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1511640691", "title": "Acople Racor Pasante Pc4-m6 ( 4mm )", "stock": 94, "price": 2899.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1511640691-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1511640691-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1932106406", "title": "Kit Completo Hotend Mk8 Cr10 Ender 3 / V2 / Pro", "stock": 30, "price": 33000.01, "url": "https://articulo.mercadolibre.com.ar/-MLA1932106406-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932106406-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1972838648", "title": "Resistencia Ceramica Ender K1 / K1c / K1 Max / Ke", "stock": 26, "price": 11999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1972838648-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1972838648-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1511655363", "title": "Cama Base Magnetica Peo + Pet Ender-3 V3 Se / K1", "stock": 7, "price": 34999.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1511655363-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1511655363-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1512049623", "title": "Pico Nozzle Anycubic Kobra 3 / Kobra S1", "stock": 22, "price": 4379.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1512049623-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1512049623-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1477085517", "title": "Kit Hotend Completo Ender K1c / K1 / K1 Max", "stock": 4, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1477085517-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1477085517-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1970304336", "title": "3x Pico Nozzle Ender 3 Neo / V2 Neo ( Cr6-se )", "stock": 13, "price": 6499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1970304336-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970304336-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1932072966", "title": "Kit 4x Resorte Reforzado Para Cama Caliente  Xprinted", "stock": 9, "price": 4999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932072966-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932072966-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1971177170", "title": "Nozzle De Acero 0.4mm Bambulab A1 / A1 Mini", "stock": 10, "price": 5799.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971177170-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971177170-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1486289341", "title": "Nozzle Teflonado 0.4mm Mk8 Ender 3", "stock": 27, "price": 3749.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1486289341-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1486289341-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA2200570536", "title": "Cama Base Magnetica Peo + Pet 235x235mm Ender", "stock": 31, "price": 34999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2200570536-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2200570536-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1464731363", "title": "3x Nozzle De Acero 0.4mm Ender K1 / Max / V3 Ke", "stock": 13, "price": 18999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1464731363-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1464731363-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA2013318776", "title": "Kit Poleas Doble Engranaje Ender K1 / 3 V3 Series", "stock": 2, "price": 20849.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2013318776-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2013318776-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1973891242", "title": "Barrel Bi-metal 1.75mm M6 Ender S1 / S1 Pro", "stock": 3, "price": 9299.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1973891242-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1973891242-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA2188795370", "title": "Kit Completo De Mejora De Hotend Ender Series", "stock": 10, "price": 24999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2188795370-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2188795370-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1974096080", "title": "Kit Resistencia + Termistor Ender-3 S1 / S1 Pro", "stock": 6, "price": 10999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1974096080-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1974096080-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1463881427", "title": "Cama Magnetica 310x310mm Artillery Doble Cara", "stock": 5, "price": 69999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1463881427-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1463881427-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA2205958350", "title": "Hotend Completo Original Creality Ender-3 V2", "stock": 5, "price": 84999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2205958350-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2205958350-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1454500137", "title": "Kit Completo Extrusor Directo Ender-3 / V2 / Pro", "stock": 15, "price": 92999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454500137-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454500137-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1681490243", "title": "Pinza Alicate Electronico Impresion 3d", "stock": 30, "price": 8499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1681490243-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1681490243-F.jpg", "cat": "Herramientas & Consumibles"}, {"id": "MLA1468244793", "title": "Cama Base Magnetica Bambu Lab A1 Mini Doble Cara", "stock": 2, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1468244793-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1468244793-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1464639997", "title": "Termistor Ender-3 V3 Ke / K1c / K1 / K1 Max", "stock": 20, "price": 8999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1464639997-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1464639997-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1932647192", "title": "Barrel Heatbreak Bi-metal M6 M7", "stock": 1, "price": 7749.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932647192-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932647192-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1974669994", "title": "Barrel Bi-metal Artillery X1 / X2 / Genius / Pro", "stock": 10, "price": 11999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1974669994-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1974669994-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1973825724", "title": "Hotend Extrusor Cr6-se / Cr6-max / Cr-5 Pro", "stock": 2, "price": 21999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1973825724-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1973825724-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1974040968", "title": "Bloque Calefactor Ender-3 S1 / S1 Pro / S1 Plus", "stock": 3, "price": 5999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1974040968-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1974040968-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA2844147270", "title": "Base Magnética Flexible Ender-3 Creality Original", "stock": 14, "price": 36499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2844147270-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2844147270-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1932144774", "title": "Kit Hotend Cr-10s Pro / Cr-10s Pro V2 / Cr-10 Max", "stock": 2, "price": 35999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932144774-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932144774-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2021020702", "title": "Placa Bigtreetech Skr Mini E3 V3 32 Bits Ender 3", "stock": 15, "price": 91999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2021020702-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2021020702-F.jpg", "cat": "Electrónica"}, {"id": "MLA2092697074", "title": "Kit Hotend Completo Creality Ender 5 S1", "stock": 10, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2092697074-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2092697074-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1681359799", "title": "Barra De Pegamento Pvp Adhesivo Para Impresora 3d", "stock": 4, "price": 7799.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1681359799-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1681359799-F.jpg", "cat": "Herramientas & Consumibles"}, {"id": "MLA3505913630", "title": "Bambu Lab A1 Series Hotend Bambu A1 Nozzle Acero Endurecido 0.4 Mm", "stock": 6, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA3505913630-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_3505913630-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1971350658", "title": "Kit Hotend Tipo Bambu Lab X1 Y P1 Series", "stock": 2, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971350658-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971350658-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1970264684", "title": "Cama Plataforma De Vidrio Carborundum 235x235mm", "stock": 7, "price": 36999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1970264684-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970264684-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1670540475", "title": "Kit Hotend Para Anycubic Kobra S1 / S1 Combo", "stock": 16, "price": 27999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1670540475-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1670540475-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1970251156", "title": "Cama Base Magnética Bambu A1 257x257mm Doble Cara", "stock": 2, "price": 49999.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1970251156-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970251156-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1672630491", "title": "Kit Hotend Ender 3 V3 Se Creality Original", "stock": 9, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1672630491-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1672630491-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2200609462", "title": "Cama Base Magnetica 257x257mm Pey + Pey", "stock": 1, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2200609462-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2200609462-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA2861972712", "title": "Hotend Creality Ender-3 Neo / V2 Neo Original", "stock": 3, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2861972712-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2861972712-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1668020005", "title": "Hotend Bambu Lab A1 Original 0.4 ( 0.2 A 0.8mm )", "stock": 6, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1668020005-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1668020005-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1667877369", "title": "Hotend Bambu Lab A1 Original ( 0.2 A 0.8mm )", "stock": 2, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1667877369-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1667877369-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1971218012", "title": "Hotend Disipador De Aluminio Ender Series", "stock": 9, "price": 5199.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971218012-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971218012-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2831552594", "title": "Hotend Bambu Lab A1 Original ( 0.2 A 0.8mm )", "stock": 5, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2831552594-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2831552594-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA3505913636", "title": "Boquilla Bamboo Lab Hotend De Acero Endurecido De 0,4 Mm A 0,8 Mm, Voltaje De Funcionamiento A1 De 0,8 Mm", "stock": 2, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA3505913636-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_3505913636-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1670514193", "title": "Termistor Sensor Para Artillery X3 / X4 Series", "stock": 20, "price": 9799.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1670514193-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1670514193-F.jpg", "cat": "Termistores & Resistencias"}];
 
-// Orden de categorías en los tabs
-const CATS = ['Camas magnéticas','Hotends & Extrusores','Nozzles / Boquillas','Acoples & Accesorios','Termistores & Resistencias','Coolers & Ventiladores','Herramientas & Consumibles','Electrónica'];
-
-const gridEl = document.getElementById('prod-grid');
-const tabsEl = document.getElementById('filter-tabs');
-
-function formatPrice(p) {
-  return '$' + Math.round(p).toLocaleString('es-AR');
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-// Cache de thumbnails y URLs reales
-const imgCache = {};
-const urlCache = {};
-
-// Cuenta cuántos productos hay por categoría
+// Cuenta productos por categoría y rellena los contadores del hero y tiles
 function countByCat(cat) {
   return PRODUCTS.filter(p => p.cat === cat).length;
 }
-
-// Construye una tarjeta de producto
-function productCard(p) {
-  const inStock = p.stock > 0;
-  const img = imgCache[p.id] || p.img;
-  const href = urlCache[p.id] || p.url;
-  return `
-    <a class="prod-card" data-id="${p.id}" href="${href}" target="_blank" rel="noopener">
-      <div class="pc-img">
-        <img class="ml-img" data-item="${p.id}" src="${img}" alt="${escapeHtml(p.title)}" loading="lazy"
-             onerror="this.style.opacity=0.15;this.onerror=null;">
-        <span class="pc-stock ${inStock ? 'in' : 'out'}">${inStock ? 'STOCK' : 'AGOTADO'}</span>
-      </div>
-      <div class="pc-body">
-        <div class="pc-cat">${escapeHtml(p.cat)}</div>
-        <h4>${escapeHtml(p.title)}</h4>
-        <div class="pc-price">${formatPrice(p.price)}</div>
-        <div class="pc-go">
-          Ver en Mercado Libre
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
-      </div>
-    </a>`;
-}
-
-// Renderiza la grilla según la categoría ('all' o un nombre de CATS)
-function renderGrid(cat) {
-  const list = (cat === 'all') ? PRODUCTS : PRODUCTS.filter(p => p.cat === cat);
-  if (!list.length) {
-    gridEl.innerHTML = '<div class="no-results">No hay productos en esta categoría por ahora.</div>';
-    return;
-  }
-  gridEl.innerHTML = list.map(productCard).join('');
-}
-
-// Marca el tab activo (o ninguno si no existe)
-function setActiveTab(cat) {
-  tabsEl.querySelectorAll('.ftab').forEach(t => {
-    t.classList.toggle('active', t.dataset.cat === cat);
-  });
-}
-
-// Construye los tabs de filtro dinámicamente
-function buildTabs() {
-  let html = `<button class="ftab active" data-cat="all">Todos (${PRODUCTS.length})</button>`;
-  CATS.forEach(cat => {
-    const n = countByCat(cat);
-    if (n === 0) return; // no mostramos categorías vacías
-    html += `<button class="ftab" data-cat="${escapeHtml(cat)}">${escapeHtml(cat)} (${n})</button>`;
-  });
-  tabsEl.innerHTML = html;
-
-  tabsEl.querySelectorAll('.ftab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const cat = tab.dataset.cat;
-      setActiveTab(cat);
-      renderGrid(cat);
-    });
-  });
-}
-
-// Filtra el catálogo y baja hasta él (para tarjetas del hero y links del footer)
-function filterAndScroll(cat) {
-  setActiveTab(cat);
-  renderGrid(cat);
-  document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Rellena los contadores de las tarjetas del hero
-function fillHeroCounts() {
-  document.querySelectorAll('[data-cat-count]').forEach(el => {
-    const cat = el.dataset.catCount;
-    el.textContent = countByCat(cat);
-  });
-}
-
-// Conecta las tarjetas de categoría del hero.
-// - Las que tienen data-guide navegan a su página informativa (dejamos pasar el click normal).
-// - Las que tienen data-cat filtran el catálogo en la misma página.
-function wireHeroCards() {
-  document.querySelectorAll('.hcat-card[data-cat]').forEach(card => {
-    card.addEventListener('click', (e) => {
-      e.preventDefault();
-      filterAndScroll(card.dataset.cat);
-    });
-  });
-  // Las tarjetas con data-guide (ej. Nozzles) usan su href normal hacia /guias/...:
-  // no les agregamos listener, el navegador sigue el enlace.
-}
-
-// Conecta los links de categoría del footer
-function wireFooterLinks() {
-  document.querySelectorAll('.footer-col a[data-cat]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      filterAndScroll(link.dataset.cat);
-    });
-  });
-}
-
-// Precarga thumbnails y permalinks reales desde el proxy /api/ml-images
-async function preloadMLData() {
-  try {
-    const res = await fetch('/api/ml-images');
-    if (!res.ok) return;
-    const data = await res.json();
-    // data es un objeto { "MLA...": { thumbnail, permalink }, ... }
-    Object.entries(data).forEach(([id, item]) => {
-      if (item.thumbnail) imgCache[id] = item.thumbnail;
-      if (item.permalink) urlCache[id] = item.permalink;
-    });
-  } catch (e) { return; }
-
-  // Actualizar imágenes ya renderizadas
-  document.querySelectorAll('.ml-img').forEach(img => {
-    const id = img.dataset.item;
-    if (imgCache[id]) { img.src = imgCache[id]; img.style.opacity = 1; }
-  });
-  // Actualizar links
-  document.querySelectorAll('.prod-card[data-id]').forEach(card => {
-    const id = card.dataset.id;
-    if (urlCache[id]) card.href = urlCache[id];
-  });
-}
-
-// --- Init ---
-buildTabs();
-fillHeroCounts();
-wireHeroCards();
-wireFooterLinks();
-renderGrid('all');
-preloadMLData();
+document.querySelectorAll('[data-cat-count]').forEach(el => {
+  const cat = el.getAttribute('data-cat-count');
+  const n = countByCat(cat);
+  el.textContent = n + (n === 1 ? ' producto' : ' productos');
+});
 </script>
 
 </body>
