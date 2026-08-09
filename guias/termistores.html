@@ -182,11 +182,12 @@
   <nav>
     <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
     <div class="nav-links">
-      <a href="/#catalogo">Catálogo</a>
-      <a href="/#mayoristas">Mayoristas</a>
-      <a href="/#contacto">Contacto</a>
+      <a href="/catalogo.html">Catálogo</a>
+      <a href="/#guias">Guías</a>
+      <a href="/comunidad.html">Comunidad</a>
+      <a href="/contacto.html">Contacto</a>
     </div>
-    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
   </nav>
 </header>
 
@@ -343,21 +344,21 @@
       <p>Los dos forman un circuito de control: el termistor mide, la placa compara con la temperatura que pediste y le da más o menos corriente a la resistencia para mantenerla justa. Sin termistor, la impresora estaría "a ciegas"; sin resistencia, no habría calor.</p>
       <div class="callout">
         <div class="ct">Dato de seguridad</div>
-        <p>El termistor no es solo para calidad: es clave para la seguridad. Si detecta una lectura anormal, la impresora puede cortar el calentador y evitar un sobrecalentamiento peligroso (lo que se llama <em>thermal runaway</em>). Por eso un termistor mal conectado o dañado es un problema serio, no un detalle.</p>
+        <p>El termistor no es solo para calidad: es clave para la seguridad. Si detecta una lectura anormal, la impresora puede cortar el calentador y evitar una <em>fuga térmica descontrolada</em> (thermal runaway); esa función de corte se llama <em>thermal runaway protection</em>. Por eso un termistor mal conectado o dañado es un problema serio, no un detalle.</p>
       </div>
     </section>
 
     <!-- PIEZAS -->
     <section id="tipos">
       <div class="sec-label">Las piezas</div>
-      <h2>Resistencia, termistor y bloque</h2>
-      <p>Esta categoría agrupa las tres piezas del sistema térmico del hotend. Conviene saber qué hace cada una para pedir exactamente la que falla:</p>
+      <h2>Las piezas del sistema térmico</h2>
+      <p>Esta categoría agrupa las piezas del sistema térmico del hotend. Conviene saber qué hace cada una para pedir exactamente la que falla:</p>
 
       <div class="type-grid">
         <div class="type-card">
           <div class="tt">Resistencia</div>
           <div class="tsub">Cartucho calefactor · Genera calor</div>
-          <p>El cartucho cilíndrico que calienta el bloque. Viene en distintos voltajes (12 V o 24 V) y potencias (típicamente 40 W o 50 W). Es fundamental que coincida con el voltaje de tu impresora: una resistencia de 12 V en una impresora de 24 V se quema, y una de 24 V en una de 12 V casi no calienta.</p>
+          <p>El cartucho cilíndrico que calienta el bloque. Viene en distintos voltajes (12 V o 24 V) y potencias (típicamente 40 W o 50 W). Es fundamental que coincida con el voltaje de tu impresora: una resistencia de 12 V conectada a 24 V consume cuatro veces su potencia y se quema casi al instante (con riesgo de dañar la placa), y una de 24 V en una de 12 V apenas calienta.</p>
           <div class="tmeta">
             <span class="type-tag good">12 V / 24 V</span>
             <span class="type-tag warn">Ojo con el voltaje</span>
@@ -366,7 +367,7 @@
         <div class="type-card">
           <div class="tt">Termistor</div>
           <div class="tsub">Sensor · Mide temperatura</div>
-          <p>El sensor que mide el calor. El más común en impresoras 3D es el <strong>100K NTC</strong> (a veces indicado como 3950): su resistencia baja a medida que sube la temperatura, y la placa traduce eso a grados. Tiene que ser del tipo que espera tu firmware para leer bien.</p>
+          <p>El sensor que mide el calor. El más común en impresoras 3D es el <strong>100K NTC</strong> (muchas veces especificado como "100K 3950", donde 3950 es una característica de la curva del sensor): su resistencia baja a medida que sube la temperatura, y la placa traduce eso a grados. Tiene que ser del tipo que espera tu firmware para leer bien.</p>
           <div class="tmeta">
             <span class="type-tag good">100K NTC</span>
             <span class="type-tag good">Universal</span>
@@ -404,7 +405,7 @@
       <p>Con estas piezas hay dos cosas que no podés equivocar: el voltaje y la compatibilidad con tu impresora. Andá en este orden.</p>
 
       <h3>Paso 1 — El voltaje de tu impresora (12 V o 24 V)</h3>
-      <p>Este es el punto crítico de la resistencia. Tu impresora funciona a <strong>12 V o 24 V</strong> y la resistencia tiene que ser de ese mismo voltaje. Poner el voltaje equivocado no es un detalle: una resistencia de 12 V conectada a 24 V se sobrecalienta y se quema; una de 24 V en una de 12 V nunca llega a la temperatura. La mayoría de las impresoras modernas son de 24 V, pero verificá la tuya.</p>
+      <p>Este es el punto crítico de la resistencia. Tu impresora funciona a <strong>12 V o 24 V</strong> y la resistencia tiene que ser de ese mismo voltaje. Poner el voltaje equivocado no es un detalle: al doblar el voltaje, la potencia se cuadruplica, así que una resistencia de 12 V conectada a 24 V se sobrecalienta y se quema casi al instante, con riesgo real de dañar la placa o incluso provocar fuego. Al revés, una de 24 V en una de 12 V recibe apenas un cuarto de su potencia y nunca llega a la temperatura. La mayoría de las impresoras modernas son de 24 V, pero verificá la tuya.</p>
       <div class="callout">
         <div class="ct">Antes de comprar</div>
         <p>Confirmá el <strong>voltaje</strong> y el <strong>modelo exacto</strong> de tu impresora. Si no estás seguro, decinos qué impresora tenés y te confirmamos la resistencia y el termistor que le corresponden.</p>
@@ -422,7 +423,7 @@
 
       <div class="callout">
         <div class="ct">Error común</div>
-        <p>Comprar la resistencia sin fijarse en el voltaje. Es el error más frecuente y el más caro: una resistencia de 24 V en una impresora de 12 V simplemente no calienta lo suficiente, y al revés, se quema. Siempre confirmá 12 V o 24 V antes de comprar.</p>
+        <p>Confundir el sensor con el calentador al pedir el repuesto. El <strong>termistor mide</strong> y la <strong>resistencia calienta</strong>: son piezas distintas y no intercambiables. Si la impresora no calienta, suele ser la resistencia; si da error de temperatura o lecturas raras, suele ser el termistor. Ante la duda, el kit con ambas es lo más seguro.</p>
       </div>
     </section>
 
@@ -432,7 +433,7 @@
       <h2>Cómo saber cuándo fallan</h2>
       <p>Estas piezas no se "gastan" como un nozzle, pero se dañan: los cables se fatigan con el movimiento del cabezal, entra plástico, o simplemente fallan con el tiempo. Señales típicas y qué suele indicar cada una:</p>
       <ul>
-        <li><strong>Error de termistor / "thermal runaway" al arrancar.</strong> La impresora corta y avisa. Casi siempre es el termistor: desconectado, con un cable cortado o dañado.</li>
+        <li><strong>Error de termistor / "thermal runaway" al arrancar.</strong> La impresora corta y avisa. Lo más común es el termistor (desconectado, con un cable cortado o dañado, o salido del bloque), aunque también puede saltar si la resistencia se aflojó de su lugar o tiene un cable roto.</li>
         <li><strong>La temperatura sube muy lento o no llega.</strong> Suele ser la resistencia: perdió potencia, tiene un cable flojo, o es de un voltaje que no corresponde.</li>
         <li><strong>Lecturas que saltan o son erráticas.</strong> Termistor con contacto intermitente, cable pelado o mal fijado en el bloque.</li>
         <li><strong>Plástico acumulado sobre el bloque</strong> que envuelve la resistencia o el termistor: conviene limpiar y revisar que ambos queden bien asentados.</li>
@@ -454,7 +455,7 @@
         <div class="section-label">Disponibles</div>
         <h2>Repuestos en stock</h2>
       </div>
-      <a class="link-all" href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">
+      <a class="link-all" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">
         Ver todos en ML <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
       </a>
     </div>
@@ -468,11 +469,10 @@
     <h2>¿No sabés cuál va en tu impresora?</h2>
     <p>Decinos el modelo y el voltaje de tu impresora y te confirmamos la resistencia y el termistor correctos antes de que compres. Respondemos rápido por WhatsApp.</p>
     <div class="cta-actions">
-      <a class="btn-main" href="https://wa.me/541171585143?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20termistor%20o%20resistencia." target="_blank" rel="noopener">
+      <a class="btn-main" href="https://wa.me/5491171585143?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20un%20termistor%20o%20resistencia." target="_blank" rel="noopener">
         Consultar por WhatsApp
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a class="btn-sec" href="/#catalogo">Volver al catálogo</a>
     </div>
   </div>
 </section>
@@ -482,15 +482,16 @@
     <div class="footer-inner">
       <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="" style="height:16px;">XPRINTED</a>
       <div class="footer-links">
-        <a href="/#catalogo">Catálogo</a>
-        <a href="/#mayoristas">Mayoristas</a>
-        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://listado.mercadolibre.com.ar/_CustId_xprinted" target="_blank" rel="noopener">Mercado Libre</a>
+        <a href="/catalogo.html">Catálogo</a>
+        <a href="/comunidad.html">Comunidad</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/contacto.html">Contacto</a>
+        <a href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Mercado Libre</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© XPRINTED 2026. Todos los derechos reservados.</span>
-      <span>Buenos Aires, Argentina</span>
+      <span>Tienda online · Envíos a todo el país</span>
     </div>
   </div>
 </footer>
