@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — XPRINTED | WhatsApp, Instagram y email</title>
+<meta name="description" content="Contactá a XPRINTED por WhatsApp, Instagram o email. Tienda 100% online de repuestos para impresoras 3D, sin local a la calle. Envíos a todo el país por Mercado Envíos Full.">
+<link rel="icon" type="image/png" href="/assets/logo_icon.png">
+<link rel="canonical" href="https://xprinted-web.vercel.app/contacto.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contacto — XPRINTED">
+<meta property="og:description" content="WhatsApp, Instagram, email y tienda de Mercado Libre. Tienda online de repuestos 3D.">
+<meta property="og:site_name" content="XPRINTED">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://xprinted-web.vercel.app/contacto.html">
+<meta property="og:image" content="https://xprinted-web.vercel.app/assets/logo_icon.png">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --bg2:#111113; --bg3:#191919;
+    --line:#222224; --white:#F0F0EE; --muted:#666668; --dim:#3A3A3C;
+    --fd:'Barlow Condensed',sans-serif;
+    --fb:'Inter',sans-serif;
+    --fm:'JetBrains Mono',monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:var(--fb);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  ::selection{background:var(--white);color:var(--bg);}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  nav{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .logo{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-weight:900;font-size:1.15rem;letter-spacing:0.06em;}
+  .logo img{height:16px;width:auto;}
+  .nav-links{display:flex;gap:28px;font-size:0.86rem;color:var(--muted);}
+  .nav-links a{transition:color .15s;} .nav-links a:hover{color:var(--white);}
+  .nav-cta{background:var(--white);color:var(--bg);font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:2px;transition:opacity .15s;}
+  .nav-cta:hover{opacity:0.88;}
+
+  /* HERO SPLIT */
+  .hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
+  .hero-left{
+    padding:80px 56px;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-right{
+    padding:48px 40px;background:var(--bg2);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hcat-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--line);border:1px solid var(--line);
+    width:100%;
+  }
+  .hcat-card{
+    background:var(--bg);padding:28px 24px;
+    display:flex;flex-direction:column;gap:12px;
+    transition:background .15s;
+    cursor:pointer;
+  }
+  .hcat-card:hover{background:var(--bg3);}
+  .hcat-icon{
+    width:38px;height:38px;border:1px solid var(--line);border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hcat-icon svg{width:18px;height:18px;stroke:var(--muted);}
+  .hcat-card:hover .hcat-icon svg{stroke:var(--white);}
+  .hcat-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:0.03em;color:var(--white);line-height:1.1;}
+  .hcat-count{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.04em;}
+  .hcat-count::before{content:'';margin-right:4px;}
+  .hero-label{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .hero-label::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.35;}
+  .hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(5rem,11vw,10rem);line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:28px;}
+  .hero h1 em{font-style:normal;color:#555;}
+  .hero-sub{font-size:1rem;color:var(--muted);max-width:460px;line-height:1.65;margin-bottom:30px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
+  .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:7px;transition:opacity .15s,transform .15s;white-space:nowrap;}
+  .btn-main:hover{opacity:0.9;transform:translateY(-1px);}
+  .btn-main svg,.btn-sec svg{width:12px;height:12px;}
+  .btn-sec{border:1px solid var(--dim);color:var(--white);font-weight:600;font-size:0.88rem;padding:11px 22px;border-radius:2px;transition:border-color .15s;}
+  .btn-sec:hover{border-color:#555;}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);padding-top:28px;gap:0;}
+  .hstat .n{font-family:var(--fd);font-size:2.8rem;font-weight:900;color:var(--white);line-height:1;display:block;margin-bottom:5px;}
+  .hstat .l{font-family:var(--fm);font-size:0.65rem;color:var(--muted);letter-spacing:0.07em;text-transform:uppercase;}
+  .hstat:not(:last-child){border-right:1px solid var(--line);margin-right:24px;padding-right:24px;}
+
+  /* ORIGINALES STRIP */
+  .orig-strip{background:var(--bg2);border-bottom:1px solid var(--line);padding:18px 0;}
+  .orig-inner{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+  .orig-label{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}
+  .orig-sep{width:1px;height:22px;background:var(--line);flex-shrink:0;}
+  .orig-brands{display:flex;gap:8px;flex-wrap:wrap;}
+  .orig-badge{font-family:var(--fd);font-weight:700;font-size:0.88rem;letter-spacing:0.04em;text-transform:uppercase;border:1px solid var(--dim);color:#B0B0B0;padding:5px 14px;border-radius:2px;}
+
+  /* CATALOG */
+  .catalog{padding:64px 0;border-bottom:1px solid var(--line);}
+  .cat-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;}
+  .section-label{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+  .section-label::before{content:'';width:5px;height:5px;background:var(--muted);}
+  .section-title{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3vw,2.5rem);text-transform:uppercase;line-height:0.95;}
+  .link-all{font-family:var(--fm);font-size:0.72rem;color:var(--muted);border-bottom:1px solid var(--dim);padding-bottom:2px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;transition:color .15s,border-color .15s;}
+  .link-all:hover{color:var(--white);border-color:var(--white);}
+  .link-all svg{width:10px;height:10px;}
+
+  /* FILTER TABS */
+  .filter-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;}
+  .ftab{font-family:var(--fm);font-size:0.7rem;letter-spacing:0.04em;color:var(--muted);background:transparent;border:1px solid var(--line);padding:6px 14px;border-radius:2px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+  .ftab:hover{border-color:var(--dim);color:#C0C0C0;}
+  .ftab.active{background:var(--white);color:var(--bg);border-color:var(--white);font-weight:600;}
+
+  /* PRODUCT GRID */
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .prod-card{background:var(--bg);display:flex;flex-direction:column;transition:background .15s;cursor:pointer;}
+  .prod-card:hover{background:var(--bg2);}
+  .prod-card .pc-img{aspect-ratio:1/1;overflow:hidden;background:var(--bg2);position:relative;}
+  .prod-card .pc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:transform .3s,filter .3s;}
+  .prod-card:hover .pc-img img{transform:scale(1.05);filter:grayscale(0%);}
+  .pc-stock{position:absolute;top:8px;right:8px;font-family:var(--fm);font-size:0.58rem;font-weight:600;padding:3px 7px;border-radius:1px;}
+  .pc-stock.in{background:rgba(255,255,255,0.08);color:#A0A0A0;border:1px solid rgba(255,255,255,0.1);}
+  .pc-stock.out{background:rgba(200,0,0,0.15);color:#FF6B6B;border:1px solid rgba(200,0,0,0.2);}
+  .prod-card .pc-body{padding:18px;flex:1;display:flex;flex-direction:column;}
+  .pc-cat{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;}
+  .prod-card h4{font-family:var(--fd);font-weight:900;font-size:1.05rem;text-transform:uppercase;line-height:1.05;margin-bottom:10px;flex:1;}
+  .pc-price{font-family:var(--fd);font-weight:700;font-size:1.15rem;color:var(--white);margin-bottom:10px;}
+  .pc-go{font-family:var(--fm);font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:5px;border-top:1px solid var(--line);padding-top:10px;transition:color .15s;}
+  .pc-go svg{width:10px;height:10px;transition:transform .2s;}
+  .prod-card:hover .pc-go{color:var(--white);}
+  .prod-card:hover .pc-go svg{transform:translate(3px,0);}
+  .no-results{grid-column:1/-1;padding:60px;text-align:center;color:var(--muted);font-family:var(--fm);font-size:0.8rem;}
+
+  /* TRUST */
+  .trust{border-bottom:1px solid var(--line);}
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .trust-item{background:var(--bg);padding:36px 32px;}
+  .ti-icon{width:32px;height:32px;border:1px solid var(--line);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .ti-icon svg{width:16px;height:16px;stroke:var(--muted);}
+  .trust-item h3{font-family:var(--fd);font-weight:900;font-size:1.2rem;text-transform:uppercase;margin-bottom:8px;}
+  .trust-item p{font-size:0.84rem;color:var(--muted);line-height:1.6;}
+
+  /* WHOLESALE */
+  .wholesale{border-bottom:1px solid var(--line);}
+  .ws-inner{display:grid;grid-template-columns:1fr 1fr;min-height:320px;}
+  .ws-left{padding:56px 48px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:18px;}
+  .ws-left h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3vw,2.8rem);text-transform:uppercase;line-height:0.95;}
+  .ws-left p{font-size:0.88rem;color:var(--muted);max-width:340px;line-height:1.6;}
+  .ws-right{padding:56px 48px;background:var(--bg2);display:flex;flex-direction:column;justify-content:center;gap:0;}
+  .ws-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:0.88rem;}
+  .ws-row:first-child{border-top:1px solid var(--line);}
+  .ws-row .v{font-family:var(--fm);font-size:0.73rem;color:var(--muted);}
+  .ws-cta{margin-top:22px;}
+
+  /* CONTACT */
+  .contact-strip{background:var(--bg2);border-bottom:1px solid var(--line);padding:44px 0;}
+  .contact-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .contact-inner h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.5rem,2.5vw,2.1rem);text-transform:uppercase;}
+  .contact-inner p{font-size:0.86rem;color:var(--muted);margin-top:6px;}
+  .contact-actions{display:flex;gap:10px;}
+
+  /* FOOTER */
+  footer{padding:48px 0 24px;background:#080808;border-top:1px solid var(--line);}
+  .footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px;}
+  .footer-brand .logo{margin-bottom:12px;}
+  .footer-brand p{font-size:0.82rem;color:#444;max-width:230px;line-height:1.6;}
+  .footer-social{display:flex;gap:8px;margin-top:16px;}
+  .footer-social a{width:28px;height:28px;border:1px solid #1E1E1E;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:border-color .15s;}
+  .footer-social a:hover{border-color:#444;}
+  .footer-social svg{width:13px;height:13px;stroke:#555;}
+  .footer-col h5{font-family:var(--fm);font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;color:#333;margin-bottom:12px;}
+  .footer-col a{display:block;color:#555;font-size:0.84rem;margin-bottom:9px;transition:color .15s;cursor:pointer;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid #151515;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:var(--fm);font-size:0.66rem;color:#333;}
+
+  /* RESPONSIVE */
+  @media(max-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:760px){
+    .nav-links{display:none;}
+    nav,.wrap{padding-left:20px;padding-right:20px;}
+    .hero-split{grid-template-columns:1fr;}
+    .hero-left{border-right:none;border-bottom:1px solid var(--line);padding:52px 20px;}
+    .hero-right{padding:28px 20px;}
+    .hero-stats{grid-template-columns:repeat(2,1fr);gap:16px;}
+    .hstat:not(:last-child){border-right:none;margin-right:0;padding-right:0;}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .trust-grid,.ws-inner{grid-template-columns:1fr;}
+    .ws-left{border-right:none;border-bottom:1px solid var(--line);padding:36px 20px;}
+    .ws-right{padding:36px 20px;}
+    .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+    .contact-inner{flex-direction:column;align-items:flex-start;}
+  }
+  @media(max-width:500px){
+    .prod-grid{grid-template-columns:1fr 1fr;}
+    .footer-inner{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+
+<style>
+  .page-hero{padding:80px 0 48px;border-bottom:1px solid var(--line);}
+  .page-hero .kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+  .page-hero .kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
+  .page-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,7vw,5.5rem);line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:24px;}
+  .page-hero .lead{font-size:1.05rem;color:var(--muted);max-width:620px;line-height:1.7;}
+  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:48px 0;}
+  .contact-card{background:var(--bg);padding:34px 30px;display:flex;flex-direction:column;gap:14px;transition:background .15s;}
+  .contact-card:hover{background:var(--bg3);}
+  .contact-card .ci{width:44px;height:44px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;}
+  .contact-card .ci svg{width:22px;height:22px;stroke:var(--white);}
+  .contact-card .ct{font-family:var(--fd);font-weight:700;font-size:1.15rem;text-transform:uppercase;letter-spacing:0.02em;}
+  .contact-card .cv{color:var(--white);font-size:0.98rem;font-weight:600;}
+  .contact-card .cd{color:var(--muted);font-size:0.86rem;line-height:1.55;}
+  .contact-card .cgo{margin-top:auto;font-family:var(--fm);font-size:0.72rem;color:var(--muted);display:inline-flex;align-items:center;gap:6px;padding-top:8px;}
+  .contact-card:hover .cgo{color:var(--white);}
+  .contact-card .cgo svg{width:11px;height:11px;}
+  .info-box{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:34px 36px;margin-bottom:48px;}
+  .info-box h3{font-family:var(--fd);font-weight:700;font-size:1.4rem;text-transform:uppercase;margin-bottom:12px;}
+  .info-box p{color:var(--muted);line-height:1.7;max-width:640px;}
+  .info-box .hl{color:var(--white);font-weight:600;}
+  @media(max-width:720px){.contact-grid{grid-template-columns:1fr;}}
+</style>
+
+</head>
+<body>
+<header>
+  <nav>
+    <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
+    <div class="nav-links">
+      <a href="/catalogo.html">Catálogo</a>
+      <a href="/#guias">Guías</a>
+      <a href="/comunidad.html">Comunidad</a>
+      <a href="/contacto.html">Contacto</a>
+    </div>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+  </nav>
+</header>
+
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="kicker">Contacto</div>
+    <h1>Hablemos.</h1>
+    <p class="lead">La forma más rápida de llegar a nosotros es por WhatsApp: te respondemos consultas sobre productos, compatibilidad, envíos y precios mayoristas. Elegí el canal que más te convenga.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="contact-grid">
+      <a class="contact-card" href="https://wa.me/5491171585143" target="_blank" rel="noopener">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <div class="ct">WhatsApp</div>
+        <div class="cv">+54 9 11 7158-5143</div>
+        <div class="cd">La vía más rápida. Consultas, compatibilidad, precios mayoristas y seguimiento de compras.</div>
+        <span class="cgo">Escribir por WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="contact-card" href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+        <div class="ct">Instagram</div>
+        <div class="cv">@xprinted.arg</div>
+        <div class="cd">Novedades, productos nuevos y contenido sobre impresión 3D. Escribinos por DM también.</div>
+        <span class="cgo">Ver Instagram <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="contact-card" href="mailto:contacto@xprinted.com.ar">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></div>
+        <div class="ct">Email</div>
+        <div class="cv">contacto@xprinted.com.ar</div>
+        <div class="cd">Para consultas más largas, temas mayoristas o lo que necesites por escrito.</div>
+        <span class="cgo">Enviar un email <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="contact-card" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg></div>
+        <div class="ct">Mercado Libre</div>
+        <div class="cv">Tienda oficial XPRINTED</div>
+        <div class="cd">Comprá con la protección de Mercado Libre. Todos nuestros productos con envío Full.</div>
+        <span class="cgo">Ir a la tienda <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+    </div>
+
+    <div class="info-box">
+      <h3>Somos una tienda 100% online</h3>
+      <p><span class="hl">No tenemos local a la calle.</span> Trabajamos exclusivamente de forma online, lo que nos permite manejar mejores precios y un catálogo más amplio. Todas nuestras ventas se hacen a través de <span class="hl">Mercado Libre</span>, con la seguridad y protección al comprador que la plataforma ofrece, y con <span class="hl">envíos a todo el país por Mercado Envíos Full</span>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img src="/assets/logo_icon.png" alt="">XPRINTED
+        </a>
+        <p>Repuestos para impresoras 3D. Importación directa, +8 años vendiendo en Argentina. Tienda 100% online.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener" aria-label="Instagram de XPRINTED">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#555" stroke="none"/></svg>
+          </a>
+          <a href="https://wa.me/5491171585143" target="_blank" rel="noopener" aria-label="WhatsApp de XPRINTED">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="#555"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navegación</h5>
+        <a href="/catalogo.html">Catálogo</a>
+        <a href="/comunidad.html">Comunidad</a>
+        <a href="/faq.html">Preguntas frecuentes</a>
+        <a href="/contacto.html">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h5>Guías técnicas</h5>
+        <a href="/guias/camas.html">Camas magnéticas</a>
+        <a href="/guias/hotends.html">Hotends</a>
+        <a href="/guias/nozzles.html">Nozzles</a>
+        <a href="/guias/acoples.html">Acoples &amp; Accesorios</a>
+        <a href="/guias/termistores.html">Termistores</a>
+        <a href="/guias/coolers.html">Coolers &amp; Ventiladores</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <a href="https://wa.me/5491171585143" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:contacto@xprinted.com.ar">contacto@xprinted.com.ar</a>
+        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Mercado Libre</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© XPRINTED 2026. Todos los derechos reservados.</span>
+      <span>Tienda online · Envíos a todo el país</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
