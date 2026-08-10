@@ -38,13 +38,18 @@
   .wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
 
   /* NAV */
-  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
-  nav{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px;}
-  .logo{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-weight:900;font-size:1.15rem;letter-spacing:0.06em;}
-  .logo img{height:16px;width:auto;}
-  .nav-links{display:flex;gap:28px;font-size:0.86rem;color:var(--muted);}
-  .nav-links a{transition:color .15s;} .nav-links a:hover{color:var(--white);}
-  .nav-cta{background:#FFE600;color:#2D3277;font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:3px;transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;display:inline-flex;align-items:center;gap:7px;}
+  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.82);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid var(--line);transition:background .3s,border-color .3s;}
+  header.scrolled{background:rgba(10,10,10,0.94);border-bottom-color:#2a2a2c;}
+  nav{max-width:1240px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .logo{display:flex;align-items:center;gap:9px;font-family:var(--fd);font-weight:900;font-size:1.2rem;letter-spacing:0.05em;transition:opacity .15s;}
+  .logo:hover{opacity:0.82;}
+  .logo img{height:18px;width:auto;}
+  .nav-links{display:flex;gap:4px;font-size:0.85rem;}
+  .nav-links a{position:relative;color:var(--muted);padding:8px 16px;border-radius:5px;transition:color .2s,background .2s;font-weight:500;}
+  .nav-links a::after{content:'';position:absolute;left:16px;right:16px;bottom:4px;height:1.5px;background:#E0A94A;transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.16,1,.3,1);}
+  .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.03);}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-cta{background:#FFE600;color:#2D3277;font-weight:700;font-size:0.82rem;padding:10px 20px;border-radius:6px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;display:inline-flex;align-items:center;gap:8px;}
   .nav-cta::before{content:'';width:15px;height:15px;background:#2D3277;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center/contain no-repeat;flex-shrink:0;}
   .nav-cta:hover{transform:scale(1.05) translateY(-1px);box-shadow:0 8px 22px rgba(255,230,0,0.28);}
   .nav-cta:active{transform:scale(1.01);}
@@ -60,8 +65,9 @@
     width:760px;height:760px;border-radius:50%;pointer-events:none;
     background:radial-gradient(circle, rgba(224,169,74,0.10), rgba(224,169,74,0.03) 40%, transparent 66%);}
   .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;max-width:1100px;}
-  .hero-kicker{font-family:var(--fm);font-size:0.72rem;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-  .hero-kicker::before,.hero-kicker::after{content:'';width:28px;height:1px;background:var(--dim);}
+  .hero-badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);font-size:0.68rem;color:#b0b0ae;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:100px;padding:8px 18px;margin-bottom:26px;}
+  .hb-dot{width:6px;height:6px;border-radius:50%;background:#4ec87a;box-shadow:0 0 0 3px rgba(78,200,122,0.18);animation:dotBeat 2.4s ease-in-out infinite;}
+  @keyframes dotBeat{0%,100%{box-shadow:0 0 0 3px rgba(78,200,122,0.18);}50%{box-shadow:0 0 0 5px rgba(78,200,122,0.05);}}
   .hero-title{font-family:var(--fd);font-weight:900;text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;font-size:clamp(2.6rem,6.5vw,5.5rem);}
   .hero-title .dim{color:#4a4a4e;}
   .printer-stage{position:relative;width:100%;max-width:400px;margin:6px auto 0;perspective:1400px;}
@@ -69,11 +75,12 @@
   .printer-anim{width:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,0.6));}
   .hero-sub{font-size:1.02rem;color:var(--muted);max-width:520px;line-height:1.6;margin:8px auto 28px;}
   .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:0;}
-  .hero-strip{position:relative;z-index:2;display:flex;gap:0;margin-top:44px;border-top:1px solid var(--line);padding-top:20px;flex-wrap:wrap;justify-content:center;}
-  .hero-strip .hs{padding:0 28px;font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;border-right:1px solid var(--line);}
+  .hero-strip{position:relative;z-index:2;display:flex;margin-top:48px;border-top:1px solid var(--line);padding-top:24px;flex-wrap:wrap;justify-content:center;gap:0;}
+  .hero-strip .hs{display:flex;flex-direction:column;align-items:center;gap:5px;padding:0 40px;border-right:1px solid var(--line);}
   .hero-strip .hs:last-child{border-right:none;}
-  .hero-strip .hs b{color:var(--white);font-family:var(--fd);font-size:1.1rem;font-weight:900;margin-right:6px;}
-  @media(max-width:600px){.hero-strip .hs{padding:6px 16px;border-right:none;}}
+  .hero-strip .hs b{color:var(--white);font-family:var(--fd);font-size:1.6rem;font-weight:900;line-height:1;}
+  .hero-strip .hs span{font-family:var(--fm);font-size:0.64rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+  @media(max-width:600px){.hero-strip .hs{padding:8px 20px;border-right:none;}}
   .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:13px 28px;border-radius:3px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;white-space:nowrap;}
   .btn-main:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 10px 28px rgba(240,240,238,0.18);}
   .btn-main:active{transform:scale(1.01);}
@@ -367,7 +374,7 @@
   <!-- HERO -->
   <section class="hero-cine">
     <div class="hero-inner">
-      <div class="hero-kicker">+8 años · +50.000 ventas · Envíos rápidos a todo el país</div>
+      <div class="hero-badge"><span class="hb-dot"></span>Tienda oficial · +8 años en el mercado</div>
       <h1 class="hero-title"><span class="dim">QUE NUNCA</span> PARE<br>DE IMPRIMIR.</h1>
       <div class="printer-stage">
         <div class="printer-tilt" id="tilt">
@@ -443,9 +450,9 @@
         <a class="btn-sec" href="/#diagnostico">Diagnosticar mi impresora</a>
       </div>
       <div class="hero-strip">
-        <div class="hs"><b>170+</b>repuestos</div>
-        <div class="hs"><b>16</b>familias de impresora</div>
-        <div class="hs"><b>Envío</b>rápido a todo el país</div>
+        <div class="hs"><b>170+</b><span>repuestos y mejoras</span></div>
+        <div class="hs"><b>+50.000</b><span>ventas concretadas</span></div>
+        <div class="hs"><b>Envíos</b><span>a todo el país</span></div>
       </div>
     </div>
   </section>
@@ -538,30 +545,6 @@
           <p>Diámetros, materiales, compatibilidad de rosca y cuándo conviene cambiarlos.</p>
           <span class="gc-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- BANDA DE NÚMEROS -->
-  <section class="stat-band">
-    <div class="wrap">
-      <div class="stat-band-grid">
-        <div class="sb-item">
-          <div class="sb-n"><span class="count-up" data-target="8" data-prefix="+">+8</span></div>
-          <div class="sb-l">Años vendiendo</div>
-        </div>
-        <div class="sb-item">
-          <div class="sb-n"><span class="count-up" data-target="50000" data-prefix="+">+50.000</span></div>
-          <div class="sb-l">Ventas concretadas</div>
-        </div>
-        <div class="sb-item">
-          <div class="sb-n"><span class="count-up" data-target="170" data-suffix="+">170+</span></div>
-          <div class="sb-l">Productos en catálogo</div>
-        </div>
-        <div class="sb-item">
-          <div class="sb-n"><span class="count-up" data-target="16">16</span></div>
-          <div class="sb-l">Familias de impresora</div>
-        </div>
       </div>
     </div>
   </section>
@@ -779,6 +762,15 @@
 </footer>
 
 <script>
+/* ============ HEADER AL SCROLLEAR ============ */
+(function(){
+  const header = document.querySelector('header');
+  if(!header) return;
+  const onScroll = ()=>{ header.classList.toggle('scrolled', window.scrollY > 20); };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
 /* ============ REVEAL ON SCROLL + CONTADORES ANIMADOS ============ */
 (function(){
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -788,7 +780,7 @@
     '.home-cats .hc-head','.cat-tile','.guides-home .hc-head','.guide-card',
     '.diag-head','.diag-box','.picker-head','.picker-grid','.picker-result',
     '.steps .section-label','.step','.trust-item','.comm-inner','.ws-inner',
-    '.contact-inner','.stat-band','.orig-inner'
+    '.contact-inner','.orig-inner'
   ];
   const items = [];
   selectors.forEach(sel=>document.querySelectorAll(sel).forEach(el=>items.push(el)));
@@ -807,7 +799,8 @@
   } else {
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        if(e.isIntersecting){ e.target.classList.add('in'); }
+        else { e.target.classList.remove('in'); }
       });
     },{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
     items.forEach(el=>io.observe(el));
