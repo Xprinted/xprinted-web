@@ -12,11 +12,11 @@
 <meta property="og:site_name" content="XPRINTED">
 <meta property="og:locale" content="es_AR">
 <meta property="og:url" content="https://xprinted-web.vercel.app/">
-<meta property="og:image" content="https://xprinted-web.vercel.app/assets/og-home.png">
+<meta property="og:image" content="https://xprinted-web.vercel.app/assets/logo_icon.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="XPRINTED — Repuestos para impresoras 3D">
 <meta name="twitter:description" content="Hotends, nozzles, camas, termistores y más. Envío Full a todo el país.">
-<meta name="twitter:image" content="https://xprinted-web.vercel.app/assets/og-home.png">
+<meta name="twitter:image" content="https://xprinted-web.vercel.app/assets/logo_icon.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"XPRINTED","url":"https://xprinted-web.vercel.app/","logo":"https://xprinted-web.vercel.app/assets/logo_icon.png","description":"Repuestos y accesorios para impresoras 3D en Argentina.","areaServed":"AR","sameAs":["https://instagram.com/xprinted.arg"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,10 +89,6 @@
   .btn-sec{border:1px solid var(--dim);color:var(--white);font-weight:600;font-size:0.88rem;padding:12px 24px;border-radius:3px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),border-color .2s,background .2s;}
   .btn-sec:hover{border-color:#666;background:rgba(255,255,255,0.03);transform:scale(1.05) translateY(-2px);}
   .btn-sec:active{transform:scale(1.01);}
-  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);padding-top:28px;gap:0;}
-  .hstat .n{font-family:var(--fd);font-size:2.8rem;font-weight:900;color:var(--white);line-height:1;display:block;margin-bottom:5px;}
-  .hstat .l{font-family:var(--fm);font-size:0.65rem;color:var(--muted);letter-spacing:0.07em;text-transform:uppercase;}
-  .hstat:not(:last-child){border-right:1px solid var(--line);margin-right:24px;padding-right:24px;}
 
   /* ORIGINALES STRIP */
   .orig-strip{background:linear-gradient(90deg,var(--bg2),var(--bg) 65%);border-bottom:1px solid var(--line);padding:26px 0;}
@@ -208,15 +204,6 @@
   .reveal.in{opacity:1;transform:translateY(0);}
   .reveal.d1{transition-delay:.08s;} .reveal.d2{transition-delay:.16s;} .reveal.d3{transition-delay:.24s;} .reveal.d4{transition-delay:.32s;}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
-  /* ===== BANDA DE NÚMEROS ===== */
-  .stat-band{padding:64px 0;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 50% 50%, rgba(200,160,80,0.04), transparent 70%);}
-  .stat-band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .sb-item{background:var(--bg);padding:38px 24px;text-align:center;transition:background .2s;}
-  .sb-item:hover{background:var(--bg3);}
-  .sb-item .sb-n{font-family:var(--fd);font-weight:900;font-size:clamp(2.4rem,4.5vw,3.6rem);line-height:1;color:var(--white);letter-spacing:-0.01em;}
-  .sb-item .sb-n .u{color:#E0A94A;}
-  .sb-item .sb-l{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:10px;}
-  @media(max-width:760px){.stat-band-grid{grid-template-columns:repeat(2,1fr);}}
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
 
   /* ===== HOME v2 additions ===== */
@@ -299,10 +286,7 @@
   .btn-wa2 svg{width:18px;height:18px;}
 
 
-  /* ===== FONDO LÍNEAS DE CAPA ===== */
-  .layer-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.5;}
-  .layer-bg::before{content:'';position:absolute;inset:-50% 0;background:repeating-linear-gradient(0deg,transparent 0,transparent 5px,rgba(255,255,255,0.014) 5px,rgba(255,255,255,0.014) 6px);animation:layerScroll 22s linear infinite;}
-  @keyframes layerScroll{from{transform:translateY(0);}to{transform:translateY(6px);}}
+  /* ===== FONDO LÍNEAS DE CAPA ===== */}
 
   /* ===== IMPRESORA ANIMADA (isométrica) ===== */
   .printer-anim{width:100%;max-width:500px;margin:0 auto;}
@@ -316,7 +300,7 @@
   .iso-flow{animation:flowPulse .5s ease-in-out infinite;}
   .iso-glow{animation:glowPulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
   .iso-fan{animation:spinFan 1s linear infinite;transform-box:fill-box;transform-origin:center;}
-  @media(prefers-reduced-motion:reduce){.iso-head,.iso-piece,.iso-flow,.iso-glow,.iso-fan,.layer-bg::before{animation:none;}}
+  @media(prefers-reduced-motion:reduce){.iso-head,.iso-piece,.iso-flow,.iso-glow,.iso-fan{animation:none;}}
 
   /* ===== DIAGNOSTICADOR IA ===== */
   .diag{padding:72px 0;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 50% 0%,rgba(200,160,80,0.05),transparent 60%);}
@@ -391,8 +375,8 @@
     <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
     <div class="nav-links">
       <a href="/catalogo.html">Catálogo</a>
-      <a href="/#mejoras">Mejoras</a>
-      <a href="/#guias">Guías</a>
+      <a href="/mejoras.html">Mejoras</a>
+      <a href="/guias.html">Guías</a>
       <a href="/comunidad.html">Comunidad</a>
       <a href="/contacto.html">Contacto</a>
     </div>
@@ -405,7 +389,7 @@
   <!-- HERO -->
   <section class="hero-cine">
     <div class="hero-inner">
-      <div class="hero-badge"><span class="hb-dot"></span>Tienda oficial · +8 años en el mercado</div>
+      <div class="hero-badge"><span class="hb-dot"></span>Especialistas en impresión 3D · +8 años en el mercado</div>
       <h1 class="hero-title"><span class="dim">QUE NUNCA</span> PARE<br>DE IMPRIMIR.</h1>
       <div class="printer-stage">
         <div class="printer-tilt" id="tilt">
@@ -577,10 +561,11 @@
           <span class="gc-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
       </div>
+      <div style="margin-top:24px;">
+        <a href="/guias.html" style="font-family:var(--fm);font-size:0.82rem;color:var(--white);display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--dim);padding-bottom:3px;">Ver las 6 guías técnicas <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
   </section>
-
-  <!-- CÓMO COMPRAR -->
 
   <!-- DIAGNOSTICADOR IA -->
   <section class="diag" id="diagnostico">
@@ -665,7 +650,7 @@
             <span class="uc-tag">Barrel bi-metal</span>
             <span class="uc-tag">Hotend all-metal</span>
           </div>
-          <div class="uc-count"><b>12+</b> upgrades de hotend</div>
+          <div class="uc-count"><b>10+</b> upgrades de hotend</div>
         </div>
         <div class="up-card">
           <div class="uc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/><path d="M12 12v.01"/></svg></div>
@@ -686,7 +671,7 @@
             <span class="uc-tag">Drivers TMC2209</span>
             <span class="uc-tag">Doble eje Z</span>
           </div>
-          <div class="uc-count"><b>7+</b> upgrades de electrónica</div>
+          <div class="uc-count"><b>5+</b> upgrades de electrónica</div>
         </div>
         <div class="up-card">
           <div class="uc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 22a10 10 0 0 1 0-20"/></svg></div>
@@ -697,7 +682,7 @@
             <span class="uc-tag">Cámara Nebula</span>
             <span class="uc-tag">Ruedas POM</span>
           </div>
-          <div class="uc-count"><b>10+</b> mejoras y extras</div>
+          <div class="uc-count"><b>6+</b> mejoras y extras</div>
         </div>
         <div class="up-card">
           <div class="uc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
@@ -711,7 +696,7 @@
           <b>+41 mejoras disponibles</b>
           <span>Explorá todos los upgrades en el catálogo y llevá tu impresora al siguiente nivel.</span>
         </div>
-        <a class="btn-gold" href="/catalogo.html">Ver mejoras en el catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn-gold" href="/mejoras.html">Ver todas las mejoras <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </section>
@@ -844,6 +829,8 @@
       <div class="footer-col">
         <h5>Navegación</h5>
         <a href="/catalogo.html">Catálogo</a>
+        <a href="/mejoras.html">Mejoras</a>
+        <a href="/guias.html">Guías</a>
         <a href="/comunidad.html">Comunidad</a>
         <a href="/faq.html">Preguntas frecuentes</a>
         <a href="/contacto.html">Contacto</a>
@@ -917,34 +904,6 @@
     items.forEach(el=>io.observe(el));
   }
 
-  // Contador animado (para .count-up con data-target)
-  function animateCount(el){
-    const target = parseFloat(el.getAttribute('data-target'));
-    const suffix = el.getAttribute('data-suffix') || '';
-    const prefix = el.getAttribute('data-prefix') || '';
-    const dur = 1400; const start = performance.now();
-    function tick(now){
-      const p = Math.min((now-start)/dur, 1);
-      const eased = 1-Math.pow(1-p,3);
-      let val = Math.floor(eased*target);
-      el.textContent = prefix + val.toLocaleString('es-AR') + suffix;
-      if(p<1) requestAnimationFrame(tick);
-      else el.textContent = prefix + target.toLocaleString('es-AR') + suffix;
-    }
-    requestAnimationFrame(tick);
-  }
-  const counters = document.querySelectorAll('.count-up');
-  if(prefersReduced){
-    counters.forEach(el=>{
-      const t=parseFloat(el.getAttribute('data-target'));
-      el.textContent=(el.getAttribute('data-prefix')||'')+t.toLocaleString('es-AR')+(el.getAttribute('data-suffix')||'');
-    });
-  } else {
-    const cio = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); } });
-    },{threshold:0.5});
-    counters.forEach(el=>cio.observe(el));
-  }
 })();
 
 /* ============ EFECTO TILT 3D DE LA IMPRESORA (hero) ============ */
