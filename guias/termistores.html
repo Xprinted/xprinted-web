@@ -37,14 +37,21 @@
   .wrap-wide{max-width:1280px;margin:0 auto;padding:0 56px;}
 
   /* NAV */
-  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
-  nav{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px;}
-  .logo{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-weight:900;font-size:1.15rem;letter-spacing:0.06em;}
-  .logo img{height:16px;width:auto;}
-  .nav-links{display:flex;gap:28px;font-size:0.86rem;color:var(--muted);}
-  .nav-links a{transition:color .15s;} .nav-links a:hover{color:var(--white);}
-  .nav-cta{background:var(--white);color:var(--bg);font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:2px;transition:opacity .15s;}
-  .nav-cta:hover{opacity:0.88;}
+  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.82);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid var(--line);transition:background .3s,border-color .3s;}
+  header.scrolled{background:rgba(10,10,10,0.94);border-bottom-color:#2a2a2c;}
+  nav{max-width:1240px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .logo{display:flex;align-items:center;gap:9px;font-family:var(--fd);font-weight:900;font-size:1.2rem;letter-spacing:0.05em;transition:opacity .15s;}
+  .logo:hover{opacity:0.82;}
+  .logo img{height:18px;width:auto;}
+  .nav-links{display:flex;gap:4px;font-size:0.85rem;}
+  .nav-links a{position:relative;color:var(--muted);padding:8px 16px;border-radius:5px;transition:color .2s,background .2s;font-weight:500;}
+  .nav-links a::after{content:'';position:absolute;left:16px;right:16px;bottom:4px;height:1.5px;background:#E0A94A;transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.16,1,.3,1);}
+  .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.03);}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-cta{background:#FFE600;color:#2D3277;font-weight:700;font-size:0.82rem;padding:10px 20px;border-radius:6px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;display:inline-flex;align-items:center;gap:8px;}
+  .nav-cta::before{content:'';width:15px;height:15px;background:#2D3277;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center/contain no-repeat;flex-shrink:0;}
+  .nav-cta:hover{transform:scale(1.05) translateY(-1px);box-shadow:0 8px 22px rgba(255,230,0,0.28);}
+  .nav-cta:active{transform:scale(1.01);}
 
   /* BREADCRUMB */
   .breadcrumb{border-bottom:1px solid var(--line);background:var(--bg2);}
@@ -183,7 +190,8 @@
     <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
     <div class="nav-links">
       <a href="/catalogo.html">Catálogo</a>
-      <a href="/#guias">Guías</a>
+      <a href="/mejoras.html">Mejoras</a>
+      <a href="/guias.html">Guías</a>
       <a href="/comunidad.html">Comunidad</a>
       <a href="/contacto.html">Contacto</a>
     </div>
@@ -557,5 +565,14 @@ renderGrid();
 preloadMLData();
 </script>
 
+<script>
+(function(){
+  const header = document.querySelector('header');
+  if(!header) return;
+  const onScroll = ()=>{ header.classList.toggle('scrolled', window.scrollY > 20); };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>
