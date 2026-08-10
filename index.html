@@ -54,9 +54,17 @@
     display:flex;flex-direction:column;justify-content:center;
   }
   .hero-right{
-    padding:0;background:var(--bg2);
-    display:flex;align-items:stretch;justify-content:center;
+    padding:0;background:radial-gradient(ellipse at 50% 45%, rgba(200,160,80,0.06), var(--bg2) 62%);
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
   }
+  .hero-right::before{
+    content:'';position:absolute;inset:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:40px 40px;opacity:0.25;
+    -webkit-mask-image:radial-gradient(ellipse at 50% 45%, #000 30%, transparent 72%);
+    mask-image:radial-gradient(ellipse at 50% 45%, #000 30%, transparent 72%);
+  }
+  .hero-right .printer-wrap{position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;padding:40px;}
   .hcat-grid{
     display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:1px;
     background:var(--line);border-left:1px solid var(--line);
@@ -259,7 +267,7 @@
   @keyframes layerScroll{from{transform:translateY(0);}to{transform:translateY(6px);}}
 
   /* ===== IMPRESORA ANIMADA (isométrica) ===== */
-  .printer-anim{width:100%;max-width:440px;margin:0 auto;}
+  .printer-anim{width:100%;max-width:500px;margin:0 auto;}
   @keyframes headMove{0%{transform:translate(-42px,-24px);}25%{transform:translate(38px,-20px);}50%{transform:translate(30px,16px);}75%{transform:translate(-34px,20px);}100%{transform:translate(-42px,-24px);}}
   @keyframes grow{0%{transform:scaleY(0.02);}88%,100%{transform:scaleY(1);}}
   @keyframes flowPulse{0%,100%{opacity:0.9;}50%{opacity:0.4;}}
@@ -279,9 +287,11 @@
   .diag-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(2rem,4vw,3.2rem);text-transform:uppercase;line-height:0.95;margin-bottom:14px;}
   .diag-head p{color:var(--muted);line-height:1.6;}
   .diag-box{max-width:720px;margin:0 auto;background:var(--bg2);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
-  .diag-chips{display:flex;flex-wrap:wrap;gap:8px;padding:20px 22px 0;}
-  .diag-chip{font-size:0.8rem;color:var(--muted);background:var(--bg3);border:1px solid var(--line);border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .15s,color .15s;}
+  .diag-chips{display:flex;flex-wrap:wrap;gap:8px;padding:20px 22px 0;}  .diag-chip{font-size:0.8rem;color:var(--muted);background:var(--bg3);border:1px solid var(--line);border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .15s,color .15s;}
   .diag-chip:hover{border-color:#4a4a4c;color:var(--white);}
+  .diag-tip{display:flex;align-items:center;gap:9px;margin:14px 22px 0;padding:10px 14px;background:rgba(200,160,80,0.05);border:1px solid rgba(200,160,80,0.15);border-radius:5px;font-size:0.8rem;color:var(--muted);line-height:1.4;}
+  .diag-tip svg{width:15px;height:15px;stroke:#E0A94A;flex-shrink:0;}
+  .diag-tip strong{color:#d0d0ce;font-weight:600;}
   .diag-input-row{display:flex;gap:10px;padding:18px 22px 22px;}
   .diag-input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--white);font-family:var(--fb);font-size:0.95rem;padding:13px 16px;resize:none;min-height:48px;transition:border-color .15s;}
   .diag-input:focus{outline:none;border-color:#4a4a4c;}
@@ -308,8 +318,14 @@
   .picker{padding:72px 0;border-bottom:1px solid var(--line);}
   .picker-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px;}
   .picker-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.4vw,2.8rem);text-transform:uppercase;line-height:0.95;}
-  .picker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
-  .picker-btn{background:var(--bg);border:none;color:var(--white);font-family:var(--fb);padding:22px 18px;cursor:pointer;text-align:left;transition:background .15s;display:flex;flex-direction:column;gap:5px;}
+  .picker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .picker-btn{background:var(--bg);border:none;color:var(--white);font-family:var(--fb);padding:20px 18px;cursor:pointer;text-align:left;transition:background .15s,box-shadow .15s;display:flex;flex-direction:column;gap:6px;justify-content:flex-start;min-height:92px;position:relative;}
+  .picker-btn:hover{background:var(--bg3);}
+  .picker-btn::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .15s;}
+  .picker-btn:hover::after{background:#E0A94A;}
+  .picker-btn.active::after{background:#0A0A0A;}
+  @media(max-width:1000px){.picker-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:680px){.picker-grid{grid-template-columns:repeat(2,1fr);}}
   .picker-btn:hover{background:var(--bg3);}
   .picker-btn.active{background:var(--white);color:var(--bg);}
   .picker-btn .pb-name{font-family:var(--fd);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:0.02em;}
@@ -365,7 +381,8 @@
         </div>
       </div>
       <!-- RIGHT — impresora 3D animada -->
-      <div class="hero-right" style="flex-direction:column;gap:20px;padding:40px;">
+      <div class="hero-right">
+        <div class="printer-wrap">
         <div class="printer-anim">
           <svg viewBox="0 0 440 420" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Impresora 3D imprimiendo una pieza">
   <defs>
@@ -431,6 +448,7 @@
 </svg>
         </div>
         <div style="text-align:center;font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Repuestos para que nunca pare de imprimir</div>
+        </div>
       </div>
     </div>
   </section>
@@ -533,9 +551,9 @@
   <section class="diag" id="diagnostico">
     <div class="wrap">
       <div class="diag-head">
-        <div class="section-label kicker" style="display:inline-flex;">Asistente 3D</div>
+        <div class="section-label kicker" style="display:inline-flex;">Asistente 3D · con IA</div>
         <h2>¿Qué le pasa a tu<br>impresora?</h2>
-        <p>Contanos el problema y nuestro asistente te ayuda a diagnosticarlo, te dice qué revisar y qué repuesto podés necesitar. <strong style="color:#d0d0ce;">Para una mejor respuesta, decinos el modelo exacto de tu impresora y describí el problema con el mayor detalle posible</strong> (qué pasa, cuándo, con qué material).</p>
+        <p>Describí tu problema y el asistente te ayuda a diagnosticarlo en segundos.</p>
       </div>
       <div class="diag-box">
         <div class="diag-chips" id="diag-chips">
@@ -546,8 +564,12 @@
           <span class="diag-chip">El filamento no sale</span>
           <span class="diag-chip">Se despega la pieza</span>
         </div>
+        <div class="diag-tip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Para mejores resultados, incluí el <strong>modelo de tu impresora</strong> y el <strong>material</strong> que usás.
+        </div>
         <div class="diag-input-row">
-          <textarea class="diag-input" id="diag-input" placeholder="Ej: tengo una Ender 3 V2, imprimo con PLA y la primera capa no se pega a la cama, ya nivelé y sigue igual..." rows="1"></textarea>
+          <textarea class="diag-input" id="diag-input" placeholder="Ej: Ender 3 V2 con PLA, la primera capa no pega aunque ya nivelé..." rows="1"></textarea>
           <button class="diag-send" id="diag-send">
             Preguntar
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -558,7 +580,7 @@
           <div class="da-body" id="da-body"></div>
         </div>
       </div>
-      <p class="diag-note">Es una orientación general para ayudarte. Ante la duda, escribinos por WhatsApp y te asesoramos.</p>
+      <p class="diag-note">Orientación general. Ante la duda, escribinos por WhatsApp y te asesoramos.</p>
     </div>
   </section>
 
@@ -831,7 +853,7 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
     {name:"Anycubic Kobra", sub:"Anycubic", total:19, mejoras:4, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:5},{n:"Nozzles / Boquillas",c:2},{n:"Acoples & Accesorios",c:1},{n:"Termistores & Resistencias",c:1},{n:"Electrónica",c:1}]},
     {name:"Artillery Sidewinder / Genius", sub:"Artillery", total:24, mejoras:5, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:5},{n:"Acoples & Accesorios",c:4},{n:"Termistores & Resistencias",c:2},{n:"Nozzles / Boquillas",c:2},{n:"Camas magnéticas",c:1},{n:"Electrónica",c:1}]},
     {name:"Prusa i3 / MK", sub:"Prusa", total:14, mejoras:2, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:1},{n:"Nozzles / Boquillas",c:1},{n:"Acoples & Accesorios",c:1},{n:"Hotends & Extrusores",c:2}]},
-    {name:"Otras (Anet/Geeetech/Tronxy/Tevo)", sub:"Varias marcas", total:24, mejoras:2, cats:[{n:"Nozzles / Boquillas",c:5},{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:3},{n:"Termistores & Resistencias",c:2},{n:"Acoples & Accesorios",c:3},{n:"Electrónica",c:2}]}
+    {name:"Otras marcas", sub:"Anet · Geeetech · Tronxy · Tevo", total:24, mejoras:2, cats:[{n:"Nozzles / Boquillas",c:5},{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:3},{n:"Termistores & Resistencias",c:2},{n:"Acoples & Accesorios",c:3},{n:"Electrónica",c:2}]}
   ];
 
   PRINTERS.forEach((p)=>{
