@@ -320,6 +320,11 @@
   .picker-result .pr-title{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;margin-bottom:16px;}
   .picker-result .pr-cats{display:flex;flex-wrap:wrap;gap:10px;}
   .picker-result .pr-cat{background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:9px 16px;font-size:0.85rem;color:#d0d0ce;display:inline-flex;align-items:center;gap:8px;transition:border-color .15s,color .15s;}
+  .picker-result .pr-cat-n{font-family:var(--fm);font-size:0.68rem;color:var(--muted);background:var(--bg);border-radius:10px;padding:1px 7px;}
+  .picker-result .pr-cat:hover .pr-cat-n{color:var(--white);}
+  .picker-result .pr-sub-count{font-family:var(--fm);font-size:0.72rem;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:16px;margin-top:-8px;}
+  .picker-result .pr-upg{margin-top:16px;padding:12px 16px;background:rgba(200,160,80,0.06);border:1px solid rgba(200,160,80,0.2);border-radius:5px;font-size:0.88rem;color:#d0d0ce;}
+  .picker-result .pr-upg strong{color:#E0A94A;}
   .picker-result .pr-cat:hover{border-color:#4a4a4c;color:var(--white);}
   .picker-result .pr-cta{margin-top:20px;}
 
@@ -810,22 +815,26 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
   const result = document.getElementById('picker-result');
   if(!grid) return;
 
-  // Modelos y las categorías de repuestos que suelen necesitar
   const PRINTERS = [
-    {name:'Ender 3 / V2 / Pro', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas','Termistores & Resistencias','Acoples & Accesorios','Coolers & Ventiladores']},
-    {name:'Ender 3 V3 / SE / KE', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas','Termistores & Resistencias']},
-    {name:'Ender 5 / S1', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas']},
-    {name:'Creality K1 / K1 Max', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Termistores & Resistencias','Acoples & Accesorios']},
-    {name:'CR-10 / CR-6', sub:'Creality', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas']},
-    {name:'Bambu Lab A1 / Mini', sub:'Bambu Lab', cats:['Hotends & Extrusores','Nozzles / Boquillas','Camas magnéticas']},
-    {name:'Bambu Lab X1 / P1', sub:'Bambu Lab', cats:['Hotends & Extrusores','Nozzles / Boquillas']},
-    {name:'Anycubic Kobra', sub:'Anycubic', cats:['Hotends & Extrusores','Nozzles / Boquillas']},
-    {name:'Artillery X1 / X2 / Genius', sub:'Artillery', cats:['Hotends & Extrusores','Camas magnéticas','Termistores & Resistencias','Acoples & Accesorios']}
+    {name:"Ender 3 / Pro / V2 / Max", sub:"Creality", total:76, mejoras:24, cats:[{n:"Hotends & Extrusores",c:21},{n:"Acoples & Accesorios",c:13},{n:"Electrónica",c:11},{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:8},{n:"Nozzles / Boquillas",c:6},{n:"Coolers & Ventiladores",c:5},{n:"Termistores & Resistencias",c:3}]},
+    {name:"Ender 3 Neo / V2 Neo", sub:"Creality", total:41, mejoras:5, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:8},{n:"Acoples & Accesorios",c:8},{n:"Hotends & Extrusores",c:7},{n:"Electrónica",c:4},{n:"Coolers & Ventiladores",c:3},{n:"Nozzles / Boquillas",c:1},{n:"Termistores & Resistencias",c:1}]},
+    {name:"Ender 3 S1 / Pro / Plus", sub:"Creality", total:38, mejoras:5, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Acoples & Accesorios",c:9},{n:"Hotends & Extrusores",c:7},{n:"Camas magnéticas",c:6},{n:"Electrónica",c:4},{n:"Termistores & Resistencias",c:2},{n:"Coolers & Ventiladores",c:1}]},
+    {name:"Ender 3 V3 / SE / KE", sub:"Creality", total:44, mejoras:9, cats:[{n:"Hotends & Extrusores",c:12},{n:"Herramientas & Consumibles",c:9},{n:"Acoples & Accesorios",c:6},{n:"Camas magnéticas",c:5},{n:"Nozzles / Boquillas",c:4},{n:"Electrónica",c:4},{n:"Coolers & Ventiladores",c:2},{n:"Termistores & Resistencias",c:2}]},
+    {name:"Ender 5 / 6 / 7", sub:"Creality", total:70, mejoras:20, cats:[{n:"Hotends & Extrusores",c:18},{n:"Acoples & Accesorios",c:13},{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:9},{n:"Electrónica",c:8},{n:"Nozzles / Boquillas",c:6},{n:"Coolers & Ventiladores",c:4},{n:"Termistores & Resistencias",c:3}]},
+    {name:"Creality K1 / K2", sub:"Creality", total:39, mejoras:8, cats:[{n:"Hotends & Extrusores",c:14},{n:"Herramientas & Consumibles",c:9},{n:"Nozzles / Boquillas",c:6},{n:"Acoples & Accesorios",c:3},{n:"Termistores & Resistencias",c:2},{n:"Camas magnéticas",c:2},{n:"Coolers & Ventiladores",c:2},{n:"Electrónica",c:1}]},
+    {name:"Creality Hi", sub:"Creality", total:16, mejoras:2, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:3},{n:"Acoples & Accesorios",c:2},{n:"Electrónica",c:1},{n:"Nozzles / Boquillas",c:1}]},
+    {name:"CR-10 (todas)", sub:"Creality", total:66, mejoras:19, cats:[{n:"Hotends & Extrusores",c:17},{n:"Acoples & Accesorios",c:13},{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:7},{n:"Electrónica",c:7},{n:"Nozzles / Boquillas",c:6},{n:"Coolers & Ventiladores",c:4},{n:"Termistores & Resistencias",c:3}]},
+    {name:"CR-6 / CR-5 / CR-20", sub:"Creality", total:26, mejoras:5, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:6},{n:"Acoples & Accesorios",c:4},{n:"Hotends & Extrusores",c:3},{n:"Nozzles / Boquillas",c:2},{n:"Coolers & Ventiladores",c:1},{n:"Electrónica",c:1}]},
+    {name:"Bambu Lab A1 / Mini", sub:"Bambu Lab", total:36, mejoras:5, cats:[{n:"Hotends & Extrusores",c:14},{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:4},{n:"Nozzles / Boquillas",c:4},{n:"Electrónica",c:3},{n:"Coolers & Ventiladores",c:1},{n:"Termistores & Resistencias",c:1}]},
+    {name:"Bambu Lab X1 / P1", sub:"Bambu Lab", total:12, mejoras:1, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:1},{n:"Termistores & Resistencias",c:1},{n:"Acoples & Accesorios",c:1}]},
+    {name:"Bambu Lab H2D", sub:"Bambu Lab", total:11, mejoras:0, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:1},{n:"Acoples & Accesorios",c:1}]},
+    {name:"Anycubic Kobra", sub:"Anycubic", total:19, mejoras:4, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:5},{n:"Nozzles / Boquillas",c:2},{n:"Acoples & Accesorios",c:1},{n:"Termistores & Resistencias",c:1},{n:"Electrónica",c:1}]},
+    {name:"Artillery Sidewinder / Genius", sub:"Artillery", total:24, mejoras:5, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:5},{n:"Acoples & Accesorios",c:4},{n:"Termistores & Resistencias",c:2},{n:"Nozzles / Boquillas",c:2},{n:"Camas magnéticas",c:1},{n:"Electrónica",c:1}]},
+    {name:"Prusa i3 / MK", sub:"Prusa", total:14, mejoras:2, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:1},{n:"Nozzles / Boquillas",c:1},{n:"Acoples & Accesorios",c:1},{n:"Hotends & Extrusores",c:2}]},
+    {name:"Otras (Anet/Geeetech/Tronxy/Tevo)", sub:"Varias marcas", total:24, mejoras:2, cats:[{n:"Nozzles / Boquillas",c:5},{n:"Herramientas & Consumibles",c:9},{n:"Hotends & Extrusores",c:3},{n:"Termistores & Resistencias",c:2},{n:"Acoples & Accesorios",c:3},{n:"Electrónica",c:2}]}
   ];
 
-  const CAT_URL = 'https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&component_id=menu_corridors&component=menu_corridors&label=Impresi%C3%B3n&tracking_id=d4689a667703cb63c78f078804c0ff86&global_position=1';
-
-  PRINTERS.forEach((p,i)=>{
+  PRINTERS.forEach((p)=>{
     const btn = document.createElement('button');
     btn.className = 'picker-btn';
     btn.innerHTML = '<span class="pb-name">'+p.name+'</span><span class="pb-sub">'+p.sub+'</span>';
@@ -838,11 +847,16 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
   });
 
   function showResult(p){
-    const chips = p.cats.map(c=>'<a class="pr-cat" href="/catalogo.html">'+c+' <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>').join('');
+    const chips = p.cats.map(function(c){
+      return '<a class="pr-cat" href="/catalogo.html">'+c.n+' <span class="pr-cat-n">'+c.c+'</span></a>';
+    }).join('');
+    const upg = p.mejoras>0 ? '<div class="pr-upg">Además tenemos <strong>'+p.mejoras+' mejoras / upgrades</strong> compatibles con esta impresora.</div>' : '';
     result.innerHTML =
       '<div class="pr-title">Repuestos para '+p.name+'</div>'+
+      '<div class="pr-sub-count">'+p.total+' productos compatibles · '+p.cats.length+' categorías</div>'+
       '<div class="pr-cats">'+chips+'</div>'+
-      '<div class="pr-cta"><a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>';
+      upg+
+      '<div class="pr-cta"><a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a> <a class="btn-sec" href="/#diagnostico">Consultar al asistente</a></div>';
   }
 })();
 
