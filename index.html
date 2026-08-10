@@ -47,51 +47,31 @@
   .nav-cta{background:var(--white);color:var(--bg);font-weight:700;font-size:0.82rem;padding:9px 20px;border-radius:2px;transition:opacity .15s;}
   .nav-cta:hover{opacity:0.88;}
 
-  /* HERO SPLIT */
-  .hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
-  .hero-left{
-    padding:80px 56px;border-right:1px solid var(--line);
-    display:flex;flex-direction:column;justify-content:center;
-  }
-  .hero-right{
-    padding:0;background:radial-gradient(ellipse at 50% 45%, rgba(200,160,80,0.06), var(--bg2) 62%);
-    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
-  }
-  .hero-right::before{
-    content:'';position:absolute;inset:0;
+  /* HERO CINEMATOGRÁFICO */
+  .hero-cine{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:70px 24px 40px;border-bottom:1px solid var(--line);}
+  .hero-cine::before{content:'';position:absolute;inset:0;
     background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-    background-size:40px 40px;opacity:0.25;
-    -webkit-mask-image:radial-gradient(ellipse at 50% 45%, #000 30%, transparent 72%);
-    mask-image:radial-gradient(ellipse at 50% 45%, #000 30%, transparent 72%);
-  }
-  .hero-right .printer-wrap{position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;padding:40px;}
-  .hcat-grid{
-    display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:1px;
-    background:var(--line);border-left:1px solid var(--line);
-    width:100%;
-  }
-  .hcat-card{
-    background:var(--bg);padding:28px 26px;
-    display:flex;flex-direction:column;gap:12px;justify-content:center;
-    transition:background .15s;
-    cursor:pointer;
-  }
-  .hcat-card:hover{background:var(--bg3);}
-  .hcat-icon{
-    width:38px;height:38px;border:1px solid var(--line);border-radius:3px;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .hcat-icon svg{width:18px;height:18px;stroke:var(--muted);}
-  .hcat-card:hover .hcat-icon svg{stroke:var(--white);}
-  .hcat-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:0.03em;color:var(--white);line-height:1.1;}
-  .hcat-count{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.04em;}
-  .hcat-count::before{content:'';margin-right:4px;}
-  .hero-label{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
-  .hero-label::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.35;}
-  .hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(5rem,11vw,10rem);line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:28px;}
-  .hero h1 em{font-style:normal;color:#555;}
-  .hero-sub{font-size:1rem;color:var(--muted);max-width:460px;line-height:1.65;margin-bottom:30px;}
-  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
+    background-size:52px 52px;opacity:0.35;
+    -webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 52%, #000 20%, transparent 72%);
+    mask-image:radial-gradient(ellipse 60% 60% at 50% 52%, #000 20%, transparent 72%);}
+  .hero-cine::after{content:'';position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+    width:760px;height:760px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle, rgba(224,169,74,0.10), rgba(224,169,74,0.03) 40%, transparent 66%);}
+  .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;max-width:1100px;}
+  .hero-kicker{font-family:var(--fm);font-size:0.72rem;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+  .hero-kicker::before,.hero-kicker::after{content:'';width:28px;height:1px;background:var(--dim);}
+  .hero-title{font-family:var(--fd);font-weight:900;text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;font-size:clamp(2.6rem,6.5vw,5.5rem);}
+  .hero-title .dim{color:#4a4a4e;}
+  .printer-stage{position:relative;width:100%;max-width:400px;margin:6px auto 0;perspective:1400px;}
+  .printer-tilt{transform-style:preserve-3d;transition:transform .12s ease-out;will-change:transform;}
+  .printer-anim{width:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,0.6));}
+  .hero-sub{font-size:1.02rem;color:var(--muted);max-width:520px;line-height:1.6;margin:8px auto 28px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:0;}
+  .hero-strip{position:relative;z-index:2;display:flex;gap:0;margin-top:44px;border-top:1px solid var(--line);padding-top:20px;flex-wrap:wrap;justify-content:center;}
+  .hero-strip .hs{padding:0 28px;font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;border-right:1px solid var(--line);}
+  .hero-strip .hs:last-child{border-right:none;}
+  .hero-strip .hs b{color:var(--white);font-family:var(--fd);font-size:1.1rem;font-weight:900;margin-right:6px;}
+  @media(max-width:600px){.hero-strip .hs{padding:6px 16px;border-right:none;}}
   .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:7px;transition:opacity .15s,transform .15s;white-space:nowrap;}
   .btn-main:hover{opacity:0.9;transform:translateY(-1px);}
   .btn-main svg,.btn-sec svg{width:12px;height:12px;}
@@ -198,11 +178,8 @@
   @media(max-width:760px){
     .nav-links{display:none;}
     nav,.wrap{padding-left:20px;padding-right:20px;}
-    .hero-split{grid-template-columns:1fr;}
-    .hero-left{border-right:none;border-bottom:1px solid var(--line);padding:52px 20px;}
-    .hero-right{padding:28px 20px;}
-    .hero-stats{grid-template-columns:repeat(2,1fr);gap:16px;}
-    .hstat:not(:last-child){border-right:none;margin-right:0;padding-right:0;}
+    .hero-cine{min-height:auto;padding:50px 20px 36px;}
+    .printer-stage{max-width:320px;}
     .prod-grid{grid-template-columns:repeat(2,1fr);}
     .trust-grid,.ws-inner{grid-template-columns:1fr;}
     .ws-left{border-right:none;border-bottom:1px solid var(--line);padding:36px 20px;}
@@ -364,27 +341,14 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero" style="padding:0;border-bottom:1px solid var(--line);position:relative;overflow:hidden;">
-    <div class="layer-bg"></div>
-    <div class="hero-split" style="position:relative;z-index:1;">
-      <!-- LEFT -->
-      <div class="hero-left">
-        <span class="hero-label">+8 años en Mercado Libre · Envío Full a todo el país</span>
-        <h1>REPUESTOS<br>PARA TU<br><em>IMPRESORA</em><br>3D.</h1>
-        <p class="hero-sub">Todo lo que tu impresora necesita para seguir andando. Hotends, nozzles, camas, ventiladores y más — con la seguridad de comprar por Mercado Libre y envío Full a todo el país.</p>
-        <div class="hero-actions">
-          <a class="btn-main" href="/catalogo.html">
-            Ver catálogo
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn-sec" href="/#diagnostico">Diagnosticar mi impresora</a>
-        </div>
-      </div>
-      <!-- RIGHT — impresora 3D animada -->
-      <div class="hero-right">
-        <div class="printer-wrap">
-        <div class="printer-anim">
-          <svg viewBox="0 0 440 420" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Impresora 3D imprimiendo una pieza">
+  <section class="hero-cine">
+    <div class="hero-inner">
+      <div class="hero-kicker">+8 años · +50.000 ventas · Envío Full a todo el país</div>
+      <h1 class="hero-title"><span class="dim">QUE NUNCA</span> PARE<br>DE IMPRIMIR.</h1>
+      <div class="printer-stage">
+        <div class="printer-tilt" id="tilt">
+          <div class="printer-anim">
+            <svg viewBox="0 0 440 420" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Impresora 3D imprimiendo una pieza">
   <defs>
     <linearGradient id="frameTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#44444c"/><stop offset="1" stop-color="#2c2c32"/></linearGradient>
     <linearGradient id="frameLeft" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3a42"/><stop offset="1" stop-color="#26262c"/></linearGradient>
@@ -446,9 +410,18 @@
     <line class="iso-flow" x1="235" y1="149" x2="235" y2="200" stroke="url(#brass)" stroke-width="1.6" opacity="0.65"/>
   </g>
 </svg>
+          </div>
         </div>
-        <div style="text-align:center;font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Repuestos para que nunca pare de imprimir</div>
-        </div>
+      </div>
+      <p class="hero-sub">Repuestos y mejoras para tu impresora 3D. Importación directa, envío Full a todo el país y la seguridad de comprar por Mercado Libre.</p>
+      <div class="hero-actions">
+        <a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn-sec" href="/#diagnostico">Diagnosticar mi impresora</a>
+      </div>
+      <div class="hero-strip">
+        <div class="hs"><b>170+</b>repuestos</div>
+        <div class="hs"><b>16</b>familias de impresora</div>
+        <div class="hs"><b>Full</b>a todo el país</div>
       </div>
     </div>
   </section>
@@ -758,6 +731,27 @@
 </footer>
 
 <script>
+/* ============ EFECTO TILT 3D DE LA IMPRESORA (hero) ============ */
+(function(){
+  const stage = document.querySelector('.printer-stage');
+  const tilt = document.getElementById('tilt');
+  if(!stage || !tilt) return;
+  let raf;
+  stage.addEventListener('mousemove', function(e){
+    const r = stage.getBoundingClientRect();
+    const cx = r.left + r.width/2, cy = r.top + r.height/2;
+    const dx = (e.clientX - cx)/r.width, dy = (e.clientY - cy)/r.height;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function(){
+      tilt.style.transform = 'rotateY('+(dx*16)+'deg) rotateX('+(-dy*16)+'deg)';
+    });
+  });
+  stage.addEventListener('mouseleave', function(){
+    cancelAnimationFrame(raf);
+    tilt.style.transform = 'rotateY(0deg) rotateX(0deg)';
+  });
+})();
+
 const PRODUCTS = [{"id": "MLA1932131292", "title": "5x Nozzle Boquilla Mk8 1.75mm M6 Ender Series", "stock": 142, "price": 4399.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932131292-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932131292-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1971174266", "title": "Hotend Para Bambu Lab A1 / A1 Mini 0.4mm + Nozzle", "stock": 44, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1971174266-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971174266-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1973890300", "title": "Correa Kevlar Abierta Gt2 6mm ( 100cm )", "stock": 56, "price": 4499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1973890300-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1973890300-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1454494281", "title": "Kit Hotend Completo Tipo Ender 3 V3 Ke", "stock": 31, "price": 33099.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454494281-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454494281-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1454538751", "title": "10x 0,4 Mm Pico Destapador Aguja Destapa Nozzle", "stock": 61, "price": 5499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454538751-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454538751-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1454500765", "title": "Ventilador Cooler Fan De Capa 40x40x10 24v", "stock": 33, "price": 5999.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1454500765-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454500765-F.jpg", "cat": "Coolers & Ventiladores"}, {"id": "MLA1932118458", "title": "3x Nozzle Boquilla Ender K1 / Max / V3 Ke", "stock": 18, "price": 9999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932118458-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932118458-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1932067186", "title": "3x Nozzle Boquilla Ender V3 Se / Ender 7", "stock": 28, "price": 8999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932067186-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932067186-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1477174795", "title": "Cama Base Magnetica Ender-3 V3 Se / V3 Ke / K1", "stock": 13, "price": 40999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1477174795-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1477174795-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1970316862", "title": "Pico Nozzle Tipo Creality Unicorn 1.75mm", "stock": 22, "price": 14999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1970316862-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970316862-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA2028408246", "title": "Hotend Ender 3 / V2 / Pro + Nozzles De Regalo", "stock": 44, "price": 11999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2028408246-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2028408246-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2092522312", "title": "Pico Nozzle K2 Plus Unicorn 1.75mm", "stock": 19, "price": 14999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2092522312-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2092522312-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1970289480", "title": "Kit Hotend Completo Ender-3 V3 / V3 Plus", "stock": 20, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1970289480-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970289480-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2017682688", "title": "Termistor 100k 3950ntc Ender-3 / Pro / V2", "stock": 46, "price": 4499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2017682688-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2017682688-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1476077519", "title": "Kit Teflon (100 Cm) + Acoples Pc4-m6 / Pc4-m10", "stock": 59, "price": 8499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1476077519-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1476077519-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1971174052", "title": "Tubo Teflon Capricorn Creality Original ( 100cm )", "stock": 12, "price": 23999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971174052-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971174052-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1454526205", "title": "Hotend Volcano Artillery X1 / X2 / Genius / Pro", "stock": 29, "price": 21499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454526205-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454526205-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2201492174", "title": "Acople Racor Pasante Pc4-m10 ( 4mm )", "stock": 72, "price": 2899.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2201492174-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2201492174-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1454538677", "title": "Hotend Sprite Ender 3-s1 / Pro / Cr10 Smart Pro", "stock": 11, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454538677-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454538677-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1511640691", "title": "Acople Racor Pasante Pc4-m6 ( 4mm )", "stock": 94, "price": 2899.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1511640691-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1511640691-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1932106406", "title": "Kit Completo Hotend Mk8 Cr10 Ender 3 / V2 / Pro", "stock": 30, "price": 33000.01, "url": "https://articulo.mercadolibre.com.ar/-MLA1932106406-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932106406-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1972838648", "title": "Resistencia Ceramica Ender K1 / K1c / K1 Max / Ke", "stock": 26, "price": 11999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1972838648-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1972838648-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1511655363", "title": "Cama Base Magnetica Peo + Pet Ender-3 V3 Se / K1", "stock": 7, "price": 34999.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1511655363-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1511655363-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1512049623", "title": "Pico Nozzle Anycubic Kobra 3 / Kobra S1", "stock": 22, "price": 4379.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1512049623-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1512049623-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1477085517", "title": "Kit Hotend Completo Ender K1c / K1 / K1 Max", "stock": 4, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1477085517-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1477085517-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1970304336", "title": "3x Pico Nozzle Ender 3 Neo / V2 Neo ( Cr6-se )", "stock": 13, "price": 6499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1970304336-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970304336-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1932072966", "title": "Kit 4x Resorte Reforzado Para Cama Caliente  Xprinted", "stock": 9, "price": 4999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932072966-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932072966-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1971177170", "title": "Nozzle De Acero 0.4mm Bambulab A1 / A1 Mini", "stock": 10, "price": 5799.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971177170-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971177170-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA1486289341", "title": "Nozzle Teflonado 0.4mm Mk8 Ender 3", "stock": 27, "price": 3749.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1486289341-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1486289341-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA2200570536", "title": "Cama Base Magnetica Peo + Pet 235x235mm Ender", "stock": 31, "price": 34999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2200570536-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2200570536-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1464731363", "title": "3x Nozzle De Acero 0.4mm Ender K1 / Max / V3 Ke", "stock": 13, "price": 18999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1464731363-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1464731363-F.jpg", "cat": "Nozzles / Boquillas"}, {"id": "MLA2013318776", "title": "Kit Poleas Doble Engranaje Ender K1 / 3 V3 Series", "stock": 2, "price": 20849.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2013318776-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2013318776-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1973891242", "title": "Barrel Bi-metal 1.75mm M6 Ender S1 / S1 Pro", "stock": 3, "price": 9299.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1973891242-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1973891242-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA2188795370", "title": "Kit Completo De Mejora De Hotend Ender Series", "stock": 10, "price": 24999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2188795370-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2188795370-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1974096080", "title": "Kit Resistencia + Termistor Ender-3 S1 / S1 Pro", "stock": 6, "price": 10999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1974096080-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1974096080-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1463881427", "title": "Cama Magnetica 310x310mm Artillery Doble Cara", "stock": 5, "price": 69999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1463881427-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1463881427-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA2205958350", "title": "Hotend Completo Original Creality Ender-3 V2", "stock": 5, "price": 84999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2205958350-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2205958350-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1454500137", "title": "Kit Completo Extrusor Directo Ender-3 / V2 / Pro", "stock": 15, "price": 92999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1454500137-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1454500137-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1681490243", "title": "Pinza Alicate Electronico Impresion 3d", "stock": 30, "price": 8499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1681490243-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1681490243-F.jpg", "cat": "Herramientas & Consumibles"}, {"id": "MLA1468244793", "title": "Cama Base Magnetica Bambu Lab A1 Mini Doble Cara", "stock": 2, "price": 33000.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1468244793-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1468244793-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1464639997", "title": "Termistor Ender-3 V3 Ke / K1c / K1 / K1 Max", "stock": 20, "price": 8999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1464639997-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1464639997-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA1932647192", "title": "Barrel Heatbreak Bi-metal M6 M7", "stock": 1, "price": 7749.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932647192-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932647192-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1974669994", "title": "Barrel Bi-metal Artillery X1 / X2 / Genius / Pro", "stock": 10, "price": 11999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1974669994-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1974669994-F.jpg", "cat": "Acoples & Accesorios"}, {"id": "MLA1973825724", "title": "Hotend Extrusor Cr6-se / Cr6-max / Cr-5 Pro", "stock": 2, "price": 21999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1973825724-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1973825724-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1974040968", "title": "Bloque Calefactor Ender-3 S1 / S1 Pro / S1 Plus", "stock": 3, "price": 5999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1974040968-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1974040968-F.jpg", "cat": "Termistores & Resistencias"}, {"id": "MLA2844147270", "title": "Base Magnética Flexible Ender-3 Creality Original", "stock": 14, "price": 36499.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2844147270-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2844147270-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1932144774", "title": "Kit Hotend Cr-10s Pro / Cr-10s Pro V2 / Cr-10 Max", "stock": 2, "price": 35999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1932144774-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1932144774-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2021020702", "title": "Placa Bigtreetech Skr Mini E3 V3 32 Bits Ender 3", "stock": 15, "price": 91999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2021020702-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2021020702-F.jpg", "cat": "Electrónica"}, {"id": "MLA2092697074", "title": "Kit Hotend Completo Creality Ender 5 S1", "stock": 10, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2092697074-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2092697074-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1681359799", "title": "Barra De Pegamento Pvp Adhesivo Para Impresora 3d", "stock": 4, "price": 7799.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1681359799-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1681359799-F.jpg", "cat": "Herramientas & Consumibles"}, {"id": "MLA3505913630", "title": "Bambu Lab A1 Series Hotend Bambu A1 Nozzle Acero Endurecido 0.4 Mm", "stock": 6, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA3505913630-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_3505913630-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1971350658", "title": "Kit Hotend Tipo Bambu Lab X1 Y P1 Series", "stock": 2, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971350658-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971350658-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1970264684", "title": "Cama Plataforma De Vidrio Carborundum 235x235mm", "stock": 7, "price": 36999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1970264684-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970264684-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1670540475", "title": "Kit Hotend Para Anycubic Kobra S1 / S1 Combo", "stock": 16, "price": 27999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1670540475-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1670540475-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1970251156", "title": "Cama Base Magnética Bambu A1 257x257mm Doble Cara", "stock": 2, "price": 49999.0, "url": "https://articulo.mercadolibre.com.ar/-MLA1970251156-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1970251156-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA1672630491", "title": "Kit Hotend Ender 3 V3 Se Creality Original", "stock": 9, "price": 39999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1672630491-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1672630491-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2200609462", "title": "Cama Base Magnetica 257x257mm Pey + Pey", "stock": 1, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2200609462-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2200609462-F.jpg", "cat": "Camas magnéticas"}, {"id": "MLA2861972712", "title": "Hotend Creality Ender-3 Neo / V2 Neo Original", "stock": 3, "price": 59999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2861972712-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2861972712-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1668020005", "title": "Hotend Bambu Lab A1 Original 0.4 ( 0.2 A 0.8mm )", "stock": 6, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1668020005-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1668020005-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1667877369", "title": "Hotend Bambu Lab A1 Original ( 0.2 A 0.8mm )", "stock": 2, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1667877369-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1667877369-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1971218012", "title": "Hotend Disipador De Aluminio Ender Series", "stock": 9, "price": 5199.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1971218012-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1971218012-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA2831552594", "title": "Hotend Bambu Lab A1 Original ( 0.2 A 0.8mm )", "stock": 5, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA2831552594-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_2831552594-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA3505913636", "title": "Boquilla Bamboo Lab Hotend De Acero Endurecido De 0,4 Mm A 0,8 Mm, Voltaje De Funcionamiento A1 De 0,8 Mm", "stock": 2, "price": 49999.99, "url": "https://articulo.mercadolibre.com.ar/-MLA3505913636-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_3505913636-F.jpg", "cat": "Hotends & Extrusores"}, {"id": "MLA1670514193", "title": "Termistor Sensor Para Artillery X3 / X4 Series", "stock": 20, "price": 9799.99, "url": "https://articulo.mercadolibre.com.ar/-MLA1670514193-", "img": "https://http2.mlstatic.com/D_NQ_NP_2X_1670514193-F.jpg", "cat": "Termistores & Resistencias"}];
 
 // Cuenta productos por categoría y rellena los contadores del hero y tiles
