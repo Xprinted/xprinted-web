@@ -93,7 +93,7 @@ export default async function handler(req, res) {
     }
 
     // 2. Traer los detalles (precio, stock, foto) en lotes con /items?ids=
-    const attributes = 'id,title,price,available_quantity,thumbnail,permalink,status,sold_quantity';
+    const attributes = 'id,title,price,available_quantity,thumbnail,thumbnail_id,secure_thumbnail,pictures,permalink,status,sold_quantity';
     const chunks = [];
     for (let i = 0; i < ids.length; i += 20) chunks.push(ids.slice(i, i + 20));
 
@@ -108,13 +108,25 @@ export default async function handler(req, res) {
         for (const entry of itemsData) {
           if (entry.code === 200 && entry.body) {
             const it = entry.body;
+            // Imagen en buena calidad: primero la de "pictures" (grande),
+            // si no hay, armamos la URL grande desde el thumbnail_id.
+            let img = '';
+            if (Array.isArray(it.pictures) && it.pictures.length > 0) {
+              img = it.pictures[0].secure_url || it.pictures[0].url || '';
+            }
+            if (!img && it.thumbnail_id) {
+              img = `https://http2.mlstatic.com/D_NQ_NP_2X_${it.thumbnail_id}-F.webp`;
+            }
+            if (!img) {
+              img = (it.secure_thumbnail || it.thumbnail || '').replace('http://', 'https://');
+            }
             products.push({
               id: it.id,
               title: it.title,
               price: it.price,
               stock: it.available_quantity,
               sold: it.sold_quantity,
-              thumbnail: (it.thumbnail || '').replace('http://', 'https://').replace('-I.jpg', '-O.jpg'),
+              thumbnail: img,
               url: it.permalink
             });
           }
