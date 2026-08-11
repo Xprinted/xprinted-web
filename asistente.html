@@ -134,11 +134,17 @@
 
   /* PROBLEMAS */
   .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .prob{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:18px 20px;transition:border-color .2s,transform .2s;}
-  .prob:hover{border-color:#3a3a3c;transform:translateX(4px);}
-  .prob-ico{width:38px;height:38px;flex-shrink:0;border-radius:8px;background:var(--bg3);display:flex;align-items:center;justify-content:center;}
-  .prob-ico svg{width:19px;height:19px;stroke:var(--cyan);}
-  .prob span{font-size:0.92rem;color:#d0d0ce;font-weight:500;}
+  .prob{display:flex;flex-direction:column;gap:14px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:24px 22px;transition:border-color .2s,transform .2s,box-shadow .2s;cursor:pointer;text-align:left;}
+  .prob:hover{border-color:rgba(91,214,200,0.35);transform:translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,0.4);}
+  .prob-top{display:flex;align-items:center;gap:13px;}
+  .prob-ico{width:42px;height:42px;flex-shrink:0;border-radius:9px;background:rgba(91,214,200,0.05);border:1px solid rgba(91,214,200,0.18);display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .prob:hover .prob-ico{background:rgba(91,214,200,0.12);}
+  .prob-ico svg{width:20px;height:20px;stroke:var(--cyan);}
+  .prob h4{font-family:var(--fd);font-weight:700;font-size:1.12rem;text-transform:uppercase;letter-spacing:0.01em;line-height:1.1;}
+  .prob p{font-size:0.84rem;color:var(--muted);line-height:1.5;}
+  .prob .prob-ask{margin-top:auto;font-family:var(--fm);font-size:0.66rem;color:var(--cyan);letter-spacing:0.04em;display:flex;align-items:center;gap:6px;opacity:0;transform:translateX(-6px);transition:opacity .2s,transform .2s;}
+  .prob:hover .prob-ask{opacity:1;transform:translateX(0);}
+  .prob .prob-ask svg{width:12px;height:12px;stroke:var(--cyan);}
 
   /* DIFERENCIAL */
   .diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
@@ -200,7 +206,7 @@
           Asistente 3D · con inteligencia artificial
         </div>
         <h1>Tu mecánico de<br>impresoras 3D,<br><em>siempre disponible.</em></h1>
-        <p class="lead">Contale qué le pasa a tu impresora y en segundos te ayuda a diagnosticar el problema, te dice qué revisar y qué repuesto podés necesitar. Gratis, al instante y sin vueltas.</p>
+        <p class="lead">Te presentamos a <strong style="color:var(--cyan);font-weight:600;">Max</strong>, tu asistente con IA. Contale qué le pasa a tu impresora y en segundos te ayuda a diagnosticar el problema, te dice qué revisar y qué repuesto podés necesitar. Gratis, al instante y sin vueltas.</p>
         <div class="ai-cta-row">
           <a class="btn-cyan" href="#chat" id="btn-probar">Probar el asistente <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn-ghost" href="#como-funciona">Ver cómo funciona</a>
@@ -210,12 +216,12 @@
         <div class="chat-mock" id="chat">
           <div class="chat-top">
             <span class="chat-dot r"></span><span class="chat-dot y"></span><span class="chat-dot g"></span>
-            <span class="chat-title"><span class="cyan-dot"></span>Asistente 3D · XPRINTED</span>
+            <span class="chat-title"><span class="cyan-dot"></span>Max · Asistente de XPRINTED</span>
           </div>
           <div class="chat-body" id="chat-body">
             <div class="msg ai d1">
-              <div class="ai-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.9 5.8L20 10.7l-5.1 1.9L12 18l-1.9-5.4L5 10.7l6.1-1.9L12 3z"/></svg>Asistente 3D</div>
-              ¡Hola! Contame qué le pasa a tu impresora 3D y te ayudo a diagnosticarlo. Incluí el <strong>modelo</strong> y el <strong>material</strong> que usás para una mejor respuesta.
+              <div class="ai-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.9 5.8L20 10.7l-5.1 1.9L12 18l-1.9-5.4L5 10.7l6.1-1.9L12 3z"/></svg>Max</div>
+              ¡Hola! Soy <strong>Max</strong>, el asistente de XPRINTED. Contame qué le pasa a tu impresora 3D y te ayudo a diagnosticarlo. Incluí el <strong>modelo</strong> y el <strong>material</strong> que usás para una mejor respuesta.
             </div>
           </div>
           <div class="chat-chips" id="chat-chips">
@@ -271,14 +277,80 @@
   <div class="wrap">
     <div class="sec-label">Qué puede resolver</div>
     <h2 class="sec-title">¿Alguno de estos <em>te suena?</em></h2>
-    <p class="sec-intro">Estos son algunos de los problemas más comunes que el asistente ayuda a diagnosticar todos los días.</p>
+    <p class="sec-intro">Estos son algunos de los problemas más comunes que Max ayuda a diagnosticar todos los días. Tocá el que te pase y te lleva al chat con la consulta lista.</p>
     <div class="prob-grid">
-      <div class="prob"><div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 4-4"/></svg></div><span>No pega la primera capa</span></div>
-      <div class="prob"><div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg></div><span>Se me tapa el nozzle</span></div>
-      <div class="prob"><div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div><span>Capas corridas o fantasmas</span></div>
-      <div class="prob"><div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg></div><span>Error de termistor / temperatura</span></div>
-      <div class="prob"><div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></div><span>El filamento no sale</span></div>
-      <div class="prob"><div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div><span>Se despega la pieza al imprimir</span></div>
+      <button class="prob" data-q="La primera capa no me pega a la cama, ¿qué reviso?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 4-4"/></svg></div>
+          <h4>No pega la primera capa</h4>
+        </div>
+        <p>El filamento no se adhiere a la cama y la impresión se despega apenas empieza.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="prob" data-q="Se me tapa el nozzle y deja de salir filamento, ¿cómo lo soluciono?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg></div>
+          <h4>Se tapa el nozzle</h4>
+        </div>
+        <p>La boquilla se obstruye, sale poco filamento o directamente deja de extruir.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="prob" data-q="Me salen capas corridas o ecos/fantasmas en las paredes, ¿por qué?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+          <h4>Capas corridas o fantasmas</h4>
+        </div>
+        <p>Las capas se desplazan, o aparecen "ecos" y sombras en las paredes de la pieza.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="prob" data-q="Me tira error de termistor o de temperatura (thermal runaway), ¿qué puede ser?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/><path d="M12 14v-3"/></svg></div>
+          <h4>Error de temperatura</h4>
+        </div>
+        <p>Salta un error de termistor, "thermal runaway" o no calienta bien el hotend.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="prob" data-q="El extrusor hace clic o no empuja bien el filamento, ¿qué reviso?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M8 4l4 4 4-4"/><rect x="7" y="8" width="10" height="8" rx="1"/><path d="M10 16v4M14 16v4"/></svg></div>
+          <h4>El extrusor patina o hace clic</h4>
+        </div>
+        <p>El motor del extrusor tironea, hace "clic-clic" y no empuja el filamento parejo.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="prob" data-q="La pieza se despega o se levanta de las esquinas mientras imprime (warping), ¿cómo lo evito?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div>
+          <h4>Se despega o se curva (warping)</h4>
+        </div>
+        <p>La pieza se levanta de las esquinas o se despega de la cama a mitad de impresión.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="prob" data-q="Me aparecen hilos finos entre las piezas (stringing), ¿cómo los saco?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4c4 6 12 6 16 0M4 12c4 6 12 6 16 0M4 20c4-6 12-6 16 0"/></svg></div>
+          <h4>Hilos o telarañas (stringing)</h4>
+        </div>
+        <p>Quedan hilitos finos entre las partes de la pieza, como telarañas.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="prob" data-q="La impresora hace ruido raro o los ejes se mueven con dificultad, ¿qué reviso?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h4>Ruidos raros o ejes trabados</h4>
+        </div>
+        <p>La impresora suena distinto, vibra de más o algún eje se mueve con dificultad.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="prob" data-q="Quiero mejorar mi impresora, ¿qué upgrade me conviene?">
+        <div class="prob-top">
+          <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></div>
+          <h4>Quiero mejorar mi impresora</h4>
+        </div>
+        <p>No sabés qué upgrade te conviene para imprimir mejor, más rápido o más silencioso.</p>
+        <span class="prob-ask">Preguntarle a Max <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
     </div>
   </div>
 </section>
@@ -389,7 +461,7 @@
   function addAI(text){
     const el = document.createElement('div');
     el.className = 'msg ai';
-    el.innerHTML = '<div class="ai-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.9 5.8L20 10.7l-5.1 1.9L12 18l-1.9-5.4L5 10.7l6.1-1.9L12 3z"/></svg>Asistente 3D</div><p>'+formatText(text)+'</p>';
+    el.innerHTML = '<div class="ai-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.9 5.8L20 10.7l-5.1 1.9L12 18l-1.9-5.4L5 10.7l6.1-1.9L12 3z"/></svg>Max</div><p>'+formatText(text)+'</p>';
     body.appendChild(el);
     scrollDown();
   }
@@ -431,10 +503,22 @@
   const btnProbar = document.getElementById('btn-probar');
   if(btnProbar){
     btnProbar.addEventListener('click', (e)=>{
-      // En pantallas chicas el chat está debajo: dejamos que el ancla haga scroll y luego enfocamos
       setTimeout(()=>{ input.focus(); }, 400);
     });
   }
+
+  // Tarjetas de "¿Alguno de estos te suena?": cargan la consulta y la envían
+  document.querySelectorAll('.prob[data-q]').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const q = card.getAttribute('data-q');
+      // Subir al chat con scroll suave
+      document.getElementById('chat').scrollIntoView({ behavior:'smooth', block:'center' });
+      // Cargar y enviar la consulta
+      input.value = q;
+      autoResize();
+      setTimeout(()=>{ ask(); }, 500);
+    });
+  });
 })();
 </script>
 </body>
