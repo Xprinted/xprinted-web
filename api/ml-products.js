@@ -108,14 +108,21 @@ export default async function handler(req, res) {
         for (const entry of itemsData) {
           if (entry.code === 200 && entry.body) {
             const it = entry.body;
-            // Imagen en buena calidad: primero la de "pictures" (grande),
-            // si no hay, armamos la URL grande desde el thumbnail_id.
+            // Imagen en la mejor calidad posible.
+            // Estrategia: de "pictures" tomamos max_size (la original más grande);
+            // si no, armamos la URL "-O" (original) desde el picture id o thumbnail_id.
             let img = '';
             if (Array.isArray(it.pictures) && it.pictures.length > 0) {
-              img = it.pictures[0].secure_url || it.pictures[0].url || '';
+              const pic = it.pictures[0];
+              // max_size trae la resolución original; secure_url es la versión estándar
+              img = pic.max_size || pic.secure_url || pic.url || '';
+              // Si tenemos el id del picture, forzamos la versión Original (-O), la más grande
+              if (pic.id) {
+                img = `https://http2.mlstatic.com/D_NQ_NP_2X_${pic.id}-O.webp`;
+              }
             }
             if (!img && it.thumbnail_id) {
-              img = `https://http2.mlstatic.com/D_NQ_NP_2X_${it.thumbnail_id}-F.webp`;
+              img = `https://http2.mlstatic.com/D_NQ_NP_2X_${it.thumbnail_id}-O.webp`;
             }
             if (!img) {
               img = (it.secure_thumbnail || it.thumbnail || '').replace('http://', 'https://');
