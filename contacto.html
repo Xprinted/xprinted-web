@@ -217,24 +217,48 @@
 </style>
 
 <style>
-  .page-hero{padding:80px 0 48px;border-bottom:1px solid var(--line);}
-  .page-hero .kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:20px;}
-  .page-hero .kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
-  .page-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,7vw,5.5rem);line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:24px;}
-  .page-hero .lead{font-size:1.05rem;color:var(--muted);max-width:620px;line-height:1.7;}
-  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:48px 0;}
-  .contact-card{background:var(--bg);padding:34px 30px;display:flex;flex-direction:column;gap:14px;transition:background .15s;}
-  .contact-card:hover{background:var(--bg3);}
-  .contact-card .ci{width:44px;height:44px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;}
-  .contact-card .ci svg{width:22px;height:22px;stroke:var(--white);}
-  .contact-card .ct{font-family:var(--fd);font-weight:700;font-size:1.15rem;text-transform:uppercase;letter-spacing:0.02em;}
-  .contact-card .cv{color:var(--white);font-size:0.98rem;font-weight:600;}
-  .contact-card .cd{color:var(--muted);font-size:0.86rem;line-height:1.55;}
-  .contact-card .cgo{margin-top:auto;font-family:var(--fm);font-size:0.72rem;color:var(--muted);display:inline-flex;align-items:center;gap:6px;padding-top:8px;}
-  .contact-card:hover .cgo{color:var(--white);}
-  .contact-card .cgo svg{width:11px;height:11px;}
-  .info-box{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:34px 36px;margin-bottom:48px;}
+  .page-hero{position:relative;overflow:hidden;padding:76px 0 64px;border-bottom:1px solid var(--line);}
+  .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:0.28;-webkit-mask-image:radial-gradient(ellipse 68% 80% at 74% 34%, #000, transparent 74%);mask-image:radial-gradient(ellipse 68% 80% at 74% 34%, #000, transparent 74%);pointer-events:none;}
+  .page-hero::after{content:'';position:absolute;top:-25%;right:-6%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle, rgba(224,169,74,0.08), transparent 62%);pointer-events:none;}
+  .ph-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 0.85fr;gap:52px;align-items:center;}
+  .page-hero .kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+  .page-hero .kicker::before{content:'';width:5px;height:5px;background:#E0A94A;}
+  .page-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(2.8rem,5.6vw,4.6rem);line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:20px;}
+  .page-hero h1 em{font-style:normal;color:#E0A94A;}
+  .page-hero .lead{font-size:1.02rem;color:#a8a8a6;max-width:500px;line-height:1.7;margin-bottom:28px;}
+  .btn-wa-big{background:#25D366;color:#052e16;font-weight:700;font-size:0.98rem;padding:15px 28px;border-radius:6px;display:inline-flex;align-items:center;gap:10px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+  .btn-wa-big:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 30px rgba(37,211,102,0.3);}
+  .btn-wa-big svg{width:19px;height:19px;}
+  .ct-panel{background:linear-gradient(155deg,#17181b,#101012);border:1px solid #26272a;border-radius:14px;padding:26px 26px;box-shadow:0 26px 54px rgba(0,0,0,0.4);}
+  .ctp-head{display:flex;align-items:center;gap:9px;padding-bottom:15px;margin-bottom:6px;border-bottom:1px solid var(--line);font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+  .ctp-head::before{content:'';width:5px;height:5px;background:#E0A94A;}
+  .ctp-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .ctp-row:last-child{border-bottom:none;}
+  .ctp-row .k{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;}
+  .ctp-row .v{font-size:0.9rem;color:#e4e4e2;font-weight:600;text-align:right;}
+  .ctp-row .v b{color:#E0A94A;font-weight:700;}
+  @media(max-width:900px){.ph-grid{grid-template-columns:1fr;gap:36px;}}
+  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:48px 0;}
+  .contact-card{position:relative;background:linear-gradient(155deg,#16171a,#101012);border:1px solid #26272a;border-radius:14px;padding:30px 28px;display:flex;flex-direction:column;gap:12px;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;}
+  .contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cc),transparent);opacity:0;transition:opacity .25s;}
+  .contact-card:hover{border-color:var(--cbd);transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,0.45);}
+  .contact-card:hover::before{opacity:1;}
+  .contact-card .ci{width:48px;height:48px;border-radius:11px;background:var(--cbg);border:1px solid var(--cbd);display:flex;align-items:center;justify-content:center;transition:transform .25s;}
+  .contact-card:hover .ci{transform:scale(1.08);}
+  .contact-card .ci svg{width:22px;height:22px;stroke:var(--cc);}
+  .contact-card .ct{font-family:var(--fd);font-weight:700;font-size:1.2rem;text-transform:uppercase;letter-spacing:0.02em;color:#f4f4f2;}
+  .contact-card .cv{color:var(--cc);font-size:0.95rem;font-weight:600;}
+  .contact-card .cd{color:#9a9a9c;font-size:0.87rem;line-height:1.6;}
+  .contact-card .cgo{margin-top:auto;font-family:var(--fm);font-size:0.7rem;font-weight:600;color:var(--cc);display:inline-flex;align-items:center;gap:7px;padding-top:8px;opacity:0.75;transition:opacity .25s,gap .25s;}
+  .contact-card:hover .cgo{opacity:1;gap:11px;}
+  .contact-card .cgo svg{width:11px;height:11px;stroke:var(--cc);}
+  .cc-wa{--cc:#25D366;--cbd:rgba(37,211,102,0.4);--cbg:rgba(37,211,102,0.1);}
+  .cc-ig{--cc:#E1556E;--cbd:rgba(225,85,110,0.4);--cbg:rgba(225,85,110,0.1);}
+  .cc-mail{--cc:#E0A94A;--cbd:rgba(224,169,74,0.4);--cbg:rgba(224,169,74,0.1);}
+  .cc-ml{--cc:#FFE600;--cbd:rgba(255,230,0,0.35);--cbg:rgba(255,230,0,0.08);}
+  .info-box{background:linear-gradient(135deg,rgba(224,169,74,0.05),rgba(255,255,255,0.01));border:1px solid rgba(224,169,74,0.22);border-left:3px solid #E0A94A;border-radius:12px;padding:32px 34px;margin-bottom:48px;}
   .info-box h3{font-family:var(--fd);font-weight:700;font-size:1.4rem;text-transform:uppercase;margin-bottom:12px;}
+  .info-box h3::before{content:'■ ';color:#E0A94A;font-size:0.7em;vertical-align:middle;}
   .info-box p{color:var(--muted);line-height:1.7;max-width:640px;}
   .info-box .hl{color:var(--white);font-weight:600;}
   @media(max-width:720px){.contact-grid{grid-template-columns:1fr;}}
@@ -260,37 +284,52 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="kicker">Contacto</div>
-    <h1>Hablemos.</h1>
-    <p class="lead">La forma más rápida de llegar a nosotros es por WhatsApp: te respondemos consultas sobre productos, compatibilidad, envíos y precios mayoristas. Elegí el canal que más te convenga.</p>
+    <div class="ph-grid">
+      <div>
+        <div class="kicker">Contacto</div>
+        <h1>Hablemos<em>.</em></h1>
+        <p class="lead">La forma más rápida de llegar a nosotros es por WhatsApp: te respondemos consultas sobre productos, compatibilidad, envíos y precios mayoristas. Elegí el canal que más te convenga.</p>
+        <a class="btn-wa-big" href="https://wa.me/5491171585143" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.86-2-.96-.27-.1-.47-.15-.66.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.75-.72 2-1.41.24-.7.24-1.29.17-1.41-.07-.12-.27-.2-.56-.35zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+      <div class="ct-panel">
+        <div class="ctp-head">Datos rápidos</div>
+        <div class="ctp-row"><span class="k">Canal más rápido</span><span class="v"><b>WhatsApp</b></span></div>
+        <div class="ctp-row"><span class="k">Modalidad</span><span class="v">Tienda 100% online</span></div>
+        <div class="ctp-row"><span class="k">Compras</span><span class="v">Por Mercado Libre</span></div>
+        <div class="ctp-row"><span class="k">Envíos</span><span class="v"><b>Full</b> a todo el país</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <div class="contact-grid">
-      <a class="contact-card" href="https://wa.me/5491171585143" target="_blank" rel="noopener">
+      <a class="contact-card cc-wa" href="https://wa.me/5491171585143" target="_blank" rel="noopener">
         <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
         <div class="ct">WhatsApp</div>
         <div class="cv">+54 9 11 7158-5143</div>
         <div class="cd">La vía más rápida. Consultas, compatibilidad, precios mayoristas y seguimiento de compras.</div>
         <span class="cgo">Escribir por WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
       </a>
-      <a class="contact-card" href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">
+      <a class="contact-card cc-ig" href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">
         <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
         <div class="ct">Instagram</div>
         <div class="cv">@xprinted.arg</div>
         <div class="cd">Novedades, productos nuevos y contenido sobre impresión 3D. Escribinos por DM también.</div>
         <span class="cgo">Ver Instagram <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
       </a>
-      <a class="contact-card" href="mailto:contacto@xprinted.com.ar">
+      <a class="contact-card cc-mail" href="mailto:contacto@xprinted.com.ar">
         <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></div>
         <div class="ct">Email</div>
         <div class="cv">contacto@xprinted.com.ar</div>
         <div class="cd">Para consultas más largas, temas mayoristas o lo que necesites por escrito.</div>
         <span class="cgo">Enviar un email <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
       </a>
-      <a class="contact-card" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">
+      <a class="contact-card cc-ml" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">
         <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg></div>
         <div class="ct">Mercado Libre</div>
         <div class="cv">XPRINTED en Mercado Libre</div>
