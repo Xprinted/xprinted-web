@@ -219,26 +219,76 @@
 <style>
   .page-hero{padding:80px 0 48px;border-bottom:1px solid var(--line);}
   .page-hero .kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:20px;}
-  .page-hero .kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
-  .page-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,7vw,5.5rem);line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:24px;}
-  .page-hero .lead{font-size:1.05rem;color:var(--muted);max-width:620px;line-height:1.7;}
-  .sec-pad{padding:56px 0;border-bottom:1px solid var(--line);}
-  .comm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:8px 0 40px;}
-  .comm-card{background:var(--bg);padding:32px 26px;}
-  .comm-card .ci{width:42px;height:42px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
-  .comm-card .ci svg{width:20px;height:20px;stroke:var(--white);}
-  .comm-card h3{font-family:var(--fd);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:10px;}
-  .comm-card p{color:var(--muted);font-size:0.92rem;line-height:1.6;}
-  .big-cta{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:56px 48px;text-align:center;margin:8px 0;}
-  .big-cta h2{font-family:var(--fd);font-weight:900;font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;line-height:0.95;margin-bottom:16px;}
-  .big-cta p{color:var(--muted);max-width:520px;margin:0 auto 28px;line-height:1.65;}
-  .btn-wa{background:#25D366;color:#0A0A0A;font-weight:700;font-size:1rem;padding:15px 34px;border-radius:3px;display:inline-flex;align-items:center;gap:10px;transition:transform .15s,opacity .15s;}
-  .btn-wa:hover{transform:translateY(-2px);opacity:0.94;}
+  .page-hero .kicker::before{content:'';width:5px;height:5px;background:#25D366;opacity:1;}
+  .page-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(2.8rem,6vw,4.8rem);line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:22px;}
+  .page-hero h1 em{font-style:normal;color:#25D366;}
+  .page-hero .lead{font-size:1.05rem;color:#a8a8a6;max-width:520px;line-height:1.7;margin-bottom:30px;}
+
+  /* HERO 2 COLUMNAS */
+  .comm-hero{position:relative;overflow:hidden;padding:76px 0 66px;border-bottom:1px solid var(--line);}
+  .comm-hero::before{content:'';position:absolute;top:-25%;right:-8%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, rgba(37,211,102,0.08), transparent 62%);pointer-events:none;}
+  .comm-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:50px 50px;opacity:0.25;-webkit-mask-image:radial-gradient(ellipse 65% 75% at 72% 35%, #000, transparent 72%);mask-image:radial-gradient(ellipse 65% 75% at 72% 35%, #000, transparent 72%);}
+  .comm-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 0.92fr;gap:52px;align-items:center;}
+  .btn-wa{background:#25D366;color:#052e16;font-weight:700;font-size:1rem;padding:15px 30px;border-radius:6px;display:inline-flex;align-items:center;gap:10px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+  .btn-wa:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 30px rgba(37,211,102,0.3);}
   .btn-wa svg{width:20px;height:20px;}
-  .rules{max-width:680px;margin-top:8px;}
-  .rules li{color:var(--muted);font-size:0.95rem;line-height:1.7;margin-bottom:10px;padding-left:26px;position:relative;list-style:none;}
-  .rules li::before{content:'✓';position:absolute;left:0;color:#25D366;font-weight:700;}
-  @media(max-width:860px){.comm-grid{grid-template-columns:1fr;}}
+  .comm-stats{display:flex;gap:28px;margin-top:30px;}
+  .comm-stat b{font-family:var(--fd);font-weight:900;font-size:1.7rem;color:#25D366;display:block;line-height:1;}
+  .comm-stat span{font-family:var(--fm);font-size:0.64rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;}
+
+  /* MOCKUP CHAT COMUNIDAD */
+  .wa-mock{background:#0d1418;border:1px solid #1f2c33;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.5);}
+  .wa-top{display:flex;align-items:center;gap:12px;padding:15px 18px;background:#1f2c33;}
+  .wa-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .wa-avatar svg{width:22px;height:22px;stroke:#fff;}
+  .wa-top-info b{font-size:0.9rem;color:#fff;display:block;}
+  .wa-top-info span{font-size:0.72rem;color:#8fa3ad;}
+  .wa-body{padding:20px 18px;display:flex;flex-direction:column;gap:12px;background:#0b1013;min-height:300px;}
+  .wa-msg{max-width:82%;font-size:0.86rem;line-height:1.45;padding:9px 13px;border-radius:10px;position:relative;opacity:0;transform:translateY(8px);animation:waIn .5s forwards;}
+  .wa-msg .wa-name{font-size:0.68rem;font-weight:700;margin-bottom:3px;}
+  .wa-msg.them{align-self:flex-start;background:#1f2c33;color:#e4e4e4;border-top-left-radius:3px;}
+  .wa-msg.me{align-self:flex-end;background:#144d37;color:#e4f4ea;border-top-right-radius:3px;}
+  .wa-msg.d1{animation-delay:.3s;} .wa-msg.d2{animation-delay:1s;} .wa-msg.d3{animation-delay:1.7s;} .wa-msg.d4{animation-delay:2.4s;}
+  .wa-time{font-size:0.6rem;color:#8fa3ad;opacity:0.7;margin-left:8px;}
+  @keyframes waIn{to{opacity:1;transform:translateY(0);}}
+
+  .sec-pad{padding:64px 0;border-bottom:1px solid var(--line);}
+  .sec-label{font-family:var(--fm);font-size:0.68rem;color:#25D366;letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .sec-label::before{content:'';width:5px;height:5px;background:#25D366;}
+  .sec-h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.9rem,3.5vw,2.8rem);text-transform:uppercase;line-height:0.95;margin-bottom:40px;}
+  .sec-h2 em{font-style:normal;color:#25D366;}
+
+  /* TARJETAS QUÉ VAS A ENCONTRAR */
+  .comm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .comm-card{background:linear-gradient(155deg,#16171a,#101012);border:1px solid #26272a;border-radius:14px;padding:30px 26px;transition:border-color .25s,transform .25s,box-shadow .25s;}
+  .comm-card:hover{border-color:rgba(37,211,102,0.4);transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,0.5);}
+  .comm-card .ci{width:48px;height:48px;border-radius:11px;background:linear-gradient(145deg,rgba(37,211,102,0.18),rgba(37,211,102,0.05));border:1px solid rgba(37,211,102,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:transform .25s;}
+  .comm-card:hover .ci{transform:scale(1.08);}
+  .comm-card .ci svg{width:22px;height:22px;stroke:#25D366;}
+  .comm-card h3{font-family:var(--fd);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:10px;color:#f4f4f2;}
+  .comm-card p{color:#9a9a9c;font-size:0.9rem;line-height:1.6;}
+
+  /* CTA GRANDE */
+  .big-cta{position:relative;overflow:hidden;background:linear-gradient(135deg,#0f1f16,#0c130f);border:1px solid rgba(37,211,102,0.25);border-radius:16px;padding:60px 48px;text-align:center;}
+  .big-cta::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,211,102,0.1),transparent 60%);pointer-events:none;}
+  .big-cta-inner{position:relative;z-index:1;}
+  .big-cta h2{font-family:var(--fd);font-weight:900;font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;line-height:0.95;margin-bottom:16px;}
+  .big-cta h2 em{font-style:normal;color:#25D366;}
+  .big-cta p{color:#b0b0ae;max-width:500px;margin:0 auto 30px;line-height:1.65;}
+
+  /* REGLAS COMO TARJETAS */
+  .rules-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .rule-card{display:flex;gap:16px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:22px 24px;transition:border-color .2s;}
+  .rule-card:hover{border-color:#333;}
+  .rule-num{font-family:var(--fd);font-weight:900;font-size:1.5rem;color:#25D366;line-height:1;flex-shrink:0;width:32px;}
+  .rule-card p{color:#c0c0be;font-size:0.92rem;line-height:1.55;}
+  .rule-card p strong{color:#fff;font-weight:600;}
+
+  @media(max-width:860px){
+    .comm-hero-grid{grid-template-columns:1fr;gap:40px;}
+    .comm-grid{grid-template-columns:1fr;}
+    .rules-grid{grid-template-columns:1fr;}
+  }
 </style>
 
 </head>
@@ -260,17 +310,46 @@
 
 
 <!-- HERO -->
-<section class="page-hero">
+<section class="comm-hero">
   <div class="wrap">
-    <div class="kicker">Comunidad XPRINTED</div>
-    <h1>Sumate a la<br>comunidad.</h1>
-    <p class="lead">Tenemos una comunidad de WhatsApp donde makers, talleres y entusiastas del 3D se ayudan entre sí. Un lugar para resolver dudas, mostrar lo que imprimís, enterarte de novedades y stock, y aprender de gente que está en la misma.</p>
+    <div class="comm-hero-grid">
+      <div class="comm-hero-left">
+        <div class="kicker">Comunidad XPRINTED</div>
+        <h1>Sumate a la<br><em>comunidad.</em></h1>
+        <p class="lead">Una comunidad de WhatsApp donde makers, talleres y entusiastas del 3D se ayudan entre sí. Resolvé dudas, mostrá lo que imprimís, enterate de novedades y aprendé de gente que está en la misma.</p>
+        <a class="btn-wa" href="https://chat.whatsapp.com/J5ps9lCroheC1QIBZ2FJBP?s=cl&amp;p=i&amp;ilr=0&amp;amv=1" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.86-2-.96-.27-.1-.47-.15-.66.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.75-.72 2-1.41.24-.7.24-1.29.17-1.41-.07-.12-.27-.2-.56-.35zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
+          Unirme a la comunidad
+        </a>
+        <div class="comm-stats">
+          <div class="comm-stat"><b>+8</b><span>años de experiencia</span></div>
+          <div class="comm-stat"><b>Gratis</b><span>y abierta a todos</span></div>
+          <div class="comm-stat"><b>24/7</b><span>siempre activa</span></div>
+        </div>
+      </div>
+      <div class="comm-hero-right">
+        <div class="wa-mock">
+          <div class="wa-top">
+            <div class="wa-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="wa-top-info"><b>Comunidad XPRINTED</b><span>makers, talleres y entusiastas 3D</span></div>
+          </div>
+          <div class="wa-body">
+            <div class="wa-msg them d1"><div class="wa-name" style="color:#f0b6c0;">Sofi</div>Alguien sabe qué nozzle va en la Ender 3 V2? 🤔</div>
+            <div class="wa-msg them d2"><div class="wa-name" style="color:#8fd6f0;">Marto</div>El MK8 de 0.4, yo lo compré en XPRINTED y anda joya 👌</div>
+            <div class="wa-msg me d3">¡Tal cual! Y si querés te paso el link 🙌</div>
+            <div class="wa-msg them d4"><div class="wa-name" style="color:#c4b6f0;">Lucas</div>Miren este print que salió 🔥 <br><span style="color:#8fa3ad;font-size:0.78rem;">📷 Foto</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- QUÉ ES -->
+<!-- QUÉ VAS A ENCONTRAR -->
 <section class="sec-pad">
   <div class="wrap">
+    <div class="sec-label">Qué vas a encontrar</div>
+    <h2 class="sec-h2">Más que un grupo, <em>una mano.</em></h2>
     <div class="comm-grid">
       <div class="comm-card">
         <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
@@ -283,19 +362,26 @@
         <p>Compartí tus impresiones, tus mejoras, tus fracasos épicos. Inspirate con lo que hacen otros y sumá tu experiencia.</p>
       </div>
       <div class="comm-card">
-        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
         <h3>Enterate primero</h3>
         <p>Novedades, reposición de stock, lanzamientos y ofertas exclusivas para la comunidad, antes que en ningún otro lado.</p>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- CTA GRANDE -->
+<section class="sec-pad">
+  <div class="wrap">
     <div class="big-cta">
-      <h2>¿Te sumás?</h2>
-      <p>Es gratis, es abierto, y no hace falta comprar nada para estar. Solo buena onda y ganas de imprimir mejor.</p>
-      <a class="btn-wa" href="https://chat.whatsapp.com/J5ps9lCroheC1QIBZ2FJBP?s=cl&amp;p=i&amp;ilr=0&amp;amv=1" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.86-2-.96-.27-.1-.47-.15-.66.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.75-.72 2-1.41.24-.7.24-1.29.17-1.41-.07-.12-.27-.2-.56-.35zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
-        Unirme a la comunidad
-      </a>
+      <div class="big-cta-inner">
+        <h2>¿Te <em>sumás?</em></h2>
+        <p>Es gratis, es abierto, y no hace falta comprar nada para estar. Solo buena onda y ganas de imprimir mejor.</p>
+        <a class="btn-wa" href="https://chat.whatsapp.com/J5ps9lCroheC1QIBZ2FJBP?s=cl&amp;p=i&amp;ilr=0&amp;amv=1" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.86-2-.96-.27-.1-.47-.15-.66.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.75-.72 2-1.41.24-.7.24-1.29.17-1.41-.07-.12-.27-.2-.56-.35zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
+          Unirme a la comunidad
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -303,14 +389,14 @@
 <!-- REGLAS -->
 <section class="sec-pad">
   <div class="wrap">
-    <div class="kicker" style="margin-bottom:18px;">Buena convivencia</div>
-    <h2 style="font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3vw,2.5rem);text-transform:uppercase;margin-bottom:20px;">Cuatro reglas simples</h2>
-    <ul class="rules">
-      <li>Respeto siempre. Todos empezamos alguna vez sin saber nada de impresión 3D.</li>
-      <li>Sin spam ni autopromoción de otras tiendas. Es una comunidad, no un clasificado.</li>
-      <li>Compartí conocimiento: si sabés la respuesta, ayudá al que pregunta.</li>
-      <li>Lo que se charla es para sumar. Preguntá tranquilo, nadie nace sabiendo.</li>
-    </ul>
+    <div class="sec-label">Buena convivencia</div>
+    <h2 class="sec-h2">Cuatro reglas <em>simples.</em></h2>
+    <div class="rules-grid">
+      <div class="rule-card"><span class="rule-num">01</span><p><strong>Respeto siempre.</strong> Todos empezamos alguna vez sin saber nada de impresión 3D.</p></div>
+      <div class="rule-card"><span class="rule-num">02</span><p><strong>Sin spam.</strong> Nada de autopromoción de otras tiendas. Es una comunidad, no un clasificado.</p></div>
+      <div class="rule-card"><span class="rule-num">03</span><p><strong>Compartí conocimiento.</strong> Si sabés la respuesta, ayudá al que pregunta.</p></div>
+      <div class="rule-card"><span class="rule-num">04</span><p><strong>Preguntá tranquilo.</strong> Lo que se charla es para sumar. Nadie nace sabiendo.</p></div>
+    </div>
   </div>
 </section>
 
