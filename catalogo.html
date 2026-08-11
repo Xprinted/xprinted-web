@@ -150,8 +150,8 @@
   .pc-stock.out{background:rgba(10,10,10,0.6);color:#ff8080;}
   .pc-stock.out::before{background:#ff6b6b;}
   .prod-card .pc-body{padding:18px;flex:1;display:flex;flex-direction:column;}
-  .pc-ship{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:#4ec87a;margin:2px 0 10px;}
-  .pc-ship svg{width:14px;height:14px;stroke:#4ec87a;flex-shrink:0;}
+  .pc-ship{position:absolute;top:10px;right:10px;font-family:var(--fm);font-size:0.56rem;font-weight:600;letter-spacing:0.06em;padding:4px 9px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;backdrop-filter:blur(4px);background:rgba(10,10,10,0.55);color:#5fe08c;}
+  .pc-ship::before{content:'';width:5px;height:5px;border-radius:50%;background:#4ec87a;box-shadow:0 0 6px #4ec87a;}
   .pc-cat{font-family:var(--fm);font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:9px;}
   .prod-card h4{font-family:var(--fb);font-weight:600;font-size:0.92rem;line-height:1.35;margin-bottom:14px;flex:1;color:#e8e8e6;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
@@ -376,12 +376,12 @@ function productCard(p) {
         <img class="ml-img" data-item="${p.id}" src="${p.img}" alt="${escapeHtml(p.title)}" loading="lazy"
              onerror="this.style.opacity=0.15;this.onerror=null;">
         <span class="pc-stock ${inStock ? 'in' : 'out'}">${inStock ? 'STOCK' : 'AGOTADO'}</span>
+        ${p.freeShip ? '<span class="pc-ship">ENVÍO GRATIS</span>' : ''}
       </div>
       <div class="pc-body">
         <div class="pc-cat">${escapeHtml(p.cat)}</div>
         <h4>${escapeHtml(p.title)}</h4>
         ${priceHtml}
-        ${p.freeShip ? '<div class="pc-ship"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3V6h11v12H9"/><path d="M14 9h4l3 3v6h-2"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/></svg>Envío gratis</div>' : ''}
         <div class="pc-go">
           Ver en Mercado Libre
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
