@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="XPRINTED">
 <meta property="og:locale" content="es_AR">
 <meta property="og:url" content="https://xprinted-web.vercel.app/">
-<meta property="og:image" content="https://xprinted-web.vercel.app/assets/logo_icon.png">
+<meta property="og:image" content="https://xprinted-web.vercel.app/assets/og-home.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="XPRINTED — Repuestos para impresoras 3D">
 <meta name="twitter:description" content="Hotends, nozzles, camas, termistores y más. Envío Full a todo el país.">
@@ -63,34 +63,37 @@
   .nav-cta:active{transform:scale(1.01);}
 
   /* HERO CINEMATOGRÁFICO */
-  .hero-cine{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:70px 24px 40px;border-bottom:1px solid var(--line);}
+  .hero-cine{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;padding:80px 24px 60px;border-bottom:1px solid var(--line);}
   .hero-cine::before{content:'';position:absolute;inset:0;
     background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
     background-size:52px 52px;opacity:0.35;
-    -webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 52%, #000 20%, transparent 72%);
-    mask-image:radial-gradient(ellipse 60% 60% at 50% 52%, #000 20%, transparent 72%);}
-  .hero-cine::after{content:'';position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
-    width:760px;height:760px;border-radius:50%;pointer-events:none;
+    -webkit-mask-image:radial-gradient(ellipse 62% 72% at 74% 44%, #000 20%, transparent 72%);
+    mask-image:radial-gradient(ellipse 62% 72% at 74% 44%, #000 20%, transparent 72%);}
+  .hero-cine::after{content:'';position:absolute;left:74%;top:46%;transform:translate(-50%,-50%);
+    width:660px;height:660px;border-radius:50%;pointer-events:none;
     background:radial-gradient(circle, rgba(224,169,74,0.10), rgba(224,169,74,0.03) 40%, transparent 66%);}
-  .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;max-width:1100px;}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr 0.98fr;gap:52px;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
+  @media(max-width:940px){.hero-inner{grid-template-columns:1fr;gap:36px;}.printer-stage{max-width:340px;}}
   .hero-badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);font-size:0.68rem;color:#b0b0ae;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:100px;padding:8px 18px;margin-bottom:26px;}
   .hb-dot{width:6px;height:6px;border-radius:50%;background:#4ec87a;box-shadow:0 0 0 3px rgba(78,200,122,0.18);animation:dotBeat 2.4s ease-in-out infinite;}
   @keyframes dotBeat{0%,100%{box-shadow:0 0 0 3px rgba(78,200,122,0.18);}50%{box-shadow:0 0 0 5px rgba(78,200,122,0.05);}}
-  .hero-title{font-family:var(--fd);font-weight:900;text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;font-size:clamp(2.6rem,6.5vw,5.5rem);}
+  .hero-title{font-family:var(--fd);font-weight:900;text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;font-size:clamp(2.4rem,4.4vw,4.1rem);margin-bottom:20px;}
+  .hero-title em{font-style:normal;color:#E0A94A;}
   .hero-title .dim{color:#4a4a4e;}
-  .printer-stage{position:relative;width:100%;max-width:400px;margin:6px auto 0;perspective:1400px;}
+  .printer-stage{position:relative;width:100%;max-width:470px;margin:0 auto;perspective:1400px;}
   .printer-tilt{transform-style:preserve-3d;transition:transform .12s ease-out;will-change:transform;}
   .printer-anim{width:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,0.6));}
-  .hero-sub{font-size:1.02rem;color:var(--muted);max-width:520px;line-height:1.6;margin:8px auto 28px;}
-  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:0;}
-  .hero-strip{position:relative;z-index:2;display:flex;margin-top:48px;border-top:1px solid var(--line);padding-top:24px;flex-wrap:wrap;justify-content:center;gap:0;}
-  .hero-strip .hs{display:flex;flex-direction:column;align-items:center;gap:5px;padding:0 40px;border-right:1px solid var(--line);}
+  .hero-sub{font-size:1.02rem;color:#a8a8a6;max-width:500px;line-height:1.7;margin:0 0 26px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start;}
+  .hero-strip{position:relative;z-index:2;display:flex;margin-top:38px;border-top:1px solid var(--line);padding-top:24px;flex-wrap:wrap;justify-content:flex-start;gap:0;}
+  .hero-strip .hs{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:0 34px;border-right:1px solid var(--line);}
+  .hero-strip .hs:first-child{padding-left:0;}
   .hero-strip .hs:last-child{border-right:none;}
-  .hero-strip .hs b{color:var(--white);font-family:var(--fd);font-size:1.6rem;font-weight:900;line-height:1;}
+  .hero-strip .hs b{color:#E0A94A;font-family:var(--fd);font-size:1.6rem;font-weight:900;line-height:1;}
   .hero-strip .hs span{font-family:var(--fm);font-size:0.64rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
-  @media(max-width:600px){.hero-strip .hs{padding:8px 20px;border-right:none;}}
-  .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:13px 28px;border-radius:3px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;white-space:nowrap;}
-  .btn-main:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 10px 28px rgba(240,240,238,0.18);}
+  @media(max-width:600px){.hero-strip .hs{padding:8px 28px 8px 0;border-right:none;}}
+  .btn-main{background:#E0A94A;color:#171006;font-weight:700;font-size:0.88rem;padding:13px 28px;border-radius:5px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;white-space:nowrap;}
+  .btn-main:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 10px 28px rgba(224,169,74,0.18);}
   .btn-main:active{transform:scale(1.01);}
   .btn-main svg,.btn-sec svg{width:12px;height:12px;transition:transform .2s;}
   .btn-main:hover svg{transform:translateX(4px);}
@@ -149,10 +152,11 @@
 
   /* TRUST */
   .trust{border-bottom:1px solid var(--line);}
-  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .trust-item{background:var(--bg);padding:36px 32px;}
-  .ti-icon{width:32px;height:32px;border:1px solid var(--line);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
-  .ti-icon svg{width:16px;height:16px;stroke:var(--muted);}
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .trust-item{background:linear-gradient(155deg,#141517,#0f0f11);border:1px solid #26272a;border-radius:12px;padding:32px 30px;transition:border-color .2s,transform .2s;}
+  .trust-item:hover{border-color:rgba(224,169,74,0.35);transform:translateY(-3px);}
+  .ti-icon{width:44px;height:44px;border:1px solid rgba(224,169,74,0.3);border-radius:10px;background:linear-gradient(145deg,rgba(224,169,74,0.14),rgba(224,169,74,0.04));display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .ti-icon svg{width:20px;height:20px;stroke:#E0A94A;}
   .trust-item h3{font-family:var(--fd);font-weight:900;font-size:1.2rem;text-transform:uppercase;margin-bottom:8px;}
   .trust-item p{font-size:0.84rem;color:var(--muted);line-height:1.6;}
 
@@ -160,6 +164,9 @@
   .wholesale{border-bottom:1px solid var(--line);}
   .ws-inner{display:grid;grid-template-columns:1fr 1fr;min-height:320px;}
   .ws-left{padding:56px 48px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:18px;}
+  .ws-left h2 em{font-style:normal;color:#E0A94A;}
+  .wholesale .section-label{color:#E0A94A;}
+  .wholesale .section-label::before{background:#E0A94A;}
   .ws-left h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3vw,2.8rem);text-transform:uppercase;line-height:0.95;}
   .ws-left p{font-size:0.88rem;color:var(--muted);max-width:340px;line-height:1.6;}
   .ws-right{padding:56px 48px;background:var(--bg2);display:flex;flex-direction:column;justify-content:center;gap:0;}
@@ -218,30 +225,34 @@
   .home-cats{padding:64px 0;border-bottom:1px solid var(--line);}
   .hc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:36px;}
   .hc-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.4vw,2.8rem);text-transform:uppercase;line-height:0.95;}
-  .cat-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .cat-tile{background:var(--bg);padding:26px 24px;display:flex;align-items:center;gap:16px;transition:background .2s,padding-left .2s;position:relative;overflow:hidden;}
-  .cat-tile::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#E0A94A;transform:scaleY(0);transform-origin:bottom;transition:transform .25s cubic-bezier(.16,1,.3,1);}
-  .cat-tile:hover{background:var(--bg3);padding-left:30px;}
-  .cat-tile:hover::before{transform:scaleY(1);}
-  .cat-tile .cti{width:40px;height:40px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s;}
-  .cat-tile:hover .cti{border-color:#E0A94A;}
-  .cat-tile .cti svg{width:20px;height:20px;stroke:var(--muted);transition:stroke .2s;}
-  .cat-tile:hover .cti svg{stroke:var(--white);}
+  .cat-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .cat-tile{position:relative;background:linear-gradient(155deg,#16171a,#101012);border:1px solid #26272a;border-radius:12px;padding:20px 22px;display:flex;align-items:center;gap:15px;transition:border-color .2s,transform .2s,box-shadow .2s;overflow:hidden;}
+  .cat-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#E0A94A,transparent);opacity:0;transition:opacity .2s;}
+  .cat-tile:hover{border-color:rgba(224,169,74,0.45);transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,0,0,0.4);}
+  .cat-tile:hover::before{opacity:1;}
+  .cat-tile .cti{width:44px;height:44px;border:1px solid rgba(224,169,74,0.3);border-radius:10px;background:linear-gradient(145deg,rgba(224,169,74,0.16),rgba(224,169,74,0.04));display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s;}
+  .cat-tile:hover .cti{transform:scale(1.08);}
+  .cat-tile .cti svg{width:21px;height:21px;stroke:#E0A94A;}
   .cat-tile .ctn{font-family:var(--fd);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:0.02em;line-height:1.05;}
-  .cat-tile .ctc{font-family:var(--fm);font-size:0.62rem;color:var(--muted);margin-top:3px;}
-  @media(max-width:820px){.cat-tiles{grid-template-columns:1fr;}}
+  .cat-tile .ctc{font-family:var(--fm);font-size:0.62rem;color:var(--muted);margin-top:3px;transition:color .2s;}
+  .cat-tile:hover .ctc{color:#E0A94A;}
+  @media(max-width:820px){.cat-tiles{grid-template-columns:1fr 1fr;gap:10px;}}
+  @media(max-width:560px){.cat-tiles{grid-template-columns:1fr;}}
 
   /* guías destacadas */
   .guides-home{padding:64px 0;border-bottom:1px solid var(--line);background:var(--bg2);}
   .guide-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;}
-  .guide-card{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:26px 24px;transition:border-color .2s,transform .2s,box-shadow .2s;}
-  .guide-card:hover{border-color:#4a4a4c;transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.35);}
+  .guide-card{position:relative;background:linear-gradient(155deg,#16171a,#101012);border:1px solid #26272a;border-radius:14px;padding:26px 24px;transition:border-color .25s,transform .25s,box-shadow .25s;overflow:hidden;}
+  .guide-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#E0A94A,transparent);opacity:0;transition:opacity .25s;}
+  .guide-card:hover{border-color:rgba(224,169,74,0.45);transform:translateY(-5px);box-shadow:0 16px 36px rgba(0,0,0,0.45);}
+  .guide-card:hover::before{opacity:1;}
   .guide-card .gc-go svg{transition:transform .2s;}
   .guide-card:hover .gc-go svg{transform:translateX(4px);}
-  .guide-card .gc-tag{font-family:var(--fm);font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;}
+  .guide-card .gc-tag{font-family:var(--fm);font-size:0.62rem;color:#E0A94A;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;opacity:0.85;}
   .guide-card h3{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:0.01em;margin-bottom:8px;line-height:1;}
   .guide-card p{color:var(--muted);font-size:0.88rem;line-height:1.55;margin-bottom:16px;}
-  .guide-card .gc-go{font-family:var(--fm);font-size:0.7rem;color:var(--white);display:inline-flex;align-items:center;gap:6px;}
+  .guide-card .gc-go{font-family:var(--fm);font-size:0.7rem;color:#E0A94A;font-weight:600;display:inline-flex;align-items:center;gap:7px;transition:gap .25s;}
+  .guide-card:hover .gc-go{gap:11px;}
   .guide-card .gc-go svg{width:11px;height:11px;}
   @media(max-width:820px){.guide-cards{grid-template-columns:1fr;}}
 
@@ -277,9 +288,10 @@
   @media(max-width:900px){.up-grid{grid-template-columns:1fr 1fr;}}
   @media(max-width:600px){.up-grid{grid-template-columns:1fr;}}
 
-  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px;}
-  .step{background:var(--bg);padding:30px 26px;}
-  .step .sn{font-family:var(--fd);font-weight:900;font-size:2.4rem;color:var(--dim);line-height:1;margin-bottom:14px;}
+  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;}
+  .step{position:relative;background:linear-gradient(155deg,#141517,#0f0f11);border:1px solid #26272a;border-radius:12px;padding:28px 26px;transition:border-color .2s,transform .2s;overflow:hidden;}
+  .step:hover{border-color:rgba(224,169,74,0.35);transform:translateY(-3px);}
+  .step .sn{font-family:var(--fd);font-weight:900;font-size:2.6rem;color:rgba(224,169,74,0.3);line-height:1;margin-bottom:14px;}
   .step h3{font-family:var(--fd);font-weight:700;font-size:1.2rem;text-transform:uppercase;margin-bottom:8px;}
   .step p{color:var(--muted);font-size:0.9rem;line-height:1.6;}
   @media(max-width:820px){.step-grid{grid-template-columns:1fr;}}
@@ -288,6 +300,9 @@
   .comm-band{padding:60px 0;border-bottom:1px solid var(--line);}
   .comm-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
   .comm-inner h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.4vw,2.8rem);text-transform:uppercase;line-height:0.95;margin-bottom:10px;}
+  .comm-inner h2 em{font-style:normal;color:#25D366;}
+  .comm-band .section-label{color:#25D366;}
+  .comm-band .section-label::before{background:#25D366;}
   .comm-inner p{color:var(--muted);max-width:520px;line-height:1.6;}
   .btn-wa2{background:#25D366;color:#0A0A0A;font-weight:700;font-size:0.95rem;padding:14px 30px;border-radius:3px;display:inline-flex;align-items:center;gap:9px;transition:transform .15s;white-space:nowrap;}
   .btn-wa2:hover{transform:translateY(-2px);}
@@ -403,9 +418,22 @@
   <!-- HERO -->
   <section class="hero-cine">
     <div class="hero-inner">
+      <div class="hero-left">
       <div class="hero-badge"><span class="hb-dot"></span>Especialistas en impresión 3D · +8 años en el mercado</div>
-      <h1 class="hero-title"><span class="dim">QUE NUNCA</span> PARE<br>DE IMPRIMIR.</h1>
-      <div class="printer-stage">
+      <h1 class="hero-title">Que nunca pare<br><em>de imprimir.</em></h1>
+      <p class="hero-sub">Todo lo que tu impresora necesita para no parar nunca. Repuestos originales y de calidad, mejoras y asesoramiento experto, con envíos rápidos a todo el país.</p>
+      <div class="hero-actions">
+        <a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn-sec" href="/asistente.html#chat">Diagnosticar mi impresora</a>
+      </div>
+      <div class="hero-strip">
+        <div class="hs"><b>170+</b><span>repuestos y mejoras</span></div>
+        <div class="hs"><b>+50.000</b><span>ventas concretadas</span></div>
+        <div class="hs"><b>Envíos</b><span>a todo el país</span></div>
+      </div>
+      </div>
+      <div class="hero-right">
+        <div class="printer-stage">
         <div class="printer-tilt" id="tilt">
           <div class="printer-anim">
             <svg viewBox="0 0 440 420" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Impresora 3D imprimiendo una pieza">
@@ -473,15 +501,6 @@
           </div>
         </div>
       </div>
-      <p class="hero-sub">Todo lo que tu impresora necesita para no parar nunca. Repuestos originales y de calidad, mejoras y asesoramiento experto, con envíos rápidos a todo el país.</p>
-      <div class="hero-actions">
-        <a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn-sec" href="/asistente.html#chat">Diagnosticar mi impresora</a>
-      </div>
-      <div class="hero-strip">
-        <div class="hs"><b>170+</b><span>repuestos y mejoras</span></div>
-        <div class="hs"><b>+50.000</b><span>ventas concretadas</span></div>
-        <div class="hs"><b>Envíos</b><span>a todo el país</span></div>
       </div>
     </div>
   </section>
@@ -740,7 +759,7 @@
       <div class="comm-inner">
         <div>
           <div class="section-label">Comunidad</div>
-          <h2>Sumate a la comunidad.</h2>
+          <h2>Sumate a la <em>comunidad.</em></h2>
           <p>Tenemos una comunidad de WhatsApp donde makers y talleres se ayudan, comparten sus prints y se enteran de novedades y stock antes que nadie. Es gratis y abierta.</p>
         </div>
         <a class="btn-wa2" href="/comunidad.html">
@@ -756,7 +775,7 @@
     <div class="ws-inner">
       <div class="ws-left">
         <div class="section-label">Mayoristas · B2B</div>
-        <h2>¿COMPRÁS<br>POR VOLUMEN?</h2>
+        <h2>¿Comprás<br><em>por volumen?</em></h2>
         <p>Precios especiales por volumen y stock dedicado para talleres, tiendas y revendedores con pedidos recurrentes. Contanos qué necesitás y armamos una propuesta a tu medida.</p>
         <div class="ws-cta">
           <a class="btn-main" href="https://wa.me/5491171585143?text=Hola%2C%20quiero%20consultar%20precios%20mayoristas." target="_blank" rel="noopener">Consultar precios mayoristas</a>
