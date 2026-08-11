@@ -462,7 +462,11 @@ async function loadProducts() {
     const items = data.products || [];
     if (!items.length) throw new Error('sin productos');
 
-    PRODUCTS = items.map(it => ({
+    // Excluir publicaciones que no son de impresión 3D (links de pago, herramientas de electrónica ajenas)
+    const EXCLUDE = /link de pago|soic|ch341/i;
+    const items3d = items.filter(it => !EXCLUDE.test(it.title || ''));
+
+    PRODUCTS = items3d.map(it => ({
       id: it.id,
       title: it.title,
       price: (typeof it.sale_price === 'number') ? it.sale_price : it.price,
