@@ -109,14 +109,10 @@ export default async function handler(req, res) {
           if (entry.code === 200 && entry.body) {
             const it = entry.body;
             // Imagen en la mejor calidad posible.
-            // Estrategia: de "pictures" tomamos max_size (la original más grande);
-            // si no, armamos la URL "-O" (original) desde el picture id o thumbnail_id.
             let img = '';
             if (Array.isArray(it.pictures) && it.pictures.length > 0) {
               const pic = it.pictures[0];
-              // max_size trae la resolución original; secure_url es la versión estándar
               img = pic.max_size || pic.secure_url || pic.url || '';
-              // Si tenemos el id del picture, forzamos la versión Original (-O), la más grande
               if (pic.id) {
                 img = `https://http2.mlstatic.com/D_NQ_NP_2X_${pic.id}-O.webp`;
               }
@@ -130,7 +126,9 @@ export default async function handler(req, res) {
             products.push({
               id: it.id,
               title: it.title,
-              price: it.price,
+              price: it.price,          // precio de lista (puede quedar tachado si hay promo)
+              sale_price: it.price,     // se sobrescribe abajo con el precio real de venta
+              list_price: null,         // precio tachado, si hay promo
               stock: it.available_quantity,
               sold: it.sold_quantity,
               thumbnail: img,
@@ -140,6 +138,27 @@ export default async function handler(req, res) {
         }
       }
     }
+
+    // 3. Para cada producto, consultar el precio REAL de venta (con promoción aplicada)
+    //    Endpoint: /items/{id}/sale_price?context=channel_marketplace
+    //    amount = precio final a pagar | regular_amount = precio de lista tachado (si hay promo)
+    await Promise.all(products.map(async (p) => {
+      try {
+        const spRes = await fetch(
+          `https://api.mercadolibre.com/items/${p.id}/sale_price?context=channel_marketplace`,
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        if (!spRes.ok) return;
+        const sp = await spRes.json();
+        if (sp && typeof sp.amount === 'number') {
+          p.sale_price = sp.amount;
+          // Si hay promo, regular_amount trae el precio original (más alto)
+          if (sp.regular_amount && sp.regular_amount > sp.amount) {
+            p.list_price = sp.regular_amount;
+          }
+        }
+      } catch (e) { /* si falla, queda el precio de lista */ }
+    }));
 
     return res.status(200).json({ products, count: products.length });
   } catch (err) {
