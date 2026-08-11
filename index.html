@@ -32,7 +32,7 @@
 <style>
   :root{
     --bg:#0A0A0A; --bg2:#111113; --bg3:#191919;
-    --line:#222224; --white:#F0F0EE; --muted:#666668; --dim:#3A3A3C;
+    --line:#222224; --white:#F0F0EE; --muted:#8A8A8C; --dim:#3A3A3C;
     --fd:'Barlow Condensed',sans-serif;
     --fb:'Inter',sans-serif;
     --fm:'JetBrains Mono',monospace;
@@ -191,8 +191,8 @@
 
   /* RESPONSIVE */
   @media(max-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:860px){.nav-links{display:none;}}
   @media(max-width:760px){
-    .nav-links{display:none;}
     nav,.wrap{padding-left:20px;padding-right:20px;}
     .hero-cine{min-height:auto;padding:50px 20px 36px;}
     .printer-stage{max-width:320px;}
@@ -294,7 +294,7 @@
   .btn-wa2 svg{width:18px;height:18px;}
 
 
-  /* ===== FONDO LÍNEAS DE CAPA ===== */}
+  /* ===== FONDO LÍNEAS DE CAPA ===== */
 
   /* ===== IMPRESORA ANIMADA (isométrica) ===== */
   .printer-anim{width:100%;max-width:500px;margin:0 auto;}
@@ -471,7 +471,7 @@
       <p class="hero-sub">Todo lo que tu impresora necesita para no parar nunca. Repuestos originales y de calidad, mejoras y asesoramiento experto, con envíos rápidos a todo el país.</p>
       <div class="hero-actions">
         <a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn-sec" href="/asistente.html#diagnostico">Diagnosticar mi impresora</a>
+        <a class="btn-sec" href="/asistente.html#chat">Diagnosticar mi impresora</a>
       </div>
       <div class="hero-strip">
         <div class="hs"><b>170+</b><span>repuestos y mejoras</span></div>
@@ -1022,7 +1022,7 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
       '<div class="pr-sub-count">'+p.total+' productos compatibles · '+p.cats.length+' categorías</div>'+
       '<div class="pr-cats">'+chips+'</div>'+
       upg+
-      '<div class="pr-cta"><a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a> <a class="btn-sec" href="/asistente.html#diagnostico">Consultar al asistente</a></div>';
+      '<div class="pr-cta"><a class="btn-main" href="/catalogo.html">Ver catálogo <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a> <a class="btn-sec" href="/asistente.html#chat">Consultar al asistente</a></div>';
   }
 })();
 
