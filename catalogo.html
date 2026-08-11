@@ -462,8 +462,9 @@ async function loadProducts() {
     const items = data.products || [];
     if (!items.length) throw new Error('sin productos');
 
-    // Excluir publicaciones que no son de impresión 3D (links de pago, herramientas de electrónica ajenas)
-    const EXCLUDE = /link de pago|soic|ch341/i;
+    // Publicaciones de ML que NO son de impresión 3D (electrónica de audio, conversores,
+    // placas de desarrollo, links de pago, etc.). Todo título que matchee acá no se muestra en la web.
+    const EXCLUDE = /link de pago|soic|ch341|amplificador|bluetooth|termostato|dimmer|hdmi|vga|displayport|step-?up|elevador|pickit|programador|arduino|esp32|nodemcu|starlink|zk-?pp|ne5532|tpa3116|irs2092|w3230/i;
     const items3d = items.filter(it => !EXCLUDE.test(it.title || ''));
 
     PRODUCTS = items3d.map(it => ({
