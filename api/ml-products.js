@@ -104,7 +104,7 @@ export default async function handler(req, res) {
     }
 
     // 2. Traer los detalles (precio, stock, foto) en lotes con /items?ids=
-    const attributes = 'id,title,price,available_quantity,thumbnail,thumbnail_id,secure_thumbnail,pictures,permalink,status,sold_quantity';
+    const attributes = 'id,title,price,available_quantity,thumbnail,thumbnail_id,secure_thumbnail,pictures,permalink,status,sold_quantity,shipping';
     const chunks = [];
     for (let i = 0; i < ids.length; i += 20) chunks.push(ids.slice(i, i + 20));
 
@@ -142,6 +142,7 @@ export default async function handler(req, res) {
               list_price: null,         // precio tachado, si hay promo
               stock: it.available_quantity,
               sold: it.sold_quantity,
+              free_shipping: !!(it.shipping && it.shipping.free_shipping),
               thumbnail: img,
               url: it.permalink
             });
