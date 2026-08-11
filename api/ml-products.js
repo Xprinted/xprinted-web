@@ -77,17 +77,28 @@ export default async function handler(req, res) {
     const accessToken = await getValidToken();
     const sellerId = token.user_id;
 
-    // 1. Traer los IDs de las publicaciones activas del vendedor
-    const searchRes = await fetch(
-      `https://api.mercadolibre.com/users/${sellerId}/items/search?status=active&limit=50`,
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
-    const searchData = await searchRes.json();
-    if (!searchRes.ok) {
-      return res.status(502).json({ error: 'Error al buscar items', detail: searchData });
+    // 1. Traer TODOS los IDs de las publicaciones activas del vendedor (paginado).
+    //    ML devuelve hasta 100 por página; recorremos con offset hasta juntar todo.
+    let ids = [];
+    let offset = 0;
+    const PAGE = 100;
+    const MAX_ITEMS = 500; // tope de seguridad
+    while (offset < MAX_ITEMS) {
+      const searchRes = await fetch(
+        `https://api.mercadolibre.com/users/${sellerId}/items/search?status=active&limit=${PAGE}&offset=${offset}`,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      const searchData = await searchRes.json();
+      if (!searchRes.ok) {
+        return res.status(502).json({ error: 'Error al buscar items', detail: searchData });
+      }
+      const page = searchData.results || [];
+      ids = ids.concat(page);
+      const total = (searchData.paging && searchData.paging.total) || ids.length;
+      offset += PAGE;
+      if (page.length === 0 || ids.length >= total) break;
     }
 
-    const ids = (searchData.results || []).slice(0, 50);
     if (ids.length === 0) {
       return res.status(200).json({ products: [] });
     }
@@ -142,7 +153,8 @@ export default async function handler(req, res) {
     // 3. Para cada producto, consultar el precio REAL de venta (con promoción aplicada)
     //    Endpoint: /items/{id}/sale_price?context=channel_marketplace
     //    amount = precio final a pagar | regular_amount = precio de lista tachado (si hay promo)
-    await Promise.all(products.map(async (p) => {
+    //    Con muchos productos, lo hacemos en tandas de 30 para no saturar la API de ML.
+    const fetchSalePrice = async (p) => {
       try {
         const spRes = await fetch(
           `https://api.mercadolibre.com/items/${p.id}/sale_price?context=channel_marketplace`,
@@ -158,7 +170,11 @@ export default async function handler(req, res) {
           }
         }
       } catch (e) { /* si falla, queda el precio de lista */ }
-    }));
+    };
+    const CONC = 30;
+    for (let i = 0; i < products.length; i += CONC) {
+      await Promise.all(products.slice(i, i + CONC).map(fetchSalePrice));
+    }
 
     return res.status(200).json({ products, count: products.length });
   } catch (err) {
