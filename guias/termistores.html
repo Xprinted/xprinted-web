@@ -30,7 +30,7 @@
 <style>
   :root{
     --bg:#0A0A0A; --bg2:#111113; --bg3:#191919;
-    --line:#222224; --white:#F0F0EE; --muted:#666668; --dim:#3A3A3C;
+    --line:#222224; --white:#F0F0EE; --muted:#666668; --dim:#3A3A3C; --gold:#E0A94A;
     --fd:'Barlow Condensed',sans-serif;
     --fb:'Inter',sans-serif;
     --fm:'JetBrains Mono',monospace;
@@ -95,8 +95,8 @@
   /* SECTIONS */
   .guide-body{padding:72px 0 32px;}
   .guide-body section{margin-bottom:74px;}
-  .sec-label{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
-  .sec-label::before{content:'';width:16px;height:1px;background:var(--dim);}
+  .sec-label{font-family:var(--fm);font-size:0.68rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .sec-label::before{content:'';width:5px;height:5px;background:var(--gold);}
   .guide-body h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.9rem,3.6vw,2.7rem);text-transform:uppercase;line-height:1;margin-bottom:24px;}
   .guide-body h3{font-family:var(--fd);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:0.02em;margin:30px 0 12px;color:var(--white);}
   .guide-body p{font-size:1.05rem;color:#C4C4C2;margin-bottom:18px;max-width:900px;line-height:1.75;}
@@ -107,8 +107,8 @@
   .guide-body ul li strong{color:var(--white);font-weight:600;}
 
   /* CALLOUT */
-  .callout{border:1px solid var(--line);border-left:2px solid var(--muted);background:var(--bg2);padding:24px 28px;border-radius:2px;margin:28px 0;max-width:900px;}
-  .callout .ct{font-family:var(--fm);font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+  .callout{border:1px solid rgba(224,169,74,0.22);border-left:3px solid var(--gold);background:linear-gradient(135deg,rgba(224,169,74,0.05),rgba(255,255,255,0.01));padding:24px 28px;border-radius:10px;margin:28px 0;max-width:900px;}
+  .callout .ct{font-family:var(--fm);font-size:0.66rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600;}
   .callout p{margin:0;color:#C8C8C6;font-size:0.96rem;}
 
   /* DIAMETER / SPEC TABLE */
@@ -213,7 +213,7 @@
   <div class="wrap-wide">
     <a href="/">Inicio</a>
     <span class="sep">/</span>
-    <a href="/#catalogo">Guías</a>
+    <a href="/guias.html">Guías</a>
     <span class="sep">/</span>
     <span class="here">Termistores &amp; Resistencias</span>
   </div>
