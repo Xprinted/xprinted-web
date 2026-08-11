@@ -69,28 +69,28 @@
   .breadcrumb span.here{color:var(--white);}
 
   /* HERO GUIA */
-  .guide-hero{border-bottom:1px solid var(--line);padding:64px 0 68px;background:linear-gradient(160deg,var(--bg2),var(--bg) 70%);}
+  .guide-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding:70px 0 72px;background:linear-gradient(160deg,#141416,var(--bg) 72%);}
+  .guide-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:0.28;-webkit-mask-image:radial-gradient(ellipse 70% 80% at 72% 30%, #000, transparent 74%);mask-image:radial-gradient(ellipse 70% 80% at 72% 30%, #000, transparent 74%);pointer-events:none;}
+  .guide-hero::after{content:'';position:absolute;top:-25%;right:-6%;width:580px;height:580px;border-radius:50%;background:radial-gradient(circle, rgba(224,169,74,0.08), transparent 62%);pointer-events:none;}
+  .guide-hero .wrap-wide{position:relative;z-index:1;}
   .gh-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
   .gh-text{min-width:0;}
-  .guide-kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
-  .guide-kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
-  .guide-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,6vw,5.2rem);line-height:0.9;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:24px;}
+  .guide-kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+  .guide-kicker::before{content:'';width:5px;height:5px;background:var(--gold);}
+  .guide-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(2.6rem,5.2vw,4.3rem);line-height:0.9;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:20px;}
+  .guide-hero h1 em{font-style:normal;color:var(--gold);}
   .guide-hero .lead{font-size:1.1rem;color:#B8B8B6;max-width:560px;line-height:1.72;margin-bottom:32px;}
   .gh-actions{display:flex;gap:12px;flex-wrap:wrap;}
 
   /* HERO VISUAL */
   .gh-visual{display:flex;flex-direction:column;gap:18px;}
-  .nz-diagram{position:relative;border:1px solid var(--line);border-radius:4px;background:
+  .nz-diagram{position:relative;border:1px solid var(--line);border-radius:12px;background:
       radial-gradient(circle at 50% 40%, rgba(255,255,255,0.03), transparent 60%),
       repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255,255,255,0.015) 23px, rgba(255,255,255,0.015) 24px),
       var(--bg2);
-    padding:28px 20px;display:flex;align-items:center;justify-content:center;min-height:300px;}
-  .nz-diagram svg{width:100%;height:auto;max-height:300px;}
+    padding:34px 24px;display:flex;align-items:center;justify-content:center;min-height:400px;}
+  .nz-diagram svg{width:100%;height:auto;max-height:400px;}
   .nz-tag{position:absolute;font-family:var(--fm);font-size:0.6rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:2px;}
-  .nz-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
-  .nz-spec{background:var(--bg2);padding:16px 14px;text-align:center;}
-  .nz-spec .v{display:block;font-family:var(--fd);font-weight:900;font-size:1.7rem;line-height:1;color:var(--white);margin-bottom:5px;}
-  .nz-spec .l{font-family:var(--fm);font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
 
   /* SECTIONS */
   .guide-body{padding:72px 0 32px;}
@@ -225,7 +225,7 @@
     <div class="gh-grid">
       <div class="gh-text">
         <span class="guide-kicker">Guía técnica · Repuestos 3D</span>
-        <h1>Termistores<br>y resistencias.</h1>
+        <h1>Termistores<br><em>y resistencias.</em></h1>
         <p class="lead">Son la parte eléctrica del hotend: la resistencia genera el calor y el termistor lo mide, y juntos mantienen la temperatura justa para imprimir. Esta guía te explica qué hace cada pieza, en qué se diferencian, cómo elegir la correcta (12V o 24V, tipo de sensor) y cómo detectar cuándo falla.</p>
         <div class="gh-actions">
           <a class="btn-main" href="#productos">
@@ -334,12 +334,6 @@
           <div class="nz-tag" style="top:150px;left:20px;color:#E8907A;border-color:rgba(232,106,74,0.3);">Resistencia</div>
           <div class="nz-tag" style="top:150px;right:20px;color:#7AB6D8;border-color:rgba(90,150,184,0.35);">Termistor</div>
           <div class="nz-tag" style="bottom:56px;right:20px;color:#C79A56;border-color:rgba(224,179,106,0.28);">Bloque calefactor</div>
-        </div>
-
-        <div class="nz-specs">
-          <div class="nz-spec"><span class="v">100K</span><span class="l">termistor NTC</span></div>
-          <div class="nz-spec"><span class="v">40W</span><span class="l">resistencia típica</span></div>
-          <div class="nz-spec"><span class="v">12/24</span><span class="l">voltios</span></div>
         </div>
       </div>
     </div>
