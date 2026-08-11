@@ -117,6 +117,12 @@
   .link-all svg{width:10px;height:10px;}
 
   /* FILTER TABS */
+  .cat-statusbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line);}
+  .cat-live{display:flex;align-items:center;gap:9px;font-family:var(--fm);font-size:0.74rem;color:#c0c0be;}
+  .cat-live-dot{width:7px;height:7px;border-radius:50%;background:#4ec87a;box-shadow:0 0 0 3px rgba(78,200,122,0.18);animation:catBeat 2s ease-in-out infinite;}
+  @keyframes catBeat{0%,100%{box-shadow:0 0 0 3px rgba(78,200,122,0.18);}50%{box-shadow:0 0 0 6px rgba(78,200,122,0.04);}}
+  .cat-count{font-family:var(--fm);font-size:0.72rem;color:var(--muted);letter-spacing:0.04em;}
+  .cat-count b{color:var(--white);}
   .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
   .ftab{font-family:var(--fm);font-size:0.72rem;letter-spacing:0.03em;color:var(--muted);background:var(--bg2);border:1px solid var(--line);padding:9px 16px;border-radius:100px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;white-space:nowrap;}
   .ftab:hover{border-color:#3a3a3c;color:#C0C0C0;background:var(--bg3);}
@@ -216,11 +222,18 @@
 </style>
 
 <style>
-  .page-hero{padding:72px 0 40px;border-bottom:1px solid var(--line);}
+  .page-hero{padding:72px 0 44px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:0.28;-webkit-mask-image:radial-gradient(ellipse 80% 90% at 75% 15%, #000, transparent 72%);mask-image:radial-gradient(ellipse 80% 90% at 75% 15%, #000, transparent 72%);}
+  .ph-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;}
   .page-hero .kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:20px;}
   .page-hero .kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
-  .page-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,7vw,5.5rem);line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:20px;}
-  .page-hero .lead{font-size:1.02rem;color:var(--muted);max-width:600px;line-height:1.7;}
+  .page-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(2.8rem,5.5vw,4.6rem);line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;}
+  .page-hero .lead{font-size:1rem;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+  .ph-badges{display:flex;flex-direction:column;gap:10px;}
+  .ph-badge{display:flex;align-items:center;gap:11px;font-size:0.9rem;color:#c0c0be;}
+  .ph-badge svg{width:17px;height:17px;stroke:#4ec87a;flex-shrink:0;}
+  .ph-badge b{color:var(--white);font-weight:600;}
+  @media(max-width:860px){.ph-grid{grid-template-columns:1fr;gap:28px;align-items:start;}}
   .cat-note{display:flex;align-items:center;gap:10px;margin-top:22px;font-size:0.85rem;color:var(--muted);}
   .cat-note svg{width:16px;height:16px;stroke:#25D366;flex-shrink:0;}
   .catalog-page{padding:40px 0 72px;}
@@ -245,18 +258,39 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="kicker">Catálogo completo</div>
-    <h1>Todo el<br>catálogo.</h1>
-    <p class="lead">Una selección de nuestros repuestos y accesorios para impresoras 3D. Filtrá por categoría y tocá cualquier producto para comprarlo en Mercado Libre — ahí está el catálogo completo, con precios y stock al día.</p>
-    <div class="cat-note">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-      Todos los productos con envío por Mercado Envíos Full · Compra protegida por Mercado Libre
+    <div class="ph-grid">
+      <div class="ph-left">
+        <div class="kicker">Catálogo completo</div>
+        <h1>Todo el<br>catálogo.</h1>
+      </div>
+      <div class="ph-right">
+        <p class="lead">Repuestos, mejoras y accesorios para tu impresora 3D, con precios y stock actualizados en tiempo real. Filtrá por categoría y tocá cualquier producto para comprarlo directo en Mercado Libre.</p>
+        <div class="ph-badges">
+          <div class="ph-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span><b>Precio y stock</b> en vivo, siempre al día</span>
+          </div>
+          <div class="ph-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18.5 21a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg>
+            <span><b>Envío Full</b> a todo el país</span>
+          </div>
+          <div class="ph-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span><b>Compra protegida</b> por Mercado Libre</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="catalog-page">
   <div class="wrap">
+    <!-- BARRA DE ESTADO -->
+    <div class="cat-statusbar">
+      <div class="cat-live"><span class="cat-live-dot"></span>Precios y stock actualizados en vivo desde Mercado Libre</div>
+      <div class="cat-count" id="cat-count"></div>
+    </div>
     <!-- FILTROS -->
     <div class="filter-tabs" id="filter-tabs"></div>
     <!-- GRILLA -->
@@ -438,6 +472,8 @@ async function loadProducts() {
     wireHeroCards();
     wireFooterLinks();
     renderGrid('all');
+    const countEl = document.getElementById('cat-count');
+    if (countEl) countEl.innerHTML = `<b>${PRODUCTS.length}</b> productos disponibles`;
   } catch (e) {
     gridEl.innerHTML = `<div class="no-results">No pudimos cargar el catálogo en vivo en este momento.
       Podés ver todos nuestros productos directamente en
