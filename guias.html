@@ -76,11 +76,18 @@
   .toc-head{display:flex;align-items:center;gap:10px;padding-bottom:16px;margin-bottom:8px;border-bottom:1px solid var(--line);}
   .toc-head svg{width:18px;height:18px;stroke:var(--gold);}
   .toc-head span{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
-  .toc-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.9rem;color:#b8b8b6;}
+  .toc-item{position:relative;display:flex;align-items:center;gap:12px;padding:11px 10px;margin:0 -10px;border-radius:8px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.9rem;color:#b8b8b6;cursor:pointer;transition:background .2s,color .2s,padding .2s;}
   .toc-item:last-child{border-bottom:none;}
-  .toc-item b{font-family:var(--fm);font-size:0.72rem;color:var(--gold);width:22px;flex-shrink:0;}
-  .toc-item .toc-dots{flex:1;border-bottom:1px dotted #333;margin:0 4px;height:1px;}
-  .toc-item .toc-min{font-family:var(--fm);font-size:0.68rem;color:var(--muted);}
+  .toc-item:hover{background:rgba(224,169,74,0.07);color:var(--white);padding-left:16px;}
+  .toc-item b{font-family:var(--fm);font-size:0.72rem;color:var(--gold);width:22px;flex-shrink:0;transition:color .2s;}
+  .toc-item:hover b{color:#f0c477;}
+  .toc-name{transition:color .2s;}
+  .toc-item .toc-dots{flex:1;border-bottom:1px dotted #333;margin:0 4px;height:1px;transition:border-color .2s;}
+  .toc-item:hover .toc-dots{border-bottom-color:rgba(224,169,74,0.35);}
+  .toc-item .toc-min{font-family:var(--fm);font-size:0.68rem;color:var(--muted);transition:opacity .2s;}
+  .toc-item:hover .toc-min{opacity:0;}
+  .toc-arrow{position:absolute;right:10px;width:15px;height:15px;stroke:var(--gold);opacity:0;transform:translateX(-6px);transition:opacity .2s,transform .2s;}
+  .toc-item:hover .toc-arrow{opacity:1;transform:translateX(0);}
 
   /* GRILLA DE GUÍAS */
   .guides-section{padding:64px 0 80px;}
@@ -162,12 +169,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
             <span>Índice de guías</span>
           </div>
-          <div class="toc-item"><b>01</b> Hotends <span class="toc-dots"></span><span class="toc-min">7 min</span></div>
-          <div class="toc-item"><b>02</b> Nozzles y boquillas <span class="toc-dots"></span><span class="toc-min">6 min</span></div>
-          <div class="toc-item"><b>03</b> Camas magnéticas <span class="toc-dots"></span><span class="toc-min">6 min</span></div>
-          <div class="toc-item"><b>04</b> Termistores <span class="toc-dots"></span><span class="toc-min">5 min</span></div>
-          <div class="toc-item"><b>05</b> Acoples y PTFE <span class="toc-dots"></span><span class="toc-min">5 min</span></div>
-          <div class="toc-item"><b>06</b> Coolers y ventiladores <span class="toc-dots"></span><span class="toc-min">5 min</span></div>
+          <a class="toc-item" href="/guias/hotends.html"><b>01</b> <span class="toc-name">Hotends</span> <span class="toc-dots"></span><span class="toc-min">7 min</span><svg class="toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="toc-item" href="/guias/nozzles.html"><b>02</b> <span class="toc-name">Nozzles y boquillas</span> <span class="toc-dots"></span><span class="toc-min">6 min</span><svg class="toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="toc-item" href="/guias/camas.html"><b>03</b> <span class="toc-name">Camas magnéticas</span> <span class="toc-dots"></span><span class="toc-min">6 min</span><svg class="toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="toc-item" href="/guias/termistores.html"><b>04</b> <span class="toc-name">Termistores</span> <span class="toc-dots"></span><span class="toc-min">5 min</span><svg class="toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="toc-item" href="/guias/acoples.html"><b>05</b> <span class="toc-name">Acoples y PTFE</span> <span class="toc-dots"></span><span class="toc-min">5 min</span><svg class="toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="toc-item" href="/guias/coolers.html"><b>06</b> <span class="toc-name">Coolers y ventiladores</span> <span class="toc-dots"></span><span class="toc-min">5 min</span><svg class="toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
