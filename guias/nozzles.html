@@ -69,12 +69,16 @@
   .breadcrumb span.here{color:var(--white);}
 
   /* HERO GUIA */
-  .guide-hero{border-bottom:1px solid var(--line);padding:64px 0 68px;background:linear-gradient(160deg,var(--bg2),var(--bg) 70%);}
+  .guide-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding:70px 0 72px;background:linear-gradient(160deg,#141416,var(--bg) 72%);}
+  .guide-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:0.28;-webkit-mask-image:radial-gradient(ellipse 70% 80% at 72% 30%, #000, transparent 74%);mask-image:radial-gradient(ellipse 70% 80% at 72% 30%, #000, transparent 74%);pointer-events:none;}
+  .guide-hero::after{content:'';position:absolute;top:-25%;right:-6%;width:580px;height:580px;border-radius:50%;background:radial-gradient(circle, rgba(224,169,74,0.08), transparent 62%);pointer-events:none;}
+  .guide-hero .wrap-wide{position:relative;z-index:1;}
   .gh-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
   .gh-text{min-width:0;}
-  .guide-kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
-  .guide-kicker::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.4;}
-  .guide-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(3rem,6vw,5.2rem);line-height:0.9;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:24px;}
+  .guide-kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+  .guide-kicker::before{content:'';width:5px;height:5px;background:var(--gold);}
+  .guide-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(2.6rem,5.2vw,4.3rem);line-height:0.9;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:20px;}
+  .guide-hero h1 em{font-style:normal;color:var(--gold);}
   .guide-hero .lead{font-size:1.1rem;color:#B8B8B6;max-width:560px;line-height:1.72;margin-bottom:32px;}
   .gh-actions{display:flex;gap:12px;flex-wrap:wrap;}
 
@@ -221,7 +225,7 @@
     <div class="gh-grid">
       <div class="gh-text">
         <span class="guide-kicker">Guía técnica · Repuestos 3D</span>
-        <h1>Nozzles<br>y boquillas.</h1>
+        <h1>Nozzles<br><em>y boquillas.</em></h1>
         <p class="lead">El nozzle es la pieza por donde sale el filamento fundido. Es chico, barato y se gasta, pero define buena parte de la calidad, la velocidad y la fiabilidad de cada impresión. Esta guía te explica qué es, qué diámetros existen, qué tipos hay y cómo elegir el correcto para tu impresora.</p>
         <div class="gh-actions">
           <a class="btn-main" href="#productos">
