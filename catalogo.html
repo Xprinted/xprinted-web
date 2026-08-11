@@ -136,6 +136,9 @@
   .pc-cat{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;}
   .prod-card h4{font-family:var(--fd);font-weight:900;font-size:1.05rem;text-transform:uppercase;line-height:1.05;margin-bottom:10px;flex:1;}
   .pc-price{font-family:var(--fd);font-weight:700;font-size:1.15rem;color:var(--white);margin-bottom:10px;}
+  .pc-price-row{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
+  .pc-price-old{font-family:var(--fm);font-size:0.78rem;color:var(--muted);text-decoration:line-through;}
+  .pc-off{font-family:var(--fm);font-size:0.68rem;font-weight:600;color:#4ec87a;background:rgba(78,200,122,0.12);border:1px solid rgba(78,200,122,0.25);border-radius:4px;padding:1px 6px;}
   .pc-go{font-family:var(--fm);font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:5px;border-top:1px solid var(--line);padding-top:10px;transition:color .15s;}
   .pc-go svg{width:10px;height:10px;transition:transform .2s;}
   .prod-card:hover .pc-go{color:var(--white);}
@@ -301,6 +304,18 @@ function countByCat(cat) {
 // Construye una tarjeta de producto
 function productCard(p) {
   const inStock = p.stock > 0;
+  let priceHtml;
+  if (p.listPrice && p.listPrice > p.price) {
+    const off = Math.round((1 - p.price / p.listPrice) * 100);
+    priceHtml = `
+      <div class="pc-price-row">
+        <span class="pc-price-old">${formatPrice(p.listPrice)}</span>
+        <span class="pc-off">${off}% OFF</span>
+      </div>
+      <div class="pc-price">${formatPrice(p.price)}</div>`;
+  } else {
+    priceHtml = `<div class="pc-price">${formatPrice(p.price)}</div>`;
+  }
   return `
     <a class="prod-card" data-id="${p.id}" href="${p.url}" target="_blank" rel="noopener">
       <div class="pc-img">
@@ -311,7 +326,7 @@ function productCard(p) {
       <div class="pc-body">
         <div class="pc-cat">${escapeHtml(p.cat)}</div>
         <h4>${escapeHtml(p.title)}</h4>
-        <div class="pc-price">${formatPrice(p.price)}</div>
+        ${priceHtml}
         <div class="pc-go">
           Ver en Mercado Libre
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -403,7 +418,8 @@ async function loadProducts() {
     PRODUCTS = items.map(it => ({
       id: it.id,
       title: it.title,
-      price: it.price,
+      price: (typeof it.sale_price === 'number') ? it.sale_price : it.price,
+      listPrice: it.list_price || null,
       stock: it.stock,
       url: it.url,
       img: it.thumbnail,
