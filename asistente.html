@@ -78,26 +78,41 @@
   .btn-ghost{background:transparent;color:var(--white);font-weight:600;font-size:0.95rem;padding:15px 24px;border:1px solid var(--line);border-radius:5px;transition:border-color .2s,background .2s;}
   .btn-ghost:hover{border-color:#4a4a4c;background:rgba(255,255,255,0.03);}
 
-  /* MOCKUP CHAT */
-  .chat-mock{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.5);}
-  .chat-top{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg3);}
+  /* CHAT FUNCIONAL */
+  .chat-mock{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.5);display:flex;flex-direction:column;height:560px;}
+  .chat-top{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg3);flex-shrink:0;}
   .chat-dot{width:10px;height:10px;border-radius:50%;}
   .chat-dot.r{background:#ff5f57;} .chat-dot.y{background:#febc2e;} .chat-dot.g{background:#28c840;}
   .chat-title{font-family:var(--fm);font-size:0.68rem;color:var(--muted);margin-left:8px;display:flex;align-items:center;gap:7px;}
   .chat-title .cyan-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
-  .chat-body{padding:22px;display:flex;flex-direction:column;gap:16px;min-height:340px;}
-  .msg{max-width:85%;font-size:0.9rem;line-height:1.55;opacity:0;transform:translateY(10px);animation:msgIn .5s forwards;}
-  .msg.user{align-self:flex-end;background:var(--bg3);border:1px solid var(--line);border-radius:14px 14px 3px 14px;padding:12px 16px;color:#e0e0de;}
+  .chat-body{flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth;}
+  .chat-body::-webkit-scrollbar{width:6px;}
+  .chat-body::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
+  .msg{max-width:88%;font-size:0.9rem;line-height:1.55;opacity:0;transform:translateY(10px);animation:msgIn .4s forwards;}
+  .msg.user{align-self:flex-end;background:var(--bg3);border:1px solid var(--line);border-radius:14px 14px 3px 14px;padding:12px 16px;color:#e0e0de;white-space:pre-wrap;}
   .msg.ai{align-self:flex-start;background:rgba(91,214,200,0.05);border:1px solid rgba(91,214,200,0.18);border-radius:14px 14px 14px 3px;padding:14px 16px;color:#d5d5d3;}
   .msg.ai .ai-tag{font-family:var(--fm);font-size:0.6rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px;margin-bottom:8px;}
   .msg.ai .ai-tag svg{width:11px;height:11px;stroke:var(--cyan);}
   .msg.ai strong{color:var(--white);}
-  .msg.d1{animation-delay:.3s;} .msg.d2{animation-delay:1.1s;} .msg.d3{animation-delay:1.9s;}
+  .msg.ai a{color:var(--cyan);border-bottom:1px solid rgba(91,214,200,0.4);}
+  .msg.ai p{margin-bottom:8px;} .msg.ai p:last-child{margin-bottom:0;}
   @keyframes msgIn{to{opacity:1;transform:translateY(0);}}
-  .chat-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 0;opacity:0;animation:msgIn .3s 1.5s forwards;}
+  .chat-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 16px;background:rgba(91,214,200,0.05);border:1px solid rgba(91,214,200,0.18);border-radius:14px;}
   .chat-typing span{width:7px;height:7px;border-radius:50%;background:var(--cyan);opacity:0.5;animation:typing 1.2s infinite;}
   .chat-typing span:nth-child(2){animation-delay:.2s;} .chat-typing span:nth-child(3){animation-delay:.4s;}
   @keyframes typing{0%,60%,100%{opacity:0.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-4px);}}
+  .chat-chips{display:flex;gap:7px;padding:0 16px 12px;flex-wrap:wrap;flex-shrink:0;border-top:1px solid var(--line);padding-top:14px;}
+  .chat-chip{font-size:0.72rem;color:var(--muted);background:var(--bg3);border:1px solid var(--line);border-radius:20px;padding:6px 12px;cursor:pointer;transition:border-color .15s,color .15s;white-space:nowrap;}
+  .chat-chip:hover{border-color:rgba(91,214,200,0.4);color:var(--white);}
+  .chat-input-row{display:flex;gap:9px;padding:0 16px 16px;flex-shrink:0;align-items:flex-end;}
+  .chat-input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--white);font-family:var(--fb);font-size:0.9rem;padding:12px 14px;resize:none;min-height:46px;max-height:120px;transition:border-color .15s;line-height:1.4;}
+  .chat-input:focus{outline:none;border-color:rgba(91,214,200,0.5);}
+  .chat-send{background:var(--cyan);color:#062b28;border:none;border-radius:8px;width:46px;height:46px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;}
+  .chat-send:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(91,214,200,0.25);}
+  .chat-send:disabled{opacity:0.4;cursor:default;transform:none;box-shadow:none;}
+  .chat-send svg{width:18px;height:18px;}
+  .chat-note{text-align:center;font-family:var(--fm);font-size:0.68rem;color:var(--muted);margin-top:14px;}
+  .chat-note a{color:var(--cyan);}
 
   /* SECCIONES */
   .section{padding:76px 0;border-bottom:1px solid var(--line);}
@@ -143,43 +158,6 @@
   .final-note{font-family:var(--fm);font-size:0.72rem;color:var(--muted);margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;}
   .final-note svg{width:14px;height:14px;stroke:var(--gold);}
 
-  /* ===== DIAGNOSTICADOR FUNCIONAL ===== */
-  .diag-live{position:relative;overflow:hidden;padding:76px 0;border-bottom:1px solid var(--line);}
-  .diag-live::before{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);width:760px;height:400px;background:radial-gradient(ellipse, rgba(91,214,200,0.07), transparent 65%);pointer-events:none;}
-  .diag-head{position:relative;z-index:1;text-align:center;max-width:640px;margin:0 auto 34px;}
-  .diag-head .sec-label{justify-content:center;}
-  .diag-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(2rem,4vw,3.2rem);text-transform:uppercase;line-height:0.95;margin-bottom:14px;}
-  .diag-head h2 em{font-style:normal;color:var(--cyan);}
-  .diag-head p{color:var(--muted);line-height:1.6;}
-  .diag-box{position:relative;z-index:1;max-width:720px;margin:0 auto;background:var(--bg2);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
-  .diag-chips{display:flex;flex-wrap:wrap;gap:8px;padding:22px 22px 0;}
-  .diag-chip{font-size:0.8rem;color:var(--muted);background:var(--bg3);border:1px solid var(--line);border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .15s,color .15s;}
-  .diag-chip:hover{border-color:rgba(91,214,200,0.4);color:var(--white);}
-  .diag-tip{display:flex;align-items:center;gap:9px;margin:16px 22px 0;padding:11px 14px;background:rgba(91,214,200,0.04);border:1px solid rgba(91,214,200,0.15);border-radius:6px;font-size:0.8rem;color:var(--muted);line-height:1.4;}
-  .diag-tip svg{width:15px;height:15px;stroke:var(--cyan);flex-shrink:0;}
-  .diag-tip strong{color:#d0d0ce;font-weight:600;}
-  .diag-input-row{display:flex;gap:10px;padding:18px 22px 22px;}
-  .diag-input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:6px;color:var(--white);font-family:var(--fb);font-size:0.95rem;padding:13px 16px;resize:none;min-height:48px;transition:border-color .15s;}
-  .diag-input:focus{outline:none;border-color:rgba(91,214,200,0.5);}
-  .diag-send{background:var(--cyan);color:#062b28;border:none;border-radius:6px;font-family:var(--fb);font-weight:700;font-size:0.9rem;padding:0 24px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:transform .2s,box-shadow .2s;white-space:nowrap;}
-  .diag-send:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(91,214,200,0.25);}
-  .diag-send:disabled{opacity:0.4;cursor:default;transform:none;box-shadow:none;}
-  .diag-send svg{width:14px;height:14px;}
-  .diag-answer{border-top:1px solid var(--line);padding:0 22px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;}
-  .diag-answer.show{max-height:1400px;padding:20px 22px;}
-  .diag-answer .da-label{font-family:var(--fm);font-size:0.66rem;color:var(--cyan);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-  .diag-answer .da-body{color:#d0d0ce;line-height:1.7;font-size:0.95rem;}
-  .diag-answer .da-body strong{color:var(--white);}
-  .diag-answer .da-body a{color:var(--cyan);border-bottom:1px solid rgba(91,214,200,0.4);}
-  .diag-answer .da-body ul{margin:10px 0;padding-left:20px;}
-  .diag-answer .da-body li{margin-bottom:6px;}
-  .diag-loading{display:inline-flex;gap:4px;}
-  .diag-loading span{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:dotPulse 1.2s ease-in-out infinite;}
-  .diag-loading span:nth-child(2){animation-delay:.2s;}
-  .diag-loading span:nth-child(3){animation-delay:.4s;}
-  @keyframes dotPulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
-  .diag-note{position:relative;z-index:1;text-align:center;font-size:0.75rem;color:var(--muted);margin-top:18px;}
-
   /* FOOTER */
   footer{border-top:1px solid var(--line);padding:48px 0 32px;}
   .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:28px;}
@@ -224,28 +202,36 @@
         <h1>Tu mecánico de<br>impresoras 3D,<br><em>siempre disponible.</em></h1>
         <p class="lead">Contale qué le pasa a tu impresora y en segundos te ayuda a diagnosticar el problema, te dice qué revisar y qué repuesto podés necesitar. Gratis, al instante y sin vueltas.</p>
         <div class="ai-cta-row">
-          <a class="btn-cyan" href="#diagnostico">Probar el asistente <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn-cyan" href="#chat" id="btn-probar">Probar el asistente <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn-ghost" href="#como-funciona">Ver cómo funciona</a>
         </div>
       </div>
       <div class="ai-hero-right">
-        <div class="chat-mock">
+        <div class="chat-mock" id="chat">
           <div class="chat-top">
             <span class="chat-dot r"></span><span class="chat-dot y"></span><span class="chat-dot g"></span>
             <span class="chat-title"><span class="cyan-dot"></span>Asistente 3D · XPRINTED</span>
           </div>
-          <div class="chat-body">
-            <div class="msg user d1">Tengo una Ender 3 V2 y la primera capa no pega, ya nivelé y sigue igual 😕</div>
-            <div class="chat-typing"><span></span><span></span><span></span></div>
-            <div class="msg ai d2">
+          <div class="chat-body" id="chat-body">
+            <div class="msg ai d1">
               <div class="ai-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.9 5.8L20 10.7l-5.1 1.9L12 18l-1.9-5.4L5 10.7l6.1-1.9L12 3z"/></svg>Asistente 3D</div>
-              Si ya nivelaste y sigue sin pegar, revisá 3 cosas: <strong>temperatura de cama</strong> (probá 60°C con PLA), que el <strong>Z-offset</strong> no esté muy alto, y el estado de la <strong>superficie</strong>. Si la cama está gastada o deformada, conviene cambiarla.
-            </div>
-            <div class="msg ai d3">
-              Para tu Ender 3 V2 tenemos <strong>camas magnéticas de 235×235mm</strong> compatibles. ¿Querés que te pase el link?
+              ¡Hola! Contame qué le pasa a tu impresora 3D y te ayudo a diagnosticarlo. Incluí el <strong>modelo</strong> y el <strong>material</strong> que usás para una mejor respuesta.
             </div>
           </div>
+          <div class="chat-chips" id="chat-chips">
+            <span class="chat-chip">No pega la primera capa</span>
+            <span class="chat-chip">Se tapa el nozzle</span>
+            <span class="chat-chip">Capas corridas</span>
+            <span class="chat-chip">Error de termistor</span>
+          </div>
+          <div class="chat-input-row">
+            <textarea class="chat-input" id="chat-input" placeholder="Ej: Ender 3 V2 con PLA, la primera capa no pega..." rows="1"></textarea>
+            <button class="chat-send" id="chat-send" aria-label="Enviar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
         </div>
+        <p class="chat-note">Orientación general. Ante la duda, escribinos por <a href="https://wa.me/5491171585143" target="_blank" rel="noopener">WhatsApp</a>.</p>
       </div>
     </div>
   </div>
@@ -324,43 +310,6 @@
   </div>
 </section>
 
-<!-- DIAGNOSTICADOR FUNCIONAL -->
-<section class="diag-live" id="diagnostico">
-  <div class="wrap">
-    <div class="diag-head">
-      <div class="sec-label">Probalo ahora</div>
-      <h2>¿Qué le pasa a tu <em>impresora?</em></h2>
-      <p>Describí tu problema y el asistente te ayuda a diagnosticarlo en segundos. Gratis y sin registrarte.</p>
-    </div>
-    <div class="diag-box">
-      <div class="diag-chips" id="diag-chips">
-        <span class="diag-chip">No pega la primera capa</span>
-        <span class="diag-chip">Se me tapa el nozzle</span>
-        <span class="diag-chip">Capas corridas / fantasmas</span>
-        <span class="diag-chip">Error de termistor</span>
-        <span class="diag-chip">El filamento no sale</span>
-        <span class="diag-chip">Se despega la pieza</span>
-      </div>
-      <div class="diag-tip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        Para mejores resultados, incluí el <strong>modelo de tu impresora</strong> y el <strong>material</strong> que usás.
-      </div>
-      <div class="diag-input-row">
-        <textarea class="diag-input" id="diag-input" placeholder="Ej: Ender 3 V2 con PLA, la primera capa no pega aunque ya nivelé..." rows="1"></textarea>
-        <button class="diag-send" id="diag-send">
-          Preguntar
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
-      </div>
-      <div class="diag-answer" id="diag-answer">
-        <div class="da-label" id="da-label">Diagnóstico</div>
-        <div class="da-body" id="da-body"></div>
-      </div>
-    </div>
-    <p class="diag-note">Orientación general. Ante la duda, escribinos por WhatsApp y te asesoramos.</p>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <div class="footer-inner">
@@ -390,43 +339,71 @@
   onScroll();
 })();
 
-/* ============ DIAGNOSTICADOR IA ============ */
+/* ============ CHAT ASISTENTE ============ */
 (function(){
-  const input = document.getElementById('diag-input');
-  const sendBtn = document.getElementById('diag-send');
-  const answer = document.getElementById('diag-answer');
-  const daBody = document.getElementById('da-body');
-  const daLabel = document.getElementById('da-label');
+  const body = document.getElementById('chat-body');
+  const input = document.getElementById('chat-input');
+  const sendBtn = document.getElementById('chat-send');
+  const chips = document.getElementById('chat-chips');
   if(!input) return;
 
-  document.querySelectorAll('.diag-chip').forEach(chip=>{
-    chip.addEventListener('click',()=>{ input.value = chip.textContent.trim(); input.focus(); });
+  let busy = false;
+
+  // Chips rellenan el input
+  document.querySelectorAll('.chat-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{ input.value = chip.textContent.trim(); input.focus(); autoResize(); });
   });
 
-  input.addEventListener('input',()=>{ input.style.height='48px'; input.style.height=Math.min(input.scrollHeight,160)+'px'; });
+  function autoResize(){ input.style.height='46px'; input.style.height=Math.min(input.scrollHeight,120)+'px'; }
+  input.addEventListener('input', autoResize);
 
-  function showLoading(){
-    answer.classList.add('show');
-    daLabel.innerHTML = 'Analizando <span class="diag-loading"><span></span><span></span><span></span></span>';
-    daBody.innerHTML = '';
+  function scrollDown(){ body.scrollTop = body.scrollHeight; }
+
+  function addUser(text){
+    const el = document.createElement('div');
+    el.className = 'msg user';
+    el.textContent = text;
+    body.appendChild(el);
+    scrollDown();
   }
 
-  function renderAnswer(text){
-    daLabel.textContent = 'Diagnóstico';
-    let html = text
+  function addTyping(){
+    const el = document.createElement('div');
+    el.className = 'chat-typing';
+    el.id = 'typing';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    body.appendChild(el);
+    scrollDown();
+    return el;
+  }
+
+  function formatText(text){
+    return text
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
       .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-      .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>')
+      .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
       .replace(/\n\n/g,'</p><p>')
       .replace(/\n/g,'<br>');
-    daBody.innerHTML = '<p>'+html+'</p>';
+  }
+
+  function addAI(text){
+    const el = document.createElement('div');
+    el.className = 'msg ai';
+    el.innerHTML = '<div class="ai-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.9 5.8L20 10.7l-5.1 1.9L12 18l-1.9-5.4L5 10.7l6.1-1.9L12 3z"/></svg>Asistente 3D</div><p>'+formatText(text)+'</p>';
+    body.appendChild(el);
+    scrollDown();
   }
 
   async function ask(){
     const q = input.value.trim();
-    if(!q) return;
+    if(!q || busy) return;
+    busy = true;
     sendBtn.disabled = true;
-    showLoading();
+    if(chips) chips.style.display = 'none'; // ocultar chips tras la primera pregunta
+    addUser(q);
+    input.value = '';
+    autoResize();
+    const typing = addTyping();
     try{
       const res = await fetch('/api/diagnose', {
         method:'POST',
@@ -435,17 +412,29 @@
       });
       if(!res.ok) throw new Error('bad response');
       const data = await res.json();
-      renderAnswer(data.answer || 'No pude generar una respuesta. Probá reformular tu consulta o escribinos por WhatsApp.');
+      typing.remove();
+      addAI(data.answer || 'No pude generar una respuesta. Probá reformular tu consulta o escribinos por WhatsApp.');
     }catch(err){
-      daLabel.textContent = 'Diagnóstico';
-      daBody.innerHTML = '<p>Ahora mismo no puedo procesar tu consulta. Escribinos por <a href="https://wa.me/5491171585143" target="_blank" rel="noopener">WhatsApp</a> y te ayudamos al toque.</p>';
+      typing.remove();
+      addAI('Ahora mismo no puedo procesar tu consulta. Escribinos por [WhatsApp](https://wa.me/5491171585143) y te ayudamos al toque.');
     }finally{
+      busy = false;
       sendBtn.disabled = false;
+      input.focus();
     }
   }
 
   sendBtn.addEventListener('click', ask);
   input.addEventListener('keydown', e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); ask(); } });
+
+  // Botón "Probar el asistente" del hero: enfoca el input (útil sobre todo en móvil)
+  const btnProbar = document.getElementById('btn-probar');
+  if(btnProbar){
+    btnProbar.addEventListener('click', (e)=>{
+      // En pantallas chicas el chat está debajo: dejamos que el ancla haga scroll y luego enfocamos
+      setTimeout(()=>{ input.focus(); }, 400);
+    });
+  }
 })();
 </script>
 </body>
