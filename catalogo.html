@@ -29,7 +29,7 @@
 <style>
   :root{
     --bg:#0A0A0A; --bg2:#111113; --bg3:#191919;
-    --line:#222224; --white:#F0F0EE; --muted:#666668; --dim:#3A3A3C;
+    --line:#222224; --white:#F0F0EE; --muted:#8A8A8C; --dim:#3A3A3C;
     --fd:'Barlow Condensed',sans-serif;
     --fb:'Inter',sans-serif;
     --fm:'JetBrains Mono',monospace;
@@ -207,8 +207,8 @@
 
   /* RESPONSIVE */
   @media(max-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:860px){.nav-links{display:none;}}
   @media(max-width:760px){
-    .nav-links{display:none;}
     nav,.wrap{padding-left:20px;padding-right:20px;}
     .hero-split{grid-template-columns:1fr;}
     .hero-left{border-right:none;border-bottom:1px solid var(--line);padding:52px 20px;}
@@ -487,11 +487,10 @@ async function loadProducts() {
     gridEl.innerHTML = `<div class="no-results">No pudimos cargar el catálogo en vivo en este momento.
       Podés ver todos nuestros productos directamente en
       <a href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86" target="_blank" rel="noopener" style="color:#E0A94A;text-decoration:underline;">nuestra tienda de Mercado Libre</a>.</div>`;
-    // Igual armamos tabs vacíos y contadores en 0 para no romper el resto
-    buildTabs();
-    fillHeroCounts();
-    wireHeroCards();
-    wireFooterLinks();
+    // En estado de error ocultamos los filtros y la barra "en vivo" (no aplican sin datos)
+    if (tabsEl) tabsEl.style.display = 'none';
+    const sb = document.querySelector('.cat-statusbar');
+    if (sb) sb.style.display = 'none';
   }
 }
 
