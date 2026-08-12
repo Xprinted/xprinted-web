@@ -105,9 +105,6 @@
   .hero-strip .hs:last-child{border-right:none;}
   .hero-strip .hs b{color:#E0A94A;font-family:var(--fd);font-size:1.8rem;font-weight:900;line-height:1;}
   .hero-strip .hs span{font-family:var(--fm);font-size:0.64rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
-  .rep-badge{display:inline-flex;align-items:center;gap:9px;margin-top:20px;background:rgba(78,200,122,0.06);border:1px solid rgba(78,200,122,0.28);border-radius:100px;padding:8px 16px;font-family:var(--fm);font-size:0.68rem;color:#b8d8c4;letter-spacing:0.03em;}
-  .rep-badge b{color:#4ec87a;font-weight:700;}
-  .rb-dot{width:6px;height:6px;border-radius:50%;background:#4ec87a;box-shadow:0 0 8px #4ec87a;flex-shrink:0;}
   @media(max-width:600px){.hero-strip .hs{padding:8px 28px 8px 0;border-right:none;}}
   .btn-main{background:#E0A94A;color:#171006;font-weight:700;font-size:0.88rem;padding:13px 28px;border-radius:5px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;white-space:nowrap;}
   .btn-main:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 10px 28px rgba(224,169,74,0.18);}
@@ -215,7 +212,7 @@
 
   /* RESPONSIVE */
   @media(max-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr);}}
-  @media(max-width:860px){.nav-links{display:none;}}
+  @media(max-width:940px){.nav-links{display:none;}}
   @media(max-width:760px){
     nav,.wrap{padding-left:20px;padding-right:20px;}
     .hero-cine{min-height:auto;padding:50px 20px 36px;}
@@ -381,6 +378,38 @@
   .picker-result .pr-cat:hover{border-color:#4a4a4c;color:var(--white);}
   .picker-result .pr-cta{margin-top:20px;}
 
+
+  /* ── MENÚ MÓVIL ── */
+  .nav-burger{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:9px 10px;cursor:pointer;line-height:0;transition:border-color .2s;}
+  .nav-burger:hover{border-color:rgba(224,169,74,0.5);}
+  .nav-burger span{display:block;width:18px;height:2px;background:var(--white);border-radius:2px;transition:transform .28s cubic-bezier(.16,1,.3,1),opacity .2s;}
+  .nav-burger span + span{margin-top:4px;}
+  .nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .nav-burger.open span:nth-child(2){opacity:0;}
+  .nav-burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .mob-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:150;background:rgba(6,6,7,0.92);backdrop-filter:blur(10px);padding:86px 20px 30px;overflow-y:auto;}
+  .mob-menu.open{display:block;}
+  .mob-menu a{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--fd);font-weight:700;font-size:1.5rem;text-transform:uppercase;letter-spacing:0.01em;color:var(--white);padding:17px 6px;border-bottom:1px solid rgba(255,255,255,0.07);}
+  .mob-menu a::after{content:'→';font-family:var(--fb);font-size:1rem;color:#E0A94A;opacity:0.5;}
+  .mob-menu a.active{color:#E0A94A;}
+  .mob-menu a.active::after{opacity:1;}
+  .mob-menu .mm-ml{margin-top:22px;background:#FFE600;color:#2D3277;border-radius:8px;justify-content:center;font-size:1.05rem;padding:15px;border-bottom:none;}
+  .mob-menu .mm-ml::after{content:'';}
+  .mob-menu .mm-wa{margin-top:10px;background:#25D366;color:#052e16;border-radius:8px;justify-content:center;font-size:1.05rem;padding:15px;border-bottom:none;}
+  .mob-menu .mm-wa::after{content:'';}
+  body.menu-open{overflow:hidden;}
+  body.menu-open header{z-index:160;background:rgba(6,6,7,0.96);}
+  body.menu-open .nav-cta{display:none;}
+  body.menu-open .nav-burger{margin-left:auto;}
+  @media(max-width:940px){
+    .nav-burger{display:block;order:3;margin-left:12px;}
+    nav .nav-cta{margin-left:auto;}
+  }
+  @media(max-width:620px){
+    nav .nav-cta{display:none;}
+    .nav-burger{margin-left:auto;}
+  }
+  @media(min-width:941px){.mob-menu{display:none !important;}}
 </style>
 </head>
 <body>
@@ -394,11 +423,25 @@
       <a href="/guias.html">Guías</a>
       <a href="/asistente.html">Asistente 3D</a>
       <a href="/comunidad.html">Comunidad</a>
+      <a href="/calculadora.html">Calculadora</a>
       <a href="/contacto.html">Contacto</a>
     </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mob-menu"><span></span><span></span><span></span></button>
     <a class="nav-cta" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
   </nav>
 </header>
+<div class="mob-menu" id="mob-menu">
+  <a href="/catalogo.html">Catálogo</a>
+  <a href="/mejoras.html">Mejoras</a>
+  <a href="/guias.html">Guías</a>
+  <a href="/asistente.html">Asistente 3D</a>
+  <a href="/comunidad.html">Comunidad</a>
+  <a href="/calculadora.html">Calculadora</a>
+  <a href="/contacto.html">Contacto</a>
+  <a class="mm-ml" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+  <a class="mm-wa" href="https://wa.me/5491171585143" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+</div>
+
 
 <main id="top">
 
@@ -418,7 +461,6 @@
         <div class="hs"><b>+50.000</b><span>ventas concretadas</span></div>
         <div class="hs"><b>Envíos</b><span>a todo el país</span></div>
       </div>
-        <div class="rep-badge" id="rep-badge" hidden><span class="rb-dot"></span><span id="rep-text"></span></div>
       </div>
       <div class="hero-right">
         <div class="printer-stage">
@@ -583,7 +625,7 @@
         </a>
       </div>
       <div style="margin-top:24px;">
-        <a href="/guias.html" style="font-family:var(--fm);font-size:0.82rem;color:var(--white);display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--dim);padding-bottom:3px;">Ver las 6 guías técnicas <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="/guias.html" style="font-family:var(--fm);font-size:0.82rem;color:var(--white);display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--dim);padding-bottom:3px;">Ver las 7 guías técnicas <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </section>
@@ -830,6 +872,7 @@
         <a href="/guias/acoples.html">Acoples &amp; Accesorios</a>
         <a href="/guias/termistores.html">Termistores</a>
         <a href="/guias/coolers.html">Coolers &amp; Ventiladores</a>
+        <a href="/guias/filamentos.html">Filamentos</a>
       </div>
       <div class="footer-col">
         <h5>Contacto</h5>
@@ -986,19 +1029,22 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
 })();
 
 
-// ── Reputación de ML en vivo (badge del hero) ──
-fetch('/api/ml-reputation').then(r => r.ok ? r.json() : null).then(d => {
-  if (!d || !d.medal) return;
-  const el = document.getElementById('rep-badge');
-  const tx = document.getElementById('rep-text');
-  if (!el || !tx) return;
-  let s = '<b>' + d.medal + '</b>';
-  if (typeof d.positive === 'number') s += ' · ' + String(d.positive).replace('.', ',') + '% de calificaciones positivas';
-  s += ' · dato en vivo de Mercado Libre';
-  tx.innerHTML = s;
-  el.hidden = false;
-}).catch(() => {});
 </script>
 
+<script>
+(function(){
+  var b=document.getElementById('nav-burger'), m=document.getElementById('mob-menu');
+  if(!b||!m) return;
+  function toggle(open){
+    b.classList.toggle('open', open);
+    m.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  b.addEventListener('click', function(){ toggle(!m.classList.contains('open')); });
+  m.addEventListener('click', function(e){ if(e.target.tagName==='A') toggle(false); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggle(false); });
+})();
+</script>
 </body>
 </html>
