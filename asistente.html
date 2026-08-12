@@ -2,17 +2,31 @@
 <html lang="es-AR">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZS864LCLVT');
+  // Google Analytics con exclusión de tráfico propio:
+  // entrá una vez a cualquier página con ?noga=1 y este navegador deja de contarse.
+  // Con ?noga=0 se vuelve a activar.
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      if(q.get('noga')==='1'){ localStorage.setItem('xp_noga','1'); }
+      if(q.get('noga')==='0'){ localStorage.removeItem('xp_noga'); }
+      if(localStorage.getItem('xp_noga')==='1'){ return; }
+    }catch(e){}
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-ZS864LCLVT');
+  })();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Asistente 3D con IA | Diagnosticá tu impresora | XPRINTED</title>
-<meta name="description" content="El asistente 3D de XPRINTED usa inteligencia artificial para diagnosticar problemas de tu impresora 3D. Contale qué le pasa y te dice qué revisar y qué repuesto necesitás. Gratis y al instante.">
+<meta name="description" content="Max, el asistente con IA de XPRINTED: contale qué le pasa a tu impresora 3D y te dice qué revisar y qué repuesto necesitás. Gratis y al instante.">
 <link rel="icon" type="image/png" href="/assets/logo_icon.png">
 <link rel="canonical" href="https://xprinted-web.vercel.app/asistente.html">
 <meta property="og:type" content="website">
@@ -235,7 +249,7 @@
             <span class="chat-chip">Error de termistor</span>
           </div>
           <div class="chat-input-row">
-            <textarea class="chat-input" id="chat-input" aria-label="Escribí tu consulta para Max" placeholder="Ej: Ender 3 V2 con PLA, la primera capa no pega..." rows="1"></textarea>
+            <textarea class="chat-input" id="chat-input" aria-label="Escribí tu consulta para Max" placeholder="Ej: Ender 3, no pega la primera capa" rows="1"></textarea>
             <button class="chat-send" id="chat-send" aria-label="Enviar">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
             </button>
@@ -484,7 +498,7 @@
       const res = await fetch('/api/diagnose', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ question: q })
+        body: JSON.stringify({ question: q, printer: (function(){ try { return localStorage.getItem('xp_printer_name'); } catch(e){ return null; } })() })
       });
       if(!res.ok) throw new Error('bad response');
       const data = await res.json();
@@ -510,6 +524,17 @@
       setTimeout(()=>{ input.focus(); }, 400);
     });
   }
+
+  // Consulta pre-cargada por URL (?q=...) — la usan el catálogo y el chip de impresora
+  try {
+    const preQ = new URLSearchParams(location.search).get('q');
+    if (preQ) {
+      document.getElementById('chat').scrollIntoView();
+      input.value = preQ.slice(0, 500);
+      autoResize();
+      setTimeout(() => { ask(); }, 700);
+    }
+  } catch(e) {}
 
   // Tarjetas de "¿Alguno de estos te suena?": cargan la consulta y la envían
   document.querySelectorAll('.prob[data-q]').forEach(card=>{
