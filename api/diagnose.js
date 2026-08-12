@@ -29,10 +29,31 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { question } = req.body || {};
+    const { question, printer } = req.body || {};
     if (!question || typeof question !== 'string' || question.length > 800) {
       return res.status(400).json({ error: 'Consulta inválida' });
     }
+    const printerName = (typeof printer === 'string' && printer.length < 80) ? printer : null;
+
+    // ── Catálogo en vivo para que Max recomiende productos REALES con link ──
+    // Timeout corto: si el catálogo tarda (cache frío), Max responde igual sin él.
+    let catalogText = '';
+    try {
+      const host = req.headers.host;
+      const proto = host && host.startsWith('localhost') ? 'http' : 'https';
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 3500);
+      const r = await fetch(`${proto}://${host}/api/ml-products`, { signal: ctrl.signal });
+      clearTimeout(t);
+      if (r.ok) {
+        const d = await r.json();
+        const items = (d.products || []).filter(p => p.stock > 0).slice(0, 200);
+        catalogText = items.map(p => {
+          const precio = (typeof p.sale_price === 'number') ? p.sale_price : p.price;
+          return `- ${p.title} — $${precio}${p.free_shipping ? ' (envío gratis)' : ''} → ${p.url}`;
+        }).join('\n');
+      }
+    } catch (e) { /* sin catálogo esta vez; Max responde igual */ }
 
     const systemPrompt = `Te llamás Max y sos el asistente técnico de XPRINTED, una tienda argentina de repuestos para impresoras 3D con más de 8 años en Mercado Libre. Ayudás a diagnosticar problemas de impresión 3D de forma clara, breve y en español rioplatense (voseo: tenés, podés, fijate).
 
@@ -48,6 +69,8 @@ REGLAS DE RESPUESTA:
 - Si el problema se soluciona con un repuesto, mencionalo naturalmente, pero NUNCA inventes que un producto es compatible con una impresora si no estás seguro por la info de compatibilidad de abajo. Ante la duda, decí que confirmen por WhatsApp antes de comprar.
 - Si aplica, sugerí leer la guía correspondiente usando enlaces markdown a estas rutas exactas: [guía de hotends](/guias/hotends.html), [guía de nozzles](/guias/nozzles.html), [guía de camas](/guias/camas.html), [guía de termistores](/guias/termistores.html), [guía de acoples](/guias/acoples.html), [guía de ventiladores](/guias/coolers.html).
 - Usá **negrita** para resaltar lo importante.
+${printerName ? `\nIMPRESORA DEL CLIENTE: ${printerName}. Tenela en cuenta para compatibilidades sin volver a preguntarla.` : ''}
+${catalogText ? `\nCATÁLOGO EN VIVO DE XPRINTED (productos CON STOCK ahora mismo, con precio real y link de compra):\n${catalogText}\n\nCÓMO RECOMENDAR PRODUCTOS:\n- Cuando el diagnóstico lleve a un repuesto, buscá el producto en el catálogo de arriba y recomendalo con enlace markdown [nombre corto](link) mencionando su precio.\n- Máximo 2 productos por respuesta, y SOLO de esa lista: nunca inventes productos, precios ni links.\n- Si en el catálogo no hay un producto que aplique al problema (o no estás seguro de la compatibilidad con la impresora del cliente), decilo honestamente y derivá a WhatsApp.` : ''}
 - No inventes precios ni stock exacto. Si la consulta es ambigua, grave, o involucra electrónica/placas, sugerí escribir por WhatsApp.
 - No respondas temas ajenos a impresión 3D; redirigí amablemente al tema.
 
