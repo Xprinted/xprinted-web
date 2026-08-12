@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<!-- Google tag (gtag.js) -->
+<script>
+  // Google Analytics con exclusión de tráfico propio:
+  // entrá una vez a cualquier página con ?noga=1 y este navegador deja de contarse.
+  // Con ?noga=0 se vuelve a activar.
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      if(q.get('noga')==='1'){ localStorage.setItem('xp_noga','1'); }
+      if(q.get('noga')==='0'){ localStorage.removeItem('xp_noga'); }
+      if(localStorage.getItem('xp_noga')==='1'){ return; }
+    }catch(e){}
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-ZS864LCLVT');
+  })();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de costos de impresión 3D | XPRINTED</title>
+<meta name="description" content="Calculá cuánto cuesta imprimir una pieza en 3D: filamento, electricidad y desperdicio, con precio de venta sugerido. Gratis y al instante.">
+<link rel="icon" type="image/png" href="/assets/logo_icon.png">
+<link rel="canonical" href="https://xprinted-web.vercel.app/calculadora.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de costos de impresión 3D | XPRINTED">
+<meta property="og:description" content="WhatsApp, Instagram, email y tienda de Mercado Libre. Tienda online de repuestos 3D.">
+<meta property="og:site_name" content="XPRINTED">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://xprinted-web.vercel.app/calculadora.html">
+<meta property="og:image" content="https://xprinted-web.vercel.app/assets/og-home.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --bg2:#111113; --bg3:#191919;
+    --line:#222224; --white:#F0F0EE; --muted:#8A8A8C; --dim:#3A3A3C;
+    --fd:'Barlow Condensed',sans-serif;
+    --fb:'Inter',sans-serif;
+    --fm:'JetBrains Mono',monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:var(--fb);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  ::selection{background:var(--white);color:var(--bg);}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.82);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid var(--line);transition:background .3s,border-color .3s;}
+  header.scrolled{background:rgba(10,10,10,0.94);border-bottom-color:#2a2a2c;}
+  nav{max-width:1240px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .logo{display:flex;align-items:center;gap:9px;font-family:var(--fd);font-weight:900;font-size:1.2rem;letter-spacing:0.05em;transition:opacity .15s;}
+  .logo:hover{opacity:0.82;}
+  .logo img{height:18px;width:auto;}
+  .nav-links{display:flex;gap:4px;font-size:0.85rem;}
+  .nav-links a{position:relative;color:var(--muted);padding:8px 16px;border-radius:5px;transition:color .2s,background .2s;font-weight:500;}
+  .nav-links a::after{content:'';position:absolute;left:16px;right:16px;bottom:4px;height:1.5px;background:#E0A94A;transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.16,1,.3,1);}
+  .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.03);}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-cta{background:#FFE600;color:#2D3277;font-weight:700;font-size:0.82rem;padding:10px 20px;border-radius:6px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;display:inline-flex;align-items:center;gap:8px;}
+  .nav-cta::before{content:'';width:15px;height:15px;background:#2D3277;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center/contain no-repeat;flex-shrink:0;}
+  .nav-cta:hover{transform:scale(1.05) translateY(-1px);box-shadow:0 8px 22px rgba(255,230,0,0.28);}
+  .nav-cta:active{transform:scale(1.01);}
+
+  /* HERO SPLIT */
+  .hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
+  .hero-left{
+    padding:80px 56px;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-right{
+    padding:48px 40px;background:var(--bg2);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hcat-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--line);border:1px solid var(--line);
+    width:100%;
+  }
+  .hcat-card{
+    background:var(--bg);padding:28px 24px;
+    display:flex;flex-direction:column;gap:12px;
+    transition:background .15s;
+    cursor:pointer;
+  }
+  .hcat-card:hover{background:var(--bg3);}
+  .hcat-icon{
+    width:38px;height:38px;border:1px solid var(--line);border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hcat-icon svg{width:18px;height:18px;stroke:var(--muted);}
+  .hcat-card:hover .hcat-icon svg{stroke:var(--white);}
+  .hcat-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:0.03em;color:var(--white);line-height:1.1;}
+  .hcat-count{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.04em;}
+  .hcat-count::before{content:'';margin-right:4px;}
+  .hero-label{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:22px;}
+  .hero-label::before{content:'';width:5px;height:5px;background:var(--white);opacity:0.35;}
+  .hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(5rem,11vw,10rem);line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:28px;}
+  .hero h1 em{font-style:normal;color:#555;}
+  .hero-sub{font-size:1rem;color:var(--muted);max-width:460px;line-height:1.65;margin-bottom:30px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
+  .btn-main{background:var(--white);color:var(--bg);font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:7px;transition:opacity .15s,transform .15s;white-space:nowrap;}
+  .btn-main:hover{opacity:0.9;transform:translateY(-1px);}
+  .btn-main svg,.btn-sec svg{width:12px;height:12px;}
+  .btn-sec{border:1px solid var(--dim);color:var(--white);font-weight:600;font-size:0.88rem;padding:11px 22px;border-radius:2px;transition:border-color .15s;}
+  .btn-sec:hover{border-color:#555;}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);padding-top:28px;gap:0;}
+  .hstat .n{font-family:var(--fd);font-size:2.8rem;font-weight:900;color:var(--white);line-height:1;display:block;margin-bottom:5px;}
+  .hstat .l{font-family:var(--fm);font-size:0.65rem;color:var(--muted);letter-spacing:0.07em;text-transform:uppercase;}
+  .hstat:not(:last-child){border-right:1px solid var(--line);margin-right:24px;padding-right:24px;}
+
+  /* ORIGINALES STRIP */
+  .orig-strip{background:var(--bg2);border-bottom:1px solid var(--line);padding:18px 0;}
+  .orig-inner{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+  .orig-label{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}
+  .orig-sep{width:1px;height:22px;background:var(--line);flex-shrink:0;}
+  .orig-brands{display:flex;gap:8px;flex-wrap:wrap;}
+  .orig-badge{font-family:var(--fd);font-weight:700;font-size:0.88rem;letter-spacing:0.04em;text-transform:uppercase;border:1px solid var(--dim);color:#B0B0B0;padding:5px 14px;border-radius:2px;}
+
+  /* CATALOG */
+  .catalog{padding:64px 0;border-bottom:1px solid var(--line);}
+  .cat-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;}
+  .section-label{font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+  .section-label::before{content:'';width:5px;height:5px;background:var(--muted);}
+  .section-title{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3vw,2.5rem);text-transform:uppercase;line-height:0.95;}
+  .link-all{font-family:var(--fm);font-size:0.72rem;color:var(--muted);border-bottom:1px solid var(--dim);padding-bottom:2px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;transition:color .15s,border-color .15s;}
+  .link-all:hover{color:var(--white);border-color:var(--white);}
+  .link-all svg{width:10px;height:10px;}
+
+  /* FILTER TABS */
+  .filter-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;}
+  .ftab{font-family:var(--fm);font-size:0.7rem;letter-spacing:0.04em;color:var(--muted);background:transparent;border:1px solid var(--line);padding:6px 14px;border-radius:2px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+  .ftab:hover{border-color:var(--dim);color:#C0C0C0;}
+  .ftab.active{background:var(--white);color:var(--bg);border-color:var(--white);font-weight:600;}
+
+  /* PRODUCT GRID */
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .prod-card{background:var(--bg);display:flex;flex-direction:column;transition:background .15s;cursor:pointer;}
+  .prod-card:hover{background:var(--bg2);}
+  .prod-card .pc-img{aspect-ratio:1/1;overflow:hidden;background:var(--bg2);position:relative;}
+  .prod-card .pc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:transform .3s,filter .3s;}
+  .prod-card:hover .pc-img img{transform:scale(1.05);filter:grayscale(0%);}
+  .pc-stock{position:absolute;top:8px;right:8px;font-family:var(--fm);font-size:0.58rem;font-weight:600;padding:3px 7px;border-radius:1px;}
+  .pc-stock.in{background:rgba(255,255,255,0.08);color:#A0A0A0;border:1px solid rgba(255,255,255,0.1);}
+  .pc-stock.out{background:rgba(200,0,0,0.15);color:#FF6B6B;border:1px solid rgba(200,0,0,0.2);}
+  .prod-card .pc-body{padding:18px;flex:1;display:flex;flex-direction:column;}
+  .pc-cat{font-family:var(--fm);font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;}
+  .prod-card h4{font-family:var(--fd);font-weight:900;font-size:1.05rem;text-transform:uppercase;line-height:1.05;margin-bottom:10px;flex:1;}
+  .pc-price{font-family:var(--fd);font-weight:700;font-size:1.15rem;color:var(--white);margin-bottom:10px;}
+  .pc-go{font-family:var(--fm);font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:5px;border-top:1px solid var(--line);padding-top:10px;transition:color .15s;}
+  .pc-go svg{width:10px;height:10px;transition:transform .2s;}
+  .prod-card:hover .pc-go{color:var(--white);}
+  .prod-card:hover .pc-go svg{transform:translate(3px,0);}
+  .no-results{grid-column:1/-1;padding:60px;text-align:center;color:var(--muted);font-family:var(--fm);font-size:0.8rem;}
+
+  /* TRUST */
+  .trust{border-bottom:1px solid var(--line);}
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .trust-item{background:var(--bg);padding:36px 32px;}
+  .ti-icon{width:32px;height:32px;border:1px solid var(--line);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .ti-icon svg{width:16px;height:16px;stroke:var(--muted);}
+  .trust-item h3{font-family:var(--fd);font-weight:900;font-size:1.2rem;text-transform:uppercase;margin-bottom:8px;}
+  .trust-item p{font-size:0.84rem;color:var(--muted);line-height:1.6;}
+
+  /* WHOLESALE */
+  .wholesale{border-bottom:1px solid var(--line);}
+  .ws-inner{display:grid;grid-template-columns:1fr 1fr;min-height:320px;}
+  .ws-left{padding:56px 48px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:18px;}
+  .ws-left h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3vw,2.8rem);text-transform:uppercase;line-height:0.95;}
+  .ws-left p{font-size:0.88rem;color:var(--muted);max-width:340px;line-height:1.6;}
+  .ws-right{padding:56px 48px;background:var(--bg2);display:flex;flex-direction:column;justify-content:center;gap:0;}
+  .ws-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:0.88rem;}
+  .ws-row:first-child{border-top:1px solid var(--line);}
+  .ws-row .v{font-family:var(--fm);font-size:0.73rem;color:var(--muted);}
+  .ws-cta{margin-top:22px;}
+
+  /* CONTACT */
+  .contact-strip{background:var(--bg2);border-bottom:1px solid var(--line);padding:44px 0;}
+  .contact-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .contact-inner h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.5rem,2.5vw,2.1rem);text-transform:uppercase;}
+  .contact-inner p{font-size:0.86rem;color:var(--muted);margin-top:6px;}
+  .contact-actions{display:flex;gap:10px;}
+
+  /* FOOTER */
+  footer{padding:48px 0 24px;background:#080808;border-top:1px solid var(--line);}
+  .footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px;}
+  .footer-brand .logo{margin-bottom:12px;}
+  .footer-brand p{font-size:0.82rem;color:#444;max-width:230px;line-height:1.6;}
+  .footer-social{display:flex;gap:8px;margin-top:16px;}
+  .footer-social a{width:28px;height:28px;border:1px solid #1E1E1E;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:border-color .15s;}
+  .footer-social a:hover{border-color:#444;}
+  .footer-social svg{width:13px;height:13px;stroke:#555;}
+  .footer-col h5{font-family:var(--fm);font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;color:#333;margin-bottom:12px;}
+  .footer-col a{display:block;color:#555;font-size:0.84rem;margin-bottom:9px;transition:color .15s;cursor:pointer;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid #151515;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:var(--fm);font-size:0.66rem;color:#333;}
+
+  /* RESPONSIVE */
+  @media(max-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:860px){.nav-links{display:none;}}
+  @media(max-width:760px){
+    nav,.wrap{padding-left:20px;padding-right:20px;}
+    .hero-split{grid-template-columns:1fr;}
+    .hero-left{border-right:none;border-bottom:1px solid var(--line);padding:52px 20px;}
+    .hero-right{padding:28px 20px;}
+    .hero-stats{grid-template-columns:repeat(2,1fr);gap:16px;}
+    .hstat:not(:last-child){border-right:none;margin-right:0;padding-right:0;}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .trust-grid,.ws-inner{grid-template-columns:1fr;}
+    .ws-left{border-right:none;border-bottom:1px solid var(--line);padding:36px 20px;}
+    .ws-right{padding:36px 20px;}
+    .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+    .contact-inner{flex-direction:column;align-items:flex-start;}
+  }
+  @media(max-width:500px){
+    .prod-grid{grid-template-columns:1fr 1fr;}
+    .footer-inner{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+
+  /* CALCULADORA */
+  .calc-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;align-items:start;}
+  @media(max-width:860px){.calc-grid{grid-template-columns:1fr;}}
+  .calc-card{background:linear-gradient(155deg,#16171a,#101012);border:1px solid #26272a;border-radius:16px;padding:28px;}
+  .calc-title{font-family:var(--fd);font-weight:800;font-size:1.3rem;text-transform:uppercase;margin-bottom:20px;}
+  .calc-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:560px){.calc-fields{grid-template-columns:1fr;}}
+  .calc-fields label{display:flex;flex-direction:column;gap:6px;font-size:0.84rem;color:#d0d0ce;font-weight:600;}
+  .calc-fields label span{font-family:var(--fm);font-size:0.6rem;color:var(--muted);font-weight:400;letter-spacing:0.02em;}
+  .calc-fields input{background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--white);font-family:var(--fb);font-size:1rem;padding:12px 14px;transition:border-color .2s;width:100%;}
+  .calc-fields input:focus{outline:none;border-color:rgba(224,169,74,0.5);}
+  .calc-result{border-color:rgba(224,169,74,0.3);position:sticky;top:90px;}
+  .cr-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.92rem;color:#b8b8b6;}
+  .cr-row b{color:#e8e8e6;font-weight:700;}
+  .cr-total{display:flex;justify-content:space-between;align-items:center;padding:18px 0 14px;font-size:1rem;color:#f0f0ee;}
+  .cr-total b{font-family:var(--fd);font-weight:900;font-size:2.1rem;color:#E0A94A;line-height:1;}
+  .cr-sell{margin-top:8px;padding-top:16px;border-top:1px dashed rgba(224,169,74,0.3);}
+  .cr-sell label{display:flex;flex-direction:column;gap:10px;font-size:0.84rem;color:#d0d0ce;font-weight:600;}
+  .cr-sell label span{color:#E0A94A;}
+  .cr-sell input[type=range]{width:100%;accent-color:#E0A94A;}
+  .cr-precio{border-bottom:none;padding-top:14px;}
+  .cr-precio b{color:#E0A94A;font-size:1.25rem;}
+  .cr-note{font-size:0.76rem;color:var(--muted);line-height:1.6;margin-top:16px;}
+  .cr-note a{color:#E0A94A;}
+</style>
+
+<style>
+  .page-hero{position:relative;overflow:hidden;padding:76px 0 64px;border-bottom:1px solid var(--line);}
+  .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:0.28;-webkit-mask-image:radial-gradient(ellipse 68% 80% at 74% 34%, #000, transparent 74%);mask-image:radial-gradient(ellipse 68% 80% at 74% 34%, #000, transparent 74%);pointer-events:none;}
+  .page-hero::after{content:'';position:absolute;top:-25%;right:-6%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle, rgba(224,169,74,0.08), transparent 62%);pointer-events:none;}
+  .ph-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 0.85fr;gap:52px;align-items:center;}
+  .page-hero .kicker{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+  .page-hero .kicker::before{content:'';width:5px;height:5px;background:#E0A94A;}
+  .page-hero h1{font-family:var(--fd);font-weight:900;font-size:clamp(2.8rem,5.6vw,4.6rem);line-height:0.9;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:20px;}
+  .page-hero h1 em{font-style:normal;color:#E0A94A;}
+  .page-hero .lead{font-size:1.02rem;color:#a8a8a6;max-width:500px;line-height:1.7;margin-bottom:28px;}
+  .btn-wa-big{background:#25D366;color:#052e16;font-weight:700;font-size:0.98rem;padding:15px 28px;border-radius:6px;display:inline-flex;align-items:center;gap:10px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;}
+  .btn-wa-big:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 30px rgba(37,211,102,0.3);}
+  .btn-wa-big svg{width:19px;height:19px;}
+  .ct-panel{background:linear-gradient(155deg,#17181b,#101012);border:1px solid #26272a;border-radius:14px;padding:26px 26px;box-shadow:0 26px 54px rgba(0,0,0,0.4);}
+  .ctp-head{display:flex;align-items:center;gap:9px;padding-bottom:15px;margin-bottom:6px;border-bottom:1px solid var(--line);font-family:var(--fm);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+  .ctp-head::before{content:'';width:5px;height:5px;background:#E0A94A;}
+  .ctp-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .ctp-row:last-child{border-bottom:none;}
+  .ctp-row .k{font-family:var(--fm);font-size:0.7rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;}
+  .ctp-row .v{font-size:0.9rem;color:#e4e4e2;font-weight:600;text-align:right;}
+  .ctp-row .v b{color:#E0A94A;font-weight:700;}
+  @media(max-width:900px){.ph-grid{grid-template-columns:1fr;gap:36px;}}
+  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:48px 0;}
+  .contact-card{position:relative;background:linear-gradient(155deg,#16171a,#101012);border:1px solid #26272a;border-radius:14px;padding:30px 28px;display:flex;flex-direction:column;gap:12px;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;}
+  .contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cc),transparent);opacity:0;transition:opacity .25s;}
+  .contact-card:hover{border-color:var(--cbd);transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,0.45);}
+  .contact-card:hover::before{opacity:1;}
+  .contact-card .ci{width:48px;height:48px;border-radius:11px;background:var(--cbg);border:1px solid var(--cbd);display:flex;align-items:center;justify-content:center;transition:transform .25s;}
+  .contact-card:hover .ci{transform:scale(1.08);}
+  .contact-card .ci svg{width:22px;height:22px;stroke:var(--cc);}
+  .contact-card .ct{font-family:var(--fd);font-weight:700;font-size:1.2rem;text-transform:uppercase;letter-spacing:0.02em;color:#f4f4f2;}
+  .contact-card .cv{color:var(--cc);font-size:0.95rem;font-weight:600;}
+  .contact-card .cd{color:#9a9a9c;font-size:0.87rem;line-height:1.6;}
+  .contact-card .cgo{margin-top:auto;font-family:var(--fm);font-size:0.7rem;font-weight:600;color:var(--cc);display:inline-flex;align-items:center;gap:7px;padding-top:8px;opacity:0.75;transition:opacity .25s,gap .25s;}
+  .contact-card:hover .cgo{opacity:1;gap:11px;}
+  .contact-card .cgo svg{width:11px;height:11px;stroke:var(--cc);}
+  .cc-wa{--cc:#25D366;--cbd:rgba(37,211,102,0.4);--cbg:rgba(37,211,102,0.1);}
+  .cc-ig{--cc:#E1556E;--cbd:rgba(225,85,110,0.4);--cbg:rgba(225,85,110,0.1);}
+  .cc-mail{--cc:#E0A94A;--cbd:rgba(224,169,74,0.4);--cbg:rgba(224,169,74,0.1);}
+  .cc-ml{--cc:#FFE600;--cbd:rgba(255,230,0,0.35);--cbg:rgba(255,230,0,0.08);}
+  .info-box{background:linear-gradient(135deg,rgba(224,169,74,0.05),rgba(255,255,255,0.01));border:1px solid rgba(224,169,74,0.22);border-left:3px solid #E0A94A;border-radius:12px;padding:32px 34px;margin-bottom:48px;}
+  .info-box h3{font-family:var(--fd);font-weight:700;font-size:1.4rem;text-transform:uppercase;margin-bottom:12px;}
+  .info-box h3::before{content:'■ ';color:#E0A94A;font-size:0.7em;vertical-align:middle;}
+  .info-box p{color:var(--muted);line-height:1.7;max-width:640px;}
+  .info-box .hl{color:var(--white);font-weight:600;}
+  @media(max-width:720px){.contact-grid{grid-template-columns:1fr;}}
+</style>
+
+</head>
+<body>
+<header>
+  <nav>
+    <a href="/" class="logo"><img src="/assets/logo_icon.png" alt="">XPRINTED</a>
+    <div class="nav-links">
+      <a href="/catalogo.html">Catálogo</a>
+      <a href="/mejoras.html">Mejoras</a>
+      <a href="/guias.html">Guías</a>
+      <a href="/asistente.html">Asistente 3D</a>
+      <a href="/comunidad.html">Comunidad</a>
+      <a href="/contacto.html" class="active">Contacto</a>
+    </div>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+  </nav>
+</header>
+
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="ph-grid">
+      <div>
+        <div class="kicker">Herramientas</div>
+        <h1>¿Cuánto cuesta<br><em>imprimir?</em></h1>
+        <p class="lead">Calculá el costo real de tu pieza: filamento, electricidad y desperdicio. Y si vendés lo que imprimís, te sugerimos un precio de venta con tu margen.</p>
+      </div>
+      <div class="ct-panel">
+        <div class="ctp-head">Cómo se calcula</div>
+        <div class="ctp-row"><span class="k">Material</span><span class="v">gramos × precio del kg</span></div>
+        <div class="ctp-row"><span class="k">Electricidad</span><span class="v">horas × potencia × tarifa</span></div>
+        <div class="ctp-row"><span class="k">Desperdicio</span><span class="v">purgas, soportes y fallas</span></div>
+        <div class="ctp-row"><span class="k">Resultado</span><span class="v"><b>Costo por pieza</b></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-pad" style="padding:56px 0;">
+  <div class="wrap">
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h3 class="calc-title">Datos de tu impresión</h3>
+        <div class="calc-fields">
+          <label>Peso de la pieza <span>gramos — te lo dice el laminador</span>
+            <input type="number" id="c-peso" min="0" placeholder="ej: 85" inputmode="decimal">
+          </label>
+          <label>Precio del filamento <span>$ por kilo</span>
+            <input type="number" id="c-fil" min="0" placeholder="ej: 18000" inputmode="decimal">
+          </label>
+          <label>Tiempo de impresión <span>horas</span>
+            <input type="number" id="c-horas" min="0" step="0.5" placeholder="ej: 6.5" inputmode="decimal">
+          </label>
+          <label>Potencia de la impresora <span>watts — Ender 3: ~150 · cerradas: ~350</span>
+            <input type="number" id="c-watts" min="0" value="150" inputmode="decimal">
+          </label>
+          <label>Tarifa eléctrica <span>$ por kWh — figura en tu factura de luz</span>
+            <input type="number" id="c-kwh" min="0" placeholder="ej: 120" inputmode="decimal">
+          </label>
+          <label>Desperdicio y fallas <span>% — purgas, soportes, impresiones falladas</span>
+            <input type="number" id="c-desp" min="0" max="100" value="10" inputmode="decimal">
+          </label>
+        </div>
+      </div>
+      <div class="calc-card calc-result">
+        <h3 class="calc-title">Tu costo</h3>
+        <div class="cr-row"><span>Material</span><b id="r-mat">—</b></div>
+        <div class="cr-row"><span>Electricidad</span><b id="r-luz">—</b></div>
+        <div class="cr-row"><span>Desperdicio</span><b id="r-desp">—</b></div>
+        <div class="cr-total"><span>Costo por pieza</span><b id="r-total">—</b></div>
+        <div class="cr-sell">
+          <label>Margen si la vendés <span id="r-margen-val">100%</span>
+            <input type="range" id="c-margen" min="0" max="300" step="10" value="100">
+          </label>
+          <div class="cr-row cr-precio"><span>Precio de venta sugerido</span><b id="r-venta">—</b></div>
+        </div>
+        <p class="cr-note">No incluye amortización de la máquina, repuestos ni tu tiempo — para venta en serio, sumalos. Los repuestos los tenés en <a href="/catalogo.html">nuestro catálogo</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img src="/assets/logo_icon.png" alt="">XPRINTED
+        </a>
+        <p>Repuestos para impresoras 3D. Importación directa, +8 años vendiendo en Argentina. Tienda 100% online.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener" aria-label="Instagram de XPRINTED">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#555" stroke="none"/></svg>
+          </a>
+          <a href="https://wa.me/5491171585143" target="_blank" rel="noopener" aria-label="WhatsApp de XPRINTED">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="#555"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navegación</h5>
+        <a href="/catalogo.html">Catálogo</a>
+        <a href="/comunidad.html">Comunidad</a>
+        <a href="/faq.html">Preguntas frecuentes</a>
+        <a href="/contacto.html">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h5>Guías técnicas</h5>
+        <a href="/guias/camas.html">Camas magnéticas</a>
+        <a href="/guias/hotends.html">Hotends</a>
+        <a href="/guias/nozzles.html">Nozzles</a>
+        <a href="/guias/acoples.html">Acoples &amp; Accesorios</a>
+        <a href="/guias/termistores.html">Termistores</a>
+        <a href="/guias/coolers.html">Coolers &amp; Ventiladores</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <a href="https://wa.me/5491171585143" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:contacto@xprinted.com.ar">contacto@xprinted.com.ar</a>
+        <a href="https://instagram.com/xprinted.arg" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Mercado Libre</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© XPRINTED 2026. Todos los derechos reservados.</span>
+      <span>Tienda online · Envíos a todo el país</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const header = document.querySelector('header');
+  if(!header) return;
+  const onScroll = ()=>{ header.classList.toggle('scrolled', window.scrollY > 20); };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const inputs = ['c-peso','c-fil','c-horas','c-watts','c-kwh','c-desp','c-margen'];
+  function money(n){
+    if (!isFinite(n) || n <= 0) return '—';
+    const cents = Math.round(n * 100) % 100 !== 0;
+    return '$' + n.toLocaleString('es-AR', { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 });
+  }
+  function calc(){
+    const peso = parseFloat($('c-peso').value) || 0;
+    const fil = parseFloat($('c-fil').value) || 0;
+    const horas = parseFloat($('c-horas').value) || 0;
+    const watts = parseFloat($('c-watts').value) || 0;
+    const kwh = parseFloat($('c-kwh').value) || 0;
+    const desp = Math.min(100, Math.max(0, parseFloat($('c-desp').value) || 0));
+    const margen = parseFloat($('c-margen').value) || 0;
+
+    const mat = (peso / 1000) * fil;
+    const luz = horas * (watts / 1000) * kwh;
+    const sub = mat + luz;
+    const dsp = sub * (desp / 100);
+    const total = sub + dsp;
+
+    $('r-mat').textContent = money(mat);
+    $('r-luz').textContent = money(luz);
+    $('r-desp').textContent = money(dsp);
+    $('r-total').textContent = money(total);
+    $('r-margen-val').textContent = margen + '%';
+    $('r-venta').textContent = money(total * (1 + margen / 100));
+  }
+  inputs.forEach(id => { const el = $(id); el.addEventListener('input', calc); });
+  calc();
+})();
+</script>
+</body>
+</html>
