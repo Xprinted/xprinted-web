@@ -2,17 +2,31 @@
 <html lang="es-AR">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZS864LCLVT');
+  // Google Analytics con exclusión de tráfico propio:
+  // entrá una vez a cualquier página con ?noga=1 y este navegador deja de contarse.
+  // Con ?noga=0 se vuelve a activar.
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      if(q.get('noga')==='1'){ localStorage.setItem('xp_noga','1'); }
+      if(q.get('noga')==='0'){ localStorage.removeItem('xp_noga'); }
+      if(localStorage.getItem('xp_noga')==='1'){ return; }
+    }catch(e){}
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-ZS864LCLVT');
+  })();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qué es una cama magnética — Guía de superficies de impresión 3D | XPRINTED</title>
-<meta name="description" content="Guía completa sobre camas magnéticas y superficies de impresión 3D: qué son, tipos de recubrimiento (PEI, PEO, PEY, vidrio), cómo elegir según tu filamento y mantenimiento. Por XPRINTED.">
+<title>Camas magnéticas — Guía de superficies 3D | XPRINTED</title>
+<meta name="description" content="Camas magnéticas y superficies de impresión: PEI, PEO, PEY y vidrio. Cómo elegir según tu filamento y cómo cuidarlas para que duren.">
 <link rel="icon" type="image/png" href="/assets/logo_icon.png">
 <link rel="canonical" href="https://xprinted-web.vercel.app/guias/camas.html">
 <!-- Open Graph (para compartir en WhatsApp / redes) -->
@@ -189,6 +203,23 @@
   }
   @media(max-width:500px){.prod-grid{grid-template-columns:1fr 1fr;}}
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+
+  /* GUÍAS RELACIONADAS */
+  .rel-sec{padding:64px 0;border-top:1px solid var(--line);}
+  .rel-h2{font-family:var(--fd);font-weight:900;font-size:clamp(1.8rem,3.2vw,2.6rem);text-transform:uppercase;line-height:0.95;margin-bottom:30px;}
+  .rel-h2 em{font-style:normal;color:var(--gold);}
+  .rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .rel-card{position:relative;display:flex;flex-direction:column;gap:9px;background:linear-gradient(155deg,#16171a,#101012);border:1px solid #26272a;border-radius:12px;padding:22px;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;}
+  .rel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .25s;}
+  .rel-card:hover{border-color:rgba(224,169,74,0.45);transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,0.45);}
+  .rel-card:hover::before{opacity:1;}
+  .rel-tag{font-family:var(--fm);font-size:0.58rem;color:var(--gold);letter-spacing:0.09em;text-transform:uppercase;opacity:0.85;}
+  .rel-card h3{font-family:var(--fd);font-weight:700;font-size:1.15rem;text-transform:uppercase;line-height:1.05;color:#f4f4f2;}
+  .rel-card p{color:#9a9a9c;font-size:0.84rem;line-height:1.5;flex:1;}
+  .rel-go{font-family:var(--fm);font-size:0.68rem;font-weight:600;color:var(--gold);display:inline-flex;align-items:center;gap:7px;transition:gap .25s;}
+  .rel-card:hover .rel-go{gap:11px;}
+  .rel-go svg{width:12px;height:12px;stroke:var(--gold);}
+  @media(max-width:820px){.rel-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -510,6 +541,34 @@
       <a class="btn-main" href="https://wa.me/5491171585143?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20una%20cama%20magn%C3%A9tica." target="_blank" rel="noopener">
         Consultar por WhatsApp
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GUÍAS RELACIONADAS -->
+<section class="rel-sec">
+  <div class="wrap-wide">
+    <div class="sec-label">Seguí aprendiendo</div>
+    <h2 class="rel-h2">Guías <em>relacionadas.</em></h2>
+    <div class="rel-grid">
+      <a class="rel-card" href="/guias/termistores.html">
+        <span class="rel-tag">Guía técnica</span>
+        <h3>Termistores y resistencias</h3>
+        <p>El control de temperatura, sin errores.</p>
+        <span class="rel-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="rel-card" href="/guias/nozzles.html">
+        <span class="rel-tag">Guía técnica</span>
+        <h3>Nozzles y boquillas</h3>
+        <p>Diámetros, materiales y cuándo cambiarlos.</p>
+        <span class="rel-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="rel-card" href="/guias/hotends.html">
+        <span class="rel-tag">Guía técnica</span>
+        <h3>Todo sobre hotends</h3>
+        <p>PTFE vs all-metal y cómo elegir el correcto.</p>
+        <span class="rel-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </div>
   </div>
