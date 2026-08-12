@@ -2,12 +2,26 @@
 <html lang="es-AR">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZS864LCLVT');
+  // Google Analytics con exclusión de tráfico propio:
+  // entrá una vez a cualquier página con ?noga=1 y este navegador deja de contarse.
+  // Con ?noga=0 se vuelve a activar.
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      if(q.get('noga')==='1'){ localStorage.setItem('xp_noga','1'); }
+      if(q.get('noga')==='0'){ localStorage.removeItem('xp_noga'); }
+      if(localStorage.getItem('xp_noga')==='1'){ return; }
+    }catch(e){}
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-ZS864LCLVT');
+  })();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,6 +105,9 @@
   .hero-strip .hs:last-child{border-right:none;}
   .hero-strip .hs b{color:#E0A94A;font-family:var(--fd);font-size:1.8rem;font-weight:900;line-height:1;}
   .hero-strip .hs span{font-family:var(--fm);font-size:0.64rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+  .rep-badge{display:inline-flex;align-items:center;gap:9px;margin-top:20px;background:rgba(78,200,122,0.06);border:1px solid rgba(78,200,122,0.28);border-radius:100px;padding:8px 16px;font-family:var(--fm);font-size:0.68rem;color:#b8d8c4;letter-spacing:0.03em;}
+  .rep-badge b{color:#4ec87a;font-weight:700;}
+  .rb-dot{width:6px;height:6px;border-radius:50%;background:#4ec87a;box-shadow:0 0 8px #4ec87a;flex-shrink:0;}
   @media(max-width:600px){.hero-strip .hs{padding:8px 28px 8px 0;border-right:none;}}
   .btn-main{background:#E0A94A;color:#171006;font-weight:700;font-size:0.88rem;padding:13px 28px;border-radius:5px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;white-space:nowrap;}
   .btn-main:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 10px 28px rgba(224,169,74,0.18);}
@@ -327,39 +344,7 @@
   .iso-fan{animation:spinFan 1s linear infinite;transform-box:fill-box;transform-origin:center;}
   @media(prefers-reduced-motion:reduce){.iso-head,.iso-piece,.iso-flow,.iso-glow,.iso-fan{animation:none;}}
 
-  /* ===== DIAGNOSTICADOR IA ===== */
-  .diag{padding:72px 0;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 50% 0%,rgba(200,160,80,0.05),transparent 60%);}
-  .diag-head{text-align:center;max-width:640px;margin:0 auto 34px;}
-  .diag-head .kicker{justify-content:center;}
-  .diag-head h2{font-family:var(--fd);font-weight:900;font-size:clamp(2rem,4vw,3.2rem);text-transform:uppercase;line-height:0.95;margin-bottom:14px;}
-  .diag-head p{color:var(--muted);line-height:1.6;}
-  .diag-box{max-width:720px;margin:0 auto;background:var(--bg2);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
-  .diag-chips{display:flex;flex-wrap:wrap;gap:8px;padding:20px 22px 0;}  .diag-chip{font-size:0.8rem;color:var(--muted);background:var(--bg3);border:1px solid var(--line);border-radius:20px;padding:7px 14px;cursor:pointer;transition:border-color .15s,color .15s;}
-  .diag-chip:hover{border-color:#4a4a4c;color:var(--white);}
-  .diag-tip{display:flex;align-items:center;gap:9px;margin:14px 22px 0;padding:10px 14px;background:rgba(200,160,80,0.05);border:1px solid rgba(200,160,80,0.15);border-radius:5px;font-size:0.8rem;color:var(--muted);line-height:1.4;}
-  .diag-tip svg{width:15px;height:15px;stroke:#E0A94A;flex-shrink:0;}
-  .diag-tip strong{color:#d0d0ce;font-weight:600;}
-  .diag-input-row{display:flex;gap:10px;padding:18px 22px 22px;}
-  .diag-input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--white);font-family:var(--fb);font-size:0.95rem;padding:13px 16px;resize:none;min-height:48px;transition:border-color .15s;}
-  .diag-input:focus{outline:none;border-color:#4a4a4c;}
-  .diag-send{background:var(--white);color:var(--bg);border:none;border-radius:4px;font-family:var(--fb);font-weight:700;font-size:0.9rem;padding:0 22px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:opacity .15s;white-space:nowrap;}
-  .diag-send:hover{opacity:0.9;}
-  .diag-send:disabled{opacity:0.4;cursor:default;}
-  .diag-send svg{width:14px;height:14px;}
-  .diag-answer{border-top:1px solid var(--line);padding:0 22px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;}
-  .diag-answer.show{max-height:1200px;padding:20px 22px;}
-  .diag-answer .da-label{font-family:var(--fm);font-size:0.66rem;color:var(--accent,#C8A050);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-  .diag-answer .da-body{color:#d0d0ce;line-height:1.7;font-size:0.95rem;}
-  .diag-answer .da-body strong{color:var(--white);}
-  .diag-answer .da-body a{color:var(--white);border-bottom:1px solid var(--dim);}
-  .diag-answer .da-body ul{margin:10px 0;padding-left:20px;}
-  .diag-answer .da-body li{margin-bottom:6px;}
-  .diag-loading{display:inline-flex;gap:4px;}
-  .diag-loading span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:dotPulse 1.2s ease-in-out infinite;}
-  .diag-loading span:nth-child(2){animation-delay:.2s;}
-  .diag-loading span:nth-child(3){animation-delay:.4s;}
   @keyframes dotPulse{0%,60%,100%{opacity:0.25;}30%{opacity:1;}}
-  .diag-note{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:16px;}
 
   /* ===== SELECTOR DE IMPRESORA ===== */
   .picker{padding:72px 0;border-bottom:1px solid var(--line);}
@@ -433,6 +418,7 @@
         <div class="hs"><b>+50.000</b><span>ventas concretadas</span></div>
         <div class="hs"><b>Envíos</b><span>a todo el país</span></div>
       </div>
+        <div class="rep-badge" id="rep-badge" hidden><span class="rb-dot"></span><span id="rep-text"></span></div>
       </div>
       <div class="hero-right">
         <div class="printer-stage">
@@ -602,7 +588,6 @@
     </div>
   </section>
 
-  <!-- DIAGNOSTICADOR: movido a asistente.html -->
 
 
   <!-- SELECTOR DE IMPRESORA -->
@@ -835,6 +820,7 @@
         <a href="/comunidad.html">Comunidad</a>
         <a href="/faq.html">Preguntas frecuentes</a>
         <a href="/contacto.html">Contacto</a>
+        <a href="/calculadora.html">Calculadora de costos</a>
       </div>
       <div class="footer-col">
         <h5>Guías técnicas</h5>
@@ -877,7 +863,7 @@
   // Marcar elementos a animar: títulos de sección, tarjetas, etc.
   const selectors = [
     '.home-cats .hc-head','.cat-tile','.guides-home .hc-head','.guide-card',
-    '.diag-head','.diag-box','.picker-head','.picker-grid','.picker-result',
+    '.picker-head','.picker-grid','.picker-result',
     '.steps .section-label','.step','.trust-item','.comm-inner','.ws-inner',
     '.contact-inner','.orig-inner','.up-head','.up-card','.up-cta'
   ];
@@ -940,67 +926,6 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
   el.textContent = n + (n === 1 ? ' producto' : ' productos');
 });
 
-/* ============ DIAGNOSTICADOR IA ============ */
-(function(){
-  const input = document.getElementById('diag-input');
-  const sendBtn = document.getElementById('diag-send');
-  const answer = document.getElementById('diag-answer');
-  const daBody = document.getElementById('da-body');
-  const daLabel = document.getElementById('da-label');
-  if(!input) return;
-
-  // Chips que rellenan el input
-  document.querySelectorAll('.diag-chip').forEach(chip=>{
-    chip.addEventListener('click',()=>{ input.value = chip.textContent.trim(); input.focus(); });
-  });
-
-  // Auto-resize del textarea
-  input.addEventListener('input',()=>{ input.style.height='48px'; input.style.height=Math.min(input.scrollHeight,160)+'px'; });
-
-  function showLoading(){
-    answer.classList.add('show');
-    daLabel.innerHTML = 'Analizando <span class="diag-loading"><span></span><span></span><span></span></span>';
-    daBody.innerHTML = '';
-  }
-
-  function renderAnswer(text){
-    daLabel.textContent = 'Diagnóstico';
-    // Formato básico: **negrita**, saltos de línea, links markdown
-    let html = text
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-      .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>')
-      .replace(/\n\n/g,'</p><p>')
-      .replace(/\n/g,'<br>');
-    daBody.innerHTML = '<p>'+html+'</p>';
-  }
-
-  async function ask(){
-    const q = input.value.trim();
-    if(!q) return;
-    sendBtn.disabled = true;
-    showLoading();
-    try{
-      const res = await fetch('/api/diagnose', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ question: q })
-      });
-      if(!res.ok) throw new Error('bad response');
-      const data = await res.json();
-      renderAnswer(data.answer || 'No pude generar una respuesta. Probá reformular tu consulta o escribinos por WhatsApp.');
-    }catch(err){
-      daLabel.textContent = 'Diagnóstico';
-      daBody.innerHTML = '<p>Ahora mismo no puedo procesar tu consulta. Escribinos por <a href="https://wa.me/5491171585143" target="_blank" rel="noopener">WhatsApp</a> y te ayudamos al toque.</p>';
-    }finally{
-      sendBtn.disabled = false;
-    }
-  }
-
-  sendBtn.addEventListener('click', ask);
-  input.addEventListener('keydown', e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); ask(); } });
-})();
-
 /* ============ SELECTOR DE IMPRESORA ============ */
 (function(){
   const grid = document.getElementById('picker-grid');
@@ -1039,6 +964,13 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
   });
 
   function showResult(p){
+    // Recordar la impresora del cliente para el catálogo y para Max
+    try {
+      localStorage.setItem('xp_printer_name', p.name);
+      const stop = ['creality','bambu','lab','anycubic','artillery','prusa','series','(todas)','otras','marcas'];
+      const kw = p.name.split(/[\s/]+/).filter(w => w && !stop.includes(w.toLowerCase())).slice(0,2).join(' ');
+      localStorage.setItem('xp_printer_kw', kw);
+    } catch(e) {}
     const chips = p.cats.map(function(c){
       return '<a class="pr-cat" href="/catalogo.html">'+c.n+' <span class="pr-cat-n">'+c.c+'</span></a>';
     }).join('');
@@ -1053,6 +985,19 @@ document.querySelectorAll('[data-cat-count]').forEach(el => {
   }
 })();
 
+
+// ── Reputación de ML en vivo (badge del hero) ──
+fetch('/api/ml-reputation').then(r => r.ok ? r.json() : null).then(d => {
+  if (!d || !d.medal) return;
+  const el = document.getElementById('rep-badge');
+  const tx = document.getElementById('rep-text');
+  if (!el || !tx) return;
+  let s = '<b>' + d.medal + '</b>';
+  if (typeof d.positive === 'number') s += ' · ' + String(d.positive).replace('.', ',') + '% de calificaciones positivas';
+  s += ' · dato en vivo de Mercado Libre';
+  tx.innerHTML = s;
+  el.hidden = false;
+}).catch(() => {});
 </script>
 
 </body>
