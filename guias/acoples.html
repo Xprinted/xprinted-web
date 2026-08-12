@@ -71,7 +71,6 @@
   .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.03);}
   .nav-links a:hover::after{transform:scaleX(1);}
   .nav-cta{background:#FFE600;color:#2D3277;font-weight:700;font-size:0.82rem;padding:10px 20px;border-radius:6px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;display:inline-flex;align-items:center;gap:8px;}
-  .nav-cta::before{content:'';width:15px;height:15px;background:#2D3277;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17M17 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center/contain no-repeat;flex-shrink:0;}
   .nav-cta:hover{transform:scale(1.05) translateY(-1px);box-shadow:0 8px 22px rgba(255,230,0,0.28);}
   .nav-cta:active{transform:scale(1.01);}
 
@@ -252,6 +251,11 @@
     .nav-burger{margin-left:auto;}
   }
   @media(min-width:941px){.mob-menu{display:none !important;}}
+
+  .nav-cta .ml-ico{width:19px;height:auto;flex-shrink:0;}
+  .nav-cta{display:inline-flex;align-items:center;gap:9px;}
+  .mob-menu .mm-ml .ml-ico{width:21px;height:auto;}
+  .mob-menu .mm-ml{display:flex;align-items:center;gap:10px;}
 </style>
 </head>
 <body>
@@ -269,7 +273,7 @@
         <a href="/contacto.html">Contacto</a>
     </div>
     <button class="nav-burger" id="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mob-menu"><span></span><span></span><span></span></button>
-    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+    <a class="nav-cta" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener"><img src="/assets/ml-logo.png" alt="" class="ml-ico">Ver en Mercado Libre</a>
   </nav>
 </header>
 <div class="mob-menu" id="mob-menu">
@@ -280,7 +284,7 @@
   <a href="/comunidad.html">Comunidad</a>
   <a href="/calculadora.html">Calculadora</a>
   <a href="/contacto.html">Contacto</a>
-  <a class="mm-ml" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener">Ver en Mercado Libre</a>
+  <a class="mm-ml" href="https://listado.mercadolibre.com.ar/pagina/mm20240819142721/listado/computacion/impresion/?tracking_id=d4689a667703cb63c78f078804c0ff86#client=HOME&amp;component_id=menu_corridors&amp;component=menu_corridors&amp;label=Impresi%C3%B3n&amp;tracking_id=d4689a667703cb63c78f078804c0ff86&amp;global_position=1" target="_blank" rel="noopener"><img src="/assets/ml-logo.png" alt="" class="ml-ico">Ver en Mercado Libre</a>
   <a class="mm-wa" href="https://wa.me/5491171585143" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
 </div>
 
@@ -679,5 +683,6 @@ preloadMLData();
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggle(false); });
 })();
 </script>
+<script src="/assets/printer.js" defer></script>
 </body>
 </html>
