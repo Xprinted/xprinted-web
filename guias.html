@@ -2,17 +2,31 @@
 <html lang="es-AR">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZS864LCLVT');
+  // Google Analytics con exclusión de tráfico propio:
+  // entrá una vez a cualquier página con ?noga=1 y este navegador deja de contarse.
+  // Con ?noga=0 se vuelve a activar.
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      if(q.get('noga')==='1'){ localStorage.setItem('xp_noga','1'); }
+      if(q.get('noga')==='0'){ localStorage.removeItem('xp_noga'); }
+      if(localStorage.getItem('xp_noga')==='1'){ return; }
+    }catch(e){}
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-ZS864LCLVT');
+  })();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guías técnicas de impresión 3D | XPRINTED</title>
-<meta name="description" content="Guías técnicas sobre repuestos de impresoras 3D: hotends, nozzles, camas magnéticas, termistores, acoples y ventiladores. Aprendé qué necesita tu impresora antes de comprar. Por XPRINTED.">
+<meta name="description" content="Guías técnicas de impresión 3D: hotends, nozzles, camas magnéticas, termistores, acoples y coolers. Aprendé qué necesita tu impresora antes de comprar.">
 <link rel="icon" type="image/png" href="/assets/logo_icon.png">
 <link rel="canonical" href="https://xprinted-web.vercel.app/guias.html">
 <meta property="og:type" content="website">
@@ -136,6 +150,21 @@
   @media(max-width:900px){.guides-grid{grid-template-columns:1fr 1fr;}}
   @media(max-width:600px){.guides-grid{grid-template-columns:1fr;} .wrap{padding:0 20px;} nav{padding:0 20px;}}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+
+  /* TABLA DE TEMPERATURAS */
+  .temps{margin-top:64px;padding-top:56px;border-top:1px solid var(--line);}
+  .temps-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px;}
+  .temps-link{font-family:var(--fm);font-size:0.72rem;color:var(--gold);display:inline-flex;align-items:center;gap:7px;transition:gap .2s;}
+  .temps-link:hover{gap:11px;}
+  .temp-wrap{overflow-x:auto;border:1px solid #26272a;border-radius:14px;background:linear-gradient(155deg,#141517,#0f0f11);}
+  .temp-table{width:100%;border-collapse:collapse;min-width:640px;}
+  .temp-table th{font-family:var(--fm);font-size:0.64rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:16px 18px;border-bottom:1px solid #26272a;}
+  .temp-table td{padding:15px 18px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.9rem;color:#c8c8c6;vertical-align:middle;}
+  .temp-table tr:last-child td{border-bottom:none;}
+  .temp-table tr:hover td{background:rgba(224,169,74,0.03);}
+  .temp-table td b{color:#f4f4f2;font-family:var(--fd);font-size:1.02rem;letter-spacing:0.02em;}
+  .tt-chip{display:inline-block;font-family:var(--fm);font-size:0.58rem;color:var(--gold);background:rgba(224,169,74,0.1);border:1px solid rgba(224,169,74,0.3);border-radius:100px;padding:3px 9px;white-space:nowrap;}
+  .temps-note{font-size:0.8rem;color:var(--muted);margin-top:14px;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -234,6 +263,30 @@
         <p>Ventilador de capa vs de hotend, medidas (4010, 5015, 3010) y cuándo reemplazarlos.</p>
         <span class="gc-go">Leer guía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
+    </div>
+
+
+    <!-- TABLA DE TEMPERATURAS -->
+    <div class="temps">
+      <div class="temps-head">
+        <div>
+          <div class="sec-label">Referencia rápida</div>
+          <h2 class="sec-h2" style="margin-bottom:0;">Temperaturas <em>por filamento.</em></h2>
+        </div>
+        <a class="temps-link" href="/calculadora.html">¿Cuánto cuesta imprimir? Probá la calculadora <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="temp-wrap">
+        <table class="temp-table">
+          <tr><th>Filamento</th><th>Nozzle</th><th>Cama</th><th>Ventilador de capa</th><th>Nota</th></tr>
+          <tr><td><b>PLA</b></td><td>190–220 °C</td><td>50–60 °C</td><td>100%</td><td>El más fácil de imprimir.</td></tr>
+          <tr><td><b>PETG</b></td><td>230–250 °C</td><td>70–85 °C</td><td>30–50%</td><td>Cuidado con la adherencia excesiva al PEI.</td></tr>
+          <tr><td><b>TPU</b></td><td>210–235 °C</td><td>30–60 °C</td><td>30–50%</td><td>Imprimir lento; mejor con extrusor directo.</td></tr>
+          <tr><td><b>ABS</b></td><td>230–260 °C</td><td>90–110 °C</td><td>0–20%</td><td>Ambiente cerrado recomendado. <span class="tt-chip">requiere all-metal</span></td></tr>
+          <tr><td><b>ASA</b></td><td>240–260 °C</td><td>90–110 °C</td><td>0–20%</td><td>Como ABS, resiste rayos UV (exterior). <span class="tt-chip">requiere all-metal</span></td></tr>
+          <tr><td><b>Nylon</b></td><td>240–270 °C</td><td>70–90 °C</td><td>0–10%</td><td>Secá el filamento antes de usar. <span class="tt-chip">requiere all-metal</span></td></tr>
+        </table>
+      </div>
+      <p class="temps-note">Rangos orientativos: cada marca de filamento indica su rango exacto en la bobina — ante la duda, arrancá por el medio del rango del fabricante. Los materiales marcados superan los ~240 °C seguros del PTFE: leé la <a href="/guias/hotends.html" style="color:var(--gold);">guía de hotends</a> antes de imprimirlos.</p>
     </div>
 
     <div class="guides-cta">
