@@ -2,17 +2,31 @@
 <html lang="es-AR">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZS864LCLVT');
+  // Google Analytics con exclusión de tráfico propio:
+  // entrá una vez a cualquier página con ?noga=1 y este navegador deja de contarse.
+  // Con ?noga=0 se vuelve a activar.
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      if(q.get('noga')==='1'){ localStorage.setItem('xp_noga','1'); }
+      if(q.get('noga')==='0'){ localStorage.removeItem('xp_noga'); }
+      if(localStorage.getItem('xp_noga')==='1'){ return; }
+    }catch(e){}
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-ZS864LCLVT');
+  })();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mejoras y upgrades para impresoras 3D | XPRINTED</title>
-<meta name="description" content="Upgrades para tu impresora 3D: extrusores metálicos, hotends de alta temperatura, nivelación automática (BL Touch), electrónica silenciosa (placas BTT, TMC2209), multicolor y más. +41 mejoras. Por XPRINTED.">
+<meta name="description" content="Upgrades para tu impresora 3D: extrusores metálicos, hotends de alta temperatura, BL Touch, electrónica silenciosa y multicolor. +41 mejoras disponibles.">
 <link rel="icon" type="image/png" href="/assets/logo_icon.png">
 <link rel="canonical" href="https://xprinted-web.vercel.app/mejoras.html">
 <meta property="og:type" content="website">
@@ -154,9 +168,9 @@
       <div class="up-card">
         <div class="uc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/><path d="M10 9h4"/></svg></div>
         <h3>Imprimí a más temperatura</h3>
-        <p>Bloques de cobre 550°C, hotends all-metal y barrels bi-metal para imprimir materiales técnicos como ABS, ASA, nylon y policarbonato sin problemas.</p>
+        <p>Bloques de cobre para alta temperatura, hotends all-metal y barrels bi-metal para imprimir materiales técnicos como ABS, ASA, nylon y policarbonato sin problemas.</p>
         <div class="uc-examples">
-          <span class="uc-tag">Bloque cobre 550°C</span>
+          <span class="uc-tag">Bloque cobre alta temp.</span>
           <span class="uc-tag">Barrel bi-metal</span>
           <span class="uc-tag">Hotend all-metal</span>
         </div>
