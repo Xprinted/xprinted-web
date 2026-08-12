@@ -2,17 +2,31 @@
 <html lang="es-AR">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZS864LCLVT');
+  // Google Analytics con exclusión de tráfico propio:
+  // entrá una vez a cualquier página con ?noga=1 y este navegador deja de contarse.
+  // Con ?noga=0 se vuelve a activar.
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      if(q.get('noga')==='1'){ localStorage.setItem('xp_noga','1'); }
+      if(q.get('noga')==='0'){ localStorage.removeItem('xp_noga'); }
+      if(localStorage.getItem('xp_noga')==='1'){ return; }
+    }catch(e){}
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-ZS864LCLVT';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-ZS864LCLVT');
+  })();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto — XPRINTED | WhatsApp, Instagram y email</title>
-<meta name="description" content="Contactá a XPRINTED por WhatsApp, Instagram o email. Tienda 100% online de repuestos para impresoras 3D, sin local a la calle. Envíos a todo el país por Mercado Envíos Full.">
+<meta name="description" content="Contactá a XPRINTED por WhatsApp, Instagram o email. Tienda 100% online de repuestos 3D con envíos Full a todo el país por Mercado Libre.">
 <link rel="icon" type="image/png" href="/assets/logo_icon.png">
 <link rel="canonical" href="https://xprinted-web.vercel.app/contacto.html">
 <meta property="og:type" content="website">
