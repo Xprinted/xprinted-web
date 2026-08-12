@@ -77,26 +77,31 @@ export default async function handler(req, res) {
     const accessToken = await getValidToken();
     const sellerId = token.user_id;
 
-    // 1. Traer TODOS los IDs de las publicaciones activas del vendedor (paginado).
-    //    ML devuelve hasta 100 por página; recorremos con offset hasta juntar todo.
+    // 1. Traer TODOS los IDs del vendedor (paginado): las ACTIVAS y también las PAUSADAS.
+    //    Cuando una publicación se queda sin stock, ML la pausa automáticamente —
+    //    las necesitamos para mostrarlas como AGOTADO con el botón "Avisame cuando vuelva".
+    //    (Más abajo, las pausadas que todavía tienen stock —pausa manual del vendedor— se descartan.)
     let ids = [];
-    let offset = 0;
     const PAGE = 100;
-    const MAX_ITEMS = 500; // tope de seguridad
-    while (offset < MAX_ITEMS) {
-      const searchRes = await fetch(
-        `https://api.mercadolibre.com/users/${sellerId}/items/search?status=active&limit=${PAGE}&offset=${offset}`,
-        { headers: { Authorization: `Bearer ${accessToken}` } }
-      );
-      const searchData = await searchRes.json();
-      if (!searchRes.ok) {
-        return res.status(502).json({ error: 'Error al buscar items', detail: searchData });
+    const MAX_ITEMS = 500; // tope de seguridad total
+    for (const status of ['active', 'paused']) {
+      let offset = 0;
+      while (ids.length < MAX_ITEMS) {
+        const searchRes = await fetch(
+          `https://api.mercadolibre.com/users/${sellerId}/items/search?status=${status}&limit=${PAGE}&offset=${offset}`,
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        const searchData = await searchRes.json();
+        if (!searchRes.ok) {
+          if (status === 'paused') break; // sin pausadas no se rompe el catálogo
+          return res.status(502).json({ error: 'Error al buscar items', detail: searchData });
+        }
+        const page = searchData.results || [];
+        ids = ids.concat(page);
+        const total = (searchData.paging && searchData.paging.total) || 0;
+        offset += PAGE;
+        if (page.length === 0 || offset >= total) break;
       }
-      const page = searchData.results || [];
-      ids = ids.concat(page);
-      const total = (searchData.paging && searchData.paging.total) || ids.length;
-      offset += PAGE;
-      if (page.length === 0 || ids.length >= total) break;
     }
 
     if (ids.length === 0) {
@@ -134,6 +139,8 @@ export default async function handler(req, res) {
             if (!img) {
               img = (it.secure_thumbnail || it.thumbnail || '').replace('http://', 'https://');
             }
+            // Pausada pero con stock = pausa manual del vendedor: no se muestra en la web.
+            if (it.status === 'paused' && it.available_quantity > 0) continue;
             products.push({
               id: it.id,
               title: it.title,
