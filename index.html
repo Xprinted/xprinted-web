@@ -1005,15 +1005,12 @@ function inferCat(title) {
   if (/(hotend|extrusor|sprite|volcano|mk8|termobarrera|garganta)/.test(t)) return 'Hotends & Extrusores';
   return 'Hotends & Extrusores';
 }
-const EXCLUDE_HOME = /link de pago|soic|ch341|amplificador|bluetooth|termostato|dimmer|hdmi|vga|displayport|step-?up|elevador|pickit|programador|arduino|esp32|nodemcu|starlink|zk-?pp|ne5532|tpa3116|irs2092|w3230/i;
-
 fetch('/api/ml-products')
   .then(r => r.ok ? r.json() : null)
   .then(d => {
     if (!d || !Array.isArray(d.products)) return;
-    const items = d.products.filter(p => !EXCLUDE_HOME.test(p.title || ''));
     const counts = {};
-    items.forEach(p => { const c = inferCat(p.title); counts[c] = (counts[c] || 0) + 1; });
+    d.products.forEach(p => { const c = inferCat(p.title); counts[c] = (counts[c] || 0) + 1; });
     document.querySelectorAll('[data-cat-count]').forEach(el => {
       const n = counts[el.getAttribute('data-cat-count')] || 0;
       el.textContent = n + (n === 1 ? ' producto' : ' productos');
