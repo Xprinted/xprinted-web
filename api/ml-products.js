@@ -108,6 +108,11 @@ export default async function handler(req, res) {
       return res.status(200).json({ products: [] });
     }
 
+    // Publicaciones que NO son repuestos de impresión 3D y no queremos mostrar en la web
+    // (electrónica ajena, links de pago, impresoras completas). Una sola lista para todo el sitio:
+    // catálogo, contadores de la home y las recomendaciones del asistente.
+    const EXCLUDE = /link de pago|soic|ch341|amplificador|bluetooth|termostato|dimmer|hdmi|vga|displayport|step-?up|elevador|pickit|programador|arduino|esp32|nodemcu|starlink|zk-?pp|ne5532|tpa3116|irs2092|w3230|volt[ií]metro|usbacab|dvp16|\bplc\b|^impresora 3d/i;
+
     // 2. Traer los detalles (precio, stock, foto) en lotes con /items?ids=
     const attributes = 'id,title,price,available_quantity,thumbnail,thumbnail_id,secure_thumbnail,pictures,permalink,status,sold_quantity,shipping';
     const chunks = [];
@@ -141,6 +146,8 @@ export default async function handler(req, res) {
             }
             // Pausada pero con stock = pausa manual del vendedor: no se muestra en la web.
             if (it.status === 'paused' && it.available_quantity > 0) continue;
+            // Fuera lo que no es repuesto 3D
+            if (EXCLUDE.test(it.title || '')) continue;
             products.push({
               id: it.id,
               title: it.title,
