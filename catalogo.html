@@ -29,14 +29,14 @@
 <link rel="preconnect" href="https://http2.mlstatic.com">
 <meta name="description" content="Repuestos para impresoras 3D con precios y stock en vivo: hotends, nozzles, camas, termistores y más. Envío Full a todo el país por Mercado Libre.">
 <link rel="icon" type="image/png" href="/assets/logo_icon.png">
-<link rel="canonical" href="https://xprinted-web.vercel.app/catalogo.html">
+<link rel="canonical" href="https://xprinted.com.ar/catalogo.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Catálogo — XPRINTED">
 <meta property="og:description" content="Todos los repuestos para impresoras 3D. Envío Full a todo el país.">
 <meta property="og:site_name" content="XPRINTED">
 <meta property="og:locale" content="es_AR">
-<meta property="og:url" content="https://xprinted-web.vercel.app/catalogo.html">
-<meta property="og:image" content="https://xprinted-web.vercel.app/assets/og-home.png">
+<meta property="og:url" content="https://xprinted.com.ar/catalogo.html">
+<meta property="og:image" content="https://xprinted.com.ar/assets/og-home.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,6 +185,8 @@
   .ftab{font-family:var(--fm);font-size:0.72rem;letter-spacing:0.03em;color:var(--muted);background:var(--bg2);border:1px solid var(--line);padding:9px 16px;border-radius:100px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;white-space:nowrap;}
   .ftab:hover{border-color:#3a3a3c;color:#C0C0C0;background:var(--bg3);}
   .ftab.active{background:var(--white);color:var(--bg);border-color:var(--white);font-weight:600;}
+  .ftab-up{border-color:rgba(224,169,74,0.42);color:#E0A94A;}
+  .ftab-up.active{background:#E0A94A;border-color:#E0A94A;color:#0A0A0A;}
 
   /* PRODUCT GRID */
   .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
@@ -451,6 +453,14 @@ function inferCat(title) {
 // Orden de categorías en los tabs
 const CATS = ['Camas magnéticas','Hotends & Extrusores','Nozzles / Boquillas','Acoples & Accesorios','Termistores & Resistencias','Coolers & Ventiladores','Herramientas & Consumibles','Electrónica'];
 
+// ── Mejoras / upgrades ──────────────────────────────────────────────
+// No son una categoría de Mercado Libre: se detectan por el título.
+// Espejo de las familias que muestra /mejoras.html
+const MEJ_CAT = '__mejoras';
+const MEJORAS_RE = /(bmg|dual\s?-?drive|sprite|extrusor(a)? met[\u00e1a]lic|all[\s-]?metal|bi[\s-]?metal|bimetal|bloque (de )?cobre|copper|550\s*\u00b0?\s*c|volcano|bl[\s-]?touch|cr[\s-]?touch|autonivel|nivelaci[\u00f3o]n autom|skr|bigtreetech|\bbtt\b|tmc\s?\d|doble eje z|eje z doble|bmcu|multicolor|nebula|sonic ?pad|rueda(s)? pom|resorte(s)? reforzado|direct ?drive|silencios)/i;
+function isMejora(t) { return MEJORAS_RE.test(t || ''); }
+function countMejoras() { return PRODUCTS.filter(p => isMejora(p.title)).length; }
+
 const gridEl = document.getElementById('prod-grid');
 const tabsEl = document.getElementById('filter-tabs');
 
@@ -512,7 +522,9 @@ function productCard(p) {
 let VIEW = { cat: 'all', q: '', sort: 'rel' };
 function normTxt(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/-/g,' '); }
 function visibleList() {
-  let list = (VIEW.cat === 'all') ? PRODUCTS.slice() : PRODUCTS.filter(p => p.cat === VIEW.cat);
+  let list = (VIEW.cat === 'all') ? PRODUCTS.slice()
+    : (VIEW.cat === MEJ_CAT) ? PRODUCTS.filter(p => isMejora(p.title))
+    : PRODUCTS.filter(p => p.cat === VIEW.cat);
   if (VIEW.q) { const q = normTxt(VIEW.q); list = list.filter(p => normTxt(p.title).includes(q)); }
   if (VIEW.sort === 'precio-asc') list.sort((a,b) => a.price - b.price);
   else if (VIEW.sort === 'precio-desc') list.sort((a,b) => b.price - a.price);
@@ -545,6 +557,8 @@ function setActiveTab(cat) {
 // Construye los tabs de filtro dinámicamente
 function buildTabs() {
   let html = `<button class="ftab active" data-cat="all">Todos (${PRODUCTS.length})</button>`;
+  const nUp = countMejoras();
+  if (nUp) html += `<button class="ftab ftab-up" data-cat="${MEJ_CAT}">Mejoras / Upgrades (${nUp})</button>`;
   CATS.forEach(cat => {
     const n = countByCat(cat);
     if (n === 0) return;
@@ -713,6 +727,11 @@ async function loadProducts() {
     wireHeroCards();
     wireFooterLinks();
     renderGrid('all');
+    // /catalogo.html?ver=mejoras entra directo al filtro de upgrades
+    try {
+      const qs = new URLSearchParams(location.search);
+      if ((qs.get('ver') || '').toLowerCase() === 'mejoras' && countMejoras()) filterAndScroll(MEJ_CAT);
+    } catch (e) {}
     const countEl = document.getElementById('cat-count');
     if (countEl) countEl.innerHTML = `<b>${PRODUCTS.length}</b> productos disponibles`;
   } catch (e) {
