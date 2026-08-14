@@ -27,19 +27,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XPRINTED — Repuestos para impresoras 3D en Argentina</title>
 <meta name="description" content="Repuestos y accesorios para impresoras 3D: hotends, nozzles, camas magnéticas, termistores, ventiladores y más. +8 años y +50.000 ventas. Envío Full a todo el país.">
-<link rel="canonical" href="https://xprinted-web.vercel.app/">
+<link rel="canonical" href="https://xprinted.com.ar/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="XPRINTED — Repuestos para impresoras 3D en Argentina">
 <meta property="og:description" content="Hotends, nozzles, camas, termistores, ventiladores y más. +8 años, +50.000 ventas, envío Full a todo el país.">
 <meta property="og:site_name" content="XPRINTED">
 <meta property="og:locale" content="es_AR">
-<meta property="og:url" content="https://xprinted-web.vercel.app/">
-<meta property="og:image" content="https://xprinted-web.vercel.app/assets/og-home.png">
+<meta property="og:url" content="https://xprinted.com.ar/">
+<meta property="og:image" content="https://xprinted.com.ar/assets/og-home.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="XPRINTED — Repuestos para impresoras 3D">
 <meta name="twitter:description" content="Hotends, nozzles, camas, termistores y más. Envío Full a todo el país.">
-<meta name="twitter:image" content="https://xprinted-web.vercel.app/assets/logo_icon.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"XPRINTED","url":"https://xprinted-web.vercel.app/","logo":"https://xprinted-web.vercel.app/assets/logo_icon.png","description":"Repuestos y accesorios para impresoras 3D en Argentina.","areaServed":"AR","sameAs":["https://instagram.com/xprinted.arg"]}</script>
+<meta name="twitter:image" content="https://xprinted.com.ar/assets/logo_icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"XPRINTED","url":"https://xprinted.com.ar/","logo":"https://xprinted.com.ar/assets/logo_icon.png","description":"Repuestos y accesorios para impresoras 3D en Argentina.","areaServed":"AR","sameAs":["https://instagram.com/xprinted.arg"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -1024,6 +1024,26 @@ fetch('/api/ml-products')
   const result = document.getElementById('picker-result');
   if(!grid) return;
 
+  // Término de búsqueda del catálogo por impresora (espejado en assets/printer.js)
+  const KW = {
+    "Creality Ender-3 Series": "Ender 3",
+    "Creality Ender 3 Neo / V2 Neo": "Ender 3",
+    "Creality Ender 3 S1 / Pro / Plus": "Ender 3",
+    "Creality Ender-3 V3 / V3 Plus / V3 SE / V3 KE": "Ender 3",
+    "Creality Ender-5 Series / Ender-6 / Ender-7": "Ender 5",
+    "Creality K1 / K2": "K1",
+    "Creality Hi": "Creality",
+    "Creality CR-10 (todas)": "CR-10",
+    "Creality CR-6 / CR-5 / CR-20": "CR-6",
+    "Bambu Lab A1 / A1 Mini": "A1",
+    "Bambu Lab X1 / P1 (Series)": "X1",
+    "Bambu Lab H2D": "H2D",
+    "Anycubic Kobra 3 / Kobra S1": "Kobra",
+    "Artillery Sidewinder X1 / X2 / X3 / X4 / Genius / Genius Pro": "Sidewinder",
+    "Prusa i3": "Prusa",
+    "Otras marcas": ""
+  };
+
   const PRINTERS = [
     {name:"Creality Ender-3 Series", sub:"Creality", total:76, mejoras:24, cats:[{n:"Hotends & Extrusores",c:21},{n:"Acoples & Accesorios",c:13},{n:"Electrónica",c:11},{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:8},{n:"Nozzles / Boquillas",c:6},{n:"Coolers & Ventiladores",c:5},{n:"Termistores & Resistencias",c:3}]},
     {name:"Creality Ender 3 Neo / V2 Neo", sub:"Creality", total:41, mejoras:5, cats:[{n:"Herramientas & Consumibles",c:9},{n:"Camas magnéticas",c:8},{n:"Acoples & Accesorios",c:8},{n:"Hotends & Extrusores",c:7},{n:"Electrónica",c:4},{n:"Coolers & Ventiladores",c:3},{n:"Nozzles / Boquillas",c:1},{n:"Termistores & Resistencias",c:1}]},
@@ -1059,9 +1079,7 @@ fetch('/api/ml-products')
     // Recordar la impresora del cliente para el catálogo y para Max
     try {
       localStorage.setItem('xp_printer_name', p.name);
-      const stop = ['creality','bambu','lab','anycubic','artillery','prusa','series','(todas)','otras','marcas'];
-      const kw = p.name.split(/[\s/]+/).filter(w => w && !stop.includes(w.toLowerCase())).slice(0,2).join(' ');
-      localStorage.setItem('xp_printer_kw', kw);
+      localStorage.setItem('xp_printer_kw', KW[p.name] || '');
     } catch(e) {}
     if (window.xpRefreshPrinterBtn) window.xpRefreshPrinterBtn();
     const chips = p.cats.map(function(c){
